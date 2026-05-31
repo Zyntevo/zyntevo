@@ -101,7 +101,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       <div class="sidebar-section">ÜBERSICHT</div>
       <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
       <div class="sidebar-section">KI-TOOLS</div>
-      <div class="nav-item" onclick="showPage('angebot',this)"><span class="nav-icon">🏠</span> Angebot Generator</div>
+      <div class="nav-item" onclick="showPage('angebot',this)"><span class="nav-icon">📋</span> Angebot Generator</div>
       <div class="nav-item" onclick="showPage('email',this)"><span class="nav-icon">✉️</span> E-Mail Generator</div>
       <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> Social Media</div>
       <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> Akquise-Brief</div>
@@ -112,6 +112,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     </div>
     <div class="main">
 
+      <!-- DASHBOARD -->
       <div class="page active" id="page-dashboard">
         <div class="page-header"><div class="page-tag">WILLKOMMEN</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">8 KI-Tools die dir als Handwerker täglich Zeit sparen.</div></div>
         <div class="dash-grid">
@@ -121,41 +122,42 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
           <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
         </div>
         <div class="tool-cards">
-          <div class="tool-card" onclick="showPage('angebot',null)"><div class="tool-card-icon">📋 Angebot in Sekunden</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('angebot',null)"><div class="tool-card-icon">📋</div><div class="tool-card-title">Angebot Generator</div><div class="tool-card-desc">Professionelle Angebote in Sekunden</div><div class="card-link">→ Tool öffnen</div></div>
           <div class="tool-card" onclick="showPage('email',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title">E-Mail Generator</div><div class="tool-card-desc">Fertige Mails für jede Situation</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title">Social Media</div><div class="tool-card-desc">Posts für Instagram & LinkedIn</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title">Akquise-Brief</div><div class="tool-card-desc">Eigentümer professionell anschreiben</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('bewertung',null)"><div class="tool-card-icon">⭐</div><div class="tool-card-title">Bewertungs-Antwort</div><div class="tool-card-desc">Monatsbericht in 5 Minuten</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('kunde',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title">Kunden-Analyse</div><div class="tool-card-desc">Echte Käufer sofort erkennen</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('planung',null)"><div class="tool-card-icon">📅</div><div class="tool-card-title">Auftragsplanung</div><div class="tool-card-desc">Strategie für jeden Deal</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title">Social Media</div><div class="tool-card-desc">Posts für Instagram & TikTok</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title">Akquise-Brief</div><div class="tool-card-desc">Hausverwaltungen anschreiben</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('bewertung',null)"><div class="tool-card-icon">⭐</div><div class="tool-card-title">Bewertungs-Antwort</div><div class="tool-card-desc">Google Bewertungen beantworten</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('kunde',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title">Kunden-Analyse</div><div class="tool-card-desc">Gute von schlechten Kunden unterscheiden</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('planung',null)"><div class="tool-card-icon">📅</div><div class="tool-card-title">Auftragsplanung</div><div class="tool-card-desc">Auftragskalender & Jahresplanung</div><div class="card-link">→ Tool öffnen</div></div>
           <div class="tool-card" onclick="showPage('tiktok',null)"><div class="tool-card-icon">🎬</div><div class="tool-card-title">TikTok Skript</div><div class="tool-card-desc">Fertige Video-Skripte sofort</div><div class="card-link">→ Tool öffnen</div></div>
         </div>
       </div>
 
+      <!-- ANGEBOT GENERATOR -->
       <div class="page" id="page-angebot">
-        <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Angebot Generator</div><div class="page-desc">Gib die Objektdaten ein – die KI schreibt ein professionelles Exposé.</div></div>
+        <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Angebot Generator</div><div class="page-desc">Gib die Auftragsdaten ein – die KI schreibt ein professionelles Angebot.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Objekttyp</label><select class="form-select" id="expose-typ"><option>Eigentumswohnung</option><option>Einfamilienhaus</option><option>Doppelhaushälfte</option><option>Reihenhaus</option><option>Mehrfamilienhaus</option><option>Grundstück</option><option>Gewerbeimmobilie</option></select></div>
-            <div class="form-group"><label class="form-label">Lage / Stadtteil</label><input class="form-input" id="expose-lage" placeholder="z.B. München-Schwabing"></div>
-            <div class="form-group"><label class="form-label">Wohnfläche m²</label><input class="form-input" id="expose-flaeche" placeholder="z.B. 85 m²"></div>
-            <div class="form-group"><label class="form-label">Zimmer</label><input class="form-input" id="expose-zimmer" placeholder="z.B. 3 Zimmer"></div>
-            <div class="form-group"><label class="form-label">Kaufpreis</label><input class="form-input" id="expose-preis" placeholder="z.B. 450.000 €"></div>
-            <div class="form-group"><label class="form-label">Besonderheiten</label><textarea class="form-textarea" id="expose-details" placeholder="z.B. Dachterrasse, Tiefgaragenstellplatz, frisch renoviert..."></textarea></div>
-            <div class="form-group"><label class="form-label">Stil</label><select class="form-select" id="expose-stil"><option>Emotional & verkaufsstark</option><option>Sachlich & informativ</option><option>Luxury & exklusiv</option><option>Modern & minimalistisch</option></select></div>
-            <button class="generate-btn" onclick="generateExpose()">⚡ Exposé generieren</button>
+            <div class="form-group"><label class="form-label">Gewerk</label><select class="form-select" id="ang-gewerk"><option>Elektriker</option><option>Sanitär / Klempner</option><option>Maler</option><option>Fliesenleger</option><option>Schreiner / Tischler</option><option>Dachdecker</option><option>Heizung</option><option>Sonstiges</option></select></div>
+            <div class="form-group"><label class="form-label">Kundenname</label><input class="form-input" id="ang-kunde" placeholder="z.B. Familie Müller"></div>
+            <div class="form-group"><label class="form-label">Leistungsbeschreibung</label><textarea class="form-textarea" id="ang-leistung" placeholder="z.B. Komplette Elektroinstallation Erdgeschoss, 5 Zimmer, Neuinstallation Sicherungskasten..."></textarea></div>
+            <div class="form-group"><label class="form-label">Geschätzter Preis</label><input class="form-input" id="ang-preis" placeholder="z.B. 2.500 €"></div>
+            <div class="form-group"><label class="form-label">Ausführungszeitraum</label><input class="form-input" id="ang-zeitraum" placeholder="z.B. KW 24, ca. 3 Tage"></div>
+            <div class="form-group"><label class="form-label">Besonderheiten</label><textarea class="form-textarea" id="ang-details" placeholder="z.B. Material wird gestellt, Zufahrt eingeschränkt..."></textarea></div>
+            <button class="generate-btn" onclick="generateAngebot()">⚡ Angebot generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-expose" onclick="copyResult('expose-result','copy-expose')">Kopieren</button></div><div id="expose-result"><div class="result-placeholder"><div class="placeholder-icon">🏠</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-angebot" onclick="copyResult('angebot-result','copy-angebot')">Kopieren</button></div><div id="angebot-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle das Formular aus und generiere dein Angebot</div></div></div></div>
         </div>
       </div>
 
+      <!-- EMAIL -->
       <div class="page" id="page-email">
         <div class="page-header"><div class="page-tag">TOOL 2 VON 8</div><div class="page-title">E-Mail Generator</div><div class="page-desc">Wähle die Situation – die KI schreibt die perfekte E-Mail.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Situation</label><select class="form-select" id="email-situation"><option>Antwort auf Kaufinteresse</option><option>Besichtigungstermin bestätigen</option><option>Nach Besichtigung nachfassen</option><option>Preisreduktion mitteilen</option><option>Angebot abgelehnt</option><option>Verkaufsauftrag gewinnen</option><option>Schlüsselübergabe</option></select></div>
+            <div class="form-group"><label class="form-label">Situation</label><select class="form-select" id="email-situation"><option>Antwort auf Kundenanfrage</option><option>Terminbestätigung</option><option>Angebot nachfassen</option><option>Auftragsbestätigung</option><option>Rechnung begleiten</option><option>Erste Mahnung</option><option>Beschwerde beantworten</option><option>Empfehlung anfragen</option></select></div>
             <div class="form-group"><label class="form-label">Kundenname</label><input class="form-input" id="email-name" placeholder="z.B. Herr Müller"></div>
-            <div class="form-group"><label class="form-label">Objekt / Kontext</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. 3-Zimmer-Wohnung München, 85m², 450.000€..."></textarea></div>
+            <div class="form-group"><label class="form-label">Kontext / Details</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. Elektroinstallation am 15.06, Auftragswert 2.500€..."></textarea></div>
             <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="email-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
             <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
           </div>
@@ -163,86 +165,93 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
+      <!-- SOCIAL MEDIA -->
       <div class="page" id="page-social">
-        <div class="page-header"><div class="page-tag">TOOL 3 VON 8</div><div class="page-title">Social Media Generator</div><div class="page-desc">Fertige Posts für Instagram und LinkedIn.</div></div>
+        <div class="page-header"><div class="page-tag">TOOL 3 VON 8</div><div class="page-title">Social Media Generator</div><div class="page-desc">Fertige Posts für Instagram und TikTok.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>LinkedIn</option><option>TikTok Caption</option><option>Facebook</option></select></div>
-            <div class="form-group"><label class="form-label">Content-Typ</label><select class="form-select" id="social-typ"><option>Objektvorstellung</option><option>Markt-Tipp</option><option>Persönliche Geschichte</option><option>Kundenstimme</option><option>Behind the Scenes</option><option>Bildungs-Content</option></select></div>
-            <div class="form-group"><label class="form-label">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Heute haben wir eine traumhafte Penthouse-Wohnung verkauft..."></textarea></div>
-            <div class="form-group"><label class="form-label">Dein Name / Büro</label><input class="form-input" id="social-name" placeholder="z.B. Jan Wichmann Immobilien"></div>
+            <div class="form-group"><label class="form-label">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>TikTok Caption</option><option>Facebook</option></select></div>
+            <div class="form-group"><label class="form-label">Content-Typ</label><select class="form-select" id="social-typ"><option>Vorher/Nachher Projekt</option><option>Handwerk-Tipp</option><option>Projekt vorstellen</option><option>Behind the Scenes</option><option>Kundenstimme</option><option>Fehler-Video</option></select></div>
+            <div class="form-group"><label class="form-label">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Heute haben wir ein komplettes Bad renoviert..."></textarea></div>
+            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="social-name" placeholder="z.B. Müller Elektro GmbH"></div>
             <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
         </div>
       </div>
 
+      <!-- AKQUISE -->
       <div class="page" id="page-akquise">
-        <div class="page-header"><div class="page-tag">TOOL 4 VON 8</div><div class="page-title">Akquise-Brief Generator</div><div class="page-desc">Professionelle Anschreiben an Eigentümer.</div></div>
+        <div class="page-header"><div class="page-tag">TOOL 4 VON 8</div><div class="page-title">Akquise-Brief Generator</div><div class="page-desc">Professionelle Anschreiben an Hausverwaltungen und Gewerbekunden.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Stadtteil / Lage</label><input class="form-input" id="akquise-lage" placeholder="z.B. München-Schwabing"></div>
-            <div class="form-group"><label class="form-label">Anlass</label><select class="form-select" id="akquise-anlass"><option>Kostenlose Bewertung anbieten</option><option>Marktupdate mitteilen</option><option>Hohe Nachfrage kommunizieren</option><option>Reaktivierung nach längerer Zeit</option><option>Erstkontakt kalt</option></select></div>
-            <div class="form-group"><label class="form-label">Dein Name</label><input class="form-input" id="akquise-name" placeholder="z.B. Jan Wichmann"></div>
-            <div class="form-group"><label class="form-label">Dein Büro</label><input class="form-input" id="akquise-buero" placeholder="z.B. Zyntevo Immobilien"></div>
-            <div class="form-group"><label class="form-label">Dein USP</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung, 98% Erfolgsquote..."></textarea></div>
+            <div class="form-group"><label class="form-label">Zielgruppe</label><select class="form-select" id="akquise-ziel"><option>Hausverwaltung</option><option>Wohnungsbaugesellschaft</option><option>Gewerbekunde</option><option>Privatperson</option><option>Baufirma / Generalunternehmer</option></select></div>
+            <div class="form-group"><label class="form-label">Dein Gewerk</label><select class="form-select" id="akquise-gewerk"><option>Elektriker</option><option>Sanitär / Klempner</option><option>Maler</option><option>Fliesenleger</option><option>Schreiner</option><option>Dachdecker</option><option>Heizung</option></select></div>
+            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="akquise-name" placeholder="z.B. Müller Elektro GmbH"></div>
+            <div class="form-group"><label class="form-label">Region</label><input class="form-input" id="akquise-region" placeholder="z.B. München und Umgebung"></div>
+            <div class="form-group"><label class="form-label">Deine Stärken</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung, Reaktionszeit unter 2h, Festpreise..."></textarea></div>
             <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
         </div>
       </div>
 
+      <!-- BEWERTUNG -->
       <div class="page" id="page-bewertung">
-        <div class="page-header"><div class="page-tag">TOOL 5 VON 8</div><div class="page-title">Bewertungs-Antwort Generator</div><div class="page-desc">Professioneller Monatsbericht in 5 Minuten.</div></div>
+        <div class="page-header"><div class="page-tag">TOOL 5 VON 8</div><div class="page-title">Bewertungs-Antwort Generator</div><div class="page-desc">Professionelle Antworten auf Google-Bewertungen.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Region / Stadt</label><input class="form-input" id="markt-region" placeholder="z.B. München, Schwabing"></div>
-            <div class="form-group"><label class="form-label">Monat / Jahr</label><input class="form-input" id="markt-monat" placeholder="z.B. Juni 2026"></div>
-            <div class="form-group"><label class="form-label">Marktlage</label><select class="form-select" id="markt-lage"><option>Steigende Preise</option><option>Stabile Preise</option><option>Leicht sinkende Preise</option><option>Käufermarkt</option><option>Verkäufermarkt</option></select></div>
-            <div class="form-group"><label class="form-label">Aktuelle Zahlen</label><textarea class="form-textarea" id="markt-daten" placeholder="z.B. Durchschnittspreis 7.500€/m², Zinsen bei 3,2%..."></textarea></div>
-            <div class="form-group"><label class="form-label">Deine Einschätzung</label><textarea class="form-textarea" id="markt-einschaetzung" placeholder="z.B. Ich erwarte in den nächsten Monaten..."></textarea></div>
-            <button class="generate-btn" onclick="generateMarkt()">⚡ Bewertungs-Antwort generieren</button>
+            <div class="form-group"><label class="form-label">Art der Bewertung</label><select class="form-select" id="bew-art"><option>Positiv (4-5 Sterne)</option><option>Negativ (1-2 Sterne)</option><option>Neutral (3 Sterne)</option></select></div>
+            <div class="form-group"><label class="form-label">Bewertungstext</label><textarea class="form-textarea" id="bew-text" placeholder="Kopiere hier den Bewertungstext des Kunden..."></textarea></div>
+            <div class="form-group"><label class="form-label">Dein Betrieb</label><input class="form-input" id="bew-betrieb" placeholder="z.B. Müller Elektro GmbH"></div>
+            <div class="form-group"><label class="form-label">Kontext (optional)</label><textarea class="form-textarea" id="bew-kontext" placeholder="z.B. Kunde hatte Missverständnis beim Preis..."></textarea></div>
+            <button class="generate-btn" onclick="generateBewertung()">⚡ Antwort generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')">Kopieren</button></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-bewertung" onclick="copyResult('bewertung-result','copy-bewertung')">Kopieren</button></div><div id="bewertung-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Füge die Bewertung ein und generiere deine Antwort</div></div></div></div>
         </div>
       </div>
 
+      <!-- KUNDEN ANALYSE -->
       <div class="page" id="page-kunde">
-        <div class="page-header"><div class="page-tag">TOOL 6 VON 8</div><div class="page-title">Kunden-Analyse</div><div class="page-desc">KI bewertet ob es ein echter Käufer ist.</div></div>
+        <div class="page-header"><div class="page-tag">TOOL 6 VON 8</div><div class="page-title">Kunden-Analyse</div><div class="page-desc">KI bewertet ob es ein guter Auftraggeber ist.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Seit wann sucht der Interessent?</label><select class="form-select" id="kaeufer-seit"><option>Weniger als 1 Monat</option><option>1–3 Monate</option><option>3–6 Monate</option><option>Mehr als 6 Monate</option></select></div>
-            <div class="form-group"><label class="form-label">Finanzierung geklärt?</label><select class="form-select" id="kaeufer-finanz"><option>Ja – Bankzusage vorhanden</option><option>In Gespräch mit Bank</option><option>Noch nicht begonnen</option><option>Eigenkapital vorhanden</option></select></div>
-            <div class="form-group"><label class="form-label">Budget</label><input class="form-input" id="kaeufer-budget" placeholder="z.B. 400.000 – 450.000 €"></div>
-            <div class="form-group"><label class="form-label">Gewünschter Einzugstermin</label><select class="form-select" id="kaeufer-termin"><option>So schnell wie möglich</option><option>Innerhalb 3 Monate</option><option>In 3–6 Monaten</option><option>In 6–12 Monaten</option><option>Irgendwann</option></select></div>
-            <div class="form-group"><label class="form-label">Weitere Infos</label><textarea class="form-textarea" id="kaeufer-info" placeholder="z.B. Ehepaar, 2 Kinder, sucht 4-Zimmer in gutem Schulbezirk..."></textarea></div>
-            <button class="generate-btn" onclick="generateKaeufer()">⚡ Käufer analysieren</button>
+            <div class="form-group"><label class="form-label">Wie hat der Kunde Kontakt aufgenommen?</label><select class="form-select" id="kd-kontakt"><option>Empfehlung von Bestandskunde</option><option>Google gefunden</option><option>Gelbe Seiten</option><option>Social Media</option><option>Kaltanfrage / unbekannt</option></select></div>
+            <div class="form-group"><label class="form-label">Angebote eingeholt?</label><select class="form-select" id="kd-angebote"><option>Nein / weiß nicht</option><option>Ja, 2-3 Angebote</option><option>Ja, mehr als 5 Angebote</option></select></div>
+            <div class="form-group"><label class="form-label">Budget genannt?</label><select class="form-select" id="kd-budget"><option>Ja, realistisches Budget</option><option>Kein Budget genannt</option><option>Budget zu niedrig</option></select></div>
+            <div class="form-group"><label class="form-label">Gewünschter Ausführungstermin</label><select class="form-select" id="kd-termin"><option>Sofort / sehr dringend</option><option>Innerhalb 4 Wochen</option><option>Innerhalb 3 Monate</option><option>Irgendwann</option></select></div>
+            <div class="form-group"><label class="form-label">Weitere Infos zum Kunden</label><textarea class="form-textarea" id="kd-info" placeholder="z.B. Sehr preissensibel, fragt nach Barzahlung, hatte schon 3 Handwerker die 'alle schlecht waren'..."></textarea></div>
+            <button class="generate-btn" onclick="generateKunde()">⚡ Kunden analysieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-kaeufer" onclick="copyResult('kaeufer-result','copy-kaeufer')">Kopieren</button></div><div id="kaeufer-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Käufer</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-kunde" onclick="copyResult('kunde-result','copy-kunde')">Kopieren</button></div><div id="kunde-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Infos aus und analysiere den Kunden</div></div></div></div>
         </div>
       </div>
 
+      <!-- AUFTRAGSPLANUNG -->
       <div class="page" id="page-planung">
-        <div class="page-header"><div class="page-tag">TOOL 7 VON 8</div><div class="page-title">Auftragsplanung</div><div class="page-desc">Deine persönliche Verhandlungsstrategie von der KI.</div></div>
+        <div class="page-header"><div class="page-tag">TOOL 7 VON 8</div><div class="page-title">Auftragsplanung</div><div class="page-desc">KI hilft dir Auftragskalender und Jahresplanung zu optimieren.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Typ der Verhandlung</label><select class="form-select" id="vh-typ"><option>Käufer verhandelt Preis runter</option><option>Verkäufer will zu hohen Preis</option><option>Maklerauftrag gewinnen</option><option>Bieterverfahren moderieren</option><option>Deal vor dem Platzen retten</option></select></div>
-            <div class="form-group"><label class="form-label">Situation</label><textarea class="form-textarea" id="vh-situation" placeholder="z.B. Käufer bietet 380.000€ für ein Objekt das für 420.000€ inseriert ist..."></textarea></div>
-            <div class="form-group"><label class="form-label">Meine Position</label><textarea class="form-textarea" id="vh-position" placeholder="z.B. Ich vertrete den Verkäufer, Mindestpreis ist 400.000€..."></textarea></div>
-            <button class="generate-btn" onclick="generateVerhandlung()">⚡ Strategie generieren</button>
+            <div class="form-group"><label class="form-label">Dein Gewerk</label><select class="form-select" id="plan-gewerk"><option>Elektriker</option><option>Sanitär / Klempner</option><option>Maler</option><option>Fliesenleger</option><option>Schreiner</option><option>Dachdecker</option><option>Heizung</option></select></div>
+            <div class="form-group"><label class="form-label">Aktuelle offene Aufträge</label><textarea class="form-textarea" id="plan-auftraege" placeholder="z.B. Auftrag 1: Elektro Müller, 3 Tage, KW24. Auftrag 2: ..."></textarea></div>
+            <div class="form-group"><label class="form-label">Ruhige Monate bei dir</label><input class="form-input" id="plan-ruhig" placeholder="z.B. Januar, Februar"></div>
+            <div class="form-group"><label class="form-label">Umsatzziel pro Monat</label><input class="form-input" id="plan-ziel" placeholder="z.B. 8.000 €"></div>
+            <div class="form-group"><label class="form-label">Was brauchst du?</label><select class="form-select" id="plan-was"><option>Auftragskalender optimieren</option><option>Akquise-Plan für ruhige Monate</option><option>Jahresplanung erstellen</option><option>Kapazität berechnen</option></select></div>
+            <button class="generate-btn" onclick="generatePlanung()">⚡ Plan generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')">Kopieren</button></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-planung" onclick="copyResult('planung-result','copy-planung')">Kopieren</button></div><div id="planung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Fülle die Details aus und erhalte deinen Plan</div></div></div></div>
         </div>
       </div>
 
+      <!-- TIKTOK -->
       <div class="page" id="page-tiktok">
         <div class="page-header"><div class="page-tag">TOOL 8 VON 8</div><div class="page-title">TikTok Skript Generator</div><div class="page-desc">Fertige Video-Skripte sofort aufnahmefertig.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Video-Format</label><select class="form-select" id="tt-format"><option>Fehler-Video</option><option>Tipp-Video</option><option>Behind the Scenes</option><option>Markt-Update</option><option>Persönliche Geschichte</option><option>Vorher/Nachher</option></select></div>
-            <div class="form-group"><label class="form-label">Thema</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. 3 Fehler die Immobilienkäufer beim ersten Kauf machen..."></textarea></div>
+            <div class="form-group"><label class="form-label">Video-Format</label><select class="form-select" id="tt-format"><option>Vorher/Nachher Projekt</option><option>Profi-Tipp</option><option>Fehler-Video</option><option>Ein Tag als Handwerker</option><option>Warum gute Handwerker teurer sind</option><option>Werkzeug-Tipp</option></select></div>
+            <div class="form-group"><label class="form-label">Thema / Projekt</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. Wir haben heute ein komplettes Bad in 3 Tagen renoviert..."></textarea></div>
             <div class="form-group"><label class="form-label">Videolänge</label><select class="form-select" id="tt-laenge"><option>30 Sekunden</option><option>45 Sekunden</option><option>60 Sekunden</option></select></div>
-            <div class="form-group"><label class="form-label">Dein Name / Büro</label><input class="form-input" id="tt-name" placeholder="z.B. Jan – Immobilienmakler München"></div>
+            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="tt-name" placeholder="z.B. Max – Elektriker München"></div>
             <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')">Kopieren</button></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
@@ -286,7 +295,7 @@ function copyResult(resultId, btnId) {
 }
 
 async function callAI(prompt) {
-  const r = await fetch(WORKER_URL, { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({prompt}) });
+  const r = await fetch(WORKER_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({prompt}) });
   if (!r.ok) throw new Error("Fehler " + r.status);
   const d = await r.json();
   return d.content[0].text;
@@ -298,14 +307,81 @@ async function run(id, prompt) {
   catch(e) { document.getElementById(id).innerHTML = '<div class="result-text" style="color:#EF4444">Fehler. Bitte erneut versuchen.</div>'; }
 }
 
-async function generateExpose() { run('expose-result', `Professionelles Immobilienexposé auf Deutsch. Typ: ${document.getElementById('expose-typ').value}, Lage: ${document.getElementById('expose-lage').value||'zentral'}, Fläche: ${document.getElementById('expose-flaeche').value||'k.A.'}, Zimmer: ${document.getElementById('expose-zimmer').value||'k.A.'}, Preis: ${document.getElementById('expose-preis').value||'auf Anfrage'}, Besonderheiten: ${document.getElementById('expose-details').value||''}, Stil: ${document.getElementById('expose-stil').value}. Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Max. 350 Wörter. Sehr verkaufsstark.`); }
-async function generateEmail() { run('email-result', `Professionelle Makler-E-Mail auf Deutsch. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter.`); }
-async function generateSocial() { run('social-result', `${document.getElementById('social-plattform').value}-Post für Immobilienmakler auf Deutsch. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Büro: ${document.getElementById('social-name').value||'Immobilienmakler'}. Starker Hook, Inhalt, CTA, 5-8 Hashtags. Authentisch.`); }
-async function generateAkquise() { run('akquise-result', `Akquise-Brief an Eigentümer auf Deutsch. Lage: ${document.getElementById('akquise-lage').value||'Ihrer Region'}, Anlass: ${document.getElementById('akquise-anlass').value}, Makler: ${document.getElementById('akquise-name').value||'Jan Wichmann'} von ${document.getElementById('akquise-buero').value||''}, USP: ${document.getElementById('akquise-usp').value||''}. Max. 200 Wörter. Seriös, überzeugend, keine Floskeln.`); }
-async function generateMarkt() { run('markt-result', `Immobilien-Bewertungs-Antwort auf Deutsch. Region: ${document.getElementById('markt-region').value||'Ihre Region'}, Zeitraum: ${document.getElementById('markt-monat').value||'aktuell'}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Max. 400 Wörter.`); }
-async function generateKaeufer() { run('kaeufer-result', `Analysiere Kaufinteressenten auf Deutsch. Sucht seit: ${document.getElementById('kaeufer-seit').value}, Finanzierung: ${document.getElementById('kaeufer-finanz').value}, Budget: ${document.getElementById('kaeufer-budget').value||'nicht genannt'}, Einzug: ${document.getElementById('kaeufer-termin').value}, Infos: ${document.getElementById('kaeufer-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Hindernisse, 4) Empfehlung, 5) Nächster Schritt.`); }
-async function generateVerhandlung() { run('verhandlung-result', `Immobilien-Verhandlungsstrategie auf Deutsch. Typ: ${document.getElementById('vh-typ').value}, Situation: ${document.getElementById('vh-situation').value||''}, Position: ${document.getElementById('vh-position').value||''}. Gib: 1) Lageeinschätzung, 2) Strategie, 3) Konkrete Formulierungen, 4) Gegenargumente, 5) Red Lines.`); }
-async function generateTikTok() { run('tiktok-result', `TikTok-Skript für Immobilienmakler auf Deutsch. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||'Makler'}. HOOK (2-3 Sek), HAUPTTEIL (kurze Sätze max. 8 Wörter), CTA. Nur gesprochener Text.`); }
+async function generateAngebot() {
+  run('angebot-result', `Schreibe ein professionelles Handwerker-Angebot auf Deutsch.
+Gewerk: ${document.getElementById('ang-gewerk').value}
+Kunde: ${document.getElementById('ang-kunde').value||'Kunde'}
+Leistung: ${document.getElementById('ang-leistung').value||''}
+Preis: ${document.getElementById('ang-preis').value||'nach Aufwand'}
+Zeitraum: ${document.getElementById('ang-zeitraum').value||'nach Vereinbarung'}
+Besonderheiten: ${document.getElementById('ang-details').value||''}
+Format: Professionelles Angebot mit Positionsliste, Netto/Brutto, Zahlungsbedingungen 14 Tage netto, Gewährleistungshinweis.`);
+}
+
+async function generateEmail() {
+  run('email-result', `Professionelle E-Mail für einen Handwerksbetrieb auf Deutsch.
+Situation: ${document.getElementById('email-situation').value}
+An: ${document.getElementById('email-name').value||'Kunde'}
+Kontext: ${document.getElementById('email-kontext').value||''}
+Ton: ${document.getElementById('email-ton').value}
+Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter.`);
+}
+
+async function generateSocial() {
+  run('social-result', `${document.getElementById('social-plattform').value}-Post für Handwerksbetrieb auf Deutsch.
+Typ: ${document.getElementById('social-typ').value}
+Details: ${document.getElementById('social-details').value||''}
+Betrieb: ${document.getElementById('social-name').value||'Handwerksbetrieb'}
+Starker Hook, Inhalt, CTA, 5 lokale Hashtags. Authentisch, nicht werblich.`);
+}
+
+async function generateAkquise() {
+  run('akquise-result', `Akquise-Brief für Handwerksbetrieb auf Deutsch.
+Zielgruppe: ${document.getElementById('akquise-ziel').value}
+Gewerk: ${document.getElementById('akquise-gewerk').value}
+Betrieb: ${document.getElementById('akquise-name').value||'Unser Betrieb'}
+Region: ${document.getElementById('akquise-region').value||'Ihrer Region'}
+Stärken: ${document.getElementById('akquise-usp').value||''}
+Max. 200 Wörter. Seriös, überzeugend, konkreter Nutzen für den Empfänger.`);
+}
+
+async function generateBewertung() {
+  run('bewertung-result', `Professionelle Antwort auf Google-Bewertung für Handwerksbetrieb auf Deutsch.
+Art: ${document.getElementById('bew-art').value}
+Bewertungstext: ${document.getElementById('bew-text').value||''}
+Betrieb: ${document.getElementById('bew-betrieb').value||'Unser Betrieb'}
+Kontext: ${document.getElementById('bew-kontext').value||''}
+Positiv: authentisch danken, persönlich eingehen. Negativ: deeskalieren, Lösung anbieten. Max. 100 Wörter.`);
+}
+
+async function generateKunde() {
+  run('kunde-result', `Analysiere potenziellen Handwerkskunden auf Deutsch.
+Kontaktweg: ${document.getElementById('kd-kontakt').value}
+Angebote: ${document.getElementById('kd-angebote').value}
+Budget: ${document.getElementById('kd-budget').value}
+Termin: ${document.getElementById('kd-termin').value}
+Infos: ${document.getElementById('kd-info').value||''}
+Gib: 1) Score 1-10, 2) Typ Traumkunde/Normal/Problemkunde, 3) Red Flags, 4) Empfehlung.`);
+}
+
+async function generatePlanung() {
+  run('planung-result', `Auftragsplanung für Handwerksbetrieb auf Deutsch.
+Gewerk: ${document.getElementById('plan-gewerk').value}
+Aufträge: ${document.getElementById('plan-auftraege').value||''}
+Ruhige Monate: ${document.getElementById('plan-ruhig').value||''}
+Umsatzziel: ${document.getElementById('plan-ziel').value||''}
+Was gebraucht: ${document.getElementById('plan-was').value}
+Konkreter umsetzbarer Plan mit klaren Schritten.`);
+}
+
+async function generateTikTok() {
+  run('tiktok-result', `TikTok-Skript für Handwerker auf Deutsch.
+Format: ${document.getElementById('tt-format').value}
+Thema: ${document.getElementById('tt-thema').value||''}
+Länge: ${document.getElementById('tt-laenge').value}
+Sprecher: ${document.getElementById('tt-name').value||'Handwerker'}
+HOOK (2-3 Sek), HAUPTTEIL (kurze Sätze), CTA. Nur gesprochener Text.`);
+}
 </script>
 </body>
 </html>
