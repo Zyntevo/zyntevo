@@ -200,10 +200,10 @@
     <div class="login-sub">MAKLER PREMIUM · KI-TOOL</div>
     <label class="login-label">Zugangscode</label>
     <input type="password" class="login-input" id="login-input" placeholder="Ihr Zugangscode" onkeydown="if(event.key==='Enter')doLogin()">
-    
-    
+    <label class="login-label">API-Schlüssel</label>
+    <input type="password" class="login-input" id="api-key-input" placeholder="sk-ant-api03-..." onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()">Zugang erhalten</button>
-    <div class="login-error" id="login-error">Ungültiger Zugangscode.</div>
+    <div class="login-error" id="login-error">Ungültiger Zugangscode oder API-Schlüssel fehlt.</div>
   </div>
 </div>
 
@@ -438,11 +438,13 @@
 
 <script>
 const PASSWORD = "zyntevo2026";
-const WORKER_URL = "https://zyntevo-tool.jan-6a7.workers.dev/api";
+let API_KEY = "";
 
 function doLogin() {
   const val = document.getElementById('login-input').value;
-  if (val === PASSWORD) {
+  const key = document.getElementById('api-key-input').value.trim();
+  if (val === PASSWORD && key.startsWith('sk-ant-')) {
+    API_KEY = key;
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
   } else {
@@ -474,12 +476,25 @@ function copyResult(resultId, btnId) {
 
 async function callAI(prompt) {
   try {
-    const response = await fetch(WORKER_URL, {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt })
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": API_KEY,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
     });
-    if (!response.ok) throw new Error("API Fehler " + response.status);
+    if (!response.ok) {
+      const err = await response.json();
+      console.error("API Error:", err);
+      throw new Error(err.error?.message || "API Fehler " + response.status);
+    }
     const data = await response.json();
     if (!data.content || !data.content[0]) throw new Error("Leere Antwort");
     return data.content[0].text;
