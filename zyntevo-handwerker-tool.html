@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZYNTEVO | KI-Tool Makler Premium</title>
+<title>ZYNTEVO | KI-Tool Handwerker Premium</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{overflow-x:hidden;max-width:100%;}
@@ -81,7 +81,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 <div id="login-screen">
   <div class="login-card">
     <div class="login-title">ZYNTEVO</div>
-    <div class="login-sub">KI-Tool · Makler Premium</div>
+    <div class="login-sub">KI-Tool · Handwerker Premium</div>
     <label class="login-label">Zugangscode</label>
     <input type="password" class="login-input" id="login-input" placeholder="Zugangscode eingeben" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()">Zugang erhalten</button>
@@ -93,7 +93,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
   <div class="header">
     <div class="container">
       <div class="logo">ZYNTEVO</div>
-      <div class="header-badge">🔒 MAKLER PREMIUM</div>
+      <div class="header-badge">🔒 HANDWERKER PREMIUM</div>
     </div>
   </div>
   <div class="layout">
@@ -101,19 +101,19 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       <div class="sidebar-section">ÜBERSICHT</div>
       <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
       <div class="sidebar-section">KI-TOOLS</div>
-      <div class="nav-item" onclick="showPage('expose',this)"><span class="nav-icon">🏠</span> Exposé Generator</div>
+      <div class="nav-item" onclick="showPage('angebot',this)"><span class="nav-icon">🏠</span> Angebot Generator</div>
       <div class="nav-item" onclick="showPage('email',this)"><span class="nav-icon">✉️</span> E-Mail Generator</div>
       <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> Social Media</div>
       <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> Akquise-Brief</div>
-      <div class="nav-item" onclick="showPage('markt',this)"><span class="nav-icon">📊</span> Marktbericht</div>
-      <div class="nav-item" onclick="showPage('kaeufer',this)"><span class="nav-icon">🎯</span> Käufer-Analyse</div>
-      <div class="nav-item" onclick="showPage('verhandlung',this)"><span class="nav-icon">🤝</span> Verhandlungs-Coach</div>
+      <div class="nav-item" onclick="showPage('bewertung',this)"><span class="nav-icon">⭐</span> Bewertungs-Antwort</div>
+      <div class="nav-item" onclick="showPage('kunde',this)"><span class="nav-icon">🎯</span> Kunden-Analyse</div>
+      <div class="nav-item" onclick="showPage('planung',this)"><span class="nav-icon">📅</span> Auftragsplanung</div>
       <div class="nav-item" onclick="showPage('tiktok',this)"><span class="nav-icon">🎬</span> TikTok Skript</div>
     </div>
     <div class="main">
 
       <div class="page active" id="page-dashboard">
-        <div class="page-header"><div class="page-tag">WILLKOMMEN</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">8 KI-Tools die dir als Immobilienmakler täglich Zeit sparen.</div></div>
+        <div class="page-header"><div class="page-tag">WILLKOMMEN</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">8 KI-Tools die dir als Handwerker täglich Zeit sparen.</div></div>
         <div class="dash-grid">
           <div class="dash-card"><div class="dash-num">8</div><div class="dash-label">KI-TOOLS</div></div>
           <div class="dash-card"><div class="dash-num">∞</div><div class="dash-label">NUTZUNGEN</div></div>
@@ -121,19 +121,19 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
           <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
         </div>
         <div class="tool-cards">
-          <div class="tool-card" onclick="showPage('expose',null)"><div class="tool-card-icon">🏠</div><div class="tool-card-title">Exposé Generator</div><div class="tool-card-desc">Professionelles Exposé in Sekunden</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('angebot',null)"><div class="tool-card-icon">📋 Angebot in Sekunden</div><div class="card-link">→ Tool öffnen</div></div>
           <div class="tool-card" onclick="showPage('email',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title">E-Mail Generator</div><div class="tool-card-desc">Fertige Mails für jede Situation</div><div class="card-link">→ Tool öffnen</div></div>
           <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title">Social Media</div><div class="tool-card-desc">Posts für Instagram & LinkedIn</div><div class="card-link">→ Tool öffnen</div></div>
           <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title">Akquise-Brief</div><div class="tool-card-desc">Eigentümer professionell anschreiben</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('markt',null)"><div class="tool-card-icon">📊</div><div class="tool-card-title">Marktbericht</div><div class="tool-card-desc">Monatsbericht in 5 Minuten</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('kaeufer',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title">Käufer-Analyse</div><div class="tool-card-desc">Echte Käufer sofort erkennen</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('verhandlung',null)"><div class="tool-card-icon">🤝</div><div class="tool-card-title">Verhandlungs-Coach</div><div class="tool-card-desc">Strategie für jeden Deal</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('bewertung',null)"><div class="tool-card-icon">⭐</div><div class="tool-card-title">Bewertungs-Antwort</div><div class="tool-card-desc">Monatsbericht in 5 Minuten</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('kunde',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title">Kunden-Analyse</div><div class="tool-card-desc">Echte Käufer sofort erkennen</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('planung',null)"><div class="tool-card-icon">📅</div><div class="tool-card-title">Auftragsplanung</div><div class="tool-card-desc">Strategie für jeden Deal</div><div class="card-link">→ Tool öffnen</div></div>
           <div class="tool-card" onclick="showPage('tiktok',null)"><div class="tool-card-icon">🎬</div><div class="tool-card-title">TikTok Skript</div><div class="tool-card-desc">Fertige Video-Skripte sofort</div><div class="card-link">→ Tool öffnen</div></div>
         </div>
       </div>
 
-      <div class="page" id="page-expose">
-        <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Exposé Generator</div><div class="page-desc">Gib die Objektdaten ein – die KI schreibt ein professionelles Exposé.</div></div>
+      <div class="page" id="page-angebot">
+        <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Angebot Generator</div><div class="page-desc">Gib die Objektdaten ein – die KI schreibt ein professionelles Exposé.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Objekttyp</label><select class="form-select" id="expose-typ"><option>Eigentumswohnung</option><option>Einfamilienhaus</option><option>Doppelhaushälfte</option><option>Reihenhaus</option><option>Mehrfamilienhaus</option><option>Grundstück</option><option>Gewerbeimmobilie</option></select></div>
@@ -192,8 +192,8 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
-      <div class="page" id="page-markt">
-        <div class="page-header"><div class="page-tag">TOOL 5 VON 8</div><div class="page-title">Marktbericht Generator</div><div class="page-desc">Professioneller Monatsbericht in 5 Minuten.</div></div>
+      <div class="page" id="page-bewertung">
+        <div class="page-header"><div class="page-tag">TOOL 5 VON 8</div><div class="page-title">Bewertungs-Antwort Generator</div><div class="page-desc">Professioneller Monatsbericht in 5 Minuten.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Region / Stadt</label><input class="form-input" id="markt-region" placeholder="z.B. München, Schwabing"></div>
@@ -201,14 +201,14 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Marktlage</label><select class="form-select" id="markt-lage"><option>Steigende Preise</option><option>Stabile Preise</option><option>Leicht sinkende Preise</option><option>Käufermarkt</option><option>Verkäufermarkt</option></select></div>
             <div class="form-group"><label class="form-label">Aktuelle Zahlen</label><textarea class="form-textarea" id="markt-daten" placeholder="z.B. Durchschnittspreis 7.500€/m², Zinsen bei 3,2%..."></textarea></div>
             <div class="form-group"><label class="form-label">Deine Einschätzung</label><textarea class="form-textarea" id="markt-einschaetzung" placeholder="z.B. Ich erwarte in den nächsten Monaten..."></textarea></div>
-            <button class="generate-btn" onclick="generateMarkt()">⚡ Marktbericht generieren</button>
+            <button class="generate-btn" onclick="generateMarkt()">⚡ Bewertungs-Antwort generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')">Kopieren</button></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">📊</div><div>Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')">Kopieren</button></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
         </div>
       </div>
 
-      <div class="page" id="page-kaeufer">
-        <div class="page-header"><div class="page-tag">TOOL 6 VON 8</div><div class="page-title">Käufer-Analyse</div><div class="page-desc">KI bewertet ob es ein echter Käufer ist.</div></div>
+      <div class="page" id="page-kunde">
+        <div class="page-header"><div class="page-tag">TOOL 6 VON 8</div><div class="page-title">Kunden-Analyse</div><div class="page-desc">KI bewertet ob es ein echter Käufer ist.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Seit wann sucht der Interessent?</label><select class="form-select" id="kaeufer-seit"><option>Weniger als 1 Monat</option><option>1–3 Monate</option><option>3–6 Monate</option><option>Mehr als 6 Monate</option></select></div>
@@ -222,8 +222,8 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
-      <div class="page" id="page-verhandlung">
-        <div class="page-header"><div class="page-tag">TOOL 7 VON 8</div><div class="page-title">Verhandlungs-Coach</div><div class="page-desc">Deine persönliche Verhandlungsstrategie von der KI.</div></div>
+      <div class="page" id="page-planung">
+        <div class="page-header"><div class="page-tag">TOOL 7 VON 8</div><div class="page-title">Auftragsplanung</div><div class="page-desc">Deine persönliche Verhandlungsstrategie von der KI.</div></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Typ der Verhandlung</label><select class="form-select" id="vh-typ"><option>Käufer verhandelt Preis runter</option><option>Verkäufer will zu hohen Preis</option><option>Maklerauftrag gewinnen</option><option>Bieterverfahren moderieren</option><option>Deal vor dem Platzen retten</option></select></div>
@@ -231,7 +231,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Meine Position</label><textarea class="form-textarea" id="vh-position" placeholder="z.B. Ich vertrete den Verkäufer, Mindestpreis ist 400.000€..."></textarea></div>
             <button class="generate-btn" onclick="generateVerhandlung()">⚡ Strategie generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')">Kopieren</button></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')">Kopieren</button></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
         </div>
       </div>
 
@@ -302,7 +302,7 @@ async function generateExpose() { run('expose-result', `Professionelles Immobili
 async function generateEmail() { run('email-result', `Professionelle Makler-E-Mail auf Deutsch. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter.`); }
 async function generateSocial() { run('social-result', `${document.getElementById('social-plattform').value}-Post für Immobilienmakler auf Deutsch. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Büro: ${document.getElementById('social-name').value||'Immobilienmakler'}. Starker Hook, Inhalt, CTA, 5-8 Hashtags. Authentisch.`); }
 async function generateAkquise() { run('akquise-result', `Akquise-Brief an Eigentümer auf Deutsch. Lage: ${document.getElementById('akquise-lage').value||'Ihrer Region'}, Anlass: ${document.getElementById('akquise-anlass').value}, Makler: ${document.getElementById('akquise-name').value||'Jan Wichmann'} von ${document.getElementById('akquise-buero').value||''}, USP: ${document.getElementById('akquise-usp').value||''}. Max. 200 Wörter. Seriös, überzeugend, keine Floskeln.`); }
-async function generateMarkt() { run('markt-result', `Immobilien-Marktbericht auf Deutsch. Region: ${document.getElementById('markt-region').value||'Ihre Region'}, Zeitraum: ${document.getElementById('markt-monat').value||'aktuell'}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Max. 400 Wörter.`); }
+async function generateMarkt() { run('markt-result', `Immobilien-Bewertungs-Antwort auf Deutsch. Region: ${document.getElementById('markt-region').value||'Ihre Region'}, Zeitraum: ${document.getElementById('markt-monat').value||'aktuell'}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Max. 400 Wörter.`); }
 async function generateKaeufer() { run('kaeufer-result', `Analysiere Kaufinteressenten auf Deutsch. Sucht seit: ${document.getElementById('kaeufer-seit').value}, Finanzierung: ${document.getElementById('kaeufer-finanz').value}, Budget: ${document.getElementById('kaeufer-budget').value||'nicht genannt'}, Einzug: ${document.getElementById('kaeufer-termin').value}, Infos: ${document.getElementById('kaeufer-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Hindernisse, 4) Empfehlung, 5) Nächster Schritt.`); }
 async function generateVerhandlung() { run('verhandlung-result', `Immobilien-Verhandlungsstrategie auf Deutsch. Typ: ${document.getElementById('vh-typ').value}, Situation: ${document.getElementById('vh-situation').value||''}, Position: ${document.getElementById('vh-position').value||''}. Gib: 1) Lageeinschätzung, 2) Strategie, 3) Konkrete Formulierungen, 4) Gegenargumente, 5) Red Lines.`); }
 async function generateTikTok() { run('tiktok-result', `TikTok-Skript für Immobilienmakler auf Deutsch. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||'Makler'}. HOOK (2-3 Sek), HAUPTTEIL (kurze Sätze max. 8 Wörter), CTA. Nur gesprochener Text.`); }
