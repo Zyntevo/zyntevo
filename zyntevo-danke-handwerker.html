@@ -80,6 +80,16 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .footer a{color:white;text-decoration:none;}
 
 /* Success badge */
+.download-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.download-card{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:20px;padding:22px 24px;text-decoration:none;color:var(--text);transition:.3s;}
+.download-card:hover{transform:translateY(-4px);border-color:rgba(212,175,55,.4);box-shadow:0 0 20px rgba(212,175,55,.1);}
+.dl-icon{font-size:28px;flex-shrink:0;}
+.dl-info{flex:1;}
+.dl-title{font-size:14px;font-weight:700;margin-bottom:3px;}
+.dl-sub{font-size:12px;color:var(--gold);}
+.dl-arrow{font-size:20px;color:var(--gold);font-weight:700;flex-shrink:0;}
+@media(max-width:600px){.download-grid{grid-template-columns:1fr;}}
+
 .success-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ADE80;padding:8px 18px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:20px;}
 .success-dot{width:6px;height:6px;background:#4ADE80;border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
@@ -193,8 +203,69 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     </div>
 </section>
 
-<!-- ENTHALTEN -->
+<!-- DOWNLOADS -->
 <section class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">DEINE DOWNLOADS</span>
+            <h2>Alle Dateien auf einen Blick</h2>
+            <p>Lade dir alle Inhalte deines Premium-Pakets direkt hier herunter.</p>
+        </div>
+        <div class="download-grid">
+            <a href="Premium-50-Prompts-Handwerker.pdf" download class="download-card">
+                <div class="dl-icon">📄</div>
+                <div class="dl-info">
+                    <div class="dl-title">50 KI-Prompts für Handwerker Pro</div>
+                    <div class="dl-sub">PDF herunterladen</div>
+                </div>
+                <div class="dl-arrow">↓</div>
+            </a>
+            <a href="Premium-30-TikTok-Skripte-Handwerker.pdf" download class="download-card">
+                <div class="dl-icon">🎬</div>
+                <div class="dl-info">
+                    <div class="dl-title">30 TikTok & Reels Skripte</div>
+                    <div class="dl-sub">PDF herunterladen</div>
+                </div>
+                <div class="dl-arrow">↓</div>
+            </a>
+            <a href="Premium-ChatGPT-Workflow-Handwerker.pdf" download class="download-card">
+                <div class="dl-icon">🤖</div>
+                <div class="dl-info">
+                    <div class="dl-title">ChatGPT-Workflow für Handwerker</div>
+                    <div class="dl-sub">PDF herunterladen</div>
+                </div>
+                <div class="dl-arrow">↓</div>
+            </a>
+            <a href="Premium-Auftraggeber-Qualifizierung-Handwerker.pdf" download class="download-card">
+                <div class="dl-icon">🎯</div>
+                <div class="dl-info">
+                    <div class="dl-title">Auftraggeber-Qualifizierungs-System</div>
+                    <div class="dl-sub">PDF herunterladen</div>
+                </div>
+                <div class="dl-arrow">↓</div>
+            </a>
+            <a href="Premium-Auftragsplanung-Handwerker.pdf" download class="download-card">
+                <div class="dl-icon">📊</div>
+                <div class="dl-info">
+                    <div class="dl-title">Auftragsplanung & Jahresvorlage</div>
+                    <div class="dl-sub">PDF herunterladen</div>
+                </div>
+                <div class="dl-arrow">↓</div>
+            </a>
+            <a href="ZYNTEVO-Zugang-Handwerker.pdf" download class="download-card">
+                <div class="dl-icon">🔑</div>
+                <div class="dl-info">
+                    <div class="dl-title">Zugangsdaten & Anleitung</div>
+                    <div class="dl-sub">PDF herunterladen</div>
+                </div>
+                <div class="dl-arrow">↓</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ENTHALTEN -->
+<section class="section dark">
     <div class="container">
         <div class="section-header">
             <span class="section-tag">WAS DU ERHALTEN HAST</span>
@@ -259,6 +330,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
                 <a href="widerruf.html">Widerruf</a>
             </div>
         </div>
+        <p style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);color:var(--muted);font-size:13px;">Die Abbuchung erfolgt durch Digistore24.com</p>
     </div>
 </footer>
 
