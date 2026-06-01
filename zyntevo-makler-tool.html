@@ -73,11 +73,17 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .copy-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;}
 .copy-btn:hover{border-color:var(--gold);color:var(--gold);}
 .copy-btn.copied{border-color:#22C55E;color:#22C55E;}
-.regen-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
-.regen-btn:hover{border-color:var(--gold);color:var(--gold);}
+
 .edit-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
 .edit-btn:hover{border-color:var(--gold);color:var(--gold);}
 .edit-btn.active{border-color:#22C55E;color:#22C55E;}
+.char-count{font-size:11px;color:var(--muted);margin-top:10px;text-align:right;letter-spacing:0.5px;}
+.profile-bar{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:24px 28px;margin-bottom:28px;}
+.profile-bar-title{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:14px;}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.profile-save-btn{margin-top:14px;padding:10px 20px;background:var(--gold);color:#000;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer;transition:.3s;}
+.profile-save-btn:hover{transform:translateY(-1px);}
+.profile-saved{color:#22C55E;font-size:12px;margin-left:10px;display:none;}
 .result-text[contenteditable="true"]{outline:1px solid rgba(212,175,55,.3);border-radius:8px;padding:8px;cursor:text;}
 .result-text{color:var(--text);font-size:14px;line-height:1.8;white-space:pre-wrap;}
 .result-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;gap:12px;color:var(--muted);}
@@ -140,6 +146,18 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     <div class="main">
 
       <div class="page active" id="page-dashboard">
+        
+        <div class="profile-bar">
+          <div class="profile-bar-title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
+          <div class="profile-grid">
+            <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Jan Wichmann" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Wichmann Immobilien" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Stadt / Region</label><input class="form-input" id="profile-region" placeholder="z.B. München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
+          </div>
+          <button class="profile-save-btn" onclick="saveProfile()">💾 Profil speichern</button>
+          <span class="profile-saved" id="profile-saved">✓ Gespeichert</span>
+        </div>
         <div class="page-header"><div class="page-tag">WILLKOMMEN</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">8 KI-Tools die dir als Immobilienmakler täglich Zeit sparen.</div></div>
         <div class="dash-grid">
           <div class="dash-card"><div class="dash-num">9</div><div class="dash-label">KI-TOOLS</div></div>
@@ -172,7 +190,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Stil</label><select class="form-select" id="expose-stil"><option>Emotional & verkaufsstark</option><option>Sachlich & informativ</option><option>Luxury & exklusiv</option><option>Modern & minimalistisch</option></select></div>
             <button class="generate-btn" onclick="generateExpose()">⚡ Exposé generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-expose" onclick="copyResult('expose-result','copy-expose')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('expose-result')">PDF ↓</button><button class="edit-btn" id="edit-expose-result" onclick="toggleEdit('expose-result','edit-expose-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-expose-result" onclick="regenLast('expose-result')">🔄 Neu</button></div></div><div id="expose-result"><div class="result-placeholder"><div class="placeholder-icon">🏠</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-expose" onclick="copyResult('expose-result','copy-expose')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('expose-result')">PDF ↓</button><button class="edit-btn" id="edit-expose-result" onclick="toggleEdit('expose-result','edit-expose-result')">✏ Bearbeiten</button></div></div><div id="expose-result"><div class="result-placeholder"><div class="placeholder-icon">🏠</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
         </div>
       </div>
 
@@ -186,7 +204,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="email-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
             <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-email-result" onclick="regenLast('email-result')">🔄 Neu</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')">✏ Bearbeiten</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
         </div>
       </div>
 
@@ -200,7 +218,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Dein Name / Büro</label><input class="form-input" id="social-name" placeholder="z.B. Jan Wichmann Immobilien"></div>
             <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-social-result" onclick="regenLast('social-result')">🔄 Neu</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
         </div>
       </div>
 
@@ -215,7 +233,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Dein USP</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung, 98% Erfolgsquote..."></textarea></div>
             <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-akquise-result" onclick="regenLast('akquise-result')">🔄 Neu</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
         </div>
       </div>
 
@@ -230,7 +248,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Deine Einschätzung</label><textarea class="form-textarea" id="markt-einschaetzung" placeholder="z.B. Ich erwarte in den nächsten Monaten..."></textarea></div>
             <button class="generate-btn" onclick="generateMarkt()">⚡ Marktbericht generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('markt-result')">PDF ↓</button><button class="edit-btn" id="edit-markt-result" onclick="toggleEdit('markt-result','edit-markt-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-markt-result" onclick="regenLast('markt-result')">🔄 Neu</button></div></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">📊</div><div>Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('markt-result')">PDF ↓</button><button class="edit-btn" id="edit-markt-result" onclick="toggleEdit('markt-result','edit-markt-result')">✏ Bearbeiten</button></div></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">📊</div><div>Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
         </div>
       </div>
 
@@ -245,7 +263,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Weitere Infos</label><textarea class="form-textarea" id="kaeufer-info" placeholder="z.B. Ehepaar, 2 Kinder, sucht 4-Zimmer in gutem Schulbezirk..."></textarea></div>
             <button class="generate-btn" onclick="generateKaeufer()">⚡ Käufer analysieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kaeufer" onclick="copyResult('kaeufer-result','copy-kaeufer')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kaeufer-result')">PDF ↓</button><button class="edit-btn" id="edit-kaeufer-result" onclick="toggleEdit('kaeufer-result','edit-kaeufer-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-kaeufer-result" onclick="regenLast('kaeufer-result')">🔄 Neu</button></div></div><div id="kaeufer-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Käufer</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kaeufer" onclick="copyResult('kaeufer-result','copy-kaeufer')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kaeufer-result')">PDF ↓</button><button class="edit-btn" id="edit-kaeufer-result" onclick="toggleEdit('kaeufer-result','edit-kaeufer-result')">✏ Bearbeiten</button></div></div><div id="kaeufer-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Käufer</div></div></div></div>
         </div>
       </div>
 
@@ -258,7 +276,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Meine Position</label><textarea class="form-textarea" id="vh-position" placeholder="z.B. Ich vertrete den Verkäufer, Mindestpreis ist 400.000€..."></textarea></div>
             <button class="generate-btn" onclick="generateVerhandlung()">⚡ Strategie generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('verhandlung-result')">PDF ↓</button><button class="edit-btn" id="edit-verhandlung-result" onclick="toggleEdit('verhandlung-result','edit-verhandlung-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-verhandlung-result" onclick="regenLast('verhandlung-result')">🔄 Neu</button></div></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('verhandlung-result')">PDF ↓</button><button class="edit-btn" id="edit-verhandlung-result" onclick="toggleEdit('verhandlung-result','edit-verhandlung-result')">✏ Bearbeiten</button></div></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
         </div>
       </div>
 
@@ -272,7 +290,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Dein Name / Büro</label><input class="form-input" id="tt-name" placeholder="z.B. Jan – Immobilienmakler München"></div>
             <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-tiktok-result" onclick="regenLast('tiktok-result')">🔄 Neu</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')">✏ Bearbeiten</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
         </div>
       </div>
 
@@ -349,6 +367,7 @@ function togglePW() {
 }
 
 window.addEventListener('load', function() {
+  applyProfile();
   const saved = localStorage.getItem('zynPW');
   if (saved) {
     document.getElementById('login-input').value = saved;
@@ -482,6 +501,48 @@ function regenLast(resultId) {
     alert('Bitte zuerst einmal generieren.');
   }
 }
+
+function saveProfile() {
+  const p = {
+    name: document.getElementById('profile-name').value,
+    buero: document.getElementById('profile-buero').value,
+    region: document.getElementById('profile-region').value,
+    usp: document.getElementById('profile-usp').value,
+  };
+  localStorage.setItem('zynProfile', JSON.stringify(p));
+  const saved = document.getElementById('profile-saved');
+  saved.style.display = 'inline';
+  setTimeout(() => saved.style.display = 'none', 2000);
+  applyProfile();
+}
+
+function applyProfile() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  if (!p.name) return;
+  // Fill profile bar
+  if(document.getElementById('profile-name')) document.getElementById('profile-name').value = p.name || '';
+  if(document.getElementById('profile-buero')) document.getElementById('profile-buero').value = p.buero || '';
+  if(document.getElementById('profile-region')) document.getElementById('profile-region').value = p.region || '';
+  if(document.getElementById('profile-usp')) document.getElementById('profile-usp').value = p.usp || '';
+  // Prefill tool fields
+  ['akquise-name','tt-name','social-name'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el && !el.value) el.value = p.name;
+  });
+  ['akquise-buero'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el && !el.value) el.value = p.buero;
+  });
+  ['akquise-lage','markt-region'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el && !el.value) el.value = p.region;
+  });
+  ['akquise-usp'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el && !el.value) el.value = p.usp;
+  });
+}
+
 </script>
 </body>
 </html>
