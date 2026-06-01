@@ -405,6 +405,11 @@ async function generateFrei() {
   if (!prompt.trim()) { alert('Bitte gib einen Prompt ein.'); return; }
   run('frei-result', `${prompt}\n\nZusätzlicher Kontext: ${document.getElementById('frei-kontext').value||'keiner'}\nStil: ${document.getElementById('frei-stil').value}`);
 }
+
+function togglePW() {
+  const inp = document.getElementById('login-input');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
 </script>
 </body>
 </html>
