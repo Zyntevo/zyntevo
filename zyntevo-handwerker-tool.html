@@ -73,6 +73,12 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .copy-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;}
 .copy-btn:hover{border-color:var(--gold);color:var(--gold);}
 .copy-btn.copied{border-color:#22C55E;color:#22C55E;}
+.regen-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
+.regen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.edit-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
+.edit-btn:hover{border-color:var(--gold);color:var(--gold);}
+.edit-btn.active{border-color:#22C55E;color:#22C55E;}
+.result-text[contenteditable="true"]{outline:1px solid rgba(212,175,55,.3);border-radius:8px;padding:8px;cursor:text;}
 .result-text{color:var(--text);font-size:14px;line-height:1.8;white-space:pre-wrap;}
 .result-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;gap:12px;color:var(--muted);}
 .placeholder-icon{font-size:48px;opacity:.3;}
@@ -167,7 +173,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Besonderheiten</label><textarea class="form-textarea" id="ang-details" placeholder="z.B. Material wird gestellt, Zufahrt eingeschränkt..."></textarea></div>
             <button class="generate-btn" onclick="generateAngebot()">⚡ Angebot generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-angebot" onclick="copyResult('angebot-result','copy-angebot')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('angebot-result')">PDF ↓</button></div></div><div id="angebot-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle das Formular aus und generiere dein Angebot</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-angebot" onclick="copyResult('angebot-result','copy-angebot')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('angebot-result')">PDF ↓</button><button class="edit-btn" id="edit-angebot-result" onclick="toggleEdit('angebot-result','edit-angebot-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-angebot-result" onclick="regenLast('angebot-result')">🔄 Neu</button></div></div><div id="angebot-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle das Formular aus und generiere dein Angebot</div></div></div></div>
         </div>
       </div>
 
@@ -182,7 +188,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="email-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
             <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')">PDF ↓</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-email-result" onclick="regenLast('email-result')">🔄 Neu</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
         </div>
       </div>
 
@@ -197,7 +203,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="social-name" placeholder="z.B. Müller Elektro GmbH"></div>
             <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')">PDF ↓</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-social-result" onclick="regenLast('social-result')">🔄 Neu</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
         </div>
       </div>
 
@@ -213,7 +219,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Deine Stärken</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung, Reaktionszeit unter 2h, Festpreise..."></textarea></div>
             <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-akquise-result" onclick="regenLast('akquise-result')">🔄 Neu</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
         </div>
       </div>
 
@@ -228,7 +234,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Kontext (optional)</label><textarea class="form-textarea" id="bew-kontext" placeholder="z.B. Kunde hatte Missverständnis beim Preis..."></textarea></div>
             <button class="generate-btn" onclick="generateBewertung()">⚡ Antwort generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-bewertung" onclick="copyResult('bewertung-result','copy-bewertung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('bewertung-result')">PDF ↓</button></div></div><div id="bewertung-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Füge die Bewertung ein und generiere deine Antwort</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-bewertung" onclick="copyResult('bewertung-result','copy-bewertung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('bewertung-result')">PDF ↓</button><button class="edit-btn" id="edit-bewertung-result" onclick="toggleEdit('bewertung-result','edit-bewertung-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-bewertung-result" onclick="regenLast('bewertung-result')">🔄 Neu</button></div></div><div id="bewertung-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Füge die Bewertung ein und generiere deine Antwort</div></div></div></div>
         </div>
       </div>
 
@@ -244,7 +250,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Weitere Infos zum Kunden</label><textarea class="form-textarea" id="kd-info" placeholder="z.B. Sehr preissensibel, fragt nach Barzahlung, hatte schon 3 Handwerker die 'alle schlecht waren'..."></textarea></div>
             <button class="generate-btn" onclick="generateKunde()">⚡ Kunden analysieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kunde" onclick="copyResult('kunde-result','copy-kunde')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kunde-result')">PDF ↓</button></div></div><div id="kunde-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Infos aus und analysiere den Kunden</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kunde" onclick="copyResult('kunde-result','copy-kunde')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kunde-result')">PDF ↓</button><button class="edit-btn" id="edit-kunde-result" onclick="toggleEdit('kunde-result','edit-kunde-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-kunde-result" onclick="regenLast('kunde-result')">🔄 Neu</button></div></div><div id="kunde-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Infos aus und analysiere den Kunden</div></div></div></div>
         </div>
       </div>
 
@@ -260,7 +266,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Was brauchst du?</label><select class="form-select" id="plan-was"><option>Auftragskalender optimieren</option><option>Akquise-Plan für ruhige Monate</option><option>Jahresplanung erstellen</option><option>Kapazität berechnen</option></select></div>
             <button class="generate-btn" onclick="generatePlanung()">⚡ Plan generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-planung" onclick="copyResult('planung-result','copy-planung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('planung-result')">PDF ↓</button></div></div><div id="planung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Fülle die Details aus und erhalte deinen Plan</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-planung" onclick="copyResult('planung-result','copy-planung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('planung-result')">PDF ↓</button><button class="edit-btn" id="edit-planung-result" onclick="toggleEdit('planung-result','edit-planung-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-planung-result" onclick="regenLast('planung-result')">🔄 Neu</button></div></div><div id="planung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Fülle die Details aus und erhalte deinen Plan</div></div></div></div>
         </div>
       </div>
 
@@ -275,7 +281,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="tt-name" placeholder="z.B. Max – Elektriker München"></div>
             <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')">PDF ↓</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')">✏ Bearbeiten</button><button class="regen-btn" id="regen-tiktok-result" onclick="regenLast('tiktok-result')">🔄 Neu</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
         </div>
       </div>
 
@@ -373,13 +379,31 @@ function setLoading(id) {
 function copyResult(resultId, btnId) {
   const el = document.getElementById(resultId);
   const resultDiv = el.querySelector('.result-text') || el;
-  // Get raw text preserving whitespace/newlines from pre-wrap
-  const text = resultDiv.innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById(btnId);
-    btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
-  });
+  const plainText = resultDiv.innerText;
+  // Convert newlines to <br> for HTML clipboard so email clients preserve paragraphs
+  const htmlText = plainText
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .split('\n\n').map(p => `<p style="margin:0 0 12px 0;">${p.replace(/\n/g,'<br>')}</p>`).join('');
+  
+  try {
+    const blob = new Blob([htmlText], {type: 'text/html'});
+    const plainBlob = new Blob([plainText], {type: 'text/plain'});
+    const item = new ClipboardItem({'text/html': blob, 'text/plain': plainBlob});
+    navigator.clipboard.write([item]).then(() => {
+      const btn = document.getElementById(btnId);
+      btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
+    });
+  } catch(e) {
+    // Fallback to plain text
+    navigator.clipboard.writeText(plainText).then(() => {
+      const btn = document.getElementById(btnId);
+      btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
 }
 
 function downloadPDF(resultId) {
@@ -507,6 +531,32 @@ async function generateFrei() {
   const prompt = document.getElementById('frei-prompt').value;
   if (!prompt.trim()) { alert('Bitte gib einen Prompt ein.'); return; }
   run('frei-result', `${prompt}\n\nZusätzlicher Kontext: ${document.getElementById('frei-kontext').value||'keiner'}\nStil: ${document.getElementById('frei-stil').value}`);
+}
+
+function toggleEdit(resultId, btnId) {
+  const el = document.getElementById(resultId);
+  const resultDiv = el.querySelector('.result-text');
+  if (!resultDiv) return;
+  const btn = document.getElementById(btnId);
+  if (resultDiv.contentEditable === 'true') {
+    resultDiv.contentEditable = 'false';
+    btn.textContent = '✏ Bearbeiten';
+    btn.classList.remove('active');
+  } else {
+    resultDiv.contentEditable = 'true';
+    resultDiv.focus();
+    btn.textContent = '✓ Fertig';
+    btn.classList.add('active');
+  }
+}
+
+const lastPrompts = {};
+function regenLast(resultId) {
+  if (lastPrompts[resultId]) {
+    run(resultId, lastPrompts[resultId]);
+  } else {
+    alert('Bitte zuerst einmal generieren.');
+  }
 }
 </script>
 </body>
