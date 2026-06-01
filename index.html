@@ -9,8 +9,6 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    </script>
-
 </head>
 <body>
 
@@ -451,30 +449,32 @@
 <!-- COOKIE OVERLAY -->
 <div id="cookie-overlay" style="position:fixed;inset:0;z-index:9998;background:rgba(7,11,17,0.95);backdrop-filter:blur(8px);"></div>
 
-<!-- COOKIE BANNER -->
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111827;border-top:1px solid rgba(212,175,55,.3);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
-  <p style="color:#94A3B8;font-size:14px;max-width:700px;margin:0;">
-    Wir nutzen Google Analytics um den Traffic auf unserer Website zu analysieren. 
-    Ihre Daten werden nur mit Ihrer Zustimmung erfasst. 
-    <a href="datenschutz.html" style="color:#D4AF37;">Datenschutzerklärung</a>
-  </p>
-  <div style="display:flex;gap:12px;flex-shrink:0;">
-    <button onclick="denyCookies()" style="padding:10px 20px;background:transparent;border:1px solid rgba(255,255,255,.2);color:#94A3B8;border-radius:10px;cursor:pointer;font-size:14px;">Ablehnen</button>
-    <button onclick="acceptCookies()" style="padding:10px 20px;background:#D4AF37;color:#000;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px;">Akzeptieren</button>
+<!-- COOKIE OVERLAY -->
+<div id="cookie-overlay" style="position:fixed;inset:0;z-index:9998;background:rgba(7,11,17,0.95);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;">
+  <div style="background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.3);border-radius:30px;padding:50px 40px;max-width:520px;width:90%;text-align:center;">
+    <div style="font-size:40px;margin-bottom:20px;">🍪</div>
+    <h3 style="font-size:24px;font-weight:900;color:#F8FAFC;margin-bottom:16px;">Wir nutzen Cookies</h3>
+    <p style="color:#94A3B8;font-size:15px;line-height:1.7;margin-bottom:30px;">
+      Wir verwenden Google Analytics um unseren Traffic zu analysieren und unsere Website zu verbessern. Ihre Daten werden nur mit Ihrer Zustimmung erfasst.
+      <br><br>
+      <a href="datenschutz.html" style="color:#D4AF37;">Datenschutzerklärung</a>
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;">
+      <button onclick="denyCookies()" style="padding:14px 28px;background:transparent;border:1px solid rgba(255,255,255,.2);color:#94A3B8;border-radius:12px;cursor:pointer;font-size:15px;">Ablehnen</button>
+      <button onclick="acceptCookies()" style="padding:14px 28px;background:#D4AF37;color:#000;border:none;border-radius:12px;cursor:pointer;font-weight:700;font-size:15px;">Akzeptieren</button>
+    </div>
   </div>
 </div>
 
 <script>
 function acceptCookies() {
   localStorage.setItem('cookieConsent', 'accepted');
-  document.getElementById('cookie-banner').style.display = 'none';
   document.getElementById('cookie-overlay').style.display = 'none';
   loadAnalytics();
 }
 
 function denyCookies() {
   localStorage.setItem('cookieConsent', 'denied');
-  document.getElementById('cookie-banner').style.display = 'none';
   document.getElementById('cookie-overlay').style.display = 'none';
 }
 
@@ -494,12 +494,9 @@ window.addEventListener('load', function() {
   if (consent === 'accepted') {
     loadAnalytics();
     document.getElementById('cookie-overlay').style.display = 'none';
-    document.getElementById('cookie-banner').style.display = 'none';
   } else if (consent === 'denied') {
     document.getElementById('cookie-overlay').style.display = 'none';
-    document.getElementById('cookie-banner').style.display = 'none';
   }
-  // Kein consent = Banner + Overlay bleibt sichtbar
 });
 </script>
 </body>
