@@ -95,7 +95,14 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     <div class="login-title">ZYNTEVO</div>
     <div class="login-sub">KI-Tool · Makler Premium</div>
     <label class="login-label">Zugangscode</label>
-    <input type="password" class="login-input" id="login-input" placeholder="Zugangscode eingeben" onkeydown="if(event.key==='Enter')doLogin()">
+    <div style="position:relative;margin-bottom:12px;">
+      <input type="password" class="login-input" id="login-input" placeholder="Zugangscode eingeben" onkeydown="if(event.key==='Enter')doLogin()" style="padding-right:48px;margin-bottom:0;">
+      <span onclick="togglePW()" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:#94A3B8;font-size:18px;user-select:none;" title="Passwort anzeigen">👁</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;text-align:left;">
+      <input type="checkbox" id="remember-me" style="width:16px;height:16px;accent-color:#D4AF37;cursor:pointer;flex-shrink:0;">
+      <label for="remember-me" style="color:#94A3B8;font-size:13px;cursor:pointer;">Passwort merken</label>
+    </div>
     <button class="login-btn" onclick="doLogin()">Zugang erhalten</button>
     <div class="login-error" id="login-error">Ungültiger Zugangscode.</div>
   </div>
