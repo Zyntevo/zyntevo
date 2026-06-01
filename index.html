@@ -9,14 +9,6 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-GPT0KRVEM2');
     </script>
 
 </head>
@@ -456,6 +448,52 @@
     </footer>
 
     <script src="js/app.js"></script>
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111827;border-top:1px solid rgba(212,175,55,.3);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+  <p style="color:#94A3B8;font-size:14px;max-width:700px;margin:0;">
+    Wir nutzen Google Analytics um den Traffic auf unserer Website zu analysieren. 
+    Ihre Daten werden nur mit Ihrer Zustimmung erfasst. 
+    <a href="datenschutz.html" style="color:#D4AF37;">Datenschutzerklärung</a>
+  </p>
+  <div style="display:flex;gap:12px;flex-shrink:0;">
+    <button onclick="denyCookies()" style="padding:10px 20px;background:transparent;border:1px solid rgba(255,255,255,.2);color:#94A3B8;border-radius:10px;cursor:pointer;font-size:14px;">Ablehnen</button>
+    <button onclick="acceptCookies()" style="padding:10px 20px;background:#D4AF37;color:#000;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:14px;">Akzeptieren</button>
+  </div>
+</div>
 
+<script>
+// Cookie Banner Logic
+function acceptCookies() {
+  localStorage.setItem('cookieConsent', 'accepted');
+  document.getElementById('cookie-banner').style.display = 'none';
+  loadAnalytics();
+}
+
+function denyCookies() {
+  localStorage.setItem('cookieConsent', 'denied');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
+function loadAnalytics() {
+  var script = document.createElement('script');
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2';
+  script.async = true;
+  document.head.appendChild(script);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GPT0KRVEM2');
+}
+
+// Beim Laden prüfen
+window.addEventListener('load', function() {
+  const consent = localStorage.getItem('cookieConsent');
+  if (consent === 'accepted') {
+    loadAnalytics();
+  } else if (!consent) {
+    document.getElementById('cookie-banner').style.display = 'flex';
+  }
+});
+</script>
 </body>
 </html>
