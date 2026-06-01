@@ -332,13 +332,32 @@ const PASSWORD = "Zyntevo#826";
 const WORKER_URL = "https://zyntevo-tool.jan-6a7.workers.dev/api";
 
 function doLogin() {
-  if (document.getElementById('login-input').value === PASSWORD) {
+  const val = document.getElementById('login-input').value;
+  if (val === PASSWORD) {
+    if (document.getElementById('remember-me').checked) {
+      localStorage.setItem('zynPW', val);
+    } else {
+      localStorage.removeItem('zynPW');
+    }
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
   } else {
     document.getElementById('login-error').style.display = 'block';
   }
 }
+
+function togglePW() {
+  const inp = document.getElementById('login-input');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+window.addEventListener('load', function() {
+  const saved = localStorage.getItem('zynPW');
+  if (saved) {
+    document.getElementById('login-input').value = saved;
+    document.getElementById('remember-me').checked = true;
+  }
+});
 
 function showPage(id, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -488,11 +507,6 @@ async function generateFrei() {
   const prompt = document.getElementById('frei-prompt').value;
   if (!prompt.trim()) { alert('Bitte gib einen Prompt ein.'); return; }
   run('frei-result', `${prompt}\n\nZusätzlicher Kontext: ${document.getElementById('frei-kontext').value||'keiner'}\nStil: ${document.getElementById('frei-stil').value}`);
-}
-
-function togglePW() {
-  const inp = document.getElementById('login-input');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
 }
 </script>
 </body>
