@@ -152,7 +152,9 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
           <div class="profile-grid">
             <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Jan Wichmann" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Wichmann Immobilien" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Stadt / Region</label><input class="form-input" id="profile-region" placeholder="z.B. München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
           </div>
           <button class="profile-save-btn" onclick="saveProfile()">💾 Profil speichern</button>
@@ -461,14 +463,67 @@ async function run(id, prompt) {
   }
 }
 
-async function generateExpose() { run('expose-result', `Professionelles Immobilienexposé auf Deutsch. Typ: ${document.getElementById('expose-typ').value}, Lage: ${document.getElementById('expose-lage').value||'zentral'}, Fläche: ${document.getElementById('expose-flaeche').value||'k.A.'}, Zimmer: ${document.getElementById('expose-zimmer').value||'k.A.'}, Preis: ${document.getElementById('expose-preis').value||'auf Anfrage'}, Besonderheiten: ${document.getElementById('expose-details').value||''}, Stil: ${document.getElementById('expose-stil').value}. Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Max. 350 Wörter. Sehr verkaufsstark.`); }
-async function generateEmail() { run('email-result', `Professionelle Makler-E-Mail auf Deutsch. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter.`); }
-async function generateSocial() { run('social-result', `${document.getElementById('social-plattform').value}-Post für Immobilienmakler auf Deutsch. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Büro: ${document.getElementById('social-name').value||'Immobilienmakler'}. Starker Hook, Inhalt, CTA, 5-8 Hashtags. Authentisch.`); }
-async function generateAkquise() { run('akquise-result', `Akquise-Brief an Eigentümer auf Deutsch. Lage: ${document.getElementById('akquise-lage').value||'Ihrer Region'}, Anlass: ${document.getElementById('akquise-anlass').value}, Makler: ${document.getElementById('akquise-name').value||'Jan Wichmann'} von ${document.getElementById('akquise-buero').value||''}, USP: ${document.getElementById('akquise-usp').value||''}. Max. 200 Wörter. Seriös, überzeugend, keine Floskeln.`); }
+async function generateExpose() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const makler = p.name || '';
+  const buero = p.buero || '';
+  run('expose-result', `Professionelles Immobilienexposé auf Deutsch.
+Typ: ${document.getElementById('expose-typ').value}
+Lage: ${document.getElementById('expose-lage').value||''}
+Fläche: ${document.getElementById('expose-flaeche').value||''}
+Zimmer: ${document.getElementById('expose-zimmer').value||''}
+Preis: ${document.getElementById('expose-preis').value||'auf Anfrage'}
+Besonderheiten: ${document.getElementById('expose-details').value||''}
+Stil: ${document.getElementById('expose-stil').value}
+Makler: ${makler} von ${buero}
+Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Max. 350 Wörter. Nutze NUR die angegebenen Daten, erfinde keine Firmennamen oder Adressen.`);
+}
+async function generateEmail() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const absender = p.name || '';
+  const buero = p.buero || '';
+  run('email-result', `Professionelle Makler-E-Mail auf Deutsch.
+Situation: ${document.getElementById('email-situation').value}
+An: ${document.getElementById('email-name').value||'Kunde'}
+Absender: ${absender} von ${buero}, ${p.strasse||""} ${p.stadt||""}, Tel: ${p.telefon||""}
+Kontext: ${document.getElementById('email-kontext').value||''}
+Ton: ${document.getElementById('email-ton').value}
+Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter. Nutze NUR die angegebenen Daten.`);
+}
+async function generateSocial() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const buero = document.getElementById('social-name').value || p.buero || p.name || '';
+  run('social-result', `${document.getElementById('social-plattform').value}-Post für Immobilienmakler auf Deutsch.
+Typ: ${document.getElementById('social-typ').value}
+Details: ${document.getElementById('social-details').value||''}
+Büro: ${buero}
+Starker Hook, Inhalt, CTA, 5-8 Hashtags. Authentisch. Erfinde keine Firmennamen.`);
+}
+async function generateAkquise() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const name = document.getElementById('akquise-name').value || p.name || '';
+  const buero = document.getElementById('akquise-buero').value || p.buero || '';
+  const lage = document.getElementById('akquise-lage').value || p.region || '';
+  run('akquise-result', `Akquise-Brief an Eigentümer auf Deutsch.
+Lage: ${lage}
+Anlass: ${document.getElementById('akquise-anlass').value}
+Makler: ${name} von ${buero}
+USP: ${document.getElementById('akquise-usp').value||''}
+Max. 200 Wörter. Seriös, überzeugend. Nutze NUR die angegebenen Daten, erfinde keine Namen oder Adressen.`);
+}
 async function generateMarkt() { run('markt-result', `Immobilien-Marktbericht auf Deutsch. Region: ${document.getElementById('markt-region').value||'Ihre Region'}, Zeitraum: ${document.getElementById('markt-monat').value||'aktuell'}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Max. 400 Wörter.`); }
 async function generateKaeufer() { run('kaeufer-result', `Analysiere Kaufinteressenten auf Deutsch. Sucht seit: ${document.getElementById('kaeufer-seit').value}, Finanzierung: ${document.getElementById('kaeufer-finanz').value}, Budget: ${document.getElementById('kaeufer-budget').value||'nicht genannt'}, Einzug: ${document.getElementById('kaeufer-termin').value}, Infos: ${document.getElementById('kaeufer-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Hindernisse, 4) Empfehlung, 5) Nächster Schritt.`); }
 async function generateVerhandlung() { run('verhandlung-result', `Immobilien-Verhandlungsstrategie auf Deutsch. Typ: ${document.getElementById('vh-typ').value}, Situation: ${document.getElementById('vh-situation').value||''}, Position: ${document.getElementById('vh-position').value||''}. Gib: 1) Lageeinschätzung, 2) Strategie, 3) Konkrete Formulierungen, 4) Gegenargumente, 5) Red Lines.`); }
-async function generateTikTok() { run('tiktok-result', `TikTok-Skript für Immobilienmakler auf Deutsch. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||'Makler'}. HOOK (2-3 Sek), HAUPTTEIL (kurze Sätze max. 8 Wörter), CTA. Nur gesprochener Text.`); }
+async function generateTikTok() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const name = document.getElementById('tt-name').value || p.name || '';
+  run('tiktok-result', `TikTok-Skript für Immobilienmakler auf Deutsch.
+Format: ${document.getElementById('tt-format').value}
+Thema: ${document.getElementById('tt-thema').value||''}
+Länge: ${document.getElementById('tt-laenge').value}
+Sprecher: ${name}
+HOOK (2-3 Sek), HAUPTTEIL (kurze Sätze max. 8 Wörter), CTA. Nur gesprochener Text. Erfinde keine Namen.`);
+}
 
 async function generateFrei() {
   const prompt = document.getElementById('frei-prompt').value;
@@ -506,7 +561,10 @@ function saveProfile() {
   const p = {
     name: document.getElementById('profile-name').value,
     buero: document.getElementById('profile-buero').value,
-    region: document.getElementById('profile-region').value,
+    strasse: document.getElementById('profile-strasse').value,
+    stadt: document.getElementById('profile-stadt').value,
+    telefon: document.getElementById('profile-telefon').value,
+    region: document.getElementById('profile-stadt').value.replace(/^\d+ /, ''),
     usp: document.getElementById('profile-usp').value,
   };
   localStorage.setItem('zynProfile', JSON.stringify(p));
@@ -522,7 +580,9 @@ function applyProfile() {
   // Fill profile bar
   if(document.getElementById('profile-name')) document.getElementById('profile-name').value = p.name || '';
   if(document.getElementById('profile-buero')) document.getElementById('profile-buero').value = p.buero || '';
-  if(document.getElementById('profile-region')) document.getElementById('profile-region').value = p.region || '';
+  if(document.getElementById('profile-strasse')) document.getElementById('profile-strasse').value = p.strasse || '';
+  if(document.getElementById('profile-stadt')) document.getElementById('profile-stadt').value = p.stadt || '';
+  if(document.getElementById('profile-telefon')) document.getElementById('profile-telefon').value = p.telefon || '';
   if(document.getElementById('profile-usp')) document.getElementById('profile-usp').value = p.usp || '';
   // Prefill tool fields
   ['akquise-name','tt-name','social-name'].forEach(id => {

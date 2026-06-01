@@ -153,7 +153,9 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
           <div class="profile-grid">
             <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Müller" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Dein Betrieb</label><input class="form-input" id="profile-buero" placeholder="z.B. Müller Elektro GmbH" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Stadt / Region</label><input class="form-input" id="profile-region" placeholder="z.B. München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Dein Gewerk</label><input class="form-input" id="profile-gewerk-p" placeholder="z.B. Elektriker" style="font-size:13px;padding:10px 14px;"></div>
           </div>
           <button class="profile-save-btn" onclick="saveProfile()">💾 Profil speichern</button>
@@ -471,50 +473,67 @@ async function run(id, prompt) {
 }
 
 async function generateAngebot() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const betrieb = p.buero || p.name || '';
+  const region = p.region || '';
   run('angebot-result', `Schreibe ein professionelles Handwerker-Angebot auf Deutsch.
+Absender-Betrieb: ${betrieb}
+Absender-Adresse: ${p.strasse||""} ${p.stadt||""}
+Absender-Telefon: ${p.telefon||""}
 Gewerk: ${document.getElementById('ang-gewerk').value}
 Kunde: ${document.getElementById('ang-kunde').value||'Kunde'}
 Leistung: ${document.getElementById('ang-leistung').value||''}
 Preis: ${document.getElementById('ang-preis').value||'nach Aufwand'}
 Zeitraum: ${document.getElementById('ang-zeitraum').value||'nach Vereinbarung'}
 Besonderheiten: ${document.getElementById('ang-details').value||''}
-Format: Professionelles Angebot mit Positionsliste, Netto/Brutto, Zahlungsbedingungen 14 Tage netto, Gewährleistungshinweis.`);
+Format: Professionelles Angebot mit Positionsliste, Netto/Brutto, Zahlungsbedingungen 14 Tage netto, Gewährleistungshinweis. Nutze NUR die angegebenen Daten, erfinde keine Adressen oder Firmennamen.`);
 }
 
 async function generateEmail() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const absender = p.name || '';
+  const betrieb = p.buero || '';
   run('email-result', `Professionelle E-Mail für einen Handwerksbetrieb auf Deutsch.
 Situation: ${document.getElementById('email-situation').value}
 An: ${document.getElementById('email-name').value||'Kunde'}
+Absender: ${absender} von ${betrieb}
 Kontext: ${document.getElementById('email-kontext').value||''}
 Ton: ${document.getElementById('email-ton').value}
-Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter.`);
+Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter. Nutze NUR die angegebenen Daten.`);
 }
 
 async function generateSocial() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const betrieb = document.getElementById('social-name').value || p.buero || p.name || '';
   run('social-result', `${document.getElementById('social-plattform').value}-Post für Handwerksbetrieb auf Deutsch.
 Typ: ${document.getElementById('social-typ').value}
 Details: ${document.getElementById('social-details').value||''}
-Betrieb: ${document.getElementById('social-name').value||'Handwerksbetrieb'}
-Starker Hook, Inhalt, CTA, 5 lokale Hashtags. Authentisch, nicht werblich.`);
+Betrieb: ${betrieb}
+Starker Hook, Inhalt, CTA, 5 lokale Hashtags. Authentisch, nicht werblich. Erfinde keine Firmennamen oder Orte die nicht angegeben wurden.`);
 }
 
 async function generateAkquise() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const betrieb = document.getElementById('akquise-name').value || p.buero || p.name || '';
+  const region = document.getElementById('akquise-region').value || p.region || '';
   run('akquise-result', `Akquise-Brief für Handwerksbetrieb auf Deutsch.
 Zielgruppe: ${document.getElementById('akquise-ziel').value}
 Gewerk: ${document.getElementById('akquise-gewerk').value}
-Betrieb: ${document.getElementById('akquise-name').value||'Unser Betrieb'}
-Region: ${document.getElementById('akquise-region').value||'Ihrer Region'}
+Betrieb: ${betrieb}
+Region: ${region}
 Stärken: ${document.getElementById('akquise-usp').value||''}
-Max. 200 Wörter. Seriös, überzeugend, konkreter Nutzen für den Empfänger.`);
+Max. 200 Wörter. Seriös, überzeugend. Nutze NUR die angegebenen Daten, erfinde keine Firmennamen, Adressen oder Orte.`);
 }
 
 async function generateBewertung() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const betrieb = document.getElementById('bew-betrieb').value || p.buero || p.name || '';
   run('bewertung-result', `Professionelle Antwort auf Google-Bewertung für Handwerksbetrieb auf Deutsch.
 Art: ${document.getElementById('bew-art').value}
 Bewertungstext: ${document.getElementById('bew-text').value||''}
-Betrieb: ${document.getElementById('bew-betrieb').value||'Unser Betrieb'}
+Betrieb: ${betrieb}
 Kontext: ${document.getElementById('bew-kontext').value||''}
-Positiv: authentisch danken, persönlich eingehen. Negativ: deeskalieren, Lösung anbieten. Max. 100 Wörter.`);
+Positiv: authentisch danken. Negativ: deeskalieren, Lösung anbieten. Max. 100 Wörter. Nutze NUR die angegebenen Daten.`);
 }
 
 async function generateKunde() {
@@ -538,12 +557,14 @@ Konkreter umsetzbarer Plan mit klaren Schritten.`);
 }
 
 async function generateTikTok() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  const name = document.getElementById('tt-name').value || p.name || '';
   run('tiktok-result', `TikTok-Skript für Handwerker auf Deutsch.
 Format: ${document.getElementById('tt-format').value}
 Thema: ${document.getElementById('tt-thema').value||''}
 Länge: ${document.getElementById('tt-laenge').value}
-Sprecher: ${document.getElementById('tt-name').value||'Handwerker'}
-HOOK (2-3 Sek), HAUPTTEIL (kurze Sätze), CTA. Nur gesprochener Text.`);
+Sprecher: ${name}
+HOOK (2-3 Sek), HAUPTTEIL (kurze Sätze), CTA. Nur gesprochener Text. Erfinde keine Namen oder Firmen.`);
 }
 
 async function generateFrei() {
@@ -582,7 +603,10 @@ function saveProfile() {
   const p = {
     name: document.getElementById('profile-name').value,
     buero: document.getElementById('profile-buero').value,
-    region: document.getElementById('profile-region').value,
+    strasse: document.getElementById('profile-strasse').value,
+    stadt: document.getElementById('profile-stadt').value,
+    telefon: document.getElementById('profile-telefon').value,
+    region: document.getElementById('profile-stadt').value.replace(/^\d+ /, ''),
     gewerk: document.getElementById('profile-gewerk-p').value,
   };
   localStorage.setItem('zynProfile', JSON.stringify(p));
@@ -597,7 +621,9 @@ function applyProfile() {
   if (!p.name) return;
   if(document.getElementById('profile-name')) document.getElementById('profile-name').value = p.name || '';
   if(document.getElementById('profile-buero')) document.getElementById('profile-buero').value = p.buero || '';
-  if(document.getElementById('profile-region')) document.getElementById('profile-region').value = p.region || '';
+  if(document.getElementById('profile-strasse')) document.getElementById('profile-strasse').value = p.strasse || '';
+  if(document.getElementById('profile-stadt')) document.getElementById('profile-stadt').value = p.stadt || '';
+  if(document.getElementById('profile-telefon')) document.getElementById('profile-telefon').value = p.telefon || '';
   if(document.getElementById('profile-gewerk-p')) document.getElementById('profile-gewerk-p').value = p.gewerk || '';
   // Prefill tool fields
   ['akquise-name','tt-name','social-name','bew-betrieb'].forEach(id => {
