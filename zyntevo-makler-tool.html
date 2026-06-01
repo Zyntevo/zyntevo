@@ -344,7 +344,15 @@ function setLoading(id) {
 
 function copyResult(resultId, btnId) {
   const el = document.getElementById(resultId);
-  const text = el.innerText;
+  // Clone element to manipulate without affecting display
+  const clone = el.cloneNode(true);
+  // Replace <br> with newlines
+  clone.querySelectorAll('br').forEach(br => br.replaceWith('\n'));
+  // Replace block elements with newlines
+  clone.querySelectorAll('p, div').forEach(block => {
+    block.insertAdjacentText('afterend', '\n');
+  });
+  const text = clone.innerText;
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.getElementById(btnId);
     btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
