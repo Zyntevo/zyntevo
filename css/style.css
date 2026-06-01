@@ -794,7 +794,13 @@ flex-direction:column;
 }.faq .section-header{
     margin-bottom: 182px;
 }
-
+.tool-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    max-width:900px;
+    margin:0 auto 50px;
+}
 @media (max-width:768px) {
 
     .container{
@@ -907,5 +913,8 @@ flex-direction:column;
     .final-cta h2{
     font-size:40px !important;
     line-height:1.3 !important;
+}
+.tool-grid{
+    grid-template-columns:repeat(2,1fr);
 }
 }
