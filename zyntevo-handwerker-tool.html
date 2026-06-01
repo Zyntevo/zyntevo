@@ -303,8 +303,13 @@ async function callAI(prompt) {
 
 async function run(id, prompt) {
   setLoading(id);
-  try { document.getElementById(id).innerHTML = `<div class="result-text">${await callAI(prompt)}</div>`; }
-  catch(e) { document.getElementById(id).innerHTML = '<div class="result-text" style="color:#EF4444">Fehler. Bitte erneut versuchen.</div>'; }
+  try {
+    const fullPrompt = prompt + ' Wichtig: Kein Markdown. Keine Sternchen, keine Rauten, keine Unterstriche. Nur normaler Text.';
+    const txt = await callAI(fullPrompt);
+    document.getElementById(id).innerHTML = '<div class="result-text">' + txt + '</div>';
+  } catch(e) {
+    document.getElementById(id).innerHTML = '<div class="result-text" style="color:#EF4444">Fehler. Bitte erneut versuchen.</div>';
+  }
 }
 
 async function generateAngebot() {
