@@ -84,6 +84,10 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     <div class="login-sub">KI-Tool · Makler Premium</div>
     <label class="login-label">Zugangscode</label>
     <input type="password" class="login-input" id="login-input" placeholder="Zugangscode eingeben" onkeydown="if(event.key==='Enter')doLogin()">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;text-align:left;">
+      <input type="checkbox" id="remember-me" style="width:16px;height:16px;accent-color:#D4AF37;cursor:pointer;">
+      <label for="remember-me" style="color:#94A3B8;font-size:13px;cursor:pointer;">Angemeldet bleiben</label>
+    </div>
     <button class="login-btn" onclick="doLogin()">Zugang erhalten</button>
     <div class="login-error" id="login-error">Ungültiger Zugangscode.</div>
   </div>
@@ -254,17 +258,29 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 </div>
 
 <script>
-const PASSWORD = "zyntevo2026";
+const PASSWORD = "Zyntevo#826";
 const WORKER_URL = "https://zyntevo-tool.jan-6a7.workers.dev/api";
 
 function doLogin() {
-  if (document.getElementById('login-input').value === PASSWORD) {
+  const val = document.getElementById('login-input').value;
+  if (val === PASSWORD) {
+    if (document.getElementById('remember-me').checked) {
+      localStorage.setItem('zynLogin', 'true');
+    }
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
   } else {
     document.getElementById('login-error').style.display = 'block';
   }
 }
+
+// Auto-login wenn gespeichert
+window.addEventListener('load', function() {
+  if (localStorage.getItem('zynLogin') === 'true') {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+  }
+});
 
 function showPage(id, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -297,7 +313,8 @@ async function run(id, prompt) {
   try {
     const fullPrompt = prompt + ' Wichtig: Kein Markdown. Keine Sternchen, keine Rauten, keine Unterstriche. Nur normaler Text.';
     const txt = await callAI(fullPrompt);
-    document.getElementById(id).innerHTML = '<div class="result-text">' + txt + '</div>';
+    const clean = txt.replace(/\*\*/g, '').replace(/\*/g, '').replace(/#{1,6} /g, '').replace(/---/g, '');
+    document.getElementById(id).innerHTML = '<div class="result-text">' + clean + '</div>';
   } catch(e) {
     document.getElementById(id).innerHTML = '<div class="result-text" style="color:#EF4444">Fehler. Bitte erneut versuchen.</div>';
   }
