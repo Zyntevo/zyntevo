@@ -448,8 +448,11 @@
     </footer>
 
     <script src="js/app.js"></script>
+<!-- COOKIE OVERLAY -->
+<div id="cookie-overlay" style="position:fixed;inset:0;z-index:9998;background:rgba(7,11,17,0.95);backdrop-filter:blur(8px);"></div>
+
 <!-- COOKIE BANNER -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111827;border-top:1px solid rgba(212,175,55,.3);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111827;border-top:1px solid rgba(212,175,55,.3);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
   <p style="color:#94A3B8;font-size:14px;max-width:700px;margin:0;">
     Wir nutzen Google Analytics um den Traffic auf unserer Website zu analysieren. 
     Ihre Daten werden nur mit Ihrer Zustimmung erfasst. 
@@ -462,16 +465,17 @@
 </div>
 
 <script>
-// Cookie Banner Logic
 function acceptCookies() {
   localStorage.setItem('cookieConsent', 'accepted');
   document.getElementById('cookie-banner').style.display = 'none';
+  document.getElementById('cookie-overlay').style.display = 'none';
   loadAnalytics();
 }
 
 function denyCookies() {
   localStorage.setItem('cookieConsent', 'denied');
   document.getElementById('cookie-banner').style.display = 'none';
+  document.getElementById('cookie-overlay').style.display = 'none';
 }
 
 function loadAnalytics() {
@@ -485,14 +489,17 @@ function loadAnalytics() {
   gtag('config', 'G-GPT0KRVEM2');
 }
 
-// Beim Laden prüfen
 window.addEventListener('load', function() {
   const consent = localStorage.getItem('cookieConsent');
   if (consent === 'accepted') {
     loadAnalytics();
-  } else if (!consent) {
-    document.getElementById('cookie-banner').style.display = 'flex';
+    document.getElementById('cookie-overlay').style.display = 'none';
+    document.getElementById('cookie-banner').style.display = 'none';
+  } else if (consent === 'denied') {
+    document.getElementById('cookie-overlay').style.display = 'none';
+    document.getElementById('cookie-banner').style.display = 'none';
   }
+  // Kein consent = Banner + Overlay bleibt sichtbar
 });
 </script>
 </body>
