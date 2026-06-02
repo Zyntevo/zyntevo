@@ -35,11 +35,9 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .access-card h3{font-size:22px;margin-bottom:8px;}
 .access-card .sub{color:var(--muted);margin-bottom:28px;font-size:14px;}
 .access-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;background:rgba(7,11,17,.7);border:1px solid rgba(212,175,55,.15);border-radius:14px;margin-bottom:12px;}
-.access-row:last-of-type{margin-bottom:0;}
 .access-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:4px;}
 .access-value{font-size:14px;font-weight:700;color:var(--text);word-break:break-all;}
 .access-value a{color:var(--gold);text-decoration:none;}
-.access-value a:hover{text-decoration:underline;}
 .copy-btn{flex-shrink:0;background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:8px 14px;border-radius:10px;font-size:12px;cursor:pointer;transition:.3s;font-family:Inter,sans-serif;}
 .copy-btn:hover{border-color:var(--gold);color:var(--gold);}
 .copy-btn.copied{border-color:#22C55E;color:#22C55E;}
@@ -75,8 +73,6 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .footer{padding:80px 0;border-top:1px solid rgba(255,255,255,.05);}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;}
 .footer a{color:white;text-decoration:none;}
-
-/* CODE BOX */
 .code-box{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:24px;text-align:center;margin-bottom:12px;}
 .code-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--muted);margin-bottom:10px;}
 .code-value{font-size:26px;font-weight:900;letter-spacing:4px;color:var(--gold);font-family:monospace;}
@@ -85,13 +81,11 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .spinner{width:18px;height:18px;border:2px solid rgba(212,175,55,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .code-error{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:16px;color:#f87171;font-size:13px;text-align:center;margin-bottom:12px;}
-
 @media(max-width:992px){.access-grid{grid-template-columns:1fr;}.included-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr;}.hero h1{font-size:40px;}}
 @media(max-width:600px){.download-grid{grid-template-columns:1fr;}.included-grid{grid-template-columns:1fr 1fr;}.access-row{flex-direction:column;align-items:flex-start;}.hero h1{font-size:30px;}.hero-thanks{padding:20px;}}
     </style>
 </head>
 <body>
-
 <header class="header">
     <div class="container">
         <a href="/" class="logo"><img src="css/images/header.png" alt="ZYNTEVO"></a>
@@ -121,14 +115,11 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="access-card">
                 <h3>KI-Tool Zugangsdaten</h3>
                 <p class="sub">Registriere dich mit deinem persönlichen Code – dauert nur 30 Sekunden.</p>
-
-                <!-- CODE BEREICH -->
                 <div id="code-section">
                     <div class="code-loading" id="code-loading">
                         <div class="spinner"></div> Code wird generiert...
                     </div>
                 </div>
-
                 <div class="access-row">
                     <div>
                         <div class="access-label">KI-TOOL URL</div>
@@ -138,40 +129,14 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
                     </div>
                     <button class="copy-btn" onclick="copyText('https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html', this)">Kopieren</button>
                 </div>
-
                 <a href="https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html" target="_blank" class="open-btn">⚡ KI-Tool jetzt öffnen</a>
             </div>
-
             <div class="steps-card">
                 <h3>So startest du</h3>
-                <div class="step">
-                    <div class="step-num">1</div>
-                    <div>
-                        <div class="step-title">Code kopieren</div>
-                        <div class="step-desc">Kopiere deinen persönlichen Registrierungscode oben links.</div>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">2</div>
-                    <div>
-                        <div class="step-title">Tool öffnen & registrieren</div>
-                        <div class="step-desc">Klicke auf „KI-Tool jetzt öffnen" → Tab „Registrieren" → Code eingeben + E-Mail + Passwort wählen.</div>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">3</div>
-                    <div>
-                        <div class="step-title">Einloggen</div>
-                        <div class="step-desc">Nach der Registrierung einfach mit E-Mail + Passwort einloggen – dauerhafter Zugang.</div>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">4</div>
-                    <div>
-                        <div class="step-title">Loslegen</div>
-                        <div class="step-desc">Tool auswählen, Formular ausfüllen, auf Generieren klicken – fertig!</div>
-                    </div>
-                </div>
+                <div class="step"><div class="step-num">1</div><div><div class="step-title">Code kopieren</div><div class="step-desc">Kopiere deinen persönlichen Registrierungscode oben links.</div></div></div>
+                <div class="step"><div class="step-num">2</div><div><div class="step-title">Tool öffnen & registrieren</div><div class="step-desc">Klicke auf „KI-Tool jetzt öffnen" → Tab „Registrieren" → Code eingeben + E-Mail + Passwort wählen.</div></div></div>
+                <div class="step"><div class="step-num">3</div><div><div class="step-title">Einloggen</div><div class="step-desc">Nach der Registrierung einfach mit E-Mail + Passwort einloggen – uneingeschränkter Zugang.</div></div></div>
+                <div class="step"><div class="step-num">4</div><div><div class="step-title">Loslegen</div><div class="step-desc">Tool auswählen, Formular ausfüllen, auf Generieren klicken – fertig!</div></div></div>
             </div>
         </div>
     </div>
@@ -185,12 +150,12 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <p>Lade dir alle Inhalte deines Premium-Pakets direkt hier herunter.</p>
         </div>
         <div class="download-grid">
-            <a href="Premium-50-Prompts-Makler.pdf" download class="download-card"><div class="dl-icon">📄</div><div class="dl-info"><div class="dl-title">50 KI-Prompts für Makler Pro</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
-            <a href="Premium-30-TikTok-Skripte-Makler.pdf" download class="download-card"><div class="dl-icon">🎬</div><div class="dl-info"><div class="dl-title">30 TikTok & Reels Skripte</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
-            <a href="Premium-ChatGPT-Workflow-Makler.pdf" download class="download-card"><div class="dl-icon">🤖</div><div class="dl-info"><div class="dl-title">ChatGPT-Workflow für Makler</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
-            <a href="Premium-Kaeufer-Qualifizierung-Makler.pdf" download class="download-card"><div class="dl-icon">🎯</div><div class="dl-info"><div class="dl-title">Käufer-Qualifizierungs-System</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
-            <a href="Premium-Expose-System-Makler.pdf" download class="download-card"><div class="dl-icon">🏠</div><div class="dl-info"><div class="dl-title">Exposé-System</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
-            <a href="ZYNTEVO-Zugang-Makler.pdf" download class="download-card"><div class="dl-icon">🔑</div><div class="dl-info"><div class="dl-title">Zugangsdaten & Anleitung</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
+            <a href="downloads/Premium-50-Prompts-Makler.pdf" download class="download-card"><div class="dl-icon">📄</div><div class="dl-info"><div class="dl-title">50 KI-Prompts für Makler Pro</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
+            <a href="downloads/Premium-30-TikTok-Skripte-Makler.pdf" download class="download-card"><div class="dl-icon">🎬</div><div class="dl-info"><div class="dl-title">30 TikTok & Reels Skripte</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
+            <a href="downloads/Premium-ChatGPT-Workflow-Makler.pdf" download class="download-card"><div class="dl-icon">🤖</div><div class="dl-info"><div class="dl-title">ChatGPT-Workflow für Makler</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
+            <a href="downloads/Premium-Kaeufer-Qualifizierung-Makler.pdf" download class="download-card"><div class="dl-icon">🎯</div><div class="dl-info"><div class="dl-title">Käufer-Qualifizierungs-System</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
+            <a href="downloads/Premium-Expose-System-Makler.pdf" download class="download-card"><div class="dl-icon">🏠</div><div class="dl-info"><div class="dl-title">Exposé-System</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
+            <a href="downloads/ZYNTEVO-Zugang-Makler.pdf" download class="download-card"><div class="dl-icon">🔑</div><div class="dl-info"><div class="dl-title">Zugangsdaten & Anleitung</div><div class="dl-sub">PDF herunterladen</div></div><div class="dl-arrow">↓</div></a>
         </div>
     </div>
 </section>
@@ -251,7 +216,7 @@ async function loadCode() {
     const section = document.getElementById('code-section');
 
     if (!email) {
-        section.innerHTML = `<div class="code-error">⚠️ Kein Code gefunden. Bitte schreibe uns an <a href="mailto:jan@zyntevo.de" style="color:var(--gold)">jan@zyntevo.de</a> – wir schicken dir deinen Code sofort.</div>`;
+        section.innerHTML = '<div class="code-error">⚠️ Kein Code gefunden. Bitte schreibe uns an <a href="mailto:jan@zyntevo.de" style="color:var(--gold)">jan@zyntevo.de</a> – wir schicken dir deinen Code sofort.</div>';
         return;
     }
 
@@ -267,7 +232,7 @@ async function loadCode() {
             section.innerHTML = `
                 <div class="code-box">
                     <div class="code-label">DEIN REGISTRIERUNGSCODE</div>
-                    <div class="code-value" id="code-val">${data.code}</div>
+                    <div class="code-value">${data.code}</div>
                     <div class="code-hint">Gültig für 30 Tage · Einmalig verwendbar</div>
                 </div>
                 <div class="access-row" style="margin-bottom:12px;">
@@ -278,10 +243,10 @@ async function loadCode() {
                     <button class="copy-btn" onclick="copyText('${data.code}', this)">Kopieren</button>
                 </div>`;
         } else {
-            section.innerHTML = `<div class="code-error">⚠️ ${data.error || 'Fehler beim Laden des Codes'}. Bitte schreibe uns an <a href="mailto:jan@zyntevo.de" style="color:var(--gold)">jan@zyntevo.de</a>.</div>`;
+            section.innerHTML = '<div class="code-error">⚠️ Fehler beim Laden des Codes. Bitte schreibe uns an <a href="mailto:jan@zyntevo.de" style="color:var(--gold)">jan@zyntevo.de</a>.</div>';
         }
     } catch(e) {
-        section.innerHTML = `<div class="code-error">⚠️ Verbindungsfehler. Bitte schreibe uns an <a href="mailto:jan@zyntevo.de" style="color:var(--gold)">jan@zyntevo.de</a>.</div>`;
+        section.innerHTML = '<div class="code-error">⚠️ Verbindungsfehler. Bitte schreibe uns an <a href="mailto:jan@zyntevo.de" style="color:var(--gold)">jan@zyntevo.de</a>.</div>';
     }
 }
 
