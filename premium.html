@@ -169,12 +169,7 @@ const TOOL_URLS = {
 };
 
 window.addEventListener('load', () => {
-    const token = localStorage.getItem('zyntevo_token');
-    const product = localStorage.getItem('zyntevo_product');
-    if (token && product && TOOL_URLS[product]) {
-        showLoading();
-        setTimeout(() => { window.location.href = TOOL_URLS[product]; }, 800);
-    }
+    // Kein Auto-Login hier - Kunde soll sich bewusst einloggen
 });
 
 function switchTab(tab) {
