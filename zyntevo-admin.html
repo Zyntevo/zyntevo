@@ -3,135 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zyntevo Admin</title>
+  <title>ZYNTEVO | Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{--bg:#070B11;--card:#111827;--gold:#D4AF37;--text:#F8FAFC;--muted:#94A3B8;}
+    body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.7;}
 
-    #login-screen { background: #fff; border: 1px solid #e0e0dc; border-radius: 16px; padding: 2rem; width: 100%; max-width: 360px; text-align: center; }
-    #login-screen h1 { font-size: 20px; font-weight: 500; margin-bottom: 0.5rem; }
-    #login-screen p { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
-    #login-screen input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; margin-bottom: 8px; outline: none; }
-    #login-screen button { width: 100%; padding: 10px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; margin-top: 4px; }
-    #login-screen button:hover { background: #333; }
-    #login-error { color: #c62828; font-size: 13px; margin-top: 8px; display: none; }
+    #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top,rgba(212,175,55,.12),transparent 50%);padding:1rem;}
+    .login-box{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:30px;padding:50px 40px;width:100%;max-width:420px;text-align:center;box-shadow:0 0 40px rgba(212,175,55,.08);}
+    .login-logo{font-size:28px;font-weight:900;letter-spacing:3px;color:var(--gold);margin-bottom:8px;}
+    .login-sub{color:var(--muted);font-size:14px;margin-bottom:35px;}
+    .login-box input[type=password]{width:100%;padding:14px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.2);border-radius:14px;color:var(--text);font-size:15px;font-family:Inter,sans-serif;outline:none;margin-bottom:12px;}
+    .login-box input[type=password]:focus{border-color:var(--gold);}
+    .remember-row{display:flex;align-items:center;gap:8px;margin-bottom:16px;justify-content:center;}
+    .remember-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--gold);cursor:pointer;}
+    .remember-row label{font-size:13px;color:var(--muted);cursor:pointer;}
+    .login-box button{width:100%;padding:14px;background:var(--gold);color:#000;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:.3s;}
+    .login-box button:hover{opacity:.9;transform:translateY(-2px);}
+    .login-error{color:#f87171;font-size:13px;margin-top:10px;display:none;}
 
-    #admin-screen { display: none; width: 100%; max-width: 900px; padding: 2rem 0; }
-    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-    .header h1 { font-size: 20px; font-weight: 500; }
-    .logout { font-size: 13px; color: #888; cursor: pointer; text-decoration: underline; }
+    #admin-screen{display:none;}
+    .topbar{position:fixed;top:0;width:100%;z-index:1000;background:rgba(7,11,17,.92);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,255,255,.05);height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;}
+    .topbar-logo{font-size:22px;font-weight:900;letter-spacing:3px;color:var(--gold);}
+    .topbar-right{display:flex;align-items:center;gap:20px;}
+    .topbar-tag{font-size:12px;color:var(--muted);border:1px solid rgba(255,255,255,.08);padding:6px 14px;border-radius:999px;}
+    .logout-btn{font-size:13px;color:var(--muted);cursor:pointer;border:1px solid rgba(255,255,255,.08);padding:6px 14px;border-radius:999px;transition:.3s;background:none;font-family:Inter,sans-serif;}
+    .logout-btn:hover{border-color:var(--gold);color:var(--gold);}
 
-    .section { background: #fff; border: 1px solid #e0e0dc; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
-    .section-title { font-size: 12px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
-    .row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; flex-wrap: wrap; }
-    label { font-size: 13px; color: #666; white-space: nowrap; min-width: 60px; }
-    input[type=email], input[type=number], select { flex: 1; min-width: 140px; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; background: #fff; color: #1a1a1a; outline: none; }
-    input:focus, select:focus { border-color: #999; }
-    .btn { cursor: pointer; padding: 8px 18px; border-radius: 8px; font-size: 14px; border: 1px solid #ccc; background: #fff; color: #1a1a1a; white-space: nowrap; }
-    .btn:hover { background: #f0f0ee; }
-    .btn-primary { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-    .btn-primary:hover { background: #333; }
-    .btn-danger { border-color: #e57373; color: #c62828; }
-    .btn-danger:hover { background: #fdecea; }
-    .btn-sm { padding: 4px 10px; font-size: 12px; }
+    .main{padding:100px 40px 60px;max-width:1000px;margin:0 auto;}
+    .page-title{font-size:32px;font-weight:900;margin-bottom:6px;}
+    .page-sub{color:var(--muted);margin-bottom:40px;}
 
-    .result { margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 8px; font-size: 13px; font-family: monospace; display: none; }
-    .result.success { background: #f0faf4; color: #1b5e20; border: 1px solid #a5d6a7; }
-    .result.error { background: #fdecea; color: #c62828; border: 1px solid #ef9a9a; }
-    .code-box { background: #f5f5f3; border: 1px solid #e0e0dc; border-radius: 6px; padding: 8px 12px; font-family: monospace; font-size: 15px; margin-top: 6px; letter-spacing: 0.05em; cursor: pointer; }
-    .code-box:hover { background: #ebebea; }
-    .copy-hint { font-size: 11px; color: #aaa; margin-top: 4px; }
+    .section{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:30px 35px;margin-bottom:24px;transition:.3s;}
+    .section:hover{border-color:rgba(212,175,55,.3);}
+    .section-title{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:22px;}
+    .row{display:flex;gap:10px;margin-bottom:10px;align-items:center;flex-wrap:wrap;}
+    label{font-size:13px;color:var(--muted);white-space:nowrap;min-width:65px;}
 
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    th { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e0e0dc; color: #888; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-    td { padding: 10px 10px; border-bottom: 0.5px solid #f0f0ee; vertical-align: middle; }
-    tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #fafaf9; }
-    .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 500; }
-    .badge-active { background: #f0faf4; color: #1b5e20; border: 1px solid #a5d6a7; }
-    .badge-blocked { background: #fdecea; color: #c62828; border: 1px solid #ef9a9a; }
-    .badge-product { background: #f0f0ee; color: #555; border: 1px solid #ddd; }
-    .progress { background: #f0f0ee; border-radius: 4px; height: 6px; width: 80px; display: inline-block; vertical-align: middle; margin-left: 6px; }
-    .progress-bar { background: #1a1a1a; border-radius: 4px; height: 100%; }
-    #user-table-wrap { overflow-x: auto; }
-    .empty { text-align: center; color: #aaa; padding: 2rem; font-size: 14px; }
-    .refresh-btn { font-size: 12px; color: #888; cursor: pointer; text-decoration: underline; margin-left: 8px; }
+    input[type=email],input[type=number],select{flex:1;min-width:140px;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;color:var(--text);font-size:14px;font-family:Inter,sans-serif;outline:none;}
+    input:focus,select:focus{border-color:var(--gold);}
+    select option{background:#111827;}
+
+    .btn{cursor:pointer;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:700;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--text);white-space:nowrap;font-family:Inter,sans-serif;transition:.3s;}
+    .btn:hover{border-color:var(--gold);color:var(--gold);}
+    .btn-primary{background:var(--gold);color:#000;border-color:var(--gold);}
+    .btn-primary:hover{opacity:.9;color:#000;transform:translateY(-2px);}
+    .btn-danger{border-color:rgba(248,113,113,.3);color:#f87171;}
+    .btn-danger:hover{background:rgba(248,113,113,.1);border-color:#f87171;}
+    .btn-sm{padding:5px 12px;font-size:12px;border-radius:8px;}
+
+    .result{margin-top:16px;padding:14px 16px;border-radius:12px;font-size:13px;display:none;}
+    .result.success{background:rgba(52,211,153,.08);color:#34d399;border:1px solid rgba(52,211,153,.2);}
+    .result.error{background:rgba(248,113,113,.08);color:#f87171;border:1px solid rgba(248,113,113,.2);}
+
+    .code-box{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);border-radius:10px;padding:10px 14px;font-family:monospace;font-size:15px;margin-top:8px;letter-spacing:0.08em;cursor:pointer;color:var(--gold);transition:.3s;}
+    .code-box:hover{background:rgba(212,175,55,.1);}
+    .copy-hint{font-size:11px;color:var(--muted);margin-top:6px;}
+
+    .table-wrap{overflow-x:auto;margin-top:4px;}
+    table{width:100%;border-collapse:collapse;font-size:13px;}
+    th{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;}
+    td{padding:12px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:rgba(255,255,255,.02);}
+
+    .badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;}
+    .badge-active{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);}
+    .badge-blocked{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2);}
+    .badge-product{background:rgba(212,175,55,.08);color:var(--gold);border:1px solid rgba(212,175,55,.2);}
+
+    .progress-wrap{display:inline-flex;align-items:center;gap:8px;}
+    .progress{background:rgba(255,255,255,.08);border-radius:4px;height:5px;width:60px;display:inline-block;vertical-align:middle;}
+    .progress-bar{background:var(--gold);border-radius:4px;height:100%;}
+
+    .empty{text-align:center;color:var(--muted);padding:2.5rem;font-size:14px;}
+    .refresh-btn{font-size:12px;color:var(--muted);cursor:pointer;margin-left:10px;border:none;background:none;font-family:Inter,sans-serif;transition:.3s;}
+    .refresh-btn:hover{color:var(--gold);}
+
+    @media(max-width:768px){.topbar{padding:0 20px;}.main{padding:90px 16px 40px;}.section{padding:20px;}}
   </style>
 </head>
 <body>
 
   <div id="login-screen">
-    <h1>Zyntevo Admin</h1>
-    <p>Nur für interne Nutzung</p>
-    <input type="password" id="admin-pw" placeholder="Admin-Passwort" onkeydown="if(event.key==='Enter') checkLogin()" />
-    <button onclick="checkLogin()">Einloggen</button>
-    <div id="login-error">Falsches Passwort</div>
+    <div class="login-box">
+      <div class="login-logo">ZYNTEVO</div>
+      <div class="login-sub">Admin Panel · Nur für interne Nutzung</div>
+      <input type="password" id="admin-pw" placeholder="Admin-Passwort eingeben" onkeydown="if(event.key==='Enter') checkLogin()" />
+      <div class="remember-row">
+        <input type="checkbox" id="remember" />
+        <label for="remember">Passwort merken</label>
+      </div>
+      <button onclick="checkLogin()">Einloggen</button>
+      <div class="login-error" id="login-error">Falsches Passwort</div>
+    </div>
   </div>
 
   <div id="admin-screen">
-    <div class="header">
-      <h1>Zyntevo Admin Panel</h1>
-      <span class="logout" onclick="logout()">Ausloggen</span>
-    </div>
-
-    <!-- CODES GENERIEREN -->
-    <div class="section">
-      <div class="section-title">Registrierungscodes generieren</div>
-      <div class="row">
-        <label>Produkt</label>
-        <select id="product">
-          <option value="makler-premium">Makler Premium (297€)</option>
-          <option value="makler-starter">Makler Starter (97€)</option>
-          <option value="handwerker-premium">Handwerker Premium (297€)</option>
-          <option value="handwerker-starter">Handwerker Starter (97€)</option>
-        </select>
-      </div>
-      <div class="row">
-        <label>Anzahl</label>
-        <input type="number" id="count" value="1" min="1" max="50" style="max-width:80px;flex:none;" />
-        <button class="btn btn-primary" onclick="generateCodes()">Codes generieren</button>
-      </div>
-      <div id="codes-result" class="result"></div>
-    </div>
-
-    <!-- USER ÜBERSICHT -->
-    <div class="section">
-      <div class="section-title">
-        User Übersicht
-        <span class="refresh-btn" onclick="loadUsers()">↻ Aktualisieren</span>
-      </div>
-      <div id="user-table-wrap">
-        <div class="empty" id="user-empty">Wird geladen...</div>
-        <table id="user-table" style="display:none;">
-          <thead>
-            <tr>
-              <th>E-Mail</th>
-              <th>Produkt</th>
-              <th>Status</th>
-              <th>Heute</th>
-              <th>Gesamt</th>
-              <th>Zuletzt aktiv</th>
-              <th>Registriert</th>
-              <th>Aktion</th>
-            </tr>
-          </thead>
-          <tbody id="user-tbody"></tbody>
-        </table>
+    <div class="topbar">
+      <div class="topbar-logo">ZYNTEVO</div>
+      <div class="topbar-right">
+        <span class="topbar-tag">Admin Panel</span>
+        <button class="logout-btn" onclick="logout()">Ausloggen</button>
       </div>
     </div>
 
-    <!-- ACCOUNT SPERREN -->
-    <div class="section">
-      <div class="section-title">Account sperren / entsperren</div>
-      <div class="row">
-        <label>E-Mail</label>
-        <input type="email" id="block-email" placeholder="user@example.com" />
+    <div class="main">
+      <div class="page-title">Admin Panel</div>
+      <div class="page-sub">Codes generieren, User verwalten und Accounts überwachen.</div>
+
+      <div class="section">
+        <div class="section-title">Registrierungscodes generieren</div>
+        <div class="row">
+          <label>Produkt</label>
+          <select id="product">
+            <option value="makler-premium">Makler Premium (297€)</option>
+            <option value="makler-starter">Makler Starter (97€)</option>
+            <option value="handwerker-premium">Handwerker Premium (297€)</option>
+            <option value="handwerker-starter">Handwerker Starter (97€)</option>
+          </select>
+        </div>
+        <div class="row">
+          <label>Anzahl</label>
+          <input type="number" id="count" value="1" min="1" max="50" style="max-width:80px;flex:none;" />
+          <button class="btn btn-primary" onclick="generateCodes()">⚡ Codes generieren</button>
+        </div>
+        <div id="codes-result" class="result"></div>
       </div>
-      <div class="row">
-        <button class="btn btn-danger" onclick="blockUser(true)">Sperren</button>
-        <button class="btn" onclick="blockUser(false)">Entsperren</button>
+
+      <div class="section">
+        <div class="section-title">
+          User Übersicht
+          <button class="refresh-btn" onclick="loadUsers()">↻ Aktualisieren</button>
+        </div>
+        <div class="table-wrap">
+          <div class="empty" id="user-empty">Wird geladen...</div>
+          <table id="user-table" style="display:none;">
+            <thead>
+              <tr>
+                <th>E-Mail</th><th>Produkt</th><th>Status</th><th>Heute</th><th>Gesamt</th><th>Zuletzt aktiv</th><th>Registriert</th><th>Aktion</th>
+              </tr>
+            </thead>
+            <tbody id="user-tbody"></tbody>
+          </table>
+        </div>
       </div>
-      <div id="block-result" class="result"></div>
+
+      <div class="section">
+        <div class="section-title">Account sperren / entsperren</div>
+        <div class="row">
+          <label>E-Mail</label>
+          <input type="email" id="block-email" placeholder="user@example.com" />
+        </div>
+        <div class="row">
+          <button class="btn btn-danger" onclick="blockUser(true)">Account sperren</button>
+          <button class="btn" onclick="blockUser(false)">Account entsperren</button>
+        </div>
+        <div id="block-result" class="result"></div>
+      </div>
     </div>
   </div>
 
@@ -139,99 +169,88 @@
     const API = "https://zyntevo-tool.jan-6a7.workers.dev";
     const ADMIN_KEY = "zyntevo-admin-2024";
     const LOCAL_PASSWORD = "Zyntevo#Admin2024!";
+    const STORAGE_KEY = "zyntevo_admin_auth";
+
+    // Auto-Login wenn gespeichert
+    window.addEventListener('load', () => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === btoa(LOCAL_PASSWORD)) {
+        showAdmin();
+      }
+    });
 
     function checkLogin() {
       const pw = document.getElementById('admin-pw').value;
+      const remember = document.getElementById('remember').checked;
       if (pw === LOCAL_PASSWORD) {
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('admin-screen').style.display = 'block';
-        document.body.style.alignItems = 'flex-start';
-        loadUsers();
+        if (remember) {
+          localStorage.setItem(STORAGE_KEY, btoa(LOCAL_PASSWORD));
+        } else {
+          localStorage.removeItem(STORAGE_KEY);
+        }
+        showAdmin();
       } else {
         document.getElementById('login-error').style.display = 'block';
       }
     }
 
+    function showAdmin() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-screen').style.display = 'block';
+      loadUsers();
+    }
+
     function logout() {
-      document.getElementById('login-screen').style.display = 'block';
+      localStorage.removeItem(STORAGE_KEY);
+      document.getElementById('login-screen').style.display = 'flex';
       document.getElementById('admin-screen').style.display = 'none';
       document.getElementById('admin-pw').value = '';
-      document.body.style.alignItems = 'center';
     }
 
     async function loadUsers() {
       document.getElementById('user-empty').textContent = 'Wird geladen...';
       document.getElementById('user-empty').style.display = 'block';
       document.getElementById('user-table').style.display = 'none';
-
       try {
-        const res = await fetch(`${API}/api/admin/users`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ adminKey: ADMIN_KEY })
-        });
+        const res = await fetch(`${API}/api/admin/users`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({adminKey:ADMIN_KEY})});
         const data = await res.json();
-
         if (!data.success || data.users.length === 0) {
           document.getElementById('user-empty').textContent = 'Noch keine registrierten User.';
           return;
         }
-
+        const labels = {'makler-premium':'Makler Pro','makler-starter':'Makler Starter','handwerker-premium':'Handwerker Pro','handwerker-starter':'Handwerker Starter'};
         const tbody = document.getElementById('user-tbody');
         tbody.innerHTML = '';
         data.users.forEach(u => {
-          const pct = Math.min(100, Math.round((u.todayRequests / 50) * 100));
-          const lastActive = u.lastActive ? timeAgo(u.lastActive) : '–';
-          const created = u.created ? new Date(u.created).toLocaleDateString('de-DE') : '–';
-          const productLabel = {
-            'makler-premium': 'Makler Pro',
-            'makler-starter': 'Makler Starter',
-            'handwerker-premium': 'Handwerker Pro',
-            'handwerker-starter': 'Handwerker Starter',
-          }[u.product] || u.product;
-
-          tbody.innerHTML += `
-            <tr>
-              <td style="font-family:monospace;font-size:12px;">${u.email}</td>
-              <td><span class="badge badge-product">${productLabel}</span></td>
-              <td><span class="badge ${u.blocked ? 'badge-blocked' : 'badge-active'}">${u.blocked ? 'Gesperrt' : 'Aktiv'}</span></td>
-              <td>
-                ${u.todayRequests}/50
-                <span class="progress"><span class="progress-bar" style="width:${pct}%"></span></span>
-              </td>
-              <td>${u.totalRequests}</td>
-              <td>${lastActive}</td>
-              <td>${created}</td>
-              <td>
-                ${u.blocked
-                  ? `<button class="btn btn-sm" onclick="quickBlock('${u.email}', false)">Entsperren</button>`
-                  : `<button class="btn btn-sm btn-danger" onclick="quickBlock('${u.email}', true)">Sperren</button>`
-                }
-              </td>
-            </tr>`;
+          const pct = Math.min(100, Math.round((u.todayRequests/50)*100));
+          tbody.innerHTML += `<tr>
+            <td style="font-family:monospace;font-size:12px;color:var(--muted);">${u.email}</td>
+            <td><span class="badge badge-product">${labels[u.product]||u.product}</span></td>
+            <td><span class="badge ${u.blocked?'badge-blocked':'badge-active'}">${u.blocked?'Gesperrt':'Aktiv'}</span></td>
+            <td><span class="progress-wrap">${u.todayRequests}/50 <span class="progress"><span class="progress-bar" style="width:${pct}%"></span></span></span></td>
+            <td>${u.totalRequests}</td>
+            <td style="color:var(--muted)">${u.lastActive?timeAgo(u.lastActive):'–'}</td>
+            <td style="color:var(--muted)">${u.created?new Date(u.created).toLocaleDateString('de-DE'):'–'}</td>
+            <td>${u.blocked
+              ?`<button class="btn btn-sm" onclick="quickBlock('${u.email}',false)">Entsperren</button>`
+              :`<button class="btn btn-sm btn-danger" onclick="quickBlock('${u.email}',true)">Sperren</button>`
+            }</td>
+          </tr>`;
         });
-
         document.getElementById('user-empty').style.display = 'none';
         document.getElementById('user-table').style.display = 'table';
-
       } catch(e) {
-        document.getElementById('user-empty').textContent = 'Fehler beim Laden: ' + e.message;
+        document.getElementById('user-empty').textContent = 'Fehler: ' + e.message;
       }
     }
 
     async function quickBlock(email, blocked) {
       try {
-        const res = await fetch(`${API}/api/admin/block`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ adminKey: ADMIN_KEY, email, blocked })
-        });
+        const res = await fetch(`${API}/api/admin/block`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({adminKey:ADMIN_KEY,email,blocked})});
         const data = await res.json();
         if (data.success) loadUsers();
         else alert('Fehler: ' + data.error);
-      } catch(e) {
-        alert('Verbindungsfehler: ' + e.message);
-      }
+      } catch(e) { alert('Verbindungsfehler: ' + e.message); }
     }
 
     async function generateCodes() {
@@ -240,16 +259,12 @@
       const resultEl = document.getElementById('codes-result');
       resultEl.style.display = 'none';
       try {
-        const res = await fetch(`${API}/api/admin/generate-code`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ adminKey: ADMIN_KEY, product, count })
-        });
+        const res = await fetch(`${API}/api/admin/generate-code`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({adminKey:ADMIN_KEY,product,count})});
         const data = await res.json();
         if (data.success) {
           resultEl.className = 'result success';
           resultEl.innerHTML = `<strong>${data.codes.length} Code(s) generiert</strong> – klicken zum Kopieren:<br>` +
-            data.codes.map(c => `<div class="code-box" onclick="copyCode(this,'${c}')">${c}</div>`).join('') +
+            data.codes.map(c=>`<div class="code-box" onclick="copyCode(this,'${c}')">${c}</div>`).join('') +
             `<div class="copy-hint">Auf Code klicken zum Kopieren</div>`;
         } else {
           resultEl.className = 'result error';
@@ -267,14 +282,10 @@
       const resultEl = document.getElementById('block-result');
       if (!email) { alert('Bitte E-Mail eingeben'); return; }
       try {
-        const res = await fetch(`${API}/api/admin/block`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ adminKey: ADMIN_KEY, email, blocked })
-        });
+        const res = await fetch(`${API}/api/admin/block`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({adminKey:ADMIN_KEY,email,blocked})});
         const data = await res.json();
-        resultEl.className = data.success ? 'result success' : 'result error';
-        resultEl.textContent = data.message || data.error;
+        resultEl.className = data.success?'result success':'result error';
+        resultEl.textContent = data.message||data.error;
         if (data.success) loadUsers();
       } catch(e) {
         resultEl.className = 'result error';
@@ -284,22 +295,21 @@
     }
 
     function copyCode(el, code) {
-      navigator.clipboard.writeText(code).then(() => {
+      navigator.clipboard.writeText(code).then(()=>{
         const orig = el.textContent;
         el.textContent = '✓ Kopiert!';
-        setTimeout(() => el.textContent = orig, 1500);
+        setTimeout(()=>el.textContent=orig,1500);
       });
     }
 
     function timeAgo(ts) {
-      const diff = Date.now() - ts;
-      const m = Math.floor(diff / 60000);
-      if (m < 1) return 'Gerade eben';
-      if (m < 60) return `vor ${m} Min.`;
-      const h = Math.floor(m / 60);
-      if (h < 24) return `vor ${h} Std.`;
-      const d = Math.floor(h / 24);
-      return `vor ${d} Tag(en)`;
+      const diff = Date.now()-ts;
+      const m = Math.floor(diff/60000);
+      if (m<1) return 'Gerade eben';
+      if (m<60) return `vor ${m} Min.`;
+      const h = Math.floor(m/60);
+      if (h<24) return `vor ${h} Std.`;
+      return `vor ${Math.floor(h/24)} Tag(en)`;
     }
   </script>
 </body>
