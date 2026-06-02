@@ -119,9 +119,24 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
                 <div class="upsell-feat"><div class="upsell-feat-icon">📬</div><div class="upsell-feat-title">Akquise-System</div><div class="upsell-feat-desc">Mehr Eigentümer gewinnen</div></div>
                 <div class="upsell-feat"><div class="upsell-feat-icon">📱</div><div class="upsell-feat-title">Social-Media-System</div><div class="upsell-feat-desc">TikTok & Reels Skripte sofort</div></div>
                 </div>
-            <div class="upsell-price">297€</div>
+            
+                <!-- TIMER -->
+                <div class="timer-box">
+                    <div class="timer-label">⏰ DIESES ANGEBOT LÄUFT AB IN</div>
+                    <div class="timer-units">
+                        <div class="timer-unit"><div class="timer-num" id="t-days">00</div><div class="timer-text">TAGE</div></div>
+                        <div class="timer-sep">:</div>
+                        <div class="timer-unit"><div class="timer-num" id="t-hours">00</div><div class="timer-text">STD</div></div>
+                        <div class="timer-sep">:</div>
+                        <div class="timer-unit"><div class="timer-num" id="t-mins">00</div><div class="timer-text">MIN</div></div>
+                        <div class="timer-sep">:</div>
+                        <div class="timer-unit"><div class="timer-num" id="t-secs">00</div><div class="timer-text">SEK</div></div>
+                    </div>
+                </div>
+<div style="font-size:20px;color:var(--muted);text-decoration:line-through;margin-bottom:4px;">297€</div>
+            <div class="upsell-price">197€</div>
             <p class="upsell-price-sub">Einmalzahlung · Kein Abo · Sofortiger Zugang</p>
-            <a href="https://www.checkout-ds24.com/product/696893" target="_blank" class="upsell-btn">⚡ Jetzt auf Premium upgraden</a>
+            <a href="https://www.checkout-ds24.com/product/696893?coupon=MAKLER-X7K2-UPGRADE" target="_blank" class="upsell-btn">⚡ Jetzt auf Premium upgraden</a>
             <p class="upsell-sub">Einmalige Zahlung — uneingeschränkter Zugang zu allen Inhalten und dem KI-Tool</p>
         </div>
     </div>
@@ -147,6 +162,40 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <p style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);color:var(--muted);font-size:13px;">Die Abbuchung erfolgt durch Digistore24.com</p>
     </div>
 </footer>
+
+
+<script>
+// Timer - 7 Tage ab erstem Besuch
+const TIMER_KEY = 'zyntevo_upgrade_timer_makler';
+let deadline = localStorage.getItem(TIMER_KEY);
+if (!deadline) {
+    deadline = Date.now() + (7 * 24 * 60 * 60 * 1000);
+    localStorage.setItem(TIMER_KEY, deadline);
+}
+deadline = parseInt(deadline);
+
+function updateTimer() {
+    const now = Date.now();
+    const diff = deadline - now;
+    if (diff <= 0) {
+        document.querySelector('.timer-box').innerHTML = '<div class="timer-expired">⛔ Dieses Angebot ist abgelaufen.</div>';
+        document.querySelector('.upsell-btn').style.display = 'none';
+        document.querySelector('.upsell-price').style.display = 'none';
+        document.querySelector('.upsell-price-sub').style.display = 'none';
+        return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('t-days').textContent = String(days).padStart(2,'0');
+    document.getElementById('t-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('t-mins').textContent = String(mins).padStart(2,'0');
+    document.getElementById('t-secs').textContent = String(secs).padStart(2,'0');
+}
+updateTimer();
+setInterval(updateTimer, 1000);
+</script>
 
 </body>
 </html>
