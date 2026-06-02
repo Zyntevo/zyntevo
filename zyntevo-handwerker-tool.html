@@ -127,7 +127,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
   /* Bottom Nav statt Sidebar */
   .sidebar{display:none;}
-  .mobile-nav{display:flex!important;}
+  .mobile-nav{display:none!important;}
 
   /* Page Header */
   .page-title{font-size:26px;}
@@ -584,6 +584,7 @@ function showErr(id, msg) {
 function showApp() {
   document.getElementById('auth-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
+  document.querySelector('.mobile-nav').style.display = 'flex';
   updateRateDisplays();
 }
 
@@ -727,7 +728,7 @@ function downloadPDF(resultId) {
 
   /* Bottom Nav statt Sidebar */
   .sidebar{display:none;}
-  .mobile-nav{display:flex!important;}
+  .mobile-nav{display:none!important;}
 
   /* Page Header */
   .page-title{font-size:26px;}
