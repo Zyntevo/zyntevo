@@ -191,8 +191,8 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="profile-bar">
           <div class="profile-bar-title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
           <div class="profile-grid">
-            <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Müller" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Dein Betrieb</label><input class="form-input" id="profile-buero" placeholder="z.B. Müller Elektro GmbH" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Dein Betrieb</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann GmbH" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
@@ -260,7 +260,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>TikTok Caption</option><option>Facebook</option></select></div>
             <div class="form-group"><label class="form-label">Content-Typ</label><select class="form-select" id="social-typ"><option>Vorher/Nachher Projekt</option><option>Handwerk-Tipp</option><option>Projekt vorstellen</option><option>Behind the Scenes</option><option>Kundenstimme</option><option>Fehler-Video</option></select></div>
             <div class="form-group"><label class="form-label">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Heute haben wir ein komplettes Bad renoviert..."></textarea></div>
-            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="social-name" placeholder="z.B. Müller Elektro GmbH"></div>
+            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="social-name" placeholder="z.B. Mustermann GmbH"></div>
             <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
@@ -274,7 +274,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Zielgruppe</label><select class="form-select" id="akquise-ziel"><option>Hausverwaltung</option><option>Wohnungsbaugesellschaft</option><option>Gewerbekunde</option><option>Privatperson</option><option>Baufirma / Generalunternehmer</option></select></div>
             <div class="form-group"><label class="form-label">Dein Gewerk</label><select class="form-select" id="akquise-gewerk"><option>Elektriker</option><option>Sanitär / Klempner</option><option>Maler</option><option>Fliesenleger</option><option>Schreiner</option><option>Dachdecker</option><option>Heizung</option></select></div>
-            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="akquise-name" placeholder="z.B. Müller Elektro GmbH"></div>
+            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="akquise-name" placeholder="z.B. Mustermann GmbH"></div>
             <div class="form-group"><label class="form-label">Region</label><input class="form-input" id="akquise-region" placeholder="z.B. München und Umgebung"></div>
             <div class="form-group"><label class="form-label">Deine Stärken</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung, Reaktionszeit unter 2h..."></textarea></div>
             <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
@@ -290,7 +290,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Art der Bewertung</label><select class="form-select" id="bew-art"><option>Positiv (4-5 Sterne)</option><option>Negativ (1-2 Sterne)</option><option>Neutral (3 Sterne)</option></select></div>
             <div class="form-group"><label class="form-label">Bewertungstext</label><textarea class="form-textarea" id="bew-text" placeholder="Kopiere hier den Bewertungstext des Kunden..."></textarea></div>
-            <div class="form-group"><label class="form-label">Dein Betrieb</label><input class="form-input" id="bew-betrieb" placeholder="z.B. Müller Elektro GmbH"></div>
+            <div class="form-group"><label class="form-label">Dein Betrieb</label><input class="form-input" id="bew-betrieb" placeholder="z.B. Mustermann GmbH"></div>
             <div class="form-group"><label class="form-label">Kontext (optional)</label><textarea class="form-textarea" id="bew-kontext" placeholder="z.B. Kunde hatte Missverständnis beim Preis..."></textarea></div>
             <button class="generate-btn" onclick="generateBewertung()">⚡ Antwort generieren</button>
           </div>
