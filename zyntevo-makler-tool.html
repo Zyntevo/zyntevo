@@ -378,11 +378,25 @@ let todayCount = 0;
 
 window.addEventListener('load', function() {
   applyProfile();
-  const saved = localStorage.getItem(STORAGE_KEY);
-  const savedEmail = localStorage.getItem(EMAIL_KEY);
-  if (saved && savedEmail) {
-    authToken = saved;
-    userEmail = savedEmail;
+
+  // Token vom eigenen Storage
+  let token = localStorage.getItem(STORAGE_KEY);
+  let email = localStorage.getItem(EMAIL_KEY);
+
+  // Fallback: Token von premium.html Login
+  if (!token) {
+    token = localStorage.getItem('zyntevo_token');
+    email = localStorage.getItem('zyntevo_email');
+    if (token && email) {
+      // In eigenen Storage übertragen
+      localStorage.setItem(STORAGE_KEY, token);
+      localStorage.setItem(EMAIL_KEY, email);
+    }
+  }
+
+  if (token && email) {
+    authToken = token;
+    userEmail = email;
     showApp();
   }
 });

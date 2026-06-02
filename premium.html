@@ -202,10 +202,10 @@ async function doLogin() {
         });
         const data = await res.json();
         if (data.success) {
-            if (document.getElementById('remember-me').checked) {
-                localStorage.setItem('zyntevo_token', data.token);
-                localStorage.setItem('zyntevo_product', data.product);
-            }
+            // Immer speichern damit Tool automatisch einloggt
+            localStorage.setItem('zyntevo_token', data.token);
+            localStorage.setItem('zyntevo_product', data.product);
+            localStorage.setItem('zyntevo_email', email);
             window.location.href = TOOL_URLS[data.product] || 'index.html';
         } else {
             document.getElementById('login-loading').style.display = 'none';
