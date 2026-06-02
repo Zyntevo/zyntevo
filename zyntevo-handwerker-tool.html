@@ -127,7 +127,8 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
   /* Bottom Nav statt Sidebar */
   .sidebar{display:none;}
-  .mobile-nav{display:none!important;}
+  .mobile-nav{display:none;}
+.mobile-nav.mobile-nav-visible{display:flex;}
 
   /* Page Header */
   .page-title{font-size:26px;}
@@ -584,7 +585,7 @@ function showErr(id, msg) {
 function showApp() {
   document.getElementById('auth-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  document.querySelector('.mobile-nav').style.display = 'flex';
+  document.querySelector('.mobile-nav').classList.add('mobile-nav-visible');
   updateRateDisplays();
 }
 
@@ -728,7 +729,8 @@ function downloadPDF(resultId) {
 
   /* Bottom Nav statt Sidebar */
   .sidebar{display:none;}
-  .mobile-nav{display:none!important;}
+  .mobile-nav{display:none;}
+.mobile-nav.mobile-nav-visible{display:flex;}
 
   /* Page Header */
   .page-title{font-size:26px;}
