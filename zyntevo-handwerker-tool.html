@@ -128,7 +128,6 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
   /* Bottom Nav statt Sidebar */
   .sidebar{display:none;}
   .mobile-nav{display:none;}
-.mobile-nav.mobile-nav-visible{display:flex;}
 
   /* Page Header */
   .page-title{font-size:26px;}
@@ -213,6 +212,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
   .layout{padding-bottom:100px;}
   .main{padding-bottom:100px;}
 }
+@media(max-width:600px){.mobile-nav.mobile-nav-visible{display:flex!important;}}
 
 </style>
 </head>
@@ -730,7 +730,6 @@ function downloadPDF(resultId) {
   /* Bottom Nav statt Sidebar */
   .sidebar{display:none;}
   .mobile-nav{display:none;}
-.mobile-nav.mobile-nav-visible{display:flex;}
 
   /* Page Header */
   .page-title{font-size:26px;}
@@ -815,6 +814,7 @@ function downloadPDF(resultId) {
   .layout{padding-bottom:100px;}
   .main{padding-bottom:100px;}
 }
+@media(max-width:600px){.mobile-nav.mobile-nav-visible{display:flex!important;}}
 
 </style></head><body><div class="briefkopf"><span class="briefkopf-hint">[ Hier Briefkopf / Logo einfügen ]</span></div><pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><div class="footer">Erstellt mit ZYNTEVO KI-Tool · zyntevo.de</div><script>window.onload=function(){window.print();}<\/script>
 <!-- MOBILE BOTTOM NAV -->
