@@ -881,6 +881,13 @@ function applyProfile() {
   ['akquise-name','tt-name','social-name','bew-betrieb'].forEach(id => { const el = document.getElementById(id); if(el && !el.value) el.value = p.buero || p.name; });
   ['akquise-region'].forEach(id => { const el = document.getElementById(id); if(el && !el.value) el.value = p.region; });
 }
+
+function showPageMobile(id, el) {
+  showPage(id, null);
+  document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
 </script>
 
 <!-- MOBILE BOTTOM NAV -->
