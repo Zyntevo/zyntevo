@@ -242,10 +242,13 @@
             <td>${u.totalRequests}</td>
             <td style="color:var(--muted)">${u.lastActive?timeAgo(u.lastActive):'–'}</td>
             <td style="color:var(--muted)">${u.created?new Date(u.created).toLocaleDateString('de-DE'):'–'}</td>
-            <td>${u.blocked
-              ?`<button class="btn btn-sm" onclick="quickBlock('${u.email}',false)">Entsperren</button>`
-              :`<button class="btn btn-sm btn-danger" onclick="quickBlock('${u.email}',true)">Sperren</button>`
-            }</td>
+            <td style="display:flex;gap:6px;">
+              ${u.blocked
+                ?`<button class="btn btn-sm" onclick="quickBlock('${u.email}',false)">Entsperren</button>`
+                :`<button class="btn btn-sm btn-danger" onclick="quickBlock('${u.email}',true)">Sperren</button>`
+              }
+              <button class="btn btn-sm" style="border-color:rgba(248,113,113,.3);color:#f87171;" onclick="deleteUser('${u.email}')">Löschen</button>
+            </td>
           </tr>`;
         });
         document.getElementById('user-empty').style.display = 'none';
@@ -311,6 +314,20 @@
         el.textContent = '✓ Kopiert!';
         setTimeout(()=>el.textContent=orig,1500);
       });
+    }
+
+    async function deleteUser(email) {
+      if (!confirm(`Account ${email} wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.`)) return;
+      try {
+        const res = await fetch(`${API}/api/admin/delete-user`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ adminKey: ADMIN_KEY, email })
+        });
+        const data = await res.json();
+        if (data.success) { loadUsers(); }
+        else alert('Fehler: ' + data.error);
+      } catch(e) { alert('Verbindungsfehler: ' + e.message); }
     }
 
     function timeAgo(ts) {
