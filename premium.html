@@ -5,45 +5,253 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium-Zugang | ZYNTEVO</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .auth-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, rgba(212,175,55,.12), transparent 50%);
+            padding: 1rem;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 460px;
+            background: linear-gradient(135deg, #0F172A, #111827);
+            border: 1px solid rgba(212,175,55,.25);
+            border-radius: 30px;
+            padding: 44px 40px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(212,175,55,.08);
+            box-sizing: border-box;
+        }
+        .auth-logo { font-size: 26px; font-weight: 900; letter-spacing: 3px; color: #D4AF37; margin-bottom: 4px; }
+        .auth-sub { color: #94A3B8; font-size: 13px; margin-bottom: 16px; }
+
+        .premium-only-box {
+            background: rgba(212,175,55,.07);
+            border: 1px solid rgba(212,175,55,.2);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .premium-only-title {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #D4AF37;
+            margin-bottom: 6px;
+        }
+        .premium-only-text {
+            font-size: 13px;
+            color: #94A3B8;
+            line-height: 1.5;
+        }
+        .premium-only-text a { color: #D4AF37; text-decoration: none; }
+
+        .auth-tabs { display: flex; gap: 0; margin-bottom: 20px; background: rgba(255,255,255,.04); border-radius: 12px; padding: 4px; }
+        .auth-tab { flex: 1; padding: 8px; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 9px; border: none; background: transparent; color: #94A3B8; font-family: Inter, sans-serif; transition: .2s; }
+        .auth-tab.active { background: #D4AF37; color: #000; }
+
+        .auth-input-wrap { position: relative; margin-bottom: 10px; width: 100%; }
+        .auth-input {
+            width: 100%;
+            padding: 11px 40px 11px 14px;
+            background: #070B11;
+            border: 1px solid rgba(212,175,55,.2);
+            border-radius: 12px;
+            color: #F8FAFC;
+            font-size: 13px;
+            outline: none;
+            transition: .3s;
+            font-family: Inter, sans-serif;
+            box-sizing: border-box;
+        }
+        .auth-input:focus { border-color: #D4AF37; }
+        .pw-eye { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94A3B8; font-size: 15px; user-select: none; }
+        .pw-eye:hover { color: #D4AF37; }
+        .remember-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; text-align: left; }
+        .remember-row input[type=checkbox] { width: 14px; height: 14px; accent-color: #D4AF37; cursor: pointer; flex-shrink: 0; }
+        .remember-row label { color: #94A3B8; font-size: 12px; cursor: pointer; }
+        .auth-btn { width: 100%; padding: 13px; background: #D4AF37; color: #000; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; transition: .3s; font-family: Inter, sans-serif; margin-top: 2px; box-sizing: border-box; }
+        .auth-btn:hover { transform: translateY(-2px); opacity: .92; }
+        .auth-error { color: #EF4444; font-size: 12px; margin-top: 8px; display: none; }
+        .auth-success { color: #22C55E; font-size: 12px; margin-top: 8px; display: none; }
+        .auth-hint { font-size: 11px; color: #94A3B8; margin-top: 12px; line-height: 1.6; }
+        .auth-hint a { color: #D4AF37; text-decoration: none; }
+        .loading-wrap { display: none; flex-direction: column; align-items: center; gap: 14px; padding: 20px 0; }
+        .spinner { width: 28px; height: 28px; border: 3px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { color: #94A3B8; font-size: 13px; }
+    </style>
 </head>
 <body>
 
-<section class="hero">
-    <div class="container">
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-logo">ZYNTEVO</div>
+        <div class="auth-sub">KI-Tool Login</div>
 
-        <div class="section-header">
-            <h1>🔒 Premium-Zugang</h1>
-
-            <p>
-                Dieser Bereich ist exklusiv für Kunden von ZYNTEVO Premium.
-            </p>
+        <!-- PREMIUM ONLY HINWEIS -->
+        <div class="premium-only-box">
+            <div class="premium-only-title">🔒 NUR FÜR PREMIUM-KUNDEN</div>
+            <div class="premium-only-text">
+                Dieser Bereich ist ausschließlich für Käufer des <strong style="color:#F8FAFC;">Makler Premium</strong> oder <strong style="color:#F8FAFC;">Handwerker Premium</strong> Pakets.<br><br>
+                Noch kein Paket? <a href="index.html#systeme">Hier Premium sichern →</a>
+            </div>
         </div>
 
-        <div class="pricing-card" style="max-width:700px;margin:40px auto;text-align:center;">
-
-            <h2>Inhalt gesperrt</h2>
-
-            <p>
-                Der Zugriff auf die Premium-Konfiguratoren und exklusiven KI-Systeme
-                ist nur nach dem Kauf eines Premium-Pakets möglich.
-            </p>
-
-            <ul style="text-align:left;max-width:500px;margin:30px auto;">
-                <li>✓ Makler-Konfigurator</li>
-                <li>✓ Handwerker-Konfigurator</li>
-                <li>✓ Premium-Systeme</li>
-                <li>✓ Exklusive Vorlagen</li>
-                <li>✓ Bonus-Inhalte & Updates</li>
-            </ul>
-
-            <a href="index.html#systeme" class="btn btn-primary">
-              Premium-Paket ansehen
-            </a>
-
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Einloggen</button>
+            <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Registrieren</button>
         </div>
 
+        <!-- LOGIN -->
+        <div id="panel-login">
+            <div class="auth-input-wrap">
+                <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" />
+            </div>
+            <div class="auth-input-wrap">
+                <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()" />
+                <span class="pw-eye" onclick="togglePW('login-pw')">👁</span>
+            </div>
+            <div class="remember-row">
+                <input type="checkbox" id="remember-me" />
+                <label for="remember-me">Angemeldet bleiben</label>
+            </div>
+            <button class="auth-btn" onclick="doLogin()">⚡ Einloggen & Tool öffnen</button>
+            <div class="auth-error" id="login-error"></div>
+            <div class="loading-wrap" id="login-loading">
+                <div class="spinner"></div>
+                <div class="loading-text">Wird eingeloggt...</div>
+            </div>
+            <div class="auth-hint">
+                Noch kein Account? Registrierungscode auf der Dankeseite nach dem Kauf.
+            </div>
+        </div>
+
+        <!-- REGISTER -->
+        <div id="panel-register" style="display:none;">
+            <div class="auth-input-wrap">
+                <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (XXXX-XXXX-XXXX-XXXX)" />
+            </div>
+            <div class="auth-input-wrap">
+                <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" />
+            </div>
+            <div class="auth-input-wrap">
+                <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" onkeydown="if(event.key==='Enter')doRegister()" />
+                <span class="pw-eye" onclick="togglePW('reg-pw')">👁</span>
+            </div>
+            <button class="auth-btn" onclick="doRegister()">Account erstellen</button>
+            <div class="auth-error" id="reg-error"></div>
+            <div class="auth-success" id="reg-success"></div>
+            <div class="auth-hint">
+                Deinen Code findest du auf der Dankeseite nach dem Kauf.
+            </div>
+        </div>
     </div>
-</section>
+</div>
 
+<script>
+const API = "https://zyntevo-tool.jan-6a7.workers.dev";
+const TOOL_URLS = {
+    'makler-premium': 'https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html',
+    'makler-starter': 'https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html',
+    'handwerker-premium': 'https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html',
+    'handwerker-starter': 'https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html',
+};
+
+window.addEventListener('load', () => {
+    const token = localStorage.getItem('zyntevo_token');
+    const product = localStorage.getItem('zyntevo_product');
+    if (token && product && TOOL_URLS[product]) {
+        showLoading();
+        setTimeout(() => { window.location.href = TOOL_URLS[product]; }, 800);
+    }
+});
+
+function switchTab(tab) {
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+    document.getElementById('panel-login').style.display = tab === 'login' ? 'block' : 'none';
+    document.getElementById('panel-register').style.display = tab === 'register' ? 'block' : 'none';
+}
+
+function togglePW(id) {
+    const inp = document.getElementById(id);
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function showLoading() {
+    document.getElementById('panel-login').style.display = 'none';
+    document.getElementById('login-loading').style.display = 'flex';
+}
+
+async function doLogin() {
+    const email = document.getElementById('login-email').value.trim();
+    const pw = document.getElementById('login-pw').value;
+    document.getElementById('login-error').style.display = 'none';
+    if (!email || !pw) { showErr('login-error', 'Bitte E-Mail und Passwort eingeben.'); return; }
+    showLoading();
+    try {
+        const res = await fetch(`${API}/api/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password: pw })
+        });
+        const data = await res.json();
+        if (data.success) {
+            if (document.getElementById('remember-me').checked) {
+                localStorage.setItem('zyntevo_token', data.token);
+                localStorage.setItem('zyntevo_product', data.product);
+            }
+            window.location.href = TOOL_URLS[data.product] || 'index.html';
+        } else {
+            document.getElementById('login-loading').style.display = 'none';
+            document.getElementById('panel-login').style.display = 'block';
+            showErr('login-error', data.error || 'Login fehlgeschlagen.');
+        }
+    } catch(e) {
+        document.getElementById('login-loading').style.display = 'none';
+        document.getElementById('panel-login').style.display = 'block';
+        showErr('login-error', 'Verbindungsfehler. Bitte erneut versuchen.');
+    }
+}
+
+async function doRegister() {
+    const code = document.getElementById('reg-code').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const pw = document.getElementById('reg-pw').value;
+    document.getElementById('reg-error').style.display = 'none';
+    document.getElementById('reg-success').style.display = 'none';
+    if (!code || !email || !pw) { showErr('reg-error', 'Bitte alle Felder ausfüllen.'); return; }
+    if (pw.length < 8) { showErr('reg-error', 'Passwort muss mindestens 8 Zeichen haben.'); return; }
+    try {
+        const res = await fetch(`${API}/api/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code, email, password: pw })
+        });
+        const data = await res.json();
+        if (data.success) {
+            const s = document.getElementById('reg-success');
+            s.textContent = '✓ Account erstellt! Du kannst dich jetzt einloggen.';
+            s.style.display = 'block';
+            setTimeout(() => switchTab('login'), 2000);
+        } else {
+            showErr('reg-error', data.error || 'Registrierung fehlgeschlagen.');
+        }
+    } catch(e) {
+        showErr('reg-error', 'Verbindungsfehler. Bitte erneut versuchen.');
+    }
+}
+
+function showErr(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.style.display = 'block';
+}
+</script>
 </body>
 </html>
