@@ -6,6 +6,12 @@
     <title>Premium-Zugang | ZYNTEVO</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        html, body {
+            background: #070B11 !important;
+            min-height: 100vh;
+        }
+    </style>
+    <style>
         .auth-wrap {
             min-height: 100vh;
             display: flex;
@@ -202,11 +208,13 @@ async function doLogin() {
         });
         const data = await res.json();
         if (data.success) {
-            // Immer speichern damit Tool automatisch einloggt
             localStorage.setItem('zyntevo_token', data.token);
             localStorage.setItem('zyntevo_product', data.product);
             localStorage.setItem('zyntevo_email', email);
-            window.location.href = TOOL_URLS[data.product] || 'index.html';
+            // Token per URL übergeben da unterschiedliche Domains
+            const toolUrl = TOOL_URLS[data.product];
+            const redirectUrl = toolUrl + '?token=' + encodeURIComponent(data.token) + '&email=' + encodeURIComponent(email) + '&product=' + encodeURIComponent(data.product);
+            window.location.href = redirectUrl;
         } else {
             document.getElementById('login-loading').style.display = 'none';
             document.getElementById('panel-login').style.display = 'block';

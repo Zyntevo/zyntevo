@@ -383,14 +383,17 @@ window.addEventListener('load', function() {
   let token = localStorage.getItem(STORAGE_KEY);
   let email = localStorage.getItem(EMAIL_KEY);
 
-  // Fallback: Token von premium.html Login
+  // Fallback: Token aus URL (von premium.html weitergeleitet)
   if (!token) {
-    token = localStorage.getItem('zyntevo_token');
-    email = localStorage.getItem('zyntevo_email');
-    if (token && email) {
-      // In eigenen Storage übertragen
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get('token');
+    const urlEmail = params.get('email');
+    if (urlToken && urlEmail) {
+      token = urlToken;
+      email = urlEmail;
       localStorage.setItem(STORAGE_KEY, token);
       localStorage.setItem(EMAIL_KEY, email);
+      window.history.replaceState({}, document.title, window.location.pathname);
     }
   }
 
