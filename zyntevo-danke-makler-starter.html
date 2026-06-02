@@ -121,16 +121,28 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
                 </div>
             
                 <!-- TIMER -->
-                <div class="timer-box">
-                    <div class="timer-label">⏰ DIESES ANGEBOT LÄUFT AB IN</div>
-                    <div class="timer-units">
-                        <div class="timer-unit"><div class="timer-num" id="t-days">00</div><div class="timer-text">TAGE</div></div>
-                        <div class="timer-sep">:</div>
-                        <div class="timer-unit"><div class="timer-num" id="t-hours">00</div><div class="timer-text">STD</div></div>
-                        <div class="timer-sep">:</div>
-                        <div class="timer-unit"><div class="timer-num" id="t-mins">00</div><div class="timer-text">MIN</div></div>
-                        <div class="timer-sep">:</div>
-                        <div class="timer-unit"><div class="timer-num" id="t-secs">00</div><div class="timer-text">SEK</div></div>
+                <div style="background:linear-gradient(135deg,#0F172A,#111827);border:2px solid #D4AF37;border-radius:24px;padding:28px 32px;text-align:center;margin-bottom:32px;">
+                    <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:#D4AF37;margin-bottom:16px;">⏰ DIESES ANGEBOT LÄUFT AB IN</div>
+                    <div style="display:flex!important;flex-direction:row!important;justify-content:center;align-items:center;gap:8px;">
+                        <div style="text-align:center;">
+                            <div id="t-days" style="font-size:40px;font-weight:900;color:#D4AF37;font-family:monospace;line-height:1;">00</div>
+                            <div style="font-size:10px;color:#94A3B8;letter-spacing:1px;font-weight:700;margin-top:4px;">TAGE</div>
+                        </div>
+                        <div style="font-size:32px;font-weight:900;color:#D4AF37;padding-bottom:16px;">:</div>
+                        <div style="text-align:center;">
+                            <div id="t-hours" style="font-size:40px;font-weight:900;color:#D4AF37;font-family:monospace;line-height:1;">00</div>
+                            <div style="font-size:10px;color:#94A3B8;letter-spacing:1px;font-weight:700;margin-top:4px;">STD</div>
+                        </div>
+                        <div style="font-size:32px;font-weight:900;color:#D4AF37;padding-bottom:16px;">:</div>
+                        <div style="text-align:center;">
+                            <div id="t-mins" style="font-size:40px;font-weight:900;color:#D4AF37;font-family:monospace;line-height:1;">00</div>
+                            <div style="font-size:10px;color:#94A3B8;letter-spacing:1px;font-weight:700;margin-top:4px;">MIN</div>
+                        </div>
+                        <div style="font-size:32px;font-weight:900;color:#D4AF37;padding-bottom:16px;">:</div>
+                        <div style="text-align:center;">
+                            <div id="t-secs" style="font-size:40px;font-weight:900;color:#D4AF37;font-family:monospace;line-height:1;">00</div>
+                            <div style="font-size:10px;color:#94A3B8;letter-spacing:1px;font-weight:700;margin-top:4px;">SEK</div>
+                        </div>
                     </div>
                 </div>
 <div style="font-size:20px;color:var(--muted);text-decoration:line-through;margin-bottom:4px;">297€</div>
