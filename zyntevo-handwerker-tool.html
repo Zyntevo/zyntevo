@@ -14,22 +14,30 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .header .container{display:flex;justify-content:space-between;align-items:center;height:100%;}
 .logo{text-decoration:none;color:var(--gold);font-size:24px;font-weight:900;letter-spacing:2px;}
 .header-badge{display:inline-block;padding:6px 14px;border:1px solid rgba(212,175,55,.3);border-radius:999px;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:1px;}
-#login-screen{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;background:var(--bg);}
-.login-card{width:420px;padding:50px 40px;background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:30px;text-align:center;}
-.login-title{font-size:32px;font-weight:900;color:var(--gold);margin-bottom:8px;}
-.login-sub{color:var(--muted);font-size:14px;margin-bottom:36px;}
-.login-label{display:block;text-align:left;font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:8px;}
-.login-input{width:100%;padding:14px 48px 14px 18px;background:var(--bg);border:1px solid rgba(212,175,55,.2);border-radius:12px;color:var(--text);font-size:15px;outline:none;transition:.3s;}
-.login-input:focus{border-color:var(--gold);}
-.pw-wrap{position:relative;margin-bottom:12px;}
-.pw-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--muted);font-size:18px;user-select:none;transition:.2s;line-height:1;}
+
+/* AUTH SCREEN */
+#auth-screen{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;background:var(--bg);}
+.auth-card{width:440px;padding:50px 40px;background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:30px;text-align:center;box-shadow:0 0 40px rgba(212,175,55,.08);}
+.auth-logo{font-size:32px;font-weight:900;color:var(--gold);margin-bottom:6px;}
+.auth-sub{color:var(--muted);font-size:14px;margin-bottom:32px;}
+.auth-tabs{display:flex;gap:0;margin-bottom:28px;background:rgba(255,255,255,.04);border-radius:12px;padding:4px;}
+.auth-tab{flex:1;padding:9px;font-size:13px;font-weight:700;cursor:pointer;border-radius:9px;border:none;background:transparent;color:var(--muted);font-family:Inter,sans-serif;transition:.2s;}
+.auth-tab.active{background:var(--gold);color:#000;}
+.auth-input-wrap{position:relative;margin-bottom:12px;}
+.auth-input{width:100%;padding:13px 44px 13px 16px;background:var(--bg);border:1px solid rgba(212,175,55,.2);border-radius:12px;color:var(--text);font-size:14px;outline:none;transition:.3s;font-family:Inter,sans-serif;}
+.auth-input:focus{border-color:var(--gold);}
+.pw-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--muted);font-size:16px;user-select:none;}
 .pw-eye:hover{color:var(--gold);}
-.remember-row{display:flex;align-items:center;gap:8px;margin-bottom:24px;text-align:left;}
-.remember-row input[type=checkbox]{width:16px;height:16px;accent-color:#D4AF37;cursor:pointer;flex-shrink:0;}
-.remember-row label{color:#94A3B8;font-size:13px;cursor:pointer;}
-.login-btn{width:100%;padding:16px;background:var(--gold);color:#000;font-weight:700;font-size:16px;border:none;border-radius:12px;cursor:pointer;transition:.3s;}
-.login-btn:hover{transform:translateY(-2px);}
-.login-error{color:#EF4444;font-size:13px;margin-top:12px;display:none;}
+.remember-row{display:flex;align-items:center;gap:8px;margin-bottom:16px;text-align:left;}
+.remember-row input[type=checkbox]{width:15px;height:15px;accent-color:#D4AF37;cursor:pointer;flex-shrink:0;}
+.remember-row label{color:var(--muted);font-size:13px;cursor:pointer;}
+.auth-btn{width:100%;padding:14px;background:var(--gold);color:#000;font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:.3s;font-family:Inter,sans-serif;margin-top:4px;}
+.auth-btn:hover{transform:translateY(-2px);opacity:.92;}
+.auth-error{color:#EF4444;font-size:13px;margin-top:10px;display:none;}
+.auth-success{color:#22C55E;font-size:13px;margin-top:10px;display:none;}
+.auth-hint{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;}
+
+/* APP */
 #app{display:none;padding-top:80px;}
 .layout{display:flex;min-height:calc(100vh - 80px);}
 .sidebar{width:260px;flex-shrink:0;background:linear-gradient(135deg,#0F172A,#111827);border-right:1px solid rgba(212,175,55,.1);padding:30px 0;position:sticky;top:80px;height:calc(100vh - 80px);overflow-y:auto;}
@@ -38,6 +46,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .nav-item:hover{color:var(--text);background:rgba(212,175,55,.05);}
 .nav-item.active{color:var(--gold);border-left-color:var(--gold);background:rgba(212,175,55,.08);}
 .nav-icon{font-size:16px;width:20px;text-align:center;}
+.logout-nav{margin-top:20px;border-top:1px solid rgba(255,255,255,.05);padding-top:16px;}
 .main{flex:1;padding:40px;}
 .page{display:none;}
 .page.active{display:block;}
@@ -73,11 +82,9 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .copy-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;}
 .copy-btn:hover{border-color:var(--gold);color:var(--gold);}
 .copy-btn.copied{border-color:#22C55E;color:#22C55E;}
-
 .edit-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
 .edit-btn:hover{border-color:var(--gold);color:var(--gold);}
 .edit-btn.active{border-color:#22C55E;color:#22C55E;}
-.char-count{font-size:11px;color:var(--muted);margin-top:10px;text-align:right;letter-spacing:0.5px;}
 .profile-bar{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:24px 28px;margin-bottom:28px;}
 .profile-bar-title{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:14px;}
 .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -91,35 +98,67 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .loading{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px;padding:20px 0;}
 .spinner{width:20px;height:20px;border:2px solid rgba(212,175,55,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
 .pdf-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
 .pdf-btn:hover{border-color:var(--gold);color:var(--gold);}
 .result-actions{display:flex;align-items:center;gap:0;}
 .free-hint{font-size:12px;color:var(--muted);margin-bottom:16px;padding:12px 16px;background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.1);border-radius:10px;}
+.rate-bar{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.12);border-radius:10px;padding:10px 16px;font-size:12px;color:var(--muted);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;}
+.rate-bar span{color:var(--gold);font-weight:700;}
 
 @media(max-width:900px){.sidebar{display:none;}.tool-grid{grid-template-columns:1fr;}.dash-grid,.tool-cards{grid-template-columns:1fr 1fr;}.main{padding:20px;}}
 </style>
 </head>
 <body>
 
-<div id="login-screen">
-  <div class="login-card">
-    <div class="login-title">ZYNTEVO</div>
-    <div class="login-sub">KI-Tool · Handwerker Premium</div>
-    <label class="login-label">Zugangscode</label>
-    <div style="position:relative;margin-bottom:12px;">
-      <input type="password" class="login-input" id="login-input" placeholder="Zugangscode eingeben" onkeydown="if(event.key==='Enter')doLogin()" style="padding-right:48px;margin-bottom:0;">
-      <span onclick="togglePW()" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:#94A3B8;font-size:18px;user-select:none;" title="Passwort anzeigen">👁</span>
+<!-- AUTH SCREEN -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">ZYNTEVO</div>
+    <div class="auth-sub">KI-Tool · Handwerker Premium</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Einloggen</button>
+      <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Registrieren</button>
     </div>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;text-align:left;">
-      <input type="checkbox" id="remember-me" style="width:16px;height:16px;accent-color:#D4AF37;cursor:pointer;flex-shrink:0;">
-      <label for="remember-me" style="color:#94A3B8;font-size:13px;cursor:pointer;">Passwort merken</label>
+
+    <!-- LOGIN -->
+    <div id="panel-login">
+      <div class="auth-input-wrap">
+        <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" />
+      </div>
+      <div class="auth-input-wrap">
+        <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()" />
+        <span class="pw-eye" onclick="togglePW('login-pw')">👁</span>
+      </div>
+      <div class="remember-row">
+        <input type="checkbox" id="remember-me" />
+        <label for="remember-me">Angemeldet bleiben</label>
+      </div>
+      <button class="auth-btn" onclick="doLogin()">Einloggen</button>
+      <div class="auth-error" id="login-error"></div>
+      <div class="auth-hint">Noch kein Account? Klick auf <strong style="color:var(--gold)">Registrieren</strong> und löse deinen Code ein.</div>
     </div>
-    <button class="login-btn" onclick="doLogin()">Zugang erhalten</button>
-    <div class="login-error" id="login-error">Ungültiger Zugangscode.</div>
+
+    <!-- REGISTER -->
+    <div id="panel-register" style="display:none;">
+      <div class="auth-input-wrap">
+        <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (z.B. XXXX-XXXX-XXXX-XXXX)" />
+      </div>
+      <div class="auth-input-wrap">
+        <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" />
+      </div>
+      <div class="auth-input-wrap">
+        <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" onkeydown="if(event.key==='Enter')doRegister()" />
+        <span class="pw-eye" onclick="togglePW('reg-pw')">👁</span>
+      </div>
+      <button class="auth-btn" onclick="doRegister()">Account erstellen</button>
+      <div class="auth-error" id="reg-error"></div>
+      <div class="auth-success" id="reg-success"></div>
+      <div class="auth-hint">Deinen Registrierungscode hast du per E-Mail nach dem Kauf erhalten.</div>
+    </div>
   </div>
 </div>
 
+<!-- APP -->
 <div id="app">
   <div class="header">
     <div class="container">
@@ -142,12 +181,13 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       <div class="nav-item" onclick="showPage('tiktok',this)"><span class="nav-icon">🎬</span> TikTok Skript</div>
       <div class="sidebar-section">FREI</div>
       <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> Freier Generator</div>
+      <div class="logout-nav">
+        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> Ausloggen</div>
+      </div>
     </div>
     <div class="main">
 
-      <!-- DASHBOARD -->
       <div class="page active" id="page-dashboard">
-        
         <div class="profile-bar">
           <div class="profile-bar-title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
           <div class="profile-grid">
@@ -164,7 +204,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="page-header"><div class="page-tag">WILLKOMMEN</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">8 KI-Tools die dir als Handwerker täglich Zeit sparen.</div></div>
         <div class="dash-grid">
           <div class="dash-card"><div class="dash-num">9</div><div class="dash-label">KI-TOOLS</div></div>
-          <div class="dash-card"><div class="dash-num">∞</div><div class="dash-label">NUTZUNGEN</div></div>
+          <div class="dash-card"><div class="dash-num" id="dash-today">–</div><div class="dash-label">ANFRAGEN HEUTE</div></div>
           <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label">ERSPARNIS/WOCHE</div></div>
           <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
         </div>
@@ -180,31 +220,31 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
-      <!-- ANGEBOT GENERATOR -->
       <div class="page" id="page-angebot">
         <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Angebot Generator</div><div class="page-desc">Gib die Auftragsdaten ein – die KI schreibt ein professionelles Angebot.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-angebot">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Gewerk</label><select class="form-select" id="ang-gewerk"><option>Elektriker</option><option>Sanitär / Klempner</option><option>Maler</option><option>Fliesenleger</option><option>Schreiner / Tischler</option><option>Dachdecker</option><option>Heizung</option><option>Sonstiges</option></select></div>
             <div class="form-group"><label class="form-label">Kundenname</label><input class="form-input" id="ang-kunde" placeholder="z.B. Familie Müller"></div>
-            <div class="form-group"><label class="form-label">Leistungsbeschreibung</label><textarea class="form-textarea" id="ang-leistung" placeholder="z.B. Komplette Elektroinstallation Erdgeschoss, 5 Zimmer, Neuinstallation Sicherungskasten..."></textarea></div>
+            <div class="form-group"><label class="form-label">Leistungsbeschreibung</label><textarea class="form-textarea" id="ang-leistung" placeholder="z.B. Komplette Elektroinstallation Erdgeschoss..."></textarea></div>
             <div class="form-group"><label class="form-label">Geschätzter Preis</label><input class="form-input" id="ang-preis" placeholder="z.B. 2.500 €"></div>
             <div class="form-group"><label class="form-label">Ausführungszeitraum</label><input class="form-input" id="ang-zeitraum" placeholder="z.B. KW 24, ca. 3 Tage"></div>
-            <div class="form-group"><label class="form-label">Besonderheiten</label><textarea class="form-textarea" id="ang-details" placeholder="z.B. Material wird gestellt, Zufahrt eingeschränkt..."></textarea></div>
+            <div class="form-group"><label class="form-label">Besonderheiten</label><textarea class="form-textarea" id="ang-details" placeholder="z.B. Material wird gestellt..."></textarea></div>
             <button class="generate-btn" onclick="generateAngebot()">⚡ Angebot generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-angebot" onclick="copyResult('angebot-result','copy-angebot')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('angebot-result')">PDF ↓</button><button class="edit-btn" id="edit-angebot-result" onclick="toggleEdit('angebot-result','edit-angebot-result')">✏ Bearbeiten</button></div></div><div id="angebot-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle das Formular aus und generiere dein Angebot</div></div></div></div>
         </div>
       </div>
 
-      <!-- EMAIL -->
       <div class="page" id="page-email">
         <div class="page-header"><div class="page-tag">TOOL 2 VON 8</div><div class="page-title">E-Mail Generator</div><div class="page-desc">Wähle die Situation – die KI schreibt die perfekte E-Mail.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-email">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Situation</label><select class="form-select" id="email-situation"><option>Antwort auf Kundenanfrage</option><option>Terminbestätigung</option><option>Angebot nachfassen</option><option>Auftragsbestätigung</option><option>Rechnung begleiten</option><option>Erste Mahnung</option><option>Beschwerde beantworten</option><option>Empfehlung anfragen</option></select></div>
             <div class="form-group"><label class="form-label">Kundenname</label><input class="form-input" id="email-name" placeholder="z.B. Herr Müller"></div>
-            <div class="form-group"><label class="form-label">Kontext / Details</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. Elektroinstallation am 15.06, Auftragswert 2.500€..."></textarea></div>
+            <div class="form-group"><label class="form-label">Kontext / Details</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. Elektroinstallation am 15.06..."></textarea></div>
             <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="email-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
             <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
           </div>
@@ -212,9 +252,9 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
-      <!-- SOCIAL MEDIA -->
       <div class="page" id="page-social">
         <div class="page-header"><div class="page-tag">TOOL 3 VON 8</div><div class="page-title">Social Media Generator</div><div class="page-desc">Fertige Posts für Instagram und TikTok.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-social">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>TikTok Caption</option><option>Facebook</option></select></div>
@@ -227,25 +267,25 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
-      <!-- AKQUISE -->
       <div class="page" id="page-akquise">
         <div class="page-header"><div class="page-tag">TOOL 4 VON 8</div><div class="page-title">Akquise-Brief Generator</div><div class="page-desc">Professionelle Anschreiben an Hausverwaltungen und Gewerbekunden.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-akquise">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Zielgruppe</label><select class="form-select" id="akquise-ziel"><option>Hausverwaltung</option><option>Wohnungsbaugesellschaft</option><option>Gewerbekunde</option><option>Privatperson</option><option>Baufirma / Generalunternehmer</option></select></div>
             <div class="form-group"><label class="form-label">Dein Gewerk</label><select class="form-select" id="akquise-gewerk"><option>Elektriker</option><option>Sanitär / Klempner</option><option>Maler</option><option>Fliesenleger</option><option>Schreiner</option><option>Dachdecker</option><option>Heizung</option></select></div>
             <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="akquise-name" placeholder="z.B. Müller Elektro GmbH"></div>
             <div class="form-group"><label class="form-label">Region</label><input class="form-input" id="akquise-region" placeholder="z.B. München und Umgebung"></div>
-            <div class="form-group"><label class="form-label">Deine Stärken</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung, Reaktionszeit unter 2h, Festpreise..."></textarea></div>
+            <div class="form-group"><label class="form-label">Deine Stärken</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung, Reaktionszeit unter 2h..."></textarea></div>
             <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
         </div>
       </div>
 
-      <!-- BEWERTUNG -->
       <div class="page" id="page-bewertung">
         <div class="page-header"><div class="page-tag">TOOL 5 VON 8</div><div class="page-title">Bewertungs-Antwort Generator</div><div class="page-desc">Professionelle Antworten auf Google-Bewertungen.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-bewertung">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Art der Bewertung</label><select class="form-select" id="bew-art"><option>Positiv (4-5 Sterne)</option><option>Negativ (1-2 Sterne)</option><option>Neutral (3 Sterne)</option></select></div>
@@ -258,29 +298,29 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
-      <!-- KUNDEN ANALYSE -->
       <div class="page" id="page-kunde">
         <div class="page-header"><div class="page-tag">TOOL 6 VON 8</div><div class="page-title">Kunden-Analyse</div><div class="page-desc">KI bewertet ob es ein guter Auftraggeber ist.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-kunde">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Wie hat der Kunde Kontakt aufgenommen?</label><select class="form-select" id="kd-kontakt"><option>Empfehlung von Bestandskunde</option><option>Google gefunden</option><option>Gelbe Seiten</option><option>Social Media</option><option>Kaltanfrage / unbekannt</option></select></div>
             <div class="form-group"><label class="form-label">Angebote eingeholt?</label><select class="form-select" id="kd-angebote"><option>Nein / weiß nicht</option><option>Ja, 2-3 Angebote</option><option>Ja, mehr als 5 Angebote</option></select></div>
             <div class="form-group"><label class="form-label">Budget genannt?</label><select class="form-select" id="kd-budget"><option>Ja, realistisches Budget</option><option>Kein Budget genannt</option><option>Budget zu niedrig</option></select></div>
             <div class="form-group"><label class="form-label">Gewünschter Ausführungstermin</label><select class="form-select" id="kd-termin"><option>Sofort / sehr dringend</option><option>Innerhalb 4 Wochen</option><option>Innerhalb 3 Monate</option><option>Irgendwann</option></select></div>
-            <div class="form-group"><label class="form-label">Weitere Infos zum Kunden</label><textarea class="form-textarea" id="kd-info" placeholder="z.B. Sehr preissensibel, fragt nach Barzahlung, hatte schon 3 Handwerker die 'alle schlecht waren'..."></textarea></div>
+            <div class="form-group"><label class="form-label">Weitere Infos zum Kunden</label><textarea class="form-textarea" id="kd-info" placeholder="z.B. Sehr preissensibel, fragt nach Barzahlung..."></textarea></div>
             <button class="generate-btn" onclick="generateKunde()">⚡ Kunden analysieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kunde" onclick="copyResult('kunde-result','copy-kunde')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kunde-result')">PDF ↓</button><button class="edit-btn" id="edit-kunde-result" onclick="toggleEdit('kunde-result','edit-kunde-result')">✏ Bearbeiten</button></div></div><div id="kunde-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Infos aus und analysiere den Kunden</div></div></div></div>
         </div>
       </div>
 
-      <!-- AUFTRAGSPLANUNG -->
       <div class="page" id="page-planung">
         <div class="page-header"><div class="page-tag">TOOL 7 VON 8</div><div class="page-title">Auftragsplanung</div><div class="page-desc">KI hilft dir Auftragskalender und Jahresplanung zu optimieren.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-planung">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Dein Gewerk</label><select class="form-select" id="plan-gewerk"><option>Elektriker</option><option>Sanitär / Klempner</option><option>Maler</option><option>Fliesenleger</option><option>Schreiner</option><option>Dachdecker</option><option>Heizung</option></select></div>
-            <div class="form-group"><label class="form-label">Aktuelle offene Aufträge</label><textarea class="form-textarea" id="plan-auftraege" placeholder="z.B. Auftrag 1: Elektro Müller, 3 Tage, KW24. Auftrag 2: ..."></textarea></div>
+            <div class="form-group"><label class="form-label">Aktuelle offene Aufträge</label><textarea class="form-textarea" id="plan-auftraege" placeholder="z.B. Auftrag 1: Elektro Müller, 3 Tage, KW24..."></textarea></div>
             <div class="form-group"><label class="form-label">Ruhige Monate bei dir</label><input class="form-input" id="plan-ruhig" placeholder="z.B. Januar, Februar"></div>
             <div class="form-group"><label class="form-label">Umsatzziel pro Monat</label><input class="form-input" id="plan-ziel" placeholder="z.B. 8.000 €"></div>
             <div class="form-group"><label class="form-label">Was brauchst du?</label><select class="form-select" id="plan-was"><option>Auftragskalender optimieren</option><option>Akquise-Plan für ruhige Monate</option><option>Jahresplanung erstellen</option><option>Kapazität berechnen</option></select></div>
@@ -290,13 +330,13 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
-      <!-- TIKTOK -->
       <div class="page" id="page-tiktok">
         <div class="page-header"><div class="page-tag">TOOL 8 VON 8</div><div class="page-title">TikTok Skript Generator</div><div class="page-desc">Fertige Video-Skripte sofort aufnahmefertig.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-tiktok">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label">Video-Format</label><select class="form-select" id="tt-format"><option>Vorher/Nachher Projekt</option><option>Profi-Tipp</option><option>Fehler-Video</option><option>Ein Tag als Handwerker</option><option>Warum gute Handwerker teurer sind</option><option>Werkzeug-Tipp</option></select></div>
-            <div class="form-group"><label class="form-label">Thema / Projekt</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. Wir haben heute ein komplettes Bad in 3 Tagen renoviert..."></textarea></div>
+            <div class="form-group"><label class="form-label">Thema / Projekt</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. Wir haben heute ein komplettes Bad renoviert..."></textarea></div>
             <div class="form-group"><label class="form-label">Videolänge</label><select class="form-select" id="tt-laenge"><option>30 Sekunden</option><option>45 Sekunden</option><option>60 Sekunden</option></select></div>
             <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="tt-name" placeholder="z.B. Max – Elektriker München"></div>
             <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
@@ -305,47 +345,17 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
       </div>
 
-
-      <!-- FREIER GENERATOR -->
       <div class="page" id="page-frei">
         <div class="page-header"><div class="page-tag">FREIER GENERATOR</div><div class="page-title">Freier KI-Generator</div><div class="page-desc">Schreibe deinen eigenen Prompt oder nutze die Vorlagen aus deinen PDFs direkt hier.</div></div>
+        <div class="rate-bar">Heutige Anfragen: <span id="rate-frei">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group">
-              <label class="form-label">Dein Prompt / Aufgabe</label>
-              <p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p>
-              <textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage an einen Kunden der meinen Preis nicht akzeptiert hat. Der Kunde heißt Herr Müller und wollte 500€ statt 800€ zahlen..."></textarea>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Zusätzlicher Kontext (optional)</label>
-              <textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Mein Betrieb heißt Müller Elektro, ich bin in München tätig..."></textarea>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Ausgabe-Stil</label>
-              <select class="form-select" id="frei-stil">
-                <option>Professionell & sachlich</option>
-                <option>Freundlich & persönlich</option>
-                <option>Kurz & prägnant</option>
-                <option>Ausführlich & detailliert</option>
-              </select>
-            </div>
+            <div class="form-group"><label class="form-label">Dein Prompt / Aufgabe</label><p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage..."></textarea></div>
+            <div class="form-group"><label class="form-label">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Mein Betrieb heißt Müller Elektro..."></textarea></div>
+            <div class="form-group"><label class="form-label">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Kurz & prägnant</option><option>Ausführlich & detailliert</option></select></div>
             <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
           </div>
-          <div class="tool-result">
-            <div class="result-header">
-              <span class="result-label">ERGEBNIS</span>
-              <div class="result-actions">
-                <button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')">Kopieren</button>
-                <button class="pdf-btn" onclick="downloadPDF('frei-result')">PDF ↓</button>
-              </div>
-            </div>
-            <div id="frei-result">
-              <div class="result-placeholder">
-                <div class="placeholder-icon">✏️</div>
-                <div>Gib deinen Prompt ein und generiere deinen Text</div>
-              </div>
-            </div>
-          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
         </div>
       </div>
 
@@ -354,37 +364,183 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 </div>
 
 <script>
-const PASSWORD = "Zyntevo#826";
-const WORKER_URL = "https://zyntevo-tool.jan-6a7.workers.dev/api";
+const API = "https://zyntevo-tool.jan-6a7.workers.dev";
+const STORAGE_KEY = "zyntevo_hw_token";
+const EMAIL_KEY = "zyntevo_hw_email";
 
-function doLogin() {
-  const val = document.getElementById('login-input').value;
-  if (val === PASSWORD) {
-    if (document.getElementById('remember-me').checked) {
-      localStorage.setItem('zynPW', val);
-    } else {
-      localStorage.removeItem('zynPW');
-    }
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-  } else {
-    document.getElementById('login-error').style.display = 'block';
-  }
-}
-
-function togglePW() {
-  const inp = document.getElementById('login-input');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
-}
+let authToken = null;
+let userEmail = null;
+let todayCount = 0;
 
 window.addEventListener('load', function() {
   applyProfile();
-  const saved = localStorage.getItem('zynPW');
-  if (saved) {
-    document.getElementById('login-input').value = saved;
-    document.getElementById('remember-me').checked = true;
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const savedEmail = localStorage.getItem(EMAIL_KEY);
+  if (saved && savedEmail) {
+    authToken = saved;
+    userEmail = savedEmail;
+    showApp();
   }
 });
+
+function switchTab(tab) {
+  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+  document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+  document.getElementById('panel-login').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('panel-register').style.display = tab === 'register' ? 'block' : 'none';
+}
+
+function togglePW(id) {
+  const inp = document.getElementById(id);
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pw = document.getElementById('login-pw').value;
+  document.getElementById('login-error').style.display = 'none';
+  if (!email || !pw) { showErr('login-error', 'Bitte E-Mail und Passwort eingeben.'); return; }
+  try {
+    const res = await fetch(`${API}/api/login`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email, password: pw})
+    });
+    const data = await res.json();
+    if (data.success) {
+      authToken = data.token;
+      userEmail = email;
+      if (document.getElementById('remember-me').checked) {
+        localStorage.setItem(STORAGE_KEY, authToken);
+        localStorage.setItem(EMAIL_KEY, userEmail);
+      }
+      showApp();
+    } else {
+      showErr('login-error', data.error || 'Login fehlgeschlagen.');
+    }
+  } catch(e) {
+    showErr('login-error', 'Verbindungsfehler. Bitte erneut versuchen.');
+  }
+}
+
+async function doRegister() {
+  const code = document.getElementById('reg-code').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pw = document.getElementById('reg-pw').value;
+  document.getElementById('reg-error').style.display = 'none';
+  document.getElementById('reg-success').style.display = 'none';
+  if (!code || !email || !pw) { showErr('reg-error', 'Bitte alle Felder ausfüllen.'); return; }
+  if (pw.length < 8) { showErr('reg-error', 'Passwort muss mindestens 8 Zeichen haben.'); return; }
+  try {
+    const res = await fetch(`${API}/api/register`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({code, email, password: pw})
+    });
+    const data = await res.json();
+    if (data.success) {
+      const s = document.getElementById('reg-success');
+      s.textContent = '✓ Account erstellt! Du kannst dich jetzt einloggen.';
+      s.style.display = 'block';
+      setTimeout(() => switchTab('login'), 2000);
+    } else {
+      showErr('reg-error', data.error || 'Registrierung fehlgeschlagen.');
+    }
+  } catch(e) {
+    showErr('reg-error', 'Verbindungsfehler. Bitte erneut versuchen.');
+  }
+}
+
+function showErr(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function showApp() {
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  updateRateDisplays();
+}
+
+function doLogout() {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(EMAIL_KEY);
+  authToken = null; userEmail = null;
+  document.getElementById('auth-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+}
+
+function updateRateDisplays() {
+  const ids = ['angebot','email','social','akquise','bewertung','kunde','planung','tiktok','frei'];
+  ids.forEach(id => { const el = document.getElementById('rate-'+id); if(el) el.textContent = todayCount+'/50'; });
+  const dash = document.getElementById('dash-today');
+  if (dash) dash.textContent = todayCount;
+}
+
+async function callAI(prompt) {
+  if (!authToken) { doLogout(); throw new Error('Nicht eingeloggt'); }
+  const r = await fetch(`${API}/api/query`, {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
+    body: JSON.stringify({prompt})
+  });
+  if (r.status === 401 || r.status === 403) { doLogout(); throw new Error('Session abgelaufen. Bitte erneut einloggen.'); }
+  if (r.status === 429) throw new Error('Tageslimit von 50 Anfragen erreicht. Morgen wieder verfügbar.');
+  if (!r.ok) throw new Error('Fehler ' + r.status);
+  const d = await r.json();
+  todayCount++;
+  updateRateDisplays();
+  return d.content[0].text;
+}
+
+function setLoading(id) {
+  document.getElementById(id).innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Text...</div>';
+}
+
+async function run(id, prompt) {
+  setLoading(id);
+  try {
+    const txt = await callAI(prompt + ' Wichtig: Kein Markdown. Keine Sternchen, keine Rauten, keine Unterstriche. Nur normaler Text.');
+    document.getElementById(id).innerHTML = '<div class="result-text">' + txt + '</div>';
+  } catch(e) {
+    document.getElementById(id).innerHTML = '<div class="result-text" style="color:#EF4444">' + e.message + '</div>';
+  }
+}
+
+async function generateAngebot() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  run('angebot-result', `Schreibe ein professionelles Handwerker-Angebot auf Deutsch. Absender: ${p.buero||p.name||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}. Gewerk: ${document.getElementById('ang-gewerk').value}, Kunde: ${document.getElementById('ang-kunde').value||'Kunde'}, Leistung: ${document.getElementById('ang-leistung').value||''}, Preis: ${document.getElementById('ang-preis').value||'nach Aufwand'}, Zeitraum: ${document.getElementById('ang-zeitraum').value||'nach Vereinbarung'}, Besonderheiten: ${document.getElementById('ang-details').value||''}. Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinweis. Nutze NUR die angegebenen Daten.`);
+}
+async function generateEmail() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  run('email-result', `Professionelle E-Mail für Handwerksbetrieb auf Deutsch. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Absender: ${p.name||''} von ${p.buero||''}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter.`);
+}
+async function generateSocial() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  run('social-result', `${document.getElementById('social-plattform').value}-Post für Handwerksbetrieb auf Deutsch. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Betrieb: ${document.getElementById('social-name').value||p.buero||''}. Starker Hook, Inhalt, CTA, 5 lokale Hashtags.`);
+}
+async function generateAkquise() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  run('akquise-result', `Akquise-Brief für Handwerksbetrieb auf Deutsch. Zielgruppe: ${document.getElementById('akquise-ziel').value}, Gewerk: ${document.getElementById('akquise-gewerk').value}, Betrieb: ${document.getElementById('akquise-name').value||p.buero||''}, Region: ${document.getElementById('akquise-region').value||p.region||''}, Stärken: ${document.getElementById('akquise-usp').value||''}. Max. 200 Wörter.`);
+}
+async function generateBewertung() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  run('bewertung-result', `Professionelle Antwort auf Google-Bewertung auf Deutsch. Art: ${document.getElementById('bew-art').value}, Bewertung: ${document.getElementById('bew-text').value||''}, Betrieb: ${document.getElementById('bew-betrieb').value||p.buero||''}, Kontext: ${document.getElementById('bew-kontext').value||''}. Max. 100 Wörter.`);
+}
+async function generateKunde() {
+  run('kunde-result', `Analysiere potenziellen Handwerkskunden auf Deutsch. Kontaktweg: ${document.getElementById('kd-kontakt').value}, Angebote: ${document.getElementById('kd-angebote').value}, Budget: ${document.getElementById('kd-budget').value}, Termin: ${document.getElementById('kd-termin').value}, Infos: ${document.getElementById('kd-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Red Flags, 4) Empfehlung.`);
+}
+async function generatePlanung() {
+  run('planung-result', `Auftragsplanung für Handwerksbetrieb auf Deutsch. Gewerk: ${document.getElementById('plan-gewerk').value}, Aufträge: ${document.getElementById('plan-auftraege').value||''}, Ruhige Monate: ${document.getElementById('plan-ruhig').value||''}, Umsatzziel: ${document.getElementById('plan-ziel').value||''}, Was gebraucht: ${document.getElementById('plan-was').value}. Konkreter Plan mit klaren Schritten.`);
+}
+async function generateTikTok() {
+  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
+  run('tiktok-result', `TikTok-Skript für Handwerker auf Deutsch. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||p.name||''}. HOOK, HAUPTTEIL, CTA. Nur gesprochener Text.`);
+}
+async function generateFrei() {
+  const prompt = document.getElementById('frei-prompt').value;
+  if (!prompt.trim()) { alert('Bitte gib einen Prompt ein.'); return; }
+  run('frei-result', `${prompt}\n\nZusätzlicher Kontext: ${document.getElementById('frei-kontext').value||'keiner'}\nStil: ${document.getElementById('frei-stil').value}`);
+}
 
 function showPage(id, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -393,32 +549,23 @@ function showPage(id, el) {
   if (el) el.classList.add('active');
 }
 
-function setLoading(id) {
-  document.getElementById(id).innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Text...</div>';
-}
-
 function copyResult(resultId, btnId) {
   const el = document.getElementById(resultId);
   const resultDiv = el.querySelector('.result-text') || el;
   const plainText = resultDiv.innerText;
-  // Convert newlines to <br> for HTML clipboard so email clients preserve paragraphs
   const htmlText = plainText
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .split('\n\n').map(p => `<p style="margin:0 0 12px 0;">${p.replace(/\n/g,'<br>')}</p>`).join('');
-  
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .split('\n\n')
+    .map(p => `<p style="margin:0 0 14px 0;font-family:Arial,sans-serif;font-size:13px;line-height:1.8;">${p.replace(/\n/g,'<br>')}</p>`)
+    .join('');
   try {
-    const blob = new Blob([htmlText], {type: 'text/html'});
-    const plainBlob = new Blob([plainText], {type: 'text/plain'});
-    const item = new ClipboardItem({'text/html': blob, 'text/plain': plainBlob});
+    const item = new ClipboardItem({'text/html':new Blob([htmlText],{type:'text/html'}),'text/plain':new Blob([plainText],{type:'text/plain'})});
     navigator.clipboard.write([item]).then(() => {
       const btn = document.getElementById(btnId);
       btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
       setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
     });
   } catch(e) {
-    // Fallback to plain text
     navigator.clipboard.writeText(plainText).then(() => {
       const btn = document.getElementById(btnId);
       btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
@@ -431,146 +578,10 @@ function downloadPDF(resultId) {
   const el = document.getElementById(resultId);
   const resultDiv = el.querySelector('.result-text') || el;
   const text = resultDiv.innerText;
-  if (!text || text.includes('Fülle das Formular') || text.includes('Wähle')) {
-    alert('Bitte zuerst einen Text generieren.');
-    return;
-  }
-  const win = window.open('', '_blank');
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Dokument</title><style>
-    @page{margin:2cm;}
-    body{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:20px 40px;color:#1a1a1a;line-height:1.8;}
-    .briefkopf{min-height:120px;border-bottom:1px solid #ddd;margin-bottom:32px;padding-bottom:16px;}
-    .briefkopf-hint{color:#bbb;font-size:11px;font-style:italic;}
-    pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:13px;line-height:1.9;margin:0;}
-    .footer{margin-top:48px;padding-top:12px;border-top:1px solid #eee;font-size:10px;color:#bbb;text-align:right;}
-  </style></head><body>
-    <div class="briefkopf">
-      <span class="briefkopf-hint">[ Hier Briefkopf / Logo einfügen ]</span>
-    </div>
-    <pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
-    <div class="footer">Erstellt mit ZYNTEVO KI-Tool · zyntevo.de</div>
-    <script>window.onload=function(){window.print();}<\/script>
-  </body></html>`);
+  if (!text || text.includes('Fülle das Formular') || text.includes('Wähle')) { alert('Bitte zuerst einen Text generieren.'); return; }
+  const win = window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Dokument</title><style>@page{margin:2cm;}body{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:20px 40px;color:#1a1a1a;line-height:1.8;}.briefkopf{min-height:120px;border-bottom:1px solid #ddd;margin-bottom:32px;padding-bottom:16px;}.briefkopf-hint{color:#bbb;font-size:11px;font-style:italic;}pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:13px;line-height:1.9;margin:0;}.footer{margin-top:48px;padding-top:12px;border-top:1px solid #eee;font-size:10px;color:#bbb;text-align:right;}</style></head><body><div class="briefkopf"><span class="briefkopf-hint">[ Hier Briefkopf / Logo einfügen ]</span></div><pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><div class="footer">Erstellt mit ZYNTEVO KI-Tool · zyntevo.de</div><script>window.onload=function(){window.print();}<\/script></body></html>`);
   win.document.close();
-}
-
-async function callAI(prompt) {
-  const r = await fetch(WORKER_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({prompt}) });
-  if (!r.ok) throw new Error("Fehler " + r.status);
-  const d = await r.json();
-  return d.content[0].text;
-}
-
-async function run(id, prompt) {
-  setLoading(id);
-  try {
-    const fullPrompt = prompt + ' Wichtig: Kein Markdown. Keine Sternchen, keine Rauten, keine Unterstriche. Nur normaler Text.';
-    const txt = await callAI(fullPrompt);
-    document.getElementById(id).innerHTML = '<div class="result-text">' + txt + '</div>';
-  } catch(e) {
-    document.getElementById(id).innerHTML = '<div class="result-text" style="color:#EF4444">Fehler. Bitte erneut versuchen.</div>';
-  }
-}
-
-async function generateAngebot() {
-  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  const betrieb = p.buero || p.name || '';
-  const region = p.region || '';
-  run('angebot-result', `Schreibe ein professionelles Handwerker-Angebot auf Deutsch.
-Absender-Betrieb: ${betrieb}
-Absender-Adresse: ${p.strasse||""} ${p.stadt||""}
-Absender-Telefon: ${p.telefon||""}
-Gewerk: ${document.getElementById('ang-gewerk').value}
-Kunde: ${document.getElementById('ang-kunde').value||'Kunde'}
-Leistung: ${document.getElementById('ang-leistung').value||''}
-Preis: ${document.getElementById('ang-preis').value||'nach Aufwand'}
-Zeitraum: ${document.getElementById('ang-zeitraum').value||'nach Vereinbarung'}
-Besonderheiten: ${document.getElementById('ang-details').value||''}
-Format: Professionelles Angebot mit Positionsliste, Netto/Brutto, Zahlungsbedingungen 14 Tage netto, Gewährleistungshinweis. Nutze NUR die angegebenen Daten, erfinde keine Adressen oder Firmennamen.`);
-}
-
-async function generateEmail() {
-  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  const absender = p.name || '';
-  const betrieb = p.buero || '';
-  run('email-result', `Professionelle E-Mail für einen Handwerksbetrieb auf Deutsch.
-Situation: ${document.getElementById('email-situation').value}
-An: ${document.getElementById('email-name').value||'Kunde'}
-Absender: ${absender} von ${betrieb}
-Kontext: ${document.getElementById('email-kontext').value||''}
-Ton: ${document.getElementById('email-ton').value}
-Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter. Nutze NUR die angegebenen Daten.`);
-}
-
-async function generateSocial() {
-  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  const betrieb = document.getElementById('social-name').value || p.buero || p.name || '';
-  run('social-result', `${document.getElementById('social-plattform').value}-Post für Handwerksbetrieb auf Deutsch.
-Typ: ${document.getElementById('social-typ').value}
-Details: ${document.getElementById('social-details').value||''}
-Betrieb: ${betrieb}
-Starker Hook, Inhalt, CTA, 5 lokale Hashtags. Authentisch, nicht werblich. Erfinde keine Firmennamen oder Orte die nicht angegeben wurden.`);
-}
-
-async function generateAkquise() {
-  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  const betrieb = document.getElementById('akquise-name').value || p.buero || p.name || '';
-  const region = document.getElementById('akquise-region').value || p.region || '';
-  run('akquise-result', `Akquise-Brief für Handwerksbetrieb auf Deutsch.
-Zielgruppe: ${document.getElementById('akquise-ziel').value}
-Gewerk: ${document.getElementById('akquise-gewerk').value}
-Betrieb: ${betrieb}
-Region: ${region}
-Stärken: ${document.getElementById('akquise-usp').value||''}
-Max. 200 Wörter. Seriös, überzeugend. Nutze NUR die angegebenen Daten, erfinde keine Firmennamen, Adressen oder Orte.`);
-}
-
-async function generateBewertung() {
-  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  const betrieb = document.getElementById('bew-betrieb').value || p.buero || p.name || '';
-  run('bewertung-result', `Professionelle Antwort auf Google-Bewertung für Handwerksbetrieb auf Deutsch.
-Art: ${document.getElementById('bew-art').value}
-Bewertungstext: ${document.getElementById('bew-text').value||''}
-Betrieb: ${betrieb}
-Kontext: ${document.getElementById('bew-kontext').value||''}
-Positiv: authentisch danken. Negativ: deeskalieren, Lösung anbieten. Max. 100 Wörter. Nutze NUR die angegebenen Daten.`);
-}
-
-async function generateKunde() {
-  run('kunde-result', `Analysiere potenziellen Handwerkskunden auf Deutsch.
-Kontaktweg: ${document.getElementById('kd-kontakt').value}
-Angebote: ${document.getElementById('kd-angebote').value}
-Budget: ${document.getElementById('kd-budget').value}
-Termin: ${document.getElementById('kd-termin').value}
-Infos: ${document.getElementById('kd-info').value||''}
-Gib: 1) Score 1-10, 2) Typ Traumkunde/Normal/Problemkunde, 3) Red Flags, 4) Empfehlung.`);
-}
-
-async function generatePlanung() {
-  run('planung-result', `Auftragsplanung für Handwerksbetrieb auf Deutsch.
-Gewerk: ${document.getElementById('plan-gewerk').value}
-Aufträge: ${document.getElementById('plan-auftraege').value||''}
-Ruhige Monate: ${document.getElementById('plan-ruhig').value||''}
-Umsatzziel: ${document.getElementById('plan-ziel').value||''}
-Was gebraucht: ${document.getElementById('plan-was').value}
-Konkreter umsetzbarer Plan mit klaren Schritten.`);
-}
-
-async function generateTikTok() {
-  const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  const name = document.getElementById('tt-name').value || p.name || '';
-  run('tiktok-result', `TikTok-Skript für Handwerker auf Deutsch.
-Format: ${document.getElementById('tt-format').value}
-Thema: ${document.getElementById('tt-thema').value||''}
-Länge: ${document.getElementById('tt-laenge').value}
-Sprecher: ${name}
-HOOK (2-3 Sek), HAUPTTEIL (kurze Sätze), CTA. Nur gesprochener Text. Erfinde keine Namen oder Firmen.`);
-}
-
-async function generateFrei() {
-  const prompt = document.getElementById('frei-prompt').value;
-  if (!prompt.trim()) { alert('Bitte gib einen Prompt ein.'); return; }
-  run('frei-result', `${prompt}\n\nZusätzlicher Kontext: ${document.getElementById('frei-kontext').value||'keiner'}\nStil: ${document.getElementById('frei-stil').value}`);
 }
 
 function toggleEdit(resultId, btnId) {
@@ -580,22 +591,11 @@ function toggleEdit(resultId, btnId) {
   const btn = document.getElementById(btnId);
   if (resultDiv.contentEditable === 'true') {
     resultDiv.contentEditable = 'false';
-    btn.textContent = '✏ Bearbeiten';
-    btn.classList.remove('active');
+    btn.textContent = '✏ Bearbeiten'; btn.classList.remove('active');
   } else {
     resultDiv.contentEditable = 'true';
     resultDiv.focus();
-    btn.textContent = '✓ Fertig';
-    btn.classList.add('active');
-  }
-}
-
-const lastPrompts = {};
-function regenLast(resultId) {
-  if (lastPrompts[resultId]) {
-    run(resultId, lastPrompts[resultId]);
-  } else {
-    alert('Bitte zuerst einmal generieren.');
+    btn.textContent = '✓ Fertig'; btn.classList.add('active');
   }
 }
 
@@ -606,7 +606,7 @@ function saveProfile() {
     strasse: document.getElementById('profile-strasse').value,
     stadt: document.getElementById('profile-stadt').value,
     telefon: document.getElementById('profile-telefon').value,
-    region: document.getElementById('profile-stadt').value.replace(/^\d+ /, ''),
+    region: document.getElementById('profile-stadt').value.replace(/^\d+ /,''),
     gewerk: document.getElementById('profile-gewerk-p').value,
   };
   localStorage.setItem('zynProfile', JSON.stringify(p));
@@ -619,27 +619,14 @@ function saveProfile() {
 function applyProfile() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
   if (!p.name) return;
-  if(document.getElementById('profile-name')) document.getElementById('profile-name').value = p.name || '';
-  if(document.getElementById('profile-buero')) document.getElementById('profile-buero').value = p.buero || '';
-  if(document.getElementById('profile-strasse')) document.getElementById('profile-strasse').value = p.strasse || '';
-  if(document.getElementById('profile-stadt')) document.getElementById('profile-stadt').value = p.stadt || '';
-  if(document.getElementById('profile-telefon')) document.getElementById('profile-telefon').value = p.telefon || '';
-  if(document.getElementById('profile-gewerk-p')) document.getElementById('profile-gewerk-p').value = p.gewerk || '';
-  // Prefill tool fields
-  ['akquise-name','tt-name','social-name','bew-betrieb'].forEach(id => {
+  ['profile-name','profile-buero','profile-strasse','profile-stadt','profile-telefon','profile-gewerk-p'].forEach(id => {
     const el = document.getElementById(id);
-    if(el && !el.value) el.value = p.name || p.buero;
+    const key = id.replace('profile-','').replace('gewerk-p','gewerk');
+    if (el) el.value = p[key] || '';
   });
-  ['akquise-region'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el && !el.value) el.value = p.region;
-  });
-  ['akquise-usp'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el && !el.value) el.value = p.gewerk ? p.gewerk + ' in ' + p.region : '';
-  });
+  ['akquise-name','tt-name','social-name','bew-betrieb'].forEach(id => { const el = document.getElementById(id); if(el && !el.value) el.value = p.buero || p.name; });
+  ['akquise-region'].forEach(id => { const el = document.getElementById(id); if(el && !el.value) el.value = p.region; });
 }
-
 </script>
 </body>
 </html>
