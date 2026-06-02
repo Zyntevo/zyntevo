@@ -582,11 +582,30 @@ function copyResult(resultId, btnId) {
   const el = document.getElementById(resultId);
   const resultDiv = el.querySelector('.result-text') || el;
   const plainText = resultDiv.innerText;
-  navigator.clipboard.writeText(plainText).then(() => {
-    const btn = document.getElementById(btnId);
-    btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
-  });
+
+  // HTML version mit echten Absätzen für Word/Outlook
+  const htmlText = plainText
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .split('\n\n')
+    .map(p => `<p style="margin:0 0 14px 0;font-family:Arial,sans-serif;font-size:13px;line-height:1.8;">${p.replace(/\n/g,'<br>')}</p>`)
+    .join('');
+
+  try {
+    const blob = new Blob([htmlText], {type:'text/html'});
+    const plainBlob = new Blob([plainText], {type:'text/plain'});
+    const item = new ClipboardItem({'text/html':blob,'text/plain':plainBlob});
+    navigator.clipboard.write([item]).then(() => {
+      const btn = document.getElementById(btnId);
+      btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
+    });
+  } catch(e) {
+    navigator.clipboard.writeText(plainText).then(() => {
+      const btn = document.getElementById(btnId);
+      btn.textContent = 'Kopiert ✓'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
 }
 
 function downloadPDF(resultId) {
