@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZYNTEVO | Kostenlose Demo – Exposé Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * { box-sizing: border-box; }
+        html, body { background: #070B11; overflow-x: hidden; }
+
+        .demo-wrap { min-height: 100vh; padding: 120px 0 80px; }
+        .demo-container { max-width: 800px; margin: 0 auto; width: 90%; }
+
+        .demo-badge { display: inline-block; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.2); color: #D4AF37; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 8px 18px; border-radius: 999px; margin-bottom: 20px; }
+        .demo-title { font-size: 42px; font-weight: 900; margin-bottom: 12px; color: #F8FAFC; }
+        .demo-desc { color: #94A3B8; margin-bottom: 40px; font-size: 16px; line-height: 1.7; }
+
+        .demo-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; margin-bottom: 20px; }
+        .form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 8px; text-transform: uppercase; }
+        .form-input, .form-select, .form-textarea { width: 100%; padding: 13px 16px; background: #070B11; border: 1px solid rgba(212,175,55,.15); border-radius: 12px; color: #F8FAFC; font-size: 14px; outline: none; transition: .3s; font-family: Inter, sans-serif; resize: vertical; margin-bottom: 16px; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: #D4AF37; }
+        .form-textarea { min-height: 80px; }
+        .form-select option { background: #0F172A; }
+        .generate-btn { width: 100%; padding: 16px; background: #D4AF37; color: #000; font-weight: 700; font-size: 15px; border: none; border-radius: 12px; cursor: pointer; transition: .3s; font-family: Inter, sans-serif; }
+        .generate-btn:hover { transform: translateY(-2px); opacity: .92; }
+        .generate-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+        .result-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; display: none; }
+        .result-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 16px; }
+        .result-text { color: #F8FAFC; font-size: 14px; line-height: 1.8; white-space: pre-wrap; user-select: none; -webkit-user-select: none; -moz-user-select: none; filter: none; }
+        .result-text.blurred { filter: blur(4px); user-select: none; -webkit-user-select: none; pointer-events: none; }
+
+        .loading { display: flex; align-items: center; gap: 12px; color: #94A3B8; font-size: 14px; padding: 20px 0; }
+        .spinner { width: 20px; height: 20px; border: 2px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* POPUP */
+        .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+        .popup-overlay.show { display: flex; }
+        .popup-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 30px; padding: 48px 40px; max-width: 560px; width: 100%; text-align: center; position: relative; box-shadow: 0 0 60px rgba(212,175,55,.2); }
+        .popup-icon { font-size: 48px; margin-bottom: 16px; }
+        .popup-title { font-size: 28px; font-weight: 900; margin-bottom: 12px; color: #F8FAFC; }
+        .popup-title span { color: #D4AF37; }
+        .popup-desc { color: #94A3B8; margin-bottom: 28px; line-height: 1.7; }
+        .popup-price-old { font-size: 16px; color: #94A3B8; text-decoration: line-through; margin-bottom: 4px; }
+        .popup-price { font-size: 48px; font-weight: 900; color: #D4AF37; margin-bottom: 4px; }
+        .popup-price-sub { font-size: 13px; color: #94A3B8; margin-bottom: 28px; }
+        .popup-btn { display: block; width: 100%; padding: 16px; background: #D4AF37; color: #000; font-weight: 700; font-size: 16px; border-radius: 14px; text-decoration: none; transition: .3s; margin-bottom: 12px; }
+        .popup-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,175,55,.3); }
+        .popup-sub { font-size: 12px; color: #94A3B8; }
+
+        .used-banner { background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 24px; }
+        .used-banner h3 { color: #D4AF37; margin-bottom: 8px; }
+        .used-banner p { color: #94A3B8; font-size: 14px; margin-bottom: 16px; }
+
+        @media(max-width:600px) {
+            .demo-title { font-size: 28px; }
+            .demo-card, .result-card { padding: 20px; }
+            .popup-box { padding: 32px 24px; }
+            .popup-title { font-size: 22px; }
+            .popup-price { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <a href="index.html" class="logo"><img src="css/images/header.png" alt="ZYNTEVO"></a>
+    </div>
+</header>
+
+<div class="demo-wrap">
+    <div class="demo-container">
+        <div class="demo-badge">🎁 KOSTENLOSE DEMO</div>
+        <h1 class="demo-title">Exposé Generator – jetzt gratis testen</h1>
+        <p class="demo-desc">Gib die Objektdaten ein und sieh selbst wie die KI in Sekunden ein professionelles Exposé schreibt. Kein Account nötig – einmalig kostenlos.</p>
+
+        <div id="used-section" style="display:none;">
+            <div class="used-banner">
+                <h3>⚡ Du hast die Demo bereits genutzt</h3>
+                <p>Hol dir jetzt das vollständige KI-Tool mit allen 8 Generatoren – für einmalig 297€.</p>
+                <a href="https://www.checkout-ds24.com/product/696893" target="_blank" class="generate-btn" style="display:inline-block;width:auto;padding:14px 32px;text-decoration:none;">⚡ Jetzt Premium sichern</a>
+            </div>
+        </div>
+
+        <div id="demo-section">
+            <div class="demo-card">
+                <label class="form-label">Objekttyp</label>
+                <select class="form-select" id="expose-typ">
+                    <option>Eigentumswohnung</option>
+                    <option>Einfamilienhaus</option>
+                    <option>Doppelhaushälfte</option>
+                    <option>Reihenhaus</option>
+                    <option>Mehrfamilienhaus</option>
+                    <option>Grundstück</option>
+                </select>
+
+                <label class="form-label">Lage / Stadtteil</label>
+                <input class="form-input" id="expose-lage" placeholder="z.B. München-Schwabing">
+
+                <label class="form-label">Wohnfläche</label>
+                <input class="form-input" id="expose-flaeche" placeholder="z.B. 85 m²">
+
+                <label class="form-label">Zimmer</label>
+                <input class="form-input" id="expose-zimmer" placeholder="z.B. 3 Zimmer">
+
+                <label class="form-label">Kaufpreis</label>
+                <input class="form-input" id="expose-preis" placeholder="z.B. 450.000 €">
+
+                <label class="form-label">Besonderheiten</label>
+                <textarea class="form-textarea" id="expose-details" placeholder="z.B. Dachterrasse, Tiefgarage..."></textarea>
+
+                <label class="form-label">Stil</label>
+                <select class="form-select" id="expose-stil">
+                    <option>Emotional & verkaufsstark</option>
+                    <option>Sachlich & informativ</option>
+                    <option>Luxury & exklusiv</option>
+                </select>
+
+                <button class="generate-btn" id="gen-btn" onclick="generateDemo()">⚡ Kostenloses Exposé generieren</button>
+            </div>
+
+            <div class="result-card" id="result-card">
+                <div class="result-label">DEIN EXPOSÉ</div>
+                <div id="result-text"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <div class="popup-icon">🎉</div>
+        <h2 class="popup-title">Gefällt dir das <span>Ergebnis?</span></h2>
+        <p class="popup-desc">Das war nur einer von 8 Generatoren. Mit ZYNTEVO Premium hast du Zugang zu allen Tools – Exposé, E-Mail, Akquise-Brief, Social Media und mehr.</p>
+        <div class="popup-price-old">297€</div>
+        <div class="popup-price">297€</div>
+        <p class="popup-price-sub">Einmalzahlung · Kein Abo · Sofortiger Zugang</p>
+        <a href="https://www.checkout-ds24.com/product/696893" target="_blank" class="popup-btn">⚡ Jetzt Premium sichern</a>
+        <p class="popup-sub">Einmalige Zahlung · Kein Abo · Sofort nutzbar</p>
+    </div>
+</div>
+
+<script>
+const API = "https://zyntevo-tool.jan-6a7.workers.dev";
+const DEMO_KEY = "zyntevo_demo_makler_used";
+
+// Check if already used
+window.addEventListener('load', () => {
+    if (localStorage.getItem(DEMO_KEY)) {
+        document.getElementById('demo-section').style.display = 'none';
+        document.getElementById('used-section').style.display = 'block';
+    }
+});
+
+async function generateDemo() {
+    const lage = document.getElementById('expose-lage').value.trim();
+    if (!lage) { alert('Bitte mindestens die Lage eingeben.'); return; }
+
+    const btn = document.getElementById('gen-btn');
+    btn.disabled = true;
+    btn.textContent = 'Wird generiert...';
+
+    const resultCard = document.getElementById('result-card');
+    const resultText = document.getElementById('result-text');
+    resultCard.style.display = 'block';
+    resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI schreibt dein Exposé...</div>';
+
+    const prompt = `Professionelles Immobilienexposé auf Deutsch. 
+Typ: ${document.getElementById('expose-typ').value}, 
+Lage: ${lage}, 
+Fläche: ${document.getElementById('expose-flaeche').value || 'nicht angegeben'}, 
+Zimmer: ${document.getElementById('expose-zimmer').value || 'nicht angegeben'}, 
+Preis: ${document.getElementById('expose-preis').value || 'auf Anfrage'}, 
+Besonderheiten: ${document.getElementById('expose-details').value || 'keine'}, 
+Stil: ${document.getElementById('expose-stil').value}. 
+Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Max. 300 Wörter. Kein Markdown.`;
+
+    try {
+        const res = await fetch(`${API}/api/query`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer demo-token' },
+            body: JSON.stringify({ prompt, demo: true })
+        });
+
+        if (!res.ok) throw new Error('Fehler');
+        const data = await res.json();
+        const text = data.content[0].text;
+
+        // Show result - not copyable
+        resultText.innerHTML = `<div class="result-text" oncopy="return false" oncut="return false">${text}</div>`;
+
+        // Mark as used
+        localStorage.setItem(DEMO_KEY, '1');
+
+        // Show popup after 3 seconds
+        setTimeout(() => {
+            document.getElementById('popup').classList.add('show');
+        }, 3000);
+
+    } catch(e) {
+        resultText.innerHTML = '<div style="color:#EF4444">Fehler beim Generieren. Bitte versuche es erneut.</div>';
+        btn.disabled = false;
+        btn.textContent = '⚡ Kostenloses Exposé generieren';
+    }
+}
+
+// Prevent right-click on result
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('.result-text')) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
