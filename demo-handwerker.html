@@ -40,6 +40,8 @@
         .popup-btn { display: block; width: 100%; padding: 16px; background: #D4AF37; color: #000; font-weight: 700; font-size: 16px; border-radius: 14px; text-decoration: none; transition: .3s; margin-bottom: 12px; }
         .popup-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,175,55,.3); }
         .popup-sub { font-size: 12px; color: #94A3B8; }
+        .popup-close { position: absolute; top: 16px; right: 20px; font-size: 24px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter, sans-serif; }
+        .popup-close:hover { color: #F8FAFC; }
         .used-banner { background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 24px; }
         .used-banner h3 { color: #D4AF37; margin-bottom: 8px; }
         .used-banner p { color: #94A3B8; font-size: 14px; margin-bottom: 16px; }
@@ -108,6 +110,7 @@
 <!-- POPUP -->
 <div class="popup-overlay" id="popup">
     <div class="popup-box">
+        <button class="popup-close" onclick="document.getElementById('popup').classList.remove('show')">✕</button>
         <div class="popup-icon">🎉</div>
         <h2 class="popup-title">Gefällt dir das <span>Ergebnis?</span></h2>
         <p class="popup-desc">Das war nur einer von 8 Generatoren. Mit ZYNTEVO Premium hast du Zugang zu allen Tools – Angebote, E-Mails, Bewertungsantworten, Social Media und mehr.</p>
@@ -167,7 +170,7 @@ Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinw
 
         setTimeout(() => {
             document.getElementById('popup').classList.add('show');
-        }, 3000);
+        }, 10000);
 
     } catch(e) {
         resultText.innerHTML = '<div style="color:#EF4444">Fehler beim Generieren. Bitte versuche es erneut.</div>';
