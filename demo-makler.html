@@ -36,26 +36,19 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* POPUP */
-        .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
-        .popup-overlay.show { display: flex; }
-        .popup-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 30px; padding: 48px 40px; max-width: 560px; width: 100%; text-align: center; position: relative; box-shadow: 0 0 60px rgba(212,175,55,.2); }
-        .popup-icon { font-size: 48px; margin-bottom: 16px; }
-        .popup-title { font-size: 28px; font-weight: 900; margin-bottom: 12px; color: #F8FAFC; }
+        .popup-overlay { display: none; position: fixed; top: 80px; left: 0; right: 0; z-index: 9999; padding: 0 16px; }
+        .popup-overlay.show { display: block; }
+        .popup-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 20px; padding: 16px 24px; max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 8px 40px rgba(212,175,55,.25); flex-wrap: wrap; }
+        .popup-left { flex: 1; min-width: 200px; }
+        .popup-title { font-size: 17px; font-weight: 900; color: #F8FAFC; }
         .popup-title span { color: #D4AF37; }
-        .popup-desc { color: #94A3B8; margin-bottom: 28px; line-height: 1.7; }
-        .popup-price-old { font-size: 16px; color: #94A3B8; text-decoration: line-through; margin-bottom: 4px; }
-        .popup-price { font-size: 48px; font-weight: 900; color: #D4AF37; margin-bottom: 4px; }
-        .popup-price-sub { font-size: 13px; color: #94A3B8; margin-bottom: 28px; }
-        .popup-btn { display: block; width: 100%; padding: 16px; background: #D4AF37; color: #000; font-weight: 700; font-size: 16px; border-radius: 14px; text-decoration: none; transition: .3s; margin-bottom: 12px; }
-        .popup-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,175,55,.3); }
-        .popup-sub { font-size: 12px; color: #94A3B8; }
-        .popup-close { position: absolute; top: 16px; right: 20px; font-size: 24px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter, sans-serif; }
+        .popup-desc { color: #94A3B8; font-size: 12px; margin-top: 4px; line-height: 1.5; }
+        .popup-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .popup-price { font-size: 26px; font-weight: 900; color: #D4AF37; }
+        .popup-btn { display: inline-block; padding: 10px 20px; background: #D4AF37; color: #000; font-weight: 700; font-size: 14px; border-radius: 12px; text-decoration: none; transition: .3s; white-space: nowrap; }
+        .popup-btn:hover { transform: translateY(-2px); }
+        .popup-close { font-size: 20px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter, sans-serif; }
         .popup-close:hover { color: #F8FAFC; }
-
-        .used-banner { background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 24px; }
-        .used-banner h3 { color: #D4AF37; margin-bottom: 8px; }
-        .used-banner p { color: #94A3B8; font-size: 14px; margin-bottom: 16px; }
-
         @media(max-width:600px) {
             .demo-title { font-size: 28px; }
             .demo-card, .result-card { padding: 20px; }
@@ -136,9 +129,8 @@
 <div class="popup-overlay" id="popup">
     <div class="popup-box">
         <div class="popup-left">
-            <span class="popup-icon">🎉</span>
-            <span class="popup-title">Gefällt dir das <span>Ergebnis?</span></span>
-            <p class="popup-desc">Das war nur 1 von 8 Generatoren. Premium gibt dir alle Tools: Exposé, E-Mail, Akquise-Brief, Social Media und mehr.</p>
+            <div class="popup-title">🎉 Gefällt dir das <span>Ergebnis?</span></div>
+            <div class="popup-desc">Das war 1 von 8 Generatoren. Premium gibt dir alle: Exposé, E-Mail, Akquise-Brief und mehr.</div>
         </div>
         <div class="popup-right">
             <div class="popup-price">297€</div>
