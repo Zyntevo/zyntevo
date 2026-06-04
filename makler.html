@@ -222,6 +222,21 @@
     </div>
 </section>
 
+<!-- WIDERRUFSBUTTON -->
+<div class="widerruf-bar">
+    <p>Du hast das gesetzliche Widerrufsrecht. Die Widerrufsfrist beträgt 14 Tage ab Kaufdatum.</p>
+    <button class="btn-widerruf" onclick="document.getElementById('widerruf-modal').classList.add('active')">↩ Widerruf einreichen</button>
+</div>
+<div class="widerruf-modal" id="widerruf-modal">
+    <div class="widerruf-box">
+        <h3>Widerruf einreichen</h3>
+        <p>Möchtest du deinen Kauf wirklich widerrufen? Nach Bestätigung öffnet sich dein E-Mail-Programm mit einem vorausgefüllten Widerrufsformular.</p>
+        <div class="widerruf-actions">
+            <button class="btn-widerruf-cancel" onclick="document.getElementById('widerruf-modal').classList.remove('active')">Abbrechen</button>
+            <button class="btn-widerruf-confirm" onclick="submitWiderruf()">Ja, Widerruf einreichen</button>
+        </div>
+    </div>
+</div>
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
@@ -233,5 +248,13 @@
     </div>
 </footer>
 
+<script>
+function submitWiderruf() {
+    var subject = encodeURIComponent("Widerruf meines Kaufs bei ZYNTEVO");
+    var body = encodeURIComponent("Hiermit widerrufe ich meinen bei ZYNTEVO abgeschlossenen Vertrag.\n\nMein Name:\nMeine E-Mail-Adresse:\nKaufdatum:\nBestellnummer (falls vorhanden):\n\nMit freundlichen Grüßen");
+    window.location.href = "mailto:jan@zyntevo.de?subject=" + subject + "&body=" + body;
+    document.getElementById("widerruf-modal").classList.remove("active");
+}
+</script>
 </body>
 </html>

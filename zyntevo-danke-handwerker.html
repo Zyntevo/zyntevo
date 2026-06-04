@@ -83,7 +83,20 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 .code-error{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:16px;color:#f87171;font-size:13px;text-align:center;margin-bottom:12px;}
 @media(max-width:992px){.access-grid{grid-template-columns:1fr;}.included-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr;}.hero h1{font-size:40px;}}
 @media(max-width:600px){.download-grid{grid-template-columns:1fr;}.included-grid{grid-template-columns:1fr 1fr;}.access-row{flex-direction:column;align-items:flex-start;}.hero h1{font-size:30px;}.hero-thanks{padding:20px;}}
-    </style>
+    /* WIDERRUFSBUTTON */
+.widerruf-bar{background:rgba(239,68,68,.06);border-top:1px solid rgba(239,68,68,.15);border-bottom:1px solid rgba(239,68,68,.15);padding:16px 0;text-align:center;}
+.widerruf-bar p{color:#94A3B8;font-size:13px;margin-bottom:10px;}
+.btn-widerruf{background:transparent;border:1px solid rgba(239,68,68,.4);color:#f87171;padding:10px 24px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:.2s;}
+.btn-widerruf:hover{border-color:#EF4444;background:rgba(239,68,68,.08);}
+.widerruf-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;}
+.widerruf-modal.active{display:flex;}
+.widerruf-box{background:#0F172A;border:1px solid rgba(239,68,68,.3);border-radius:20px;padding:40px;max-width:500px;width:90%;text-align:center;}
+.widerruf-box h3{font-size:20px;margin-bottom:12px;color:#f87171;}
+.widerruf-box p{color:#94A3B8;font-size:14px;line-height:1.7;margin-bottom:24px;}
+.widerruf-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-widerruf-confirm{background:#EF4444;color:#fff;border:none;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;font-family:Inter,sans-serif;}
+.btn-widerruf-cancel{background:transparent;border:1px solid rgba(255,255,255,.2);color:#94A3B8;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;font-family:Inter,sans-serif;}
+</style>
 </head>
 <body>
 
@@ -217,6 +230,21 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     </div>
 </section>
 
+<!-- WIDERRUFSBUTTON -->
+<div class="widerruf-bar">
+    <p>Du hast das gesetzliche Widerrufsrecht. Die Widerrufsfrist beträgt 14 Tage ab Kaufdatum.</p>
+    <button class="btn-widerruf" onclick="document.getElementById('widerruf-modal').classList.add('active')">↩ Widerruf einreichen</button>
+</div>
+<div class="widerruf-modal" id="widerruf-modal">
+    <div class="widerruf-box">
+        <h3>Widerruf einreichen</h3>
+        <p>Möchtest du deinen Kauf wirklich widerrufen? Nach Bestätigung öffnet sich dein E-Mail-Programm mit einem vorausgefüllten Widerrufsformular.</p>
+        <div class="widerruf-actions">
+            <button class="btn-widerruf-cancel" onclick="document.getElementById('widerruf-modal').classList.remove('active')">Abbrechen</button>
+            <button class="btn-widerruf-confirm" onclick="submitWiderruf()">Ja, Widerruf einreichen</button>
+        </div>
+    </div>
+</div>
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
@@ -281,6 +309,14 @@ async function loadCode() {
 }
 
 window.addEventListener('load', loadCode);
+</script>
+<script>
+function submitWiderruf() {
+    var subject = encodeURIComponent("Widerruf meines Kaufs bei ZYNTEVO");
+    var body = encodeURIComponent("Hiermit widerrufe ich meinen bei ZYNTEVO abgeschlossenen Vertrag.\n\nMein Name:\nMeine E-Mail-Adresse:\nKaufdatum:\nBestellnummer (falls vorhanden):\n\nMit freundlichen Grüßen");
+    window.location.href = "mailto:jan@zyntevo.de?subject=" + subject + "&body=" + body;
+    document.getElementById("widerruf-modal").classList.remove("active");
+}
 </script>
 </body>
 </html>
