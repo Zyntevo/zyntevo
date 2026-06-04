@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZYNTEVO | Kostenlose Demo – Mandantenbrief Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * { box-sizing: border-box; }
+        html, body { background: #070B11; overflow-x: hidden; }
+
+        .demo-wrap { min-height: 100vh; padding: 120px 0 80px; }
+        .demo-container { max-width: 800px; margin: 0 auto; width: 90%; }
+
+        .demo-badge { display: inline-block; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.2); color: #D4AF37; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 8px 18px; border-radius: 999px; margin-bottom: 20px; }
+        .demo-title { font-size: 42px; font-weight: 900; margin-bottom: 12px; color: #F8FAFC; }
+        .demo-desc { color: #94A3B8; margin-bottom: 40px; font-size: 16px; line-height: 1.7; }
+
+        .demo-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; margin-bottom: 20px; }
+        .form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 8px; text-transform: uppercase; }
+        .form-input, .form-select, .form-textarea { width: 100%; padding: 13px 16px; background: #070B11; border: 1px solid rgba(212,175,55,.15); border-radius: 12px; color: #F8FAFC; font-size: 14px; outline: none; transition: .3s; font-family: Inter, sans-serif; resize: vertical; margin-bottom: 16px; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: #D4AF37; }
+        .form-textarea { min-height: 80px; }
+        .form-select option { background: #0F172A; }
+        .generate-btn { width: 100%; padding: 16px; background: #D4AF37; color: #000; font-weight: 700; font-size: 15px; border: none; border-radius: 12px; cursor: pointer; transition: .3s; font-family: Inter, sans-serif; }
+        .generate-btn:hover { transform: translateY(-2px); opacity: .92; }
+        .generate-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+        .result-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; display: none; }
+        .result-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 16px; }
+        .result-text { color: #F8FAFC; font-size: 14px; line-height: 1.8; white-space: pre-wrap; user-select: none; -webkit-user-select: none; -moz-user-select: none; filter: none; }
+        .result-text.blurred { filter: blur(4px); user-select: none; -webkit-user-select: none; pointer-events: none; }
+
+        .loading { display: flex; align-items: center; gap: 12px; color: #94A3B8; font-size: 14px; padding: 20px 0; }
+        .spinner { width: 20px; height: 20px; border: 2px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* POPUP */
+        .popup-overlay { display: none; position: fixed; top: 80px; left: 0; right: 0; z-index: 9999; padding: 0 16px; }
+        .popup-overlay.show { display: block; }
+        .popup-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 20px; padding: 16px 24px; max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 8px 40px rgba(212,175,55,.25); flex-wrap: wrap; }
+        .popup-left { flex: 1; min-width: 200px; }
+        .popup-title { font-size: 17px; font-weight: 900; color: #F8FAFC; }
+        .popup-title span { color: #D4AF37; }
+        .popup-desc { color: #94A3B8; font-size: 12px; margin-top: 4px; line-height: 1.5; }
+        .popup-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .popup-price { font-size: 26px; font-weight: 900; color: #D4AF37; }
+        .popup-btn { display: inline-block; padding: 10px 20px; background: #D4AF37; color: #000; font-weight: 700; font-size: 14px; border-radius: 12px; text-decoration: none; transition: .3s; white-space: nowrap; }
+        .popup-btn:hover { transform: translateY(-2px); }
+        .popup-close { font-size: 20px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter, sans-serif; }
+        .popup-close:hover { color: #F8FAFC; }
+        @media(max-width:600px) {
+            .demo-title { font-size: 28px; }
+            .demo-card, .result-card { padding: 20px; }
+            .popup-box { padding: 32px 24px; }
+            .popup-title { font-size: 22px; }
+            .popup-price { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <a href="index.html" class="logo"><img src="css/images/header.png" alt="ZYNTEVO"></a>
+    </div>
+</header>
+
+<div class="demo-wrap">
+    <div class="demo-container">
+        <div class="demo-badge">🎁 KOSTENLOSE DEMO</div>
+        <h1 class="demo-title">Mandantenbrief Generator – jetzt gratis testen</h1>
+        <p class="demo-desc">Gib die Mandantendaten ein und sieh selbst wie die KI in Sekunden einen professionellen Mandantenbrief schreibt. Kein Account nötig – einmalig kostenlos.</p>
+
+        <div id="used-section" style="display:none;">
+            <div class="used-banner">
+                <h3>⚡ Du hast die Demo bereits genutzt</h3>
+                <p>Hol dir jetzt das vollständige KI-Tool mit allen 8 Generatoren – für einmalig 297€.</p>
+                <a href="https://www.checkout-ds24.com/product/STEUERBERATER_PREMIUM_ID" target="_blank" class="generate-btn" style="display:inline-block;width:auto;padding:14px 32px;text-decoration:none;">⚡ Jetzt Premium sichern</a>
+            </div>
+        </div>
+
+        <div id="demo-section">
+            <div class="demo-card">
+                <label class="form-label">Anliegen / Thema</label>
+                <select class="form-select" id="stb-typ">
+                    <option>Steuererklärung</option>
+                    <option>Betriebsprüfung</option>
+                    <option>Jahresabschluss</option>
+                    <option>Umsatzsteuer</option>
+                    <option>Lohnsteuer</option>
+                    <option>Erbschaftsteuer</option>
+                </select>
+
+                <label class="form-label">Mandant / Unternehmen</label>
+                <input class="form-input" id="stb-mandant" placeholder="z.B. Müller GmbH">
+
+                <label class="form-label">Branche</label>
+                <input class="form-input" id="stb-branche" placeholder="z.B. Gastronomie">
+
+                <label class="form-label">Besonderes Anliegen</label>
+                <input class="form-input" id="stb-anliegen" placeholder="z.B. 3 Besonderes Anliegen">
+
+                <label class="form-label">Dringlichkeit</label>
+                <input class="form-input" id="stb-dringlichkeit" placeholder="z.B. Frist in 2 Wochen">
+
+                <label class="form-label">Zusätzliche Infos</label>
+                <textarea class="form-textarea" id="stb-details" placeholder="z.B. Mandant ist seit 5 Jahren Kunde"></textarea>
+
+                <label class="form-label">Ton</label>
+                <select class="form-select" id="stb-ton">
+                    <option>Professionell & klar</option>
+                    <option>Freundlich & zugänglich</option>
+                    <option>Formal & präzise</option>
+                </select>
+
+                <button class="generate-btn" id="gen-btn" onclick="generateDemo()">⚡ Kostenlosen Mandantenbrief generieren</button>
+            </div>
+
+            <div class="result-card" id="result-card">
+                <div class="result-label">DEIN MANDANTENBRIEF</div>
+                <div id="result-text"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP BANNER -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <div class="popup-left">
+            <div class="popup-title">🎉 Gefällt dir das <span>Ergebnis?</span></div>
+            <div class="popup-desc">Das war 1 von 8 Generatoren. Premium gibt dir alle: Mandantenbrief, Akquise-Mail, Erstgespräch-Vorbereitung und mehr.</div>
+        </div>
+        <div class="popup-right">
+            <div class="popup-price">297€</div>
+            <a href="https://www.checkout-ds24.com/product/STEUERBERATER_PREMIUM_ID" target="_blank" class="popup-btn">⚡ Premium sichern</a>
+            <button class="popup-close" onclick="document.getElementById('popup').classList.remove('show')">✕</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const API = "https://zyntevo-tool.jan-6a7.workers.dev";
+const DEMO_KEY = "zyntevo_demo_steuerberater_used";
+
+// Check if already used
+window.addEventListener('load', () => {
+    if (localStorage.getItem(DEMO_KEY)) {
+        document.getElementById('demo-section').style.display = 'none';
+        document.getElementById('used-section').style.display = 'block';
+    }
+});
+
+async function generateDemo() {
+    const lage = document.getElementById('stb-mandant').value.trim();
+    if (!lage) { alert('Bitte mindestens den Mandanten eingeben.'); return; }
+
+    const btn = document.getElementById('gen-btn');
+    btn.disabled = true;
+    btn.textContent = 'Wird generiert...';
+
+    const resultCard = document.getElementById('result-card');
+    const resultText = document.getElementById('result-text');
+    resultCard.style.display = 'block';
+    resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI schreibt deinen Mandantenbrief...</div>';
+
+    const prompt = `Professioneller Mandantenbrief eines Steuerberaters auf Deutsch. 
+Anliegen: ${document.getElementById('stb-typ').value}, 
+Mandant: ${lage}, 
+Branche: ${document.getElementById('stb-branche').value || 'nicht angegeben'}, 
+Besonderes Anliegen: ${document.getElementById('stb-anliegen').value || 'nicht angegeben'}, 
+Dringlichkeit: ${document.getElementById('stb-dringlichkeit').value || 'auf Anfrage'}, 
+Zusätzliche Infos: ${document.getElementById('stb-details').value || 'keine'}, 
+Ton: ${document.getElementById('stb-ton').value}. 
+Struktur: Anrede, freundliche Einleitung, Sachverhalt erklären, nächste Schritte, professioneller Abschluss. Max. 300 Wörter. Kein Markdown.`;
+
+    try {
+        const res = await fetch(`${API}/api/query`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer demo-token' },
+            body: JSON.stringify({ prompt, demo: true })
+        });
+
+        if (!res.ok) throw new Error('Fehler');
+        const data = await res.json();
+        const text = data.content[0].text;
+
+        // Show result - not copyable
+        resultText.innerHTML = `<div class="result-text" oncopy="return false" oncut="return false">${text}</div>`;
+
+        // Mark as used
+        localStorage.setItem(DEMO_KEY, '1');
+
+        // Show popup after 3 seconds
+        setTimeout(() => {
+            document.getElementById('popup').classList.add('show');
+        }, 10000);
+
+    } catch(e) {
+        resultText.innerHTML = '<div style="color:#EF4444">Fehler beim Generieren. Bitte versuche es erneut.</div>';
+        btn.disabled = false;
+        btn.textContent = '⚡ Kostenlosen Mandantenbrief generieren';
+    }
+}
+
+// Prevent right-click on result
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('.result-text')) e.preventDefault();
+});
+</script>
+
+</body>
+</html>
