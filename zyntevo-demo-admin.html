@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO | Demo Admin</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#070B11;--card:#111827;--gold:#D4AF37;--text:#F8FAFC;--muted:#94A3B8;--green:#22C55E;--red:#EF4444;}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:30px 20px;}
+.header{text-align:center;margin-bottom:32px;}
+.header h1{font-size:28px;font-weight:900;letter-spacing:2px;color:var(--gold);}
+.header p{color:var(--muted);margin-top:6px;font-size:13px;}
+
+/* LOGIN */
+#login-screen{max-width:400px;margin:80px auto;}
+.login-card{background:var(--card);border:1px solid rgba(212,175,55,.2);border-radius:20px;padding:36px;}
+.login-card h2{font-size:18px;font-weight:700;color:var(--gold);margin-bottom:24px;text-align:center;}
+input{width:100%;padding:12px 16px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;margin-bottom:12px;}
+input:focus{border-color:var(--gold);}
+.btn{width:100%;padding:13px;background:var(--gold);color:#000;font-weight:700;font-size:14px;border:none;border-radius:10px;cursor:pointer;font-family:Inter,sans-serif;transition:.2s;}
+.btn:hover{opacity:.9;}
+.err{color:var(--red);font-size:12px;margin-top:8px;text-align:center;}
+
+/* APP */
+#app{display:none;max-width:1200px;margin:0 auto;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.stat{background:var(--card);border:1px solid rgba(212,175,55,.15);border-radius:16px;padding:20px;text-align:center;}
+.stat-num{font-size:36px;font-weight:900;color:var(--gold);}
+.stat-label{font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:4px;}
+
+.filter-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.filter-btn{padding:6px 16px;border-radius:999px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--muted);font-family:Inter,sans-serif;transition:.2s;}
+.filter-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,.08);}
+
+.search{width:100%;padding:11px 16px;background:var(--card);border:1px solid rgba(212,175,55,.1);border-radius:10px;color:var(--text);font-size:13px;outline:none;font-family:Inter,sans-serif;margin-bottom:16px;}
+.search:focus{border-color:rgba(212,175,55,.3);}
+
+table{width:100%;border-collapse:collapse;}
+th{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--muted);text-align:left;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.05);}
+td{padding:12px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+tr:hover td{background:rgba(255,255,255,.02);}
+
+.badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.5px;}
+.badge-makler{background:rgba(212,175,55,.1);color:var(--gold);}
+.badge-handwerker{background:rgba(34,197,94,.1);color:var(--green);}
+.badge-steuerberater{background:rgba(99,102,241,.1);color:#818cf8;}
+.badge-blocked{background:rgba(239,68,68,.1);color:var(--red);}
+.badge-active{background:rgba(34,197,94,.1);color:var(--green);}
+
+.action-btn{padding:5px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:none;font-family:Inter,sans-serif;transition:.2s;}
+.btn-block{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.btn-block:hover{background:rgba(239,68,68,.2);}
+.btn-unblock{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.btn-unblock:hover{background:rgba(34,197,94,.2);}
+.btn-mail{background:rgba(212,175,55,.1);color:var(--gold);border:1px solid rgba(212,175,55,.3);}
+.btn-mail:hover{background:rgba(212,175,55,.2);}
+
+.panel{background:var(--card);border:1px solid rgba(212,175,55,.15);border-radius:20px;padding:24px;}
+.panel-title{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:16px;}
+.refresh-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--gold);padding:8px 20px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;transition:.2s;margin-bottom:20px;}
+.refresh-btn:hover{background:rgba(212,175,55,.08);}
+.nutzungen-high{color:var(--red);font-weight:700;}
+.nutzungen-mid{color:#fb923c;font-weight:700;}
+
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr;}table{font-size:11px;}th,td{padding:8px 10px;}.stat-num{font-size:24px;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚡ ZYNTEVO DEMO ADMIN</h1>
+  <p>Demo-Nutzer verwalten · Missbrauch erkennen · Leads nachfassen</p>
+</div>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <h2>🔒 Admin Login</h2>
+    <input type="password" id="admin-key" placeholder="Admin API Key" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn" onclick="doLogin()">Einloggen</button>
+    <div class="err" id="login-err"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="stat-gesamt">–</div><div class="stat-label">DEMO NUTZER</div></div>
+    <div class="stat"><div class="stat-num" id="stat-heute" style="color:#22C55E;">–</div><div class="stat-label">HEUTE NEU</div></div>
+    <div class="stat"><div class="stat-num" id="stat-missbrauch" style="color:#EF4444;">–</div><div class="stat-label">VERDÄCHTIG (5+)</div></div>
+    <div class="stat"><div class="stat-num" id="stat-gesperrt" style="color:#94A3B8;">–</div><div class="stat-label">GESPERRT</div></div>
+  </div>
+
+  <button class="refresh-btn" onclick="loadLeads()">🔄 Aktualisieren</button>
+
+  <div class="panel">
+    <div class="panel-title">📋 DEMO NUTZER</div>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="setFilter('alle',this)">Alle</button>
+      <button class="filter-btn" onclick="setFilter('makler',this)">Makler</button>
+      <button class="filter-btn" onclick="setFilter('handwerker',this)">Handwerker</button>
+      <button class="filter-btn" onclick="setFilter('steuerberater',this)">Steuerberater</button>
+      <button class="filter-btn" onclick="setFilter('missbrauch',this)" style="border-color:rgba(239,68,68,.3);color:var(--red);">⚠️ Verdächtig</button>
+      <button class="filter-btn" onclick="setFilter('gesperrt',this)" style="border-color:rgba(148,163,184,.3);">🚫 Gesperrt</button>
+    </div>
+    <input class="search" id="search" placeholder="🔍 E-Mail suchen..." oninput="renderTable()">
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>E-MAIL</th>
+            <th>BRANCHE</th>
+            <th>NUTZUNGEN</th>
+            <th>REGISTRIERT</th>
+            <th>ZULETZT</th>
+            <th>STATUS</th>
+            <th>AKTIONEN</th>
+          </tr>
+        </thead>
+        <tbody id="leads-table"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = "https://zyntevo-tool.jan-6a7.workers.dev";
+let adminKey = '';
+let allLeads = [];
+let currentFilter = 'alle';
+
+function doLogin() {
+  const key = document.getElementById('admin-key').value.trim();
+  if (!key) return;
+  adminKey = key;
+  loadLeads();
+}
+
+async function loadLeads() {
+  try {
+    const res = await fetch(`${API}/api/demo-admin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ adminKey })
+    });
+    const data = await res.json();
+    if (!data.success) {
+      document.getElementById('login-err').textContent = 'Falscher Admin Key.';
+      return;
+    }
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    allLeads = data.leads.sort((a, b) => b.created - a.created);
+    updateStats();
+    renderTable();
+  } catch(e) {
+    document.getElementById('login-err').textContent = 'Verbindungsfehler.';
+  }
+}
+
+function updateStats() {
+  const heute = new Date().toDateString();
+  const heuteNeu = allLeads.filter(l => new Date(l.created).toDateString() === heute).length;
+  const missbrauch = allLeads.filter(l => l.nutzungen >= 5).length;
+  const gesperrt = allLeads.filter(l => l.blocked).length;
+  document.getElementById('stat-gesamt').textContent = allLeads.length;
+  document.getElementById('stat-heute').textContent = heuteNeu;
+  document.getElementById('stat-missbrauch').textContent = missbrauch;
+  document.getElementById('stat-gesperrt').textContent = gesperrt;
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+
+function renderTable() {
+  const search = document.getElementById('search').value.toLowerCase();
+  let filtered = allLeads.filter(l => {
+    const matchFilter =
+      currentFilter === 'alle' ||
+      currentFilter === l.branche ||
+      (currentFilter === 'missbrauch' && l.nutzungen >= 5) ||
+      (currentFilter === 'gesperrt' && l.blocked);
+    const matchSearch = !search || l.email.toLowerCase().includes(search);
+    return matchFilter && matchSearch;
+  });
+
+  const tbody = document.getElementById('leads-table');
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:30px;">Keine Einträge</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(l => {
+    const brancheClass = l.branche === 'makler' ? 'badge-makler' : l.branche === 'handwerker' ? 'badge-handwerker' : 'badge-steuerberater';
+    const brancheLabel = l.branche === 'makler' ? 'MAKLER' : l.branche === 'handwerker' ? 'HANDWERKER' : 'STEUERBERATER';
+    const nutzungClass = l.nutzungen >= 5 ? 'nutzungen-high' : l.nutzungen >= 3 ? 'nutzungen-mid' : '';
+    const created = new Date(l.created).toLocaleDateString('de-DE');
+    const lastUsed = l.lastUsed ? new Date(l.lastUsed).toLocaleDateString('de-DE') : '–';
+    const statusBadge = l.blocked
+      ? '<span class="badge badge-blocked">GESPERRT</span>'
+      : '<span class="badge badge-active">AKTIV</span>';
+    const blockBtn = l.blocked
+      ? `<button class="action-btn btn-unblock" onclick="toggleBlock('${l.email}', false)">Entsperren</button>`
+      : `<button class="action-btn btn-block" onclick="toggleBlock('${l.email}', true)">Sperren</button>`;
+    return `<tr>
+      <td>${l.email}</td>
+      <td><span class="badge ${brancheClass}">${brancheLabel}</span></td>
+      <td class="${nutzungClass}">${l.nutzungen}x ${l.nutzungen >= 5 ? '⚠️' : ''}</td>
+      <td>${created}</td>
+      <td>${lastUsed}</td>
+      <td>${statusBadge}</td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap;">
+        ${blockBtn}
+        <button class="action-btn btn-mail" onclick="copyEmail('${l.email}')">Mail kopieren</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function toggleBlock(email, blocked) {
+  try {
+    const res = await fetch(`${API}/api/demo-block`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ adminKey, email, blocked })
+    });
+    const data = await res.json();
+    if (data.success) {
+      const lead = allLeads.find(l => l.email === email);
+      if (lead) lead.blocked = blocked;
+      updateStats();
+      renderTable();
+    }
+  } catch(e) { alert('Fehler beim Sperren.'); }
+}
+
+function copyEmail(email) {
+  navigator.clipboard.writeText(email).then(() => {
+    alert(`✓ ${email} kopiert`);
+  });
+}
+</script>
+</body>
+</html>
