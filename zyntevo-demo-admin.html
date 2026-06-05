@@ -130,10 +130,16 @@ let adminKey = '';
 let allLeads = [];
 let currentFilter = 'alle';
 
+window.addEventListener('load', () => {
+  const saved = localStorage.getItem('zyntevo_demo_admin_key');
+  if (saved) { adminKey = saved; loadLeads(); }
+});
+
 function doLogin() {
   const key = document.getElementById('admin-key').value.trim();
   if (!key) return;
   adminKey = key;
+  localStorage.setItem('zyntevo_demo_admin_key', key);
   loadLeads();
 }
 
