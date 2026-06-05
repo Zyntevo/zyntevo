@@ -195,7 +195,7 @@ Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinw
             await fetch(`${API}/api/demo-lead`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: demoEmail, branche: 'handwerker', tool: 'Angebots-Generator' })
+                body: JSON.stringify({ email: demoEmail, branche: 'handwerker', resultText: text, tool: 'Angebots-Generator' })
             });
         } catch(e) { /* silent fail */ }
 

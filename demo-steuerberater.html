@@ -221,7 +221,7 @@ Struktur: Anrede, freundliche Einleitung, Sachverhalt erklären, nächste Schrit
             await fetch(`${API}/api/demo-lead`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: demoEmail, branche: 'steuerberater', tool: 'Mandantenbrief Generator' })
+                body: JSON.stringify({ email: demoEmail, branche: 'steuerberater', resultText: text, tool: 'Mandantenbrief Generator' })
             });
         } catch(e) { /* silent fail */ }
 

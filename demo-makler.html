@@ -221,7 +221,7 @@ Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstatt
             await fetch(`${API}/api/demo-lead`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: demoEmail, branche: 'makler', tool: 'Exposé Generator' })
+                body: JSON.stringify({ email: demoEmail, branche: 'makler', resultText: text, tool: 'Exposé Generator' })
             });
         } catch(e) { /* silent fail */ }
 
