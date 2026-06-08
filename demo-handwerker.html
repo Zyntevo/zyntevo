@@ -21,17 +21,20 @@
         .form-select option { background: #0F172A; }
         .generate-btn { width: 100%; padding: 16px; background: #D4AF37; color: #000; font-weight: 700; font-size: 15px; border: none; border-radius: 12px; cursor: pointer; transition: .3s; font-family: Inter, sans-serif; }
         .generate-btn:hover { transform: translateY(-2px); opacity: .92; }
-        
-        .email-gate { background: rgba(212,175,55,.06); border: 1px solid rgba(212,175,55,.2); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
-        .email-gate-label { font-size: 12px; color: #94A3B8; margin-bottom: 10px; line-height: 1.5; }
-        .email-gate-label strong { color: #F8FAFC; }
-        .email-row { display: flex; gap: 10px; }
-        .email-row input { flex: 1; margin-bottom: 0; }
-    
         .generate-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
         .result-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; display: none; }
         .result-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 16px; }
-        .result-text { color: #F8FAFC; font-size: 14px; line-height: 1.8; white-space: pre-wrap; user-select: none; -webkit-user-select: none; -moz-user-select: none; }
+        .result-text { color: #F8FAFC; font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
+        .result-actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+        .btn-copy { flex: 1; padding: 12px 20px; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.3); color: #D4AF37; font-weight: 700; font-size: 14px; border-radius: 12px; cursor: pointer; font-family: Inter, sans-serif; transition: .3s; }
+        .btn-copy:hover { background: rgba(212,175,55,.2); }
+        .btn-copy.copied { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.3); color: #22C55E; }
+        .email-optional { background: rgba(212,175,55,.04); border: 1px solid rgba(212,175,55,.15); border-radius: 14px; padding: 20px; margin-top: 20px; }
+        .email-optional-label { font-size: 13px; color: #94A3B8; margin-bottom: 12px; line-height: 1.5; }
+        .email-optional-label strong { color: #F8FAFC; }
+        .email-optional-row { display: flex; gap: 10px; }
+        .email-optional-row input { flex: 1; margin-bottom: 0; }
+        .btn-email { padding: 12px 20px; background: #D4AF37; color: #000; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; font-family: Inter, sans-serif; white-space: nowrap; }
         .loading { display: flex; align-items: center; gap: 12px; color: #94A3B8; font-size: 14px; padding: 20px 0; }
         .spinner { width: 20px; height: 20px; border: 2px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -48,7 +51,16 @@
         .popup-btn:hover { transform: translateY(-2px); }
         .popup-close { font-size: 20px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter, sans-serif; }
         .popup-close:hover { color: #F8FAFC; }
-        @media(max-width:600px) { .demo-title { font-size: 28px; } .demo-card, .result-card { padding: 20px; } .popup-box { padding: 32px 24px; } .popup-title { font-size: 22px; } .popup-price { font-size: 36px; } }
+        .guarantee-note { text-align: center; margin-top: 12px; font-size: 11px; color: #22C55E; }
+        @media(max-width:600px) {
+            .demo-title { font-size: 28px; }
+            .demo-card, .result-card { padding: 20px; }
+            .popup-box { padding: 20px; }
+            .popup-title { font-size: 18px; }
+            .popup-price { font-size: 28px; }
+            .result-actions { flex-direction: column; }
+            .email-optional-row { flex-direction: column; }
+        }
     </style>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2"></script>
@@ -71,7 +83,7 @@
     <div class="demo-container">
         <div class="demo-badge">🎁 KOSTENLOSE DEMO</div>
         <h1 class="demo-title">Angebots-Generator – jetzt gratis testen</h1>
-        <p class="demo-desc">Gib die Auftragsdaten ein und sieh selbst wie die KI in Sekunden ein professionelles Angebot schreibt. Kein Account nötig – einmalig kostenlos.</p>
+        <p class="demo-desc">Gib die Auftragsdaten ein und sieh selbst wie die KI in Sekunden ein professionelles Angebot schreibt. Kein Account nötig – kostenlos.</p>
 
         <div id="used-section" style="display:none;">
             <div class="used-banner">
@@ -94,33 +106,30 @@
                     <option>Heizung</option>
                     <option>Sonstiges</option>
                 </select>
-
                 <label class="form-label">Kundenname</label>
                 <input class="form-input" id="ang-kunde" placeholder="z.B. Familie Müller">
-
                 <label class="form-label">Leistungsbeschreibung</label>
                 <textarea class="form-textarea" id="ang-leistung" placeholder="z.B. Komplette Elektroinstallation Erdgeschoss..."></textarea>
-
                 <label class="form-label">Geschätzter Preis</label>
                 <input class="form-input" id="ang-preis" placeholder="z.B. 2.500 €">
-
                 <label class="form-label">Ausführungszeitraum</label>
                 <input class="form-input" id="ang-zeitraum" placeholder="z.B. KW 24, ca. 3 Tage">
-
-                
-                <div class="email-gate">
-                    <div class="email-gate-label"><strong>Wohin sollen wir das Ergebnis schicken?</strong><br>Wir senden dir das Ergebnis per Mail zu – kostenlos, kein Spam.</div>
-                    <div class="email-row">
-                        <input class="form-input" type="email" id="demo-email" placeholder="deine@email.de">
-                    </div>
-                </div>
-
                 <button class="generate-btn" id="gen-btn" onclick="generateDemo()">⚡ Kostenloses Angebot generieren</button>
             </div>
 
             <div class="result-card" id="result-card">
                 <div class="result-label">DEIN ANGEBOT</div>
                 <div id="result-text"></div>
+                <div class="result-actions" id="result-actions" style="display:none;">
+                    <button class="btn-copy" id="copy-btn" onclick="copyResult()">📋 Text kopieren</button>
+                </div>
+                <div class="email-optional" id="email-optional" style="display:none;">
+                    <div class="email-optional-label"><strong>Ergebnis per E-Mail erhalten?</strong><br>Optional – nur wenn du möchtest. Wir schicken dir das Ergebnis zu.</div>
+                    <div class="email-optional-row">
+                        <input class="form-input" type="email" id="demo-email" placeholder="deine@email.de">
+                        <button class="btn-email" onclick="submitEmail()">📧 Senden</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -135,16 +144,30 @@
         </div>
         <div class="popup-right">
             <div class="popup-price">297€</div>
-            <a href="https://zyntevo.github.io/zyntevo/handwerker.html" target="_blank" class="popup-btn">⚡ Premium sichern</a>
+            <a href="https://zyntevo.github.io/zyntevo/handwerker.html" target="_blank" class="popup-btn" onclick="trackEvent('product_page_clicked', 'handwerker')">⚡ Premium sichern</a>
             <button class="popup-close" onclick="document.getElementById('popup').classList.remove('show')">✕</button>
         </div>
     </div>
+    <div class="guarantee-note">🛡️ 14 Tage Geld-zurück-Garantie – kein Risiko</div>
 </div>
 
 <script>
 const API = "https://zyntevo-tool.jan-6a7.workers.dev";
 const DEMO_KEY = "zyntevo_demo_handwerker_used";
+const BRANCHE = "handwerker";
+let generatedText = '';
 
+// GA4 Tracking Helper
+function trackEvent(eventName, branche, extra) {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, { branche: branche, ...extra });
+    }
+}
+
+// Track page view
+trackEvent('demo_page_view', BRANCHE);
+
+// Check if already used
 window.addEventListener('load', () => {
     if (localStorage.getItem(DEMO_KEY)) {
         document.getElementById('demo-section').style.display = 'none';
@@ -152,12 +175,19 @@ window.addEventListener('load', () => {
     }
 });
 
-async function generateDemo() {
-    const demoEmail = document.getElementById('demo-email').value.trim();
-    if (!demoEmail || !demoEmail.includes('@')) { alert('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
+// Track form interaction
+document.addEventListener('input', function(e) {
+    if (e.target.closest('.demo-card') && !window._formStarted) {
+        window._formStarted = true;
+        trackEvent('form_started', BRANCHE);
+    }
+}, { once: false });
 
-        const leistung = document.getElementById('ang-leistung').value.trim();
+async function generateDemo() {
+    const leistung = document.getElementById('ang-leistung').value.trim();
     if (!leistung) { alert('Bitte mindestens die Leistungsbeschreibung eingeben.'); return; }
+
+    trackEvent('generate_clicked', BRANCHE);
 
     const btn = document.getElementById('gen-btn');
     btn.disabled = true;
@@ -166,12 +196,12 @@ async function generateDemo() {
     const resultCard = document.getElementById('result-card');
     const resultText = document.getElementById('result-text');
     resultCard.style.display = 'block';
-    resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI schreibt dein Angebot...</div>';
+    resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Text...</div>';
 
     const prompt = `Schreibe ein professionelles Handwerker-Angebot auf Deutsch.
 Gewerk: ${document.getElementById('ang-gewerk').value},
 Kunde: ${document.getElementById('ang-kunde').value || 'Kunde'},
-Leistung: ${leistung},
+Leistung: ${document.getElementById('ang-leistung').value},
 Preis: ${document.getElementById('ang-preis').value || 'nach Aufwand'},
 Zeitraum: ${document.getElementById('ang-zeitraum').value || 'nach Vereinbarung'}.
 Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinweis. Kein Markdown.`;
@@ -185,25 +215,26 @@ Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinw
 
         if (!res.ok) throw new Error('Fehler');
         const data = await res.json();
-        const text = data.content[0].text;
+        generatedText = data.content[0].text;
 
-        resultText.innerHTML = `<div class="result-text" oncopy="return false" oncut="return false">${text}</div>`;
+        resultText.innerHTML = `<div class="result-text">${generatedText}</div>`;
 
+        // Show actions and email opt-in
+        document.getElementById('result-actions').style.display = 'flex';
+        document.getElementById('email-optional').style.display = 'block';
 
-        // Send email to worker
-        try {
-            await fetch(`${API}/api/demo-lead`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: demoEmail, branche: 'handwerker', resultText: text, tool: 'Angebots-Generator' })
-            });
-        } catch(e) { /* silent fail */ }
+        trackEvent('result_generated', BRANCHE);
 
-                localStorage.setItem(DEMO_KEY, '1');
+        // Mark as used
+        localStorage.setItem(DEMO_KEY, '1');
 
+        // Show popup after 4 seconds
         setTimeout(() => {
             document.getElementById('popup').classList.add('show');
-        }, 3000);
+        }, 4000);
+
+        btn.disabled = false;
+        btn.textContent = '⚡ Nochmal generieren';
 
     } catch(e) {
         resultText.innerHTML = '<div style="color:#EF4444">Fehler beim Generieren. Bitte versuche es erneut.</div>';
@@ -212,9 +243,36 @@ Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinw
     }
 }
 
-document.addEventListener('contextmenu', (e) => {
-    if (e.target.closest('.result-text')) e.preventDefault();
-});
+function copyResult() {
+    if (!generatedText) return;
+    navigator.clipboard.writeText(generatedText).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '✓ Kopiert!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = '📋 Text kopieren';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+async function submitEmail() {
+    const email = document.getElementById('demo-email').value.trim();
+    if (!email || !email.includes('@')) { alert('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
+
+    trackEvent('email_submitted', BRANCHE, { lead_score: 75 });
+
+    try {
+        await fetch(`${API}/api/demo-lead`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, branche: BRANCHE, resultText: generatedText, tool: 'DEIN ANGEBOT' })
+        });
+        document.getElementById('email-optional').innerHTML = '<p style="color:#22C55E;font-size:14px;text-align:center;">✓ Ergebnis wurde an deine E-Mail gesendet!</p>';
+    } catch(e) {
+        alert('Fehler beim Senden. Bitte versuche es erneut.');
+    }
+}
 </script>
 
 </body>

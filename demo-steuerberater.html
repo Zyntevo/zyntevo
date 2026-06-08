@@ -8,14 +8,11 @@
     <style>
         * { box-sizing: border-box; }
         html, body { background: #070B11; overflow-x: hidden; }
-
         .demo-wrap { min-height: 100vh; padding: 120px 0 80px; }
         .demo-container { max-width: 800px; margin: 0 auto; width: 90%; }
-
         .demo-badge { display: inline-block; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.2); color: #D4AF37; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 8px 18px; border-radius: 999px; margin-bottom: 20px; }
         .demo-title { font-size: 42px; font-weight: 900; margin-bottom: 12px; color: #F8FAFC; }
         .demo-desc { color: #94A3B8; margin-bottom: 40px; font-size: 16px; line-height: 1.7; }
-
         .demo-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; margin-bottom: 20px; }
         .form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 8px; text-transform: uppercase; }
         .form-input, .form-select, .form-textarea { width: 100%; padding: 13px 16px; background: #070B11; border: 1px solid rgba(212,175,55,.15); border-radius: 12px; color: #F8FAFC; font-size: 14px; outline: none; transition: .3s; font-family: Inter, sans-serif; resize: vertical; margin-bottom: 16px; }
@@ -24,25 +21,23 @@
         .form-select option { background: #0F172A; }
         .generate-btn { width: 100%; padding: 16px; background: #D4AF37; color: #000; font-weight: 700; font-size: 15px; border: none; border-radius: 12px; cursor: pointer; transition: .3s; font-family: Inter, sans-serif; }
         .generate-btn:hover { transform: translateY(-2px); opacity: .92; }
-        
-        .email-gate { background: rgba(212,175,55,.06); border: 1px solid rgba(212,175,55,.2); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
-        .email-gate-label { font-size: 12px; color: #94A3B8; margin-bottom: 10px; line-height: 1.5; }
-        .email-gate-label strong { color: #F8FAFC; }
-        .email-row { display: flex; gap: 10px; }
-        .email-row input { flex: 1; margin-bottom: 0; }
-    
         .generate-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-
         .result-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; display: none; }
         .result-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 16px; }
-        .result-text { color: #F8FAFC; font-size: 14px; line-height: 1.8; white-space: pre-wrap; user-select: none; -webkit-user-select: none; -moz-user-select: none; filter: none; }
-        .result-text.blurred { filter: blur(4px); user-select: none; -webkit-user-select: none; pointer-events: none; }
-
+        .result-text { color: #F8FAFC; font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
+        .result-actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+        .btn-copy { flex: 1; padding: 12px 20px; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.3); color: #D4AF37; font-weight: 700; font-size: 14px; border-radius: 12px; cursor: pointer; font-family: Inter, sans-serif; transition: .3s; }
+        .btn-copy:hover { background: rgba(212,175,55,.2); }
+        .btn-copy.copied { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.3); color: #22C55E; }
+        .email-optional { background: rgba(212,175,55,.04); border: 1px solid rgba(212,175,55,.15); border-radius: 14px; padding: 20px; margin-top: 20px; }
+        .email-optional-label { font-size: 13px; color: #94A3B8; margin-bottom: 12px; line-height: 1.5; }
+        .email-optional-label strong { color: #F8FAFC; }
+        .email-optional-row { display: flex; gap: 10px; }
+        .email-optional-row input { flex: 1; margin-bottom: 0; }
+        .btn-email { padding: 12px 20px; background: #D4AF37; color: #000; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; font-family: Inter, sans-serif; white-space: nowrap; }
         .loading { display: flex; align-items: center; gap: 12px; color: #94A3B8; font-size: 14px; padding: 20px 0; }
         .spinner { width: 20px; height: 20px; border: 2px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* POPUP */
         .popup-overlay { display: none; position: fixed; top: 80px; left: 0; right: 0; z-index: 9999; padding: 0 16px; }
         .popup-overlay.show { display: block; }
         .popup-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 20px; padding: 16px 24px; max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 8px 40px rgba(212,175,55,.25); flex-wrap: wrap; }
@@ -56,12 +51,15 @@
         .popup-btn:hover { transform: translateY(-2px); }
         .popup-close { font-size: 20px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter, sans-serif; }
         .popup-close:hover { color: #F8FAFC; }
+        .guarantee-note { text-align: center; margin-top: 12px; font-size: 11px; color: #22C55E; }
         @media(max-width:600px) {
             .demo-title { font-size: 28px; }
             .demo-card, .result-card { padding: 20px; }
-            .popup-box { padding: 32px 24px; }
-            .popup-title { font-size: 22px; }
-            .popup-price { font-size: 36px; }
+            .popup-box { padding: 20px; }
+            .popup-title { font-size: 18px; }
+            .popup-price { font-size: 28px; }
+            .result-actions { flex-direction: column; }
+            .email-optional-row { flex-direction: column; }
         }
     </style>
     <!-- Google Analytics -->
@@ -85,7 +83,7 @@
     <div class="demo-container">
         <div class="demo-badge">🎁 KOSTENLOSE DEMO</div>
         <h1 class="demo-title">Mandantenbrief Generator – jetzt gratis testen</h1>
-        <p class="demo-desc">Gib die Mandantendaten ein und sieh selbst wie die KI in Sekunden einen professionellen Mandantenbrief schreibt. Kein Account nötig – einmalig kostenlos.</p>
+        <p class="demo-desc">Gib die Mandantendaten ein und sieh selbst wie die KI in Sekunden einen professionellen Mandantenbrief schreibt. Kein Account nötig – kostenlos.</p>
 
         <div id="used-section" style="display:none;">
             <div class="used-banner">
@@ -106,43 +104,38 @@
                     <option>Lohnsteuer</option>
                     <option>Erbschaftsteuer</option>
                 </select>
-
                 <label class="form-label">Mandant / Unternehmen</label>
                 <input class="form-input" id="stb-mandant" placeholder="z.B. Müller GmbH">
-
                 <label class="form-label">Branche</label>
                 <input class="form-input" id="stb-branche" placeholder="z.B. Gastronomie">
-
                 <label class="form-label">Besonderes Anliegen</label>
-                <input class="form-input" id="stb-anliegen" placeholder="z.B. 3 Besonderes Anliegen">
-
+                <input class="form-input" id="stb-anliegen" placeholder="z.B. Besonderes Anliegen">
                 <label class="form-label">Dringlichkeit</label>
                 <input class="form-input" id="stb-dringlichkeit" placeholder="z.B. Frist in 2 Wochen">
-
                 <label class="form-label">Zusätzliche Infos</label>
                 <textarea class="form-textarea" id="stb-details" placeholder="z.B. Mandant ist seit 5 Jahren Kunde"></textarea>
-
                 <label class="form-label">Ton</label>
                 <select class="form-select" id="stb-ton">
                     <option>Professionell & klar</option>
                     <option>Freundlich & zugänglich</option>
                     <option>Formal & präzise</option>
                 </select>
-
-                
-                <div class="email-gate">
-                    <div class="email-gate-label"><strong>Wohin sollen wir das Ergebnis schicken?</strong><br>Wir senden dir das Ergebnis per Mail zu – kostenlos, kein Spam.</div>
-                    <div class="email-row">
-                        <input class="form-input" type="email" id="demo-email" placeholder="deine@email.de">
-                    </div>
-                </div>
-
                 <button class="generate-btn" id="gen-btn" onclick="generateDemo()">⚡ Kostenlosen Mandantenbrief generieren</button>
             </div>
 
             <div class="result-card" id="result-card">
                 <div class="result-label">DEIN MANDANTENBRIEF</div>
                 <div id="result-text"></div>
+                <div class="result-actions" id="result-actions" style="display:none;">
+                    <button class="btn-copy" id="copy-btn" onclick="copyResult()">📋 Text kopieren</button>
+                </div>
+                <div class="email-optional" id="email-optional" style="display:none;">
+                    <div class="email-optional-label"><strong>Ergebnis per E-Mail erhalten?</strong><br>Optional – nur wenn du möchtest. Wir schicken dir das Ergebnis zu.</div>
+                    <div class="email-optional-row">
+                        <input class="form-input" type="email" id="demo-email" placeholder="deine@email.de">
+                        <button class="btn-email" onclick="submitEmail()">📧 Senden</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -157,15 +150,28 @@
         </div>
         <div class="popup-right">
             <div class="popup-price">297€</div>
-            <a href="https://zyntevo.github.io/zyntevo/steuerberater.html" target="_blank" class="popup-btn">⚡ Premium sichern</a>
+            <a href="https://zyntevo.github.io/zyntevo/steuerberater.html" target="_blank" class="popup-btn" onclick="trackEvent('product_page_clicked', 'steuerberater')">⚡ Premium sichern</a>
             <button class="popup-close" onclick="document.getElementById('popup').classList.remove('show')">✕</button>
         </div>
     </div>
+    <div class="guarantee-note">🛡️ 14 Tage Geld-zurück-Garantie – kein Risiko</div>
 </div>
 
 <script>
 const API = "https://zyntevo-tool.jan-6a7.workers.dev";
 const DEMO_KEY = "zyntevo_demo_steuerberater_used";
+const BRANCHE = "steuerberater";
+let generatedText = '';
+
+// GA4 Tracking Helper
+function trackEvent(eventName, branche, extra) {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, { branche: branche, ...extra });
+    }
+}
+
+// Track page view
+trackEvent('demo_page_view', BRANCHE);
 
 // Check if already used
 window.addEventListener('load', () => {
@@ -175,12 +181,19 @@ window.addEventListener('load', () => {
     }
 });
 
-async function generateDemo() {
-    const demoEmail = document.getElementById('demo-email').value.trim();
-    if (!demoEmail || !demoEmail.includes('@')) { alert('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
+// Track form interaction
+document.addEventListener('input', function(e) {
+    if (e.target.closest('.demo-card') && !window._formStarted) {
+        window._formStarted = true;
+        trackEvent('form_started', BRANCHE);
+    }
+}, { once: false });
 
-        const lage = document.getElementById('stb-mandant').value.trim();
-    if (!lage) { alert('Bitte mindestens den Mandanten eingeben.'); return; }
+async function generateDemo() {
+    const mandant = document.getElementById('stb-mandant').value.trim();
+    if (!mandant) { alert('Bitte mindestens den Mandanten eingeben.'); return; }
+
+    trackEvent('generate_clicked', BRANCHE);
 
     const btn = document.getElementById('gen-btn');
     btn.disabled = true;
@@ -189,17 +202,17 @@ async function generateDemo() {
     const resultCard = document.getElementById('result-card');
     const resultText = document.getElementById('result-text');
     resultCard.style.display = 'block';
-    resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI schreibt deinen Mandantenbrief...</div>';
+    resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Text...</div>';
 
-    const prompt = `Professioneller Mandantenbrief eines Steuerberaters auf Deutsch. 
-Anliegen: ${document.getElementById('stb-typ').value}, 
-Mandant: ${lage}, 
-Branche: ${document.getElementById('stb-branche').value || 'nicht angegeben'}, 
-Besonderes Anliegen: ${document.getElementById('stb-anliegen').value || 'nicht angegeben'}, 
-Dringlichkeit: ${document.getElementById('stb-dringlichkeit').value || 'auf Anfrage'}, 
-Zusätzliche Infos: ${document.getElementById('stb-details').value || 'keine'}, 
-Ton: ${document.getElementById('stb-ton').value}. 
-Struktur: Anrede, freundliche Einleitung, Sachverhalt erklären, nächste Schritte, professioneller Abschluss. Max. 300 Wörter. Kein Markdown.`;
+    const prompt = `Professioneller Mandantenbrief eines Steuerberaters auf Deutsch.
+Anliegen: ${document.getElementById('stb-typ').value},
+Mandant: ${document.getElementById('stb-mandant').value},
+Branche: ${document.getElementById('stb-branche').value || 'nicht angegeben'},
+Besonderes Anliegen: ${document.getElementById('stb-anliegen').value || 'nicht angegeben'},
+Dringlichkeit: ${document.getElementById('stb-dringlichkeit').value || 'auf Anfrage'},
+Zusätzliche Infos: ${document.getElementById('stb-details').value || 'keine'},
+Ton: ${document.getElementById('stb-ton').value}.
+Struktur: Anrede, freundliche Einleitung, Sachverhalt erklären, nächste Schritte, professioneller Abschluss. Max. 200 Wörter. Kein Markdown.`;
 
     try {
         const res = await fetch(`${API}/api/query`, {
@@ -210,28 +223,26 @@ Struktur: Anrede, freundliche Einleitung, Sachverhalt erklären, nächste Schrit
 
         if (!res.ok) throw new Error('Fehler');
         const data = await res.json();
-        const text = data.content[0].text;
+        generatedText = data.content[0].text;
 
-        // Show result - not copyable
-        resultText.innerHTML = `<div class="result-text" oncopy="return false" oncut="return false">${text}</div>`;
+        resultText.innerHTML = `<div class="result-text">${generatedText}</div>`;
 
+        // Show actions and email opt-in
+        document.getElementById('result-actions').style.display = 'flex';
+        document.getElementById('email-optional').style.display = 'block';
 
-        // Send email to worker
-        try {
-            await fetch(`${API}/api/demo-lead`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: demoEmail, branche: 'steuerberater', resultText: text, tool: 'Mandantenbrief Generator' })
-            });
-        } catch(e) { /* silent fail */ }
+        trackEvent('result_generated', BRANCHE);
 
-                // Mark as used
+        // Mark as used
         localStorage.setItem(DEMO_KEY, '1');
 
-        // Show popup after 3 seconds
+        // Show popup after 4 seconds
         setTimeout(() => {
             document.getElementById('popup').classList.add('show');
-        }, 3000);
+        }, 4000);
+
+        btn.disabled = false;
+        btn.textContent = '⚡ Nochmal generieren';
 
     } catch(e) {
         resultText.innerHTML = '<div style="color:#EF4444">Fehler beim Generieren. Bitte versuche es erneut.</div>';
@@ -240,10 +251,36 @@ Struktur: Anrede, freundliche Einleitung, Sachverhalt erklären, nächste Schrit
     }
 }
 
-// Prevent right-click on result
-document.addEventListener('contextmenu', (e) => {
-    if (e.target.closest('.result-text')) e.preventDefault();
-});
+function copyResult() {
+    if (!generatedText) return;
+    navigator.clipboard.writeText(generatedText).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '✓ Kopiert!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = '📋 Text kopieren';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+async function submitEmail() {
+    const email = document.getElementById('demo-email').value.trim();
+    if (!email || !email.includes('@')) { alert('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
+
+    trackEvent('email_submitted', BRANCHE, { lead_score: 75 });
+
+    try {
+        await fetch(`${API}/api/demo-lead`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, branche: BRANCHE, resultText: generatedText, tool: 'DEIN MANDANTENBRIEF' })
+        });
+        document.getElementById('email-optional').innerHTML = '<p style="color:#22C55E;font-size:14px;text-align:center;">✓ Ergebnis wurde an deine E-Mail gesendet!</p>';
+    } catch(e) {
+        alert('Fehler beim Senden. Bitte versuche es erneut.');
+    }
+}
 </script>
 
 </body>
