@@ -342,7 +342,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Kaufpreis</label><input class="form-input" id="expose-preis" placeholder="z.B. 450.000 €"></div>
             <div class="form-group"><label class="form-label">Besonderheiten</label><textarea class="form-textarea" id="expose-details" placeholder="z.B. Dachterrasse, Tiefgaragenstellplatz..."></textarea></div>
             <div class="form-group"><label class="form-label">Stil</label><select class="form-select" id="expose-stil"><option>Emotional & verkaufsstark</option><option>Sachlich & informativ</option><option>Luxury & exklusiv</option><option>Modern & minimalistisch</option></select></div>
-            <button class="generate-btn" onclick="generateExpose()">⚡ Exposé generieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateExpose()">⚡ Exposé generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-expose" onclick="copyResult('expose-result','copy-expose')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('expose-result')">PDF ↓</button><button class="edit-btn" id="edit-expose-result" onclick="toggleEdit('expose-result','edit-expose-result')">✏ Bearbeiten</button></div></div><div id="expose-result"><div class="result-placeholder"><div class="placeholder-icon">🏠</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
         </div>
@@ -357,7 +365,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Kundenname</label><input class="form-input" id="email-name" placeholder="z.B. Herr Müller"></div>
             <div class="form-group"><label class="form-label">Objekt / Kontext</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. 3-Zimmer-Wohnung München..."></textarea></div>
             <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="email-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
-            <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')">✏ Bearbeiten</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
         </div>
@@ -372,7 +388,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Content-Typ</label><select class="form-select" id="social-typ"><option>Objektvorstellung</option><option>Markt-Tipp</option><option>Persönliche Geschichte</option><option>Kundenstimme</option><option>Behind the Scenes</option><option>Bildungs-Content</option></select></div>
             <div class="form-group"><label class="form-label">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Heute haben wir eine traumhafte Penthouse-Wohnung verkauft..."></textarea></div>
             <div class="form-group"><label class="form-label">Dein Name / Büro</label><input class="form-input" id="social-name" placeholder="z.B. Jan Wichmann Immobilien"></div>
-            <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
         </div>
@@ -388,7 +412,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Dein Name</label><input class="form-input" id="akquise-name" placeholder="z.B. Max Mustermann"></div>
             <div class="form-group"><label class="form-label">Dein Büro</label><input class="form-input" id="akquise-buero" placeholder="z.B. Zyntevo Immobilien"></div>
             <div class="form-group"><label class="form-label">Dein USP</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung..."></textarea></div>
-            <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
         </div>
@@ -404,7 +436,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Marktlage</label><select class="form-select" id="markt-lage"><option>Steigende Preise</option><option>Stabile Preise</option><option>Leicht sinkende Preise</option><option>Käufermarkt</option><option>Verkäufermarkt</option></select></div>
             <div class="form-group"><label class="form-label">Aktuelle Zahlen</label><textarea class="form-textarea" id="markt-daten" placeholder="z.B. Durchschnittspreis 7.500€/m²..."></textarea></div>
             <div class="form-group"><label class="form-label">Deine Einschätzung</label><textarea class="form-textarea" id="markt-einschaetzung" placeholder="z.B. Ich erwarte in den nächsten Monaten..."></textarea></div>
-            <button class="generate-btn" onclick="generateMarkt()">⚡ Marktbericht generieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateMarkt()">⚡ Marktbericht generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('markt-result')">PDF ↓</button><button class="edit-btn" id="edit-markt-result" onclick="toggleEdit('markt-result','edit-markt-result')">✏ Bearbeiten</button></div></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">📊</div><div>Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
         </div>
@@ -420,7 +460,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Budget</label><input class="form-input" id="kaeufer-budget" placeholder="z.B. 400.000 – 450.000 €"></div>
             <div class="form-group"><label class="form-label">Gewünschter Einzugstermin</label><select class="form-select" id="kaeufer-termin"><option>So schnell wie möglich</option><option>Innerhalb 3 Monate</option><option>In 3–6 Monaten</option><option>In 6–12 Monaten</option><option>Irgendwann</option></select></div>
             <div class="form-group"><label class="form-label">Weitere Infos</label><textarea class="form-textarea" id="kaeufer-info" placeholder="z.B. Ehepaar, 2 Kinder..."></textarea></div>
-            <button class="generate-btn" onclick="generateKaeufer()">⚡ Käufer analysieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateKaeufer()">⚡ Käufer analysieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kaeufer" onclick="copyResult('kaeufer-result','copy-kaeufer')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kaeufer-result')">PDF ↓</button><button class="edit-btn" id="edit-kaeufer-result" onclick="toggleEdit('kaeufer-result','edit-kaeufer-result')">✏ Bearbeiten</button></div></div><div id="kaeufer-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Käufer</div></div></div></div>
         </div>
@@ -434,7 +482,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Typ der Verhandlung</label><select class="form-select" id="vh-typ"><option>Käufer verhandelt Preis runter</option><option>Verkäufer will zu hohen Preis</option><option>Maklerauftrag gewinnen</option><option>Bieterverfahren moderieren</option><option>Deal vor dem Platzen retten</option></select></div>
             <div class="form-group"><label class="form-label">Situation</label><textarea class="form-textarea" id="vh-situation" placeholder="z.B. Käufer bietet 380.000€..."></textarea></div>
             <div class="form-group"><label class="form-label">Meine Position</label><textarea class="form-textarea" id="vh-position" placeholder="z.B. Ich vertrete den Verkäufer..."></textarea></div>
-            <button class="generate-btn" onclick="generateVerhandlung()">⚡ Strategie generieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateVerhandlung()">⚡ Strategie generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('verhandlung-result')">PDF ↓</button><button class="edit-btn" id="edit-verhandlung-result" onclick="toggleEdit('verhandlung-result','edit-verhandlung-result')">✏ Bearbeiten</button></div></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
         </div>
@@ -449,7 +505,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Thema</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. 3 Fehler die Immobilienkäufer machen..."></textarea></div>
             <div class="form-group"><label class="form-label">Videolänge</label><select class="form-select" id="tt-laenge"><option>30 Sekunden</option><option>45 Sekunden</option><option>60 Sekunden</option></select></div>
             <div class="form-group"><label class="form-label">Dein Name / Büro</label><input class="form-input" id="tt-name" placeholder="z.B. Jan – Immobilienmakler München"></div>
-            <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')">✏ Bearbeiten</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
         </div>
@@ -463,7 +527,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Dein Prompt / Aufgabe</label><p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage..."></textarea></div>
             <div class="form-group"><label class="form-label">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Mein Betrieb heißt..."></textarea></div>
             <div class="form-group"><label class="form-label">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Kurz & prägnant</option><option>Ausführlich & detailliert</option></select></div>
-            <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
+                    <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+          </select>
+        </div>
+        <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
         </div>
@@ -664,11 +736,11 @@ async function run(id, prompt) {
 // === GENERATORS ===
 async function generateExpose() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('expose-result', `Professionelles Immobilienexposé auf Deutsch. Typ: ${document.getElementById('expose-typ').value}, Lage: ${document.getElementById('expose-lage').value||''}, Fläche: ${document.getElementById('expose-flaeche').value||''}, Zimmer: ${document.getElementById('expose-zimmer').value||''}, Preis: ${document.getElementById('expose-preis').value||'auf Anfrage'}, Besonderheiten: ${document.getElementById('expose-details').value||''}, Stil: ${document.getElementById('expose-stil').value}, Makler: ${p.name||''} von ${p.buero||''}. Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Max. 350 Wörter.`);
+  run('expose-result', `Professionelles Immobilienexposé auf Deutsch. Typ: ${document.getElementById('expose-typ').value}, Lage: ${document.getElementById('expose-lage').value||''}, Fläche: ${document.getElementById('expose-flaeche').value||''}, Zimmer: ${document.getElementById('expose-zimmer').value||''}, Preis: ${document.getElementById('expose-preis').value||'auf Anfrage'}, Besonderheiten: ${document.getElementById('expose-details').value||''}, Stil: ${document.getElementById('expose-stil').value}, Makler: ${p.name||''} von ${p.buero||''}. Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateEmail() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('email-result', `Professionelle Makler-E-Mail auf Deutsch. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Absender: ${p.name||''} von ${p.buero||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Max. 150 Wörter.`);
+  run('email-result', `Professionelle Makler-E-Mail auf Deutsch. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Absender: ${p.name||''} von ${p.buero||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateSocial() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
@@ -676,10 +748,10 @@ async function generateSocial() {
 }
 async function generateAkquise() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('akquise-result', `Akquise-Brief an Eigentümer auf Deutsch. Lage: ${document.getElementById('akquise-lage').value||p.region||''}, Anlass: ${document.getElementById('akquise-anlass').value}, Makler: ${document.getElementById('akquise-name').value||p.name||''} von ${document.getElementById('akquise-buero').value||p.buero||''}, USP: ${document.getElementById('akquise-usp').value||''}. Max. 200 Wörter.`);
+  run('akquise-result', `Akquise-Brief an Eigentümer auf Deutsch. Lage: ${document.getElementById('akquise-lage').value||p.region||''}, Anlass: ${document.getElementById('akquise-anlass').value}, Makler: ${document.getElementById('akquise-name').value||p.name||''} von ${document.getElementById('akquise-buero').value||p.buero||''}, USP: ${document.getElementById('akquise-usp').value||''}. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateMarkt() {
-  run('markt-result', `Immobilien-Marktbericht auf Deutsch. Region: ${document.getElementById('markt-region').value||''}, Zeitraum: ${document.getElementById('markt-monat').value||''}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Max. 400 Wörter.`);
+  run('markt-result', `Immobilien-Marktbericht auf Deutsch. Region: ${document.getElementById('markt-region').value||''}, Zeitraum: ${document.getElementById('markt-monat').value||''}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateKaeufer() {
   run('kaeufer-result', `Analysiere Kaufinteressenten auf Deutsch. Sucht seit: ${document.getElementById('kaeufer-seit').value}, Finanzierung: ${document.getElementById('kaeufer-finanz').value}, Budget: ${document.getElementById('kaeufer-budget').value||''}, Einzug: ${document.getElementById('kaeufer-termin').value}, Infos: ${document.getElementById('kaeufer-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Hindernisse, 4) Empfehlung, 5) Nächster Schritt.`);
