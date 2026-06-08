@@ -772,8 +772,17 @@ body{
     }
     .systems-grid,
     .system-card{
-        margin-left:10px;
-        margin-right:10px;
+        margin-left:0;
+        margin-right:0;
+        margin-bottom:20px;
+    }
+    .systeme-grid,
+    .systeme-grid-single {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     .benefits-grid{
         display:grid;
