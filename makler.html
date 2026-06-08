@@ -43,6 +43,21 @@
 .video-list li{padding:10px 0;font-size:15px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,.05);}
 .video-list li:last-child{border-bottom:none;}
 @media(max-width:900px){.video-wrapper{grid-template-columns:1fr;justify-items:center;}.video-cta{text-align:center;}}
+
+.beispiel-section{padding:80px 0;background:var(--bg);}
+.beispiel-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:1100px;margin:0 auto;}
+.beispiel-input{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:20px;padding:30px;}
+.beispiel-output{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.3);border-radius:20px;padding:30px;position:relative;}
+.beispiel-label{font-size:11px;font-weight:700;letter-spacing:2px;color:#94A3B8;margin-bottom:16px;text-transform:uppercase;}
+.beispiel-label-gold{font-size:11px;font-weight:700;letter-spacing:2px;color:#D4AF37;margin-bottom:16px;text-transform:uppercase;}
+.beispiel-field{margin-bottom:12px;}
+.beispiel-field span{display:block;font-size:11px;color:#64748B;margin-bottom:3px;text-transform:uppercase;letter-spacing:1px;}
+.beispiel-field p{font-size:14px;color:#F8FAFC;background:rgba(255,255,255,.04);padding:8px 12px;border-radius:8px;}
+.beispiel-text{font-size:14px;line-height:1.9;color:#F8FAFC;white-space:pre-line;}
+.beispiel-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:#22C55E;font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;margin-bottom:16px;}
+.beispiel-timer{display:inline-flex;align-items:center;gap:6px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);color:#D4AF37;font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;margin-bottom:16px;margin-left:8px;}
+@media(max-width:900px){.beispiel-wrapper{grid-template-columns:1fr;gap:24px;}}
+
 </style>
 </head>
 <body>
@@ -117,6 +132,46 @@
                         <div style="font-size:12px;color:#94A3B8;margin-top:2px;">Nicht zufrieden? Mail an jan@zyntevo.de – wir erstatten ohne Fragen.</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="beispiel-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">BEISPIEL</span>
+            <h2>Eingabe → <span style="color:#D4AF37">Fertiges Exposé</span></h2>
+            <p>So einfach funktioniert ZYNTEVO. Daten eingeben, klicken, fertig.</p>
+        </div>
+        <div class="beispiel-wrapper">
+            <div class="beispiel-input">
+                <div class="beispiel-label">Ihre Eingabe</div>
+                <div class="beispiel-field"><span>Objekttyp</span><p>Eigentumswohnung</p></div>
+                <div class="beispiel-field"><span>Lage</span><p>München-Schwabing</p></div>
+                <div class="beispiel-field"><span>Wohnfläche</span><p>78 m²</p></div>
+                <div class="beispiel-field"><span>Zimmer</span><p>3 Zimmer</p></div>
+                <div class="beispiel-field"><span>Kaufpreis</span><p>650.000 €</p></div>
+                <div class="beispiel-field"><span>Besonderheiten</span><p>Südbalkon, Tiefgarage, Erstbezug nach Sanierung</p></div>
+                <div class="beispiel-field"><span>Stil</span><p>Emotional & verkaufsstark</p></div>
+            </div>
+            <div class="beispiel-output">
+                <div>
+                    <span class="beispiel-badge">✓ Generiert</span>
+                    <span class="beispiel-timer">⚡ 28 Sekunden</span>
+                </div>
+                <div class="beispiel-label-gold">Ihr fertiges Exposé</div>
+                <div class="beispiel-text">Wohnen wo München am schönsten ist
+
+Diese lichtdurchflutete 3-Zimmer-Wohnung in München-Schwabing vereint modernes Wohngefühl mit urbaner Lebensqualität auf höchstem Niveau.
+
+Nach vollständiger Sanierung präsentiert sich die 78 m² große Eigentumswohnung im Erstbezug – bereit für einen Neustart ohne Kompromisse. Der großzügige Südbalkon lädt zum Entspannen ein, während die inkludierte Tiefgaragenstellplatz den Alltag erleichtert.
+
+Schwabing bietet alles was das Leben lebenswert macht: Restaurants, Cafés, der Englische Garten in fußläufiger Nähe – und eine Gemeinschaft, die dieses besondere Viertel seit Jahrzehnten prägt.
+
+Kaufpreis: 650.000 € | Sofort bezugsfertig
+
+Vereinbaren Sie jetzt Ihren persönlichen Besichtigungstermin.</div>
             </div>
         </div>
     </div>
