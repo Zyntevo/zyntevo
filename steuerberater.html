@@ -58,10 +58,41 @@
 .beispiel-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:#22C55E;font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;margin-bottom:16px;}
 .beispiel-timer{display:inline-flex;align-items:center;gap:6px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);color:#D4AF37;font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;margin-bottom:16px;margin-left:8px;}
 @media(max-width:900px){.beispiel-wrapper{grid-template-columns:1fr;gap:24px;}}
+.sticky-cta{position:fixed;top:0;left:0;right:0;z-index:9000;background:rgba(7,11,17,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,175,55,.25);padding:10px 20px;transform:translateY(-100%);transition:transform .35s ease;pointer-events:none;}
+.sticky-cta.visible{transform:translateY(0);pointer-events:all;}
+.sticky-cta-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;}
+.sticky-cta-text{font-size:14px;font-weight:600;color:#F8FAFC;}
+.sticky-cta-text span{color:#D4AF37;font-weight:800;}
+.sticky-cta-btn{background:#D4AF37;color:#000;font-weight:800;font-size:13px;padding:9px 22px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:.2s;}
+.sticky-cta-btn:hover{opacity:.9;}
+.hero-price-tag{font-size:28px;font-weight:900;color:#D4AF37;margin-top:10px;text-align:center;}
+.hero-price-sub{font-size:12px;color:#94A3B8;text-align:center;margin-top:3px;}
+.urgency-line{font-size:12px;color:#f59e0b;text-align:center;margin-top:8px;font-weight:600;}
+.roi-section{padding:70px 0;background:var(--bg);}
+.roi-box{max-width:700px;margin:0 auto;background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:24px;padding:40px;}
+.roi-input-row{display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
+.roi-input-row label{font-size:14px;font-weight:600;color:#F8FAFC;flex:1;min-width:200px;}
+.roi-slider{flex:1;min-width:180px;accent-color:#D4AF37;height:6px;cursor:pointer;}
+.roi-slider-val{font-size:18px;font-weight:900;color:#D4AF37;min-width:40px;text-align:right;}
+.roi-result{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:24px;text-align:center;}
+.roi-result-main{font-size:32px;font-weight:900;color:#D4AF37;margin-bottom:4px;}
+.roi-result-sub{font-size:14px;color:#94A3B8;}
+.roi-result-value{font-size:18px;font-weight:800;color:#22C55E;margin-top:12px;}
+.urgency-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);color:#f59e0b;font-size:12px;font-weight:700;padding:7px 14px;border-radius:999px;margin-top:12px;}
+.social-placeholder{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;margin-bottom:16px;}
+.social-placeholder-stars{color:#f59e0b;font-size:16px;letter-spacing:2px;}
+.social-placeholder-text{font-size:13px;color:#94A3B8;}
 
 </style>
 </head>
 <body>
+
+<div class="sticky-cta" id="stickyCta">
+    <div class="sticky-cta-inner">
+        <span class="sticky-cta-text"><span>297€ einmalig</span> · Kein Abo · 14 Tage Garantie</span>
+        <a href="https://www.checkout-ds24.com/product/698384" target="_blank" class="sticky-cta-btn">Jetzt kaufen →</a>
+    </div>
+</div>
 
 <header class="header">
     <div class="container">
@@ -99,6 +130,8 @@
                 <li>✓ Sofort einsetzbar</li>
             </ul>
             <a href="https://www.checkout-ds24.com/product/698384" target="_blank" class="btn btn-primary">Premium sichern</a>
+            <div class="hero-price-tag">297€ einmalig</div>
+            <div class="hero-price-sub">Kein Abo · Sofort einsatzbereit</div>
         </div>
     </div>
 </section>
@@ -266,6 +299,28 @@ Mit freundlichen Grüßen
     </div>
 </section>
 
+<section class="roi-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">ROI-RECHNER</span>
+            <h2>Wie viel Zeit sparst du mit ZYNTEVO?</h2>
+            <p>Berechne deine persönliche Zeitersparnis pro Monat.</p>
+        </div>
+        <div class="roi-box">
+            <div class="roi-input-row">
+                <label>Mandantenbriefe & Texte pro Woche</label>
+                <input type="range" class="roi-slider" id="roiSlider" min="1" max="30" value="8" oninput="calcRoi()">
+                <span class="roi-slider-val" id="roiVal">8</span>
+            </div>
+            <div class="roi-result">
+                <div class="roi-result-main" id="roiHours">0 Stunden</div>
+                <div class="roi-result-sub">gespart pro Monat (bei Ø 45 Min. pro Text manuell vs. 1 Min. mit ZYNTEVO)</div>
+                <div class="roi-result-value" id="roiMoney"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="preise" class="section">
     <div class="container">
         <div class="section-header">
@@ -338,6 +393,10 @@ Mit freundlichen Grüßen
 <section style="padding:40px 0;text-align:center;background:#070B11;border-top:1px solid rgba(255,255,255,.05);">
     <div class="container">
         <p style="font-size:12px;font-weight:700;letter-spacing:2px;color:#94A3B8;margin-bottom:16px;">KUNDENBEWERTUNGEN</p>
+        <div class="social-placeholder">
+            <span class="social-placeholder-stars">⭐⭐⭐⭐⭐</span>
+            <span class="social-placeholder-text">Erste Bewertungen werden geladen... · <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank" style="color:#D4AF37;text-decoration:none;">Jetzt bewerten</a></span>
+        </div>
         <div class="trustpilot-widget" data-locale="de-DE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a1f169c3d4303165a630ce8" data-style-height="52px" data-style-width="100%" data-token="2dc6f057-8799-4c2b-9dcc-3c7a4950d1cc">
             <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank" rel="noopener">Trustpilot</a>
         </div>
@@ -391,6 +450,31 @@ function submitWiderruf() {
     window.location.href = "mailto:jan@zyntevo.de?subject=" + subject + "&body=" + body;
     document.getElementById("widerruf-modal").classList.remove("active");
 }
+(function() {
+    var d = new Date();
+    d.setDate(d.getDate() + 14);
+    var str = d.getDate().toString().padStart(2,'0') + '.' + (d.getMonth()+1).toString().padStart(2,'0') + '.' + d.getFullYear();
+    document.querySelectorAll('.urgencyDate, #urgencyDateHero').forEach(function(el){ el.textContent = str; });
+})();
+(function() {
+    var hero = document.querySelector('.hero');
+    var bar = document.getElementById('stickyCta');
+    if (!hero || !bar) return;
+    var obs = new IntersectionObserver(function(entries) {
+        bar.classList.toggle('visible', !entries[0].isIntersecting);
+    }, { threshold: 0 });
+    obs.observe(hero);
+})();
+function calcRoi() {
+    var n = parseInt(document.getElementById('roiSlider').value);
+    document.getElementById('roiVal').textContent = n;
+    var savedMin = n * (45 - 1) * 4;
+    var savedH = Math.round(savedMin / 60 * 10) / 10;
+    var money = Math.round(savedH * 90);
+    document.getElementById('roiHours').textContent = savedH + ' Stunden';
+    document.getElementById('roiMoney').textContent = '= ' + money.toLocaleString('de-DE') + '€ Zeitwert pro Monat (bei 90€/h)';
+}
+calcRoi();
 </script>
 </body>
 </html>
