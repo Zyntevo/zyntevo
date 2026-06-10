@@ -38,20 +38,45 @@
         .loading { display: flex; align-items: center; gap: 12px; color: #94A3B8; font-size: 14px; padding: 20px 0; }
         .spinner { width: 20px; height: 20px; border: 2px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
+
         .popup-overlay { display: none; position: fixed; top: 80px; left: 0; right: 0; z-index: 9999; padding: 0 16px; }
         .popup-overlay.show { display: block; }
-        .popup-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 20px; padding: 16px 24px; max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 8px 40px rgba(212,175,55,.25); flex-wrap: wrap; }
-        .popup-left { flex: 1; min-width: 200px; }
-        .popup-title { font-size: 17px; font-weight: 900; color: #F8FAFC; }
+        .popup-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 20px; padding: 24px; max-width: 700px; margin: 0 auto; box-shadow: 0 8px 40px rgba(212,175,55,.25); }
+        .popup-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+        .popup-title { font-size: 20px; font-weight: 900; color: #F8FAFC; }
         .popup-title span { color: #D4AF37; }
-        .popup-desc { color: #94A3B8; font-size: 12px; margin-top: 4px; line-height: 1.5; }
-        .popup-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-        .popup-price { font-size: 26px; font-weight: 900; color: #D4AF37; }
-        .popup-btn { display: inline-block; padding: 10px 20px; background: #D4AF37; color: #000; font-weight: 700; font-size: 14px; border-radius: 12px; text-decoration: none; transition: .3s; white-space: nowrap; }
-        .popup-btn:hover { transform: translateY(-2px); }
+        .popup-subtitle { font-size: 13px; color: #94A3B8; margin-top: 4px; }
         .popup-close { font-size: 20px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter, sans-serif; }
-        .popup-close:hover { color: #F8FAFC; }
-        .guarantee-note { display: none; }
+        .popup-generatoren { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+        .popup-gen-item { background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2); color: #D4AF37; font-size: 11px; padding: 4px 10px; border-radius: 999px; }
+        .popup-countdown { text-align: center; margin-bottom: 16px; }
+        .popup-countdown-label { font-size: 12px; color: #94A3B8; margin-bottom: 4px; }
+        .popup-countdown-timer { font-size: 28px; font-weight: 900; color: #D4AF37; font-variant-numeric: tabular-nums; }
+        .popup-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .popup-plan { border: 1px solid rgba(212,175,55,.2); border-radius: 14px; padding: 16px; text-align: center; }
+        .popup-plan.featured { border-color: #D4AF37; background: rgba(212,175,55,.05); }
+        .popup-plan-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #94A3B8; margin-bottom: 6px; }
+        .popup-plan.featured .popup-plan-label { color: #D4AF37; }
+        .popup-plan-price { font-size: 28px; font-weight: 900; color: #F8FAFC; margin-bottom: 4px; }
+        .popup-plan-desc { font-size: 11px; color: #94A3B8; margin-bottom: 12px; }
+        .popup-plan-btn { display: block; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 13px; text-decoration: none; transition: .3s; }
+        .popup-plan-btn.starter { background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.3); color: #D4AF37; }
+        .popup-plan-btn.premium { background: #D4AF37; color: #000; }
+        .popup-plan-btn:hover { transform: translateY(-2px); opacity: .9; }
+        .popup-guarantee { display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25); border-radius: 10px; padding: 10px; }
+        .exit-overlay { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,.7); align-items: center; justify-content: center; }
+        .exit-overlay.show { display: flex; }
+        .exit-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 20px; padding: 32px; max-width: 480px; width: 90%; text-align: center; }
+        .exit-title { font-size: 22px; font-weight: 900; color: #F8FAFC; margin-bottom: 8px; }
+        .exit-title span { color: #D4AF37; }
+        .exit-desc { color: #94A3B8; font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
+        .exit-price { font-size: 36px; font-weight: 900; color: #D4AF37; margin-bottom: 4px; }
+        .exit-price-orig { font-size: 14px; color: #94A3B8; text-decoration: line-through; margin-bottom: 20px; }
+        .exit-btn { display: block; padding: 14px; background: #D4AF37; color: #000; font-weight: 700; font-size: 15px; border-radius: 12px; text-decoration: none; margin-bottom: 12px; transition: .3s; }
+        .exit-btn:hover { opacity: .9; }
+        .exit-skip { font-size: 12px; color: #64748B; cursor: pointer; text-decoration: underline; }
+        @media(max-width:600px) { .popup-plans { grid-template-columns: 1fr; } }
+
         .guarantee-banner { display: flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(135deg, rgba(34,197,94,.12), rgba(34,197,94,.06)); border: 1.5px solid rgba(34,197,94,.4); border-radius: 14px; padding: 16px 24px; margin: 20px 0 0; }
         .guarantee-banner-icon { font-size: 28px; flex-shrink: 0; }
         .guarantee-banner-text { text-align: left; }
@@ -144,20 +169,49 @@
 <!-- POPUP BANNER -->
 <div class="popup-overlay" id="popup">
     <div class="popup-box">
-        <div class="popup-left">
-            <div class="popup-title">🎉 Gefällt dir das <span>Ergebnis?</span></div>
-            <div class="popup-desc">Das war 1 von 8 Generatoren. Premium gibt dir alle: Angebote, E-Mails, Bewertungsantworten und mehr.</div>
+        <div class="popup-header">
+            <div>
+                <div class="popup-title">🎉 Gefällt dir das <span>Ergebnis?</span></div>
+                <div class="popup-subtitle">Das war nur 1 von 8 Generatoren – hol dir alle:</div>
+            </div>
+            <button class="popup-close" onclick="closePopup()">✕</button>
         </div>
-        <div class="popup-right">
-            <div class="popup-price">297€</div>
-            <a href="https://zyntevo.github.io/zyntevo/handwerker.html" target="_blank" class="popup-btn" onclick="trackEvent('product_page_clicked', 'handwerker')">⚡ Premium sichern</a>
-            <button class="popup-close" onclick="document.getElementById('popup').classList.remove('show')">✕</button>
+        <div class="popup-generatoren"><span class="popup-gen-item">✓ Angebots-Generator</span><span class="popup-gen-item">✓ Auftragsbestätigung</span><span class="popup-gen-item">✓ Kunden-E-Mail</span><span class="popup-gen-item">✓ Bewertungsantwort</span><span class="popup-gen-item">✓ Reklamations-Antwort</span><span class="popup-gen-item">✓ Erinnerungsschreiben</span><span class="popup-gen-item">✓ Projektabschluss-Mail</span><span class="popup-gen-item">✓ Akquise-Brief</span></div>
+        <div class="popup-countdown">
+            <div class="popup-countdown-label">⏰ Sonderangebot endet in:</div>
+            <div class="popup-countdown-timer" id="countdown">15:00</div>
+        </div>
+        <div class="popup-plans">
+            <div class="popup-plan">
+                <div class="popup-plan-label">STARTER</div>
+                <div class="popup-plan-price">97€</div>
+                <div class="popup-plan-desc">5 Generatoren · Einmalzahlung</div>
+                <a href="https://www.digistore24.com/product/696887" target="_blank" class="popup-plan-btn starter" onclick="trackEvent('starter_clicked', 'handwerker')">Starter holen →</a>
+            </div>
+            <div class="popup-plan featured">
+                <div class="popup-plan-label">★ EMPFOHLEN</div>
+                <div class="popup-plan-price">297€</div>
+                <div class="popup-plan-desc">Alle 8 Generatoren · 5+ Stunden Schreibarbeit pro Woche gespart</div>
+                <a href="https://www.digistore24.com/product/696900" target="_blank" class="popup-plan-btn premium" onclick="trackEvent('premium_clicked', 'handwerker')">⚡ Premium sichern</a>
+            </div>
+        </div>
+        <div class="popup-guarantee">
+            <span>🛡️</span>
+            <span style="font-size:13px;font-weight:700;color:#22C55E;">14 Tage Geld-zurück-Garantie</span>
+            <span style="font-size:12px;color:#94A3B8;">· Nicht zufrieden? Wir erstatten ohne Fragen.</span>
         </div>
     </div>
-    <div style="text-align:center;margin-top:10px;padding:10px 24px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:0 0 20px 20px;display:flex;align-items:center;justify-content:center;gap:8px;">
-        <span style="font-size:16px;">🛡️</span>
-        <span style="font-size:13px;font-weight:700;color:#22C55E;">14 Tage Geld-zurück-Garantie</span>
-        <span style="font-size:12px;color:#94A3B8;">· Nicht zufrieden? Wir erstatten ohne Fragen.</span>
+</div>
+
+<!-- EXIT INTENT -->
+<div class="exit-overlay" id="exit-popup">
+    <div class="exit-box">
+        <div class="exit-title">Warte – hol dir den <span>Starter</span></div>
+        <div class="exit-desc">Du hast gesehen wie schnell ZYNTEVO professionelle Texte erstellt. Starte jetzt mit 5 Generatoren für einmalig:</div>
+        <div class="exit-price">97€</div>
+        <div class="exit-price-orig">Normalpreis 97€ · keine Abo-Falle</div>
+        <a href="https://www.digistore24.com/product/696887" target="_blank" class="exit-btn" onclick="trackEvent('exit_starter_clicked', 'handwerker')">Jetzt Starter holen →</a>
+        <div class="exit-skip" onclick="document.getElementById('exit-popup').classList.remove('show')">Nein danke, ich verzichte auf 5h/Woche</div>
     </div>
 </div>
 
@@ -241,6 +295,7 @@ Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinw
         // Show popup after 4 seconds
         setTimeout(() => {
             document.getElementById('popup').classList.add('show');
+    startCountdown();
         }, 4000);
 
         btn.disabled = false;
