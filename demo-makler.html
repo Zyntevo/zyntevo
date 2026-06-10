@@ -184,7 +184,7 @@
             </div>
             <button class="popup-close" onclick="closePopup()">✕</button>
         </div>
-        <div class="popup-generatoren"><span class="popup-gen-item">✓ Exposé-Generator</span><span class="popup-gen-item">✓ Akquise-Brief</span><span class="popup-gen-item">✓ Eigentümer-Anschreiben</span><span class="popup-gen-item">✓ Käufer-E-Mail</span><span class="popup-gen-item">✓ Bewertungsantwort</span><span class="popup-gen-item">✓ Objektbeschreibung</span><span class="popup-gen-item">✓ Vermietungs-Exposé</span><span class="popup-gen-item">✓ Follow-up-Mail</span></div>
+        <div class="popup-generatoren"><span class="popup-gen-item">✓ Exposé-Generator</span><span class="popup-gen-item">✓ Akquise-Brief</span><span class="popup-gen-item">✓ Eigentümer-Anschreiben</span><span class="popup-gen-item">✓ Käufer-E-Mail</span><span class="popup-gen-item">✓ Bewertungsantwort</span><span style="background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.35);color:#D4AF37;font-size:11px;padding:4px 10px;border-radius:999px;">★ Objektbeschreibung</span><span style="background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.35);color:#D4AF37;font-size:11px;padding:4px 10px;border-radius:999px;">★ Vermietungs-Exposé</span><span style="background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.35);color:#D4AF37;font-size:11px;padding:4px 10px;border-radius:999px;">★ Follow-up-Mail</span><div style="font-size:10px;color:#94A3B8;margin-top:6px;width:100%;">✓ im Starter · ★ nur im Premium</div></div>
         <div class="popup-countdown">
             <div class="popup-countdown-label">⏰ Sonderangebot endet in:</div>
             <div class="popup-countdown-timer" id="countdown">15:00</div>
@@ -194,13 +194,13 @@
                 <div class="popup-plan-label">STARTER</div>
                 <div class="popup-plan-price">97€</div>
                 <div class="popup-plan-desc">5 Generatoren · Einmalzahlung</div>
-                <a href="https://www.digistore24.com/product/696579" target="_blank" class="popup-plan-btn starter" onclick="trackEvent('starter_clicked', 'makler')">Starter holen →</a>
+                <a href="https://zyntevo.de/makler.html" target="_blank" class="popup-plan-btn starter" onclick="trackEvent('starter_clicked', 'makler')">Starter holen →</a>
             </div>
             <div class="popup-plan featured">
                 <div class="popup-plan-label">★ EMPFOHLEN</div>
                 <div class="popup-plan-price">297€</div>
                 <div class="popup-plan-desc">Alle 8 Generatoren · 5+ Stunden Schreibarbeit pro Woche gespart</div>
-                <a href="https://www.digistore24.com/product/696893" target="_blank" class="popup-plan-btn premium" onclick="trackEvent('premium_clicked', 'makler')">⚡ Premium sichern</a>
+                <a href="https://zyntevo.de/makler.html" target="_blank" class="popup-plan-btn premium" onclick="trackEvent('premium_clicked', 'makler')">⚡ Premium sichern</a>
             </div>
         </div>
         <div class="popup-guarantee">
@@ -218,7 +218,7 @@
         <div class="exit-desc">Du hast gesehen wie schnell ZYNTEVO professionelle Texte erstellt. Starte jetzt mit 5 Generatoren für einmalig:</div>
         <div class="exit-price">97€</div>
         <div class="exit-price-orig">Normalpreis 97€ · keine Abo-Falle</div>
-        <a href="https://www.digistore24.com/product/696579" target="_blank" class="exit-btn" onclick="trackEvent('exit_starter_clicked', 'makler')">Jetzt Starter holen →</a>
+        <a href="https://zyntevo.de/makler.html" target="_blank" class="exit-btn" onclick="trackEvent('exit_starter_clicked', 'makler')">Jetzt Starter holen →</a>
         <div class="exit-skip" onclick="document.getElementById('exit-popup').classList.remove('show')">Nein danke, ich verzichte auf 5h/Woche</div>
     </div>
 </div>
@@ -228,6 +228,8 @@ const API = "https://zyntevo-tool.jan-6a7.workers.dev";
 const DEMO_KEY = "zyntevo_demo_makler_used";
 const BRANCHE = "makler";
 let generatedText = '';
+
+function closePopup() { document.getElementById('popup').classList.remove('show'); }
 
 // GA4 Tracking Helper
 function trackEvent(eventName, branche, extra) {
