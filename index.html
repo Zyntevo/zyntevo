@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -155,12 +155,12 @@
 
     /* ─── Stats section ─── */
     .section-dark {
-      background: linear-gradient(135deg, rgba(15,23,42,.88) 0%, rgba(26,38,64,.9) 100%);
-      backdrop-filter: blur(20px);
+      background: linear-gradient(135deg, rgba(225,220,248,1) 0%, rgba(215,210,245,1) 100%);
+      color: #1E293B;
     }
     .stat-item {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.75);
       border-radius: var(--radius-lg);
     }
 
@@ -199,14 +199,13 @@
     /* ─── CTA Band ─── */
     .cta-band {
       background:
-        radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,.12) 0%, transparent 65%),
-        linear-gradient(135deg, rgba(15,23,42,.95) 0%, rgba(20,30,56,.95) 50%, rgba(15,23,42,.95) 100%);
-      backdrop-filter: blur(20px);
+        radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,.10) 0%, transparent 65%),
+        linear-gradient(135deg, rgba(235,232,252,1) 0%, rgba(222,218,250,1) 50%, rgba(235,232,252,1) 100%);
     }
     .cta-band::after {
       content: '';
       position: absolute; inset: 0; pointer-events: none;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
     }
 
     /* ─── Trustpilot / Footer ─── */
