@@ -1,378 +1,744 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZYNTEVO | Das KI-Betriebssystem für Unternehmer</title>
-    <meta name="description" content="KI-Betriebssystem für Immobilienmakler, Handwerksbetriebe und Steuerberater. Spare 5+ Stunden pro Woche mit fertigen KI-Tools, Vorlagen und Workflows.">
-    <link rel="stylesheet" href="css/style.css">
-<!-- TrustBox script -->
-<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-<!-- End TrustBox script -->
-<link rel="stylesheet" href="glass-overrides.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZYNTEVO | Das KI-Betriebssystem für Unternehmer</title>
+  <meta name="description" content="KI-Betriebssystem für Immobilienmakler, Handwerksbetriebe und Steuerberater. Spare 5+ Stunden pro Woche mit fertigen KI-Tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-neu.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GPT0KRVEM2');</script>
+  <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+
+  <!-- ── GLASS OVERRIDES (index only) ── -->
+  <style>
+    /* ─── Global Mesh Background ─── */
+    body {
+      background: #F0EEF8;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 45% at 10% 15%, rgba(201,168,76,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 88% 10%, rgba(99,102,241,.14) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 70% 85%, rgba(201,168,76,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 50% at 20% 80%, rgba(139,92,246,.10) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,.5) 0%, transparent 70%),
+        linear-gradient(145deg, #EAE8F5 0%, #F2EFF5 40%, #EDF0F8 70%, #EAE8F0 100%);
+    }
+    /* All sections sit above the mesh */
+    nav, section, div.proof-strip, footer, .trustpilot-section, .widerruf-bar, .widerruf-modal, .cta-band {
+      position: relative; z-index: 1;
+    }
+
+    /* ─── Nav – stronger glass ─── */
+    .nav {
+      background: rgba(240,238,248,.55);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,.6);
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,.75);
+      box-shadow: 0 4px 24px rgba(99,102,241,.08), 0 1px 0 rgba(255,255,255,.8);
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      background: transparent;
+      min-height: 100vh;
+    }
+    .hero::before { display: none; }
+
+    /* Hero mockup – deeper glass */
+    .hero-mockup {
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
+      border: 1px solid rgba(255,255,255,.85);
+      box-shadow:
+        0 32px 80px rgba(99,102,241,.12),
+        0 8px 24px rgba(201,168,76,.15),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    }
+    .mockup-field {
+      background: rgba(255,255,255,.6);
+      border: 1px solid rgba(255,255,255,.8);
+      backdrop-filter: blur(8px);
+    }
+    .mockup-output {
+      background: rgba(201,168,76,.06);
+      border: 1px solid rgba(201,168,76,.25);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ─── Proof Strip – floating glass pill ─── */
+    .proof-strip {
+      background: rgba(255,255,255,.45);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-top: 1px solid rgba(255,255,255,.7);
+      border-bottom: 1px solid rgba(255,255,255,.5);
+      box-shadow: 0 4px 24px rgba(99,102,241,.06);
+    }
+
+    /* ─── Sections – transparent so mesh shows ─── */
+    .section { background: transparent; }
+    .section-alt {
+      background: rgba(255,255,255,.18);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,.5);
+      border-bottom: 1px solid rgba(255,255,255,.5);
+    }
+
+    /* ─── Glass Cards (Features) – more prominent ─── */
+    .glass-card {
+      background: rgba(255,255,255,.5);
+      backdrop-filter: blur(24px) saturate(150%);
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+      border: 1px solid rgba(255,255,255,.75);
+      box-shadow:
+        0 8px 32px rgba(99,102,241,.08),
+        0 2px 8px rgba(201,168,76,.06),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    }
+    .glass-card:hover {
+      background: rgba(255,255,255,.68);
+      transform: translateY(-6px);
+      box-shadow:
+        0 20px 60px rgba(99,102,241,.12),
+        0 4px 16px rgba(201,168,76,.12),
+        inset 0 1px 0 rgba(255,255,255,.95);
+    }
+    .glass-card-icon {
+      background: linear-gradient(135deg, rgba(201,168,76,.2), rgba(201,168,76,.08));
+      border: 1px solid rgba(201,168,76,.25);
+      box-shadow: 0 4px 12px rgba(201,168,76,.1);
+    }
+
+    /* ─── Industry Cards – full glass ─── */
+    .industry-card {
+      background: rgba(255,255,255,.45);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow:
+        0 8px 32px rgba(99,102,241,.07),
+        inset 0 1px 0 rgba(255,255,255,.85);
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+    }
+    .industry-card:hover {
+      background: rgba(255,255,255,.65);
+      border-color: rgba(201,168,76,.45);
+      transform: translateY(-6px);
+      box-shadow:
+        0 24px 64px rgba(99,102,241,.12),
+        0 0 0 1px rgba(201,168,76,.15),
+        inset 0 1px 0 rgba(255,255,255,.95);
+    }
+    .industry-card-icon {
+      display: inline-flex;
+      width: 56px; height: 56px; border-radius: 16px;
+      background: rgba(255,255,255,.6);
+      border: 1px solid rgba(255,255,255,.8);
+      backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+    }
+
+    /* ─── Stats section ─── */
+    .section-dark {
+      background: linear-gradient(135deg, rgba(15,23,42,.88) 0%, rgba(26,38,64,.9) 100%);
+      backdrop-filter: blur(20px);
+    }
+    .stat-item {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius-lg);
+    }
+
+    /* ─── Pricing Cards – glass ─── */
+    .pricing-card {
+      background: rgba(255,255,255,.5);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: 0 8px 32px rgba(99,102,241,.07), inset 0 1px 0 rgba(255,255,255,.85);
+    }
+    .pricing-card.featured {
+      background: rgba(255,255,255,.65);
+      border-color: var(--gold);
+      box-shadow:
+        0 0 0 1px var(--gold),
+        0 16px 48px rgba(201,168,76,.18),
+        0 8px 24px rgba(99,102,241,.08),
+        inset 0 1px 0 rgba(255,255,255,.95);
+    }
+
+    /* ─── FAQ – glass items ─── */
+    .faq-item {
+      background: rgba(255,255,255,.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.65);
+      box-shadow: 0 2px 12px rgba(99,102,241,.05);
+    }
+    .faq-item:hover, .faq-item.open {
+      background: rgba(255,255,255,.65);
+      border-color: rgba(201,168,76,.4);
+      box-shadow: 0 4px 24px rgba(201,168,76,.1);
+    }
+
+    /* ─── CTA Band ─── */
+    .cta-band {
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,.12) 0%, transparent 65%),
+        linear-gradient(135deg, rgba(15,23,42,.95) 0%, rgba(20,30,56,.95) 50%, rgba(15,23,42,.95) 100%);
+      backdrop-filter: blur(20px);
+    }
+    .cta-band::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    }
+
+    /* ─── Trustpilot / Footer ─── */
+    .trustpilot-section {
+      background: rgba(255,255,255,.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,.6);
+    }
+    .trustpilot-stars-row {
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.75);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ─── Section Problem / Solution – glass on both cards ─── */
+    .problem-card {
+      background: rgba(254,242,242,.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(254,202,202,.6);
+      box-shadow: 0 8px 32px rgba(239,68,68,.06);
+    }
+    .solution-card {
+      background: rgba(240,253,244,.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(187,247,208,.6);
+      box-shadow: 0 8px 32px rgba(34,197,94,.06);
+    }
+
+    /* ─── Floating orb decorations behind industry section ─── */
+    #loesungen {
+      overflow: hidden;
+    }
+    #loesungen::before {
+      content: '';
+      position: absolute; top: -80px; left: -80px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.14) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    #loesungen .container { position: relative; z-index: 1; }
+
+    /* ─── Mobile nav glass ─── */
+    .nav-mobile {
+      background: rgba(240,238,248,.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,.6);
+    }
+  </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="css/images/header.png" alt="ZYNTEVO">
-            </a>
-            <nav class="nav">
-                <a href="#ki-tool">KI-Tool</a>
-                <a href="#systeme">Branchen</a>
-                <a href="#faq">FAQ</a>
-                <a href="#systeme" class="nav-btn">Jetzt starten</a>
-            </nav>
-            <button class="nav-hamburger" id="navToggle" aria-label="Menü öffnen">
-                <span></span><span></span><span></span>
-            </button>
-            <div class="nav-mobile" id="navMobile">
-                <a href="#ki-tool" onclick="closeNav()">KI-Tool</a>
-                <a href="#systeme" onclick="closeNav()">Branchen</a>
-                <a href="#faq" onclick="closeNav()">FAQ</a>
-                <a href="#systeme" class="nav-btn" onclick="closeNav()">Jetzt starten</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <span class="hero-badge">KI-Systeme für Unternehmer</span>
-                <h1>Mehr Kunden. Mehr Zeit. Weniger Verwaltungsaufwand.</h1>
-                <p>Das KI-Betriebssystem für Immobilienmakler, Handwerksbetriebe und Steuerberater. Sofort einsetzbare Vorlagen, Workflows und KI-Tools für deinen Arbeitsalltag.</p>
-                <div class="hero-buttons">
-                    <a href="#ki-tool" class="btn btn-primary">KI-Tool entdecken</a>
-                    <a href="#systeme" class="btn btn-secondary">Alle Systeme ansehen</a>
-                </div>
-                <div class="hero-stats">
-                    <div>
-                        <strong>8</strong>
-                        <span>KI-Tools inklusive</span>
-                    </div>
-                    <div>
-                        <strong>0€</strong>
-                        <span>Monatliche Kosten</span>
-                    </div>
-                    <div>
-                        <strong>1x</strong>
-                        <span>Einmalzahlung</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="mockup-card">
-                    <img src="css/images/premium.png" alt="ZYNTEVO" class="hero-logo">
-                    <h3>ZYNTEVO Premium</h3>
-                    <p>Inkl. interaktivem KI-Tool – direkt im Browser nutzbar.</p>
-                    <ul class="premium-list">
-                        <li>⚡ KI-Tool mit 8 Funktionen</li>
-                        <li>✓ Texte & Dokumente per Klick</li>
-                        <li>✓ E-Mails automatisch generieren</li>
-                        <li>✓ Social Media Posts sofort</li>
-                        <li>✓ 50+ Profi-Prompts</li>
-                        <li>✓ Einmalzahlung – kein Abo</li>
-                    </ul>
-                    <div style="font-size:26px;font-weight:900;color:#D4AF37;margin-top:12px;text-align:center;">ab 97€ einmalig</div>
-                    <div style="font-size:12px;color:#94A3B8;text-align:center;margin-top:3px;">Kein Abo · Sofort einsatzbereit</div>
-                    <a href="#systeme" class="btn btn-primary" style="width:100%;margin-top:14px;display:block;text-align:center;">Meine Branche wählen →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- KI-TOOL HIGHLIGHT -->
-    <section id="ki-tool" class="section dark">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">NEU IM PREMIUM</span>
-                <h2>Dein persönliches KI-Tool</h2>
-                <p>Kein ChatGPT öffnen, kein Prompt kopieren. Einfach Daten eingeben – fertige Texte in Sekunden. Direkt im Browser, ohne Installation.</p>
-            </div>
-
-            <div class="tool-grid">
-                <div style="background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">✉️</div>
-                    <div style="font-size:13px;font-weight:700;">Text Generator</div>
-                </div>
-                <div style="background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">📬</div>
-                    <div style="font-size:13px;font-weight:700;">Mail Generator</div>
-                </div>
-                <div style="background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">📱</div>
-                    <div style="font-size:13px;font-weight:700;">Social Media</div>
-                </div>
-                <div style="background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">🎯</div>
-                    <div style="font-size:13px;font-weight:700;">Kunden-Analyse</div>
-                </div>
-                <div style="background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">⭐</div>
-                    <div style="font-size:13px;font-weight:700;">Bewertungsantwort</div>
-                </div>
-                <div style="background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">🤝</div>
-                    <div style="font-size:13px;font-weight:700;">Beratungs-Coach</div>
-                </div>
-                <div style="background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">📋</div>
-                    <div style="font-size:13px;font-weight:700;">Angebot / Brief</div>
-                </div>
-                <div style="background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">🎬</div>
-                    <div style="font-size:13px;font-weight:700;">Video Skript</div>
-                </div>
-            </div>
-
-            <div style="text-align:center;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-                <a href="makler.html" class="btn btn-primary">Makler Premium ansehen</a>
-                <a href="handwerker.html" class="btn btn-primary">Handwerker Premium ansehen</a>
-                <a href="steuerberater.html" class="btn btn-primary">Steuerberater Premium ansehen</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SYSTEME -->
-    <section id="systeme" class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">SYSTEME</span>
-                <h2>Drei Branchen. Ein Ziel.</h2>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto;">
-                <a href="makler.html" class="system-card">
-                    <span style="display:inline-block;background:#D4AF37;color:#000;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:12px;">⚡ Inkl. KI-Tool im Premium</span>
-                    <h3>Immobilienmakler</h3>
-                    <ul>
-                        <li>Akquise-System</li>
-                        <li>Exposé-System</li>
-                        <li>Käuferqualifizierung</li>
-                        <li>Marktberichte</li>
-                        <li>Reels-Skripte</li>
-                        <li>KI-Tool mit 8 Funktionen</li>
-                    </ul>
-                    <p class="card-link">→ Makler-System ansehen</p>
-                </a>
-                <a href="handwerker.html" class="system-card">
-                    <span style="display:inline-block;background:#D4AF37;color:#000;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:12px;">⚡ Inkl. KI-Tool im Premium</span>
-                    <h3>Handwerksbetriebe</h3>
-                    <ul>
-                        <li>Angebots-System</li>
-                        <li>Jahresplanung</li>
-                        <li>Marketing-System</li>
-                        <li>Auftraggeber-Qualifizierung</li>
-                        <li>Verwaltung</li>
-                        <li>KI-Tool mit 8 Funktionen</li>
-                    </ul>
-                    <p class="card-link">→ Handwerk-System ansehen</p>
-                </a>
-                <a href="steuerberater.html" class="system-card">
-                    <span style="display:inline-block;background:#D4AF37;color:#000;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:12px;">⚡ Inkl. KI-Tool im Premium</span>
-                    <h3>Steuerberater</h3>
-                    <ul>
-                        <li>Mandantenbrief-System</li>
-                        <li>Unterlagen-Erinnerung</li>
-                        <li>Akquise-System</li>
-                        <li>Mandanten-Qualifizierung</li>
-                        <li>LinkedIn & Social Media</li>
-                        <li>KI-Tool mit 8 Funktionen</li>
-                    </ul>
-                    <p class="card-link">→ Steuerberater-System ansehen</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- WARUM ZYNTEVO -->
-    <section class="benefits" id="warum-zyntevo">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">WARUM ZYNTEVO?</span>
-                <h2>Entwickelt für Unternehmer, nicht für Technikexperten.</h2>
-                <p>Unsere Systeme helfen dir dabei, mehr Kunden zu gewinnen, Prozesse zu beschleunigen und wertvolle Zeit einzusparen.</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>Sofort einsetzbar</h3>
-                    <p>Keine komplizierte Einrichtung. Sofort nutzbare Vorlagen und Systeme.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3>Keine monatlichen Kosten</h3>
-                    <p>Einmal kaufen und uneingeschränkt nutzen. Keine Abos oder versteckten Gebühren.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🧠</div>
-                    <h3>Für Unternehmer entwickelt</h3>
-                    <p>Praxisorientierte Systeme statt theoretischer KI-Spielereien.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🚀</div>
-                    <h3>Mehr Zeit für Wachstum</h3>
-                    <p>Weniger Verwaltung. Mehr Fokus auf Kunden und Umsatz.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">FAQ</span>
-                <h2>Häufig gestellte Fragen</h2>
-                <p>Antworten auf die wichtigsten Fragen rund um ZYNTEVO.</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <h3>Was ist das KI-Tool im Premium-Paket?</h3>
-                    <p>Das KI-Tool ist eine interaktive Web-App die du direkt im Browser öffnest. Daten eingeben, auf Generieren klicken – fertige Texte in Sekunden. Kein ChatGPT nötig.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Brauche ich ChatGPT Plus?</h3>
-                    <p>Nein. Das KI-Tool im Premium-Paket funktioniert komplett ohne ChatGPT. Einfach einloggen und loslegen.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Gibt es laufende Kosten?</h3>
-                    <p>Nein. Du zahlst einmalig und kannst die Systeme jederzeit nutzen.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Wie schnell kann ich starten?</h3>
-                    <p>Sofort nach dem Kauf. Du erhältst direkten Zugriff auf alle Inhalte und das KI-Tool.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Sind technische Vorkenntnisse notwendig?</h3>
-                    <p>Nein. Die Systeme sind so aufgebaut, dass sie auch ohne technisches Vorwissen genutzt werden können.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-        <div class="container">
-            <h2>Wähle deine Branche und leg los.</h2>
-            <p>Einmalzahlung · Kein Abo · 14 Tage Garantie</p>
-            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
-                <a href="makler.html" class="btn btn-primary">🏠 Für Makler</a>
-                <a href="handwerker.html" class="btn btn-primary">🔨 Für Handwerker</a>
-                <a href="steuerberater.html" class="btn btn-primary">📋 Für Steuerberater</a>
-            </div>
-            <p style="color:#94A3B8;font-size:13px;margin-top:16px;">Premium ab 297€ einmalig · Starter ab 97€</p>
-        </div>
-    </section>
-
-    <!-- TRUSTPILOT -->
-<section style="padding:40px 0;text-align:center;background:#070B11;border-top:1px solid rgba(255,255,255,.05);">
-    <div class="container">
-        <p style="font-size:12px;font-weight:700;letter-spacing:2px;color:#94A3B8;margin-bottom:16px;">KUNDENBEWERTUNGEN</p>
-        <div style="display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;margin-bottom:16px;">
-            <span style="color:#f59e0b;font-size:16px;letter-spacing:2px;">⭐⭐⭐⭐⭐</span>
-            <span style="font-size:13px;color:#94A3B8;">Erste Bewertungen werden geladen... · <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank" style="color:#D4AF37;text-decoration:none;">Jetzt bewerten</a></span>
-        </div>
-        <!-- TrustBox widget - Review Collector -->
-        <div class="trustpilot-widget" data-locale="de-DE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a1f169c3d4303165a630ce8" data-style-height="52px" data-style-width="100%" data-token="2dc6f057-8799-4c2b-9dcc-3c7a4950d1cc">
-            <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank" rel="noopener">Trustpilot</a>
-        </div>
-        <!-- End TrustBox widget -->
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index-neu.html" class="nav-logo">
+      <img src="css/images/header.png" alt="ZYNTEVO" onerror="this.src='https://zyntevo.de/css/images/emaillogo.png'">
+    </a>
+    <div class="nav-links">
+      <a href="#loesungen">Lösungen</a>
+      <a href="#features">Features</a>
+      <a href="#preise">Preise</a>
+      <a href="#faq">FAQ</a>
     </div>
+    <div class="nav-right">
+      <a href="demo-makler.html" class="nav-btn-ghost">Kostenlos testen</a>
+      <a href="makler-neu.html" class="nav-btn-cta">Jetzt starten →</a>
+    </div>
+    <button class="nav-hamburger" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#loesungen" onclick="closeNav()">Lösungen</a>
+    <a href="#features" onclick="closeNav()">Features</a>
+    <a href="#preise" onclick="closeNav()">Preise</a>
+    <a href="#faq" onclick="closeNav()">FAQ</a>
+    <a href="makler-neu.html" class="nav-btn-cta">Jetzt starten →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow" data-reveal>KI-Betriebssystem für KMU</div>
+      <h1 data-reveal data-delay="100">
+        5 Stunden pro Woche.<br>
+        <span class="grad">Zurückgewonnen.</span>
+      </h1>
+      <p class="hero-sub" data-reveal data-delay="200">
+        ZYNTEVO ist das spezialisierte KI-Tool für Immobilienmakler, Handwerksbetriebe und Steuerberater – fertige Texte in Sekunden, ohne Prompt-Kenntnisse.
+      </p>
+      <div class="hero-btns" data-reveal data-delay="300">
+        <a href="demo-makler.html" class="btn btn-gold btn-lg">Kostenlos testen →</a>
+        <a href="#loesungen" class="btn btn-outline btn-lg">Mehr erfahren</a>
+      </div>
+      <div class="hero-trust" data-reveal data-delay="400">
+        <div class="hero-trust-item">
+          <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Kein Abo
+        </div>
+        <div class="hero-trust-item">
+          <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Einmalzahlung
+        </div>
+        <div class="hero-trust-item">
+          <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          14 Tage Garantie
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual" data-reveal="right" data-delay="200">
+      <div class="hero-mockup">
+        <div class="mockup-topbar">
+          <div class="mockup-dot mockup-dot-r"></div>
+          <div class="mockup-dot mockup-dot-y"></div>
+          <div class="mockup-dot mockup-dot-g"></div>
+          <span class="mockup-label">ZYNTEVO · KI-Tool</span>
+        </div>
+        <div class="mockup-fields">
+          <div class="mockup-field-row">
+            <div class="mockup-field">
+              <div class="mockup-field-label">Branche</div>
+              <div class="mockup-field-value">Immobilienmakler</div>
+            </div>
+            <div class="mockup-field">
+              <div class="mockup-field-label">Tool</div>
+              <div class="mockup-field-value">Exposé Generator</div>
+            </div>
+          </div>
+          <div class="mockup-field">
+            <div class="mockup-field-label">Objekt</div>
+            <div class="mockup-field-value">3-Zi.-ETW, 78m², München-Schwabing, 695.000 €</div>
+          </div>
+        </div>
+        <button class="mockup-generate">⚡ Jetzt generieren</button>
+        <div class="mockup-output">
+          <div class="mockup-output-label">KI-Ergebnis</div>
+          <div id="mockup-text"></div><span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h4>ZYNTEVO</h4>
-                    <p>Das KI-Betriebssystem für Steuerberater, Immobilienmakler und Handwerksbetriebe.</p>
-                </div>
-                <div>
-                    <h4>Kontakt</h4>
-                    <p>info@zyntevo.de</p>
-                </div>
-                <div>
-                    <h4>Rechtliches</h4>
-                    <a href="impressum.html" target="_blank">Impressum</a><br>
-                    <a href="datenschutz.html" target="_blank">Datenschutz</a><br>
-                    <a href="widerruf.html" target="_blank">Widerruf</a><br>
-                <a href="agb.html" target="_blank">AGB</a>
-                </div>
-            </div>
-        <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-            <p style="color:#94A3B8;font-size:13px;margin:0;">© 2026 ZYNTEVO · Die Abbuchung erfolgt durch Digistore24.com</p>
-            <div style="display:flex;gap:16px;align-items:center;">
-                <a href="https://www.instagram.com/zyntevo.ki/" target="_blank" rel="noopener" title="Instagram" style="color:#94A3B8;text-decoration:none;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#94A3B8'">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="https://www.tiktok.com/@zyntevo.ki" target="_blank" rel="noopener" title="TikTok" style="color:#94A3B8;text-decoration:none;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#94A3B8'">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/jan-wichmann-281059414" target="_blank" rel="noopener" title="LinkedIn" style="color:#94A3B8;text-decoration:none;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#94A3B8'">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-            </div>
-        </div>
-        </div>
-    </footer>
-
-    <script src="js/app.js"></script>
-
-<!-- COOKIE OVERLAY -->
-<div id="cookie-overlay" style="position:fixed;inset:0;z-index:9998;background:rgba(7,11,17,0.95);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;">
-  <div style="background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.3);border-radius:30px;padding:50px 40px;max-width:520px;width:90%;text-align:center;">
-    <div style="font-size:40px;margin-bottom:20px;">🍪</div>
-    <h3 style="font-size:24px;font-weight:900;color:#F8FAFC;margin-bottom:16px;">Wir nutzen Cookies</h3>
-    <p style="color:#94A3B8;font-size:15px;line-height:1.7;margin-bottom:30px;">
-      Wir verwenden Google Analytics um unseren Traffic zu analysieren und unsere Website zu verbessern. Ihre Daten werden nur mit Ihrer Zustimmung erfasst.
-      <br><br>
-      <a href="datenschutz.html" style="color:#D4AF37;">Datenschutzerklärung</a>
-    </p>
-    <div style="display:flex;gap:12px;justify-content:center;">
-      <button onclick="denyCookies()" style="padding:14px 28px;background:transparent;border:1px solid rgba(255,255,255,.2);color:#94A3B8;border-radius:12px;cursor:pointer;font-size:15px;">Ablehnen</button>
-      <button onclick="acceptCookies()" style="padding:14px 28px;background:#D4AF37;color:#000;border:none;border-radius:12px;cursor:pointer;font-weight:700;font-size:15px;">Akzeptieren</button>
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-strip-inner">
+    <div class="proof-item">
+      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      Kein ChatGPT nötig
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-item">
+      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      Einmalzahlung – kein Abo
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-item">
+      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      Sofort einsatzbereit
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-item">
+      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      14 Tage Geld-zurück-Garantie
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-item">
+      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      Direkt im Browser nutzbar
     </div>
   </div>
 </div>
 
+<!-- PROBLEM / LÖSUNG -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div class="section-label">Das Problem</div>
+      <h2 class="section-title">Stundenlange Schreibarbeit.<br>Jeden Tag aufs Neue.</h2>
+      <p class="section-sub">Angebote, Exposés, Mandantenbriefe, Kunden-Mails – all das frisst Zeit, die du nicht hast.</p>
+    </div>
+    <div class="problem-solution-wrap">
+      <div class="problem-solution">
+        <div class="problem-card" data-reveal="left">
+          <h3>⏳ Ohne ZYNTEVO</h3>
+          <ul class="problem-list">
+            <li>45 Minuten für ein professionelles Angebot</li>
+            <li>Jede Kunden-Mail von Grund auf neu schreiben</li>
+            <li>Google-Bewertungen bleiben unbeantwortet</li>
+            <li>Social Media? Keine Zeit dafür</li>
+            <li>ChatGPT ohne Erfahrung = schlechte Ergebnisse</li>
+          </ul>
+        </div>
+        <div class="solution-card" data-reveal="right">
+          <h3>⚡ Mit ZYNTEVO</h3>
+          <ul class="solution-list">
+            <li>Professionelles Angebot in 30 Sekunden</li>
+            <li>Kunden-Mail mit einem Klick generiert</li>
+            <li>Bewertungsantworten automatisch & persönlich</li>
+            <li>TikTok & LinkedIn Texte auf Knopfdruck</li>
+            <li>Kein Prompt-Wissen nötig – fertig eingerichtet</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LÖSUNGEN / INDUSTRIEN -->
+<section class="section section-alt" id="loesungen">
+  <div class="container">
+    <div class="section-header section-header-center" data-reveal>
+      <div class="section-label">Für wen ist ZYNTEVO?</div>
+      <h2 class="section-title">Spezialisiert. Nicht generisch.</h2>
+      <p class="section-sub">Jede Branche hat andere Bedürfnisse. Deshalb gibt es ZYNTEVO speziell für deine.</p>
+    </div>
+    <div class="industry-grid">
+      <div class="industry-card" data-reveal data-delay="100">
+        <div class="industry-card-icon">🏠</div>
+        <h3>Immobilienmakler</h3>
+        <p>Exposés, Akquise-Briefe, Käufer-Qualifizierung und TikTok-Skripte – alles auf Knopfdruck.</p>
+        <ul class="industry-card-features">
+          <li>Exposé-Generator</li>
+          <li>Akquise-Brief</li>
+          <li>Käufer-Analyse</li>
+          <li>Verhandlungs-Coach</li>
+          <li>TikTok & Reels Texte</li>
+        </ul>
+        <a href="makler-neu.html" class="btn btn-gold">Makler-Paket ansehen →</a>
+      </div>
+      <div class="industry-card" data-reveal data-delay="200">
+        <div class="industry-card-icon">🔨</div>
+        <h3>Handwerksbetriebe</h3>
+        <p>Angebote, Kunden-Mails, Bewertungsantworten und Social Media – in Sekunden fertig.</p>
+        <ul class="industry-card-features">
+          <li>Angebots-Generator</li>
+          <li>Kunden-Mail</li>
+          <li>Bewertungs-Antwort</li>
+          <li>Akquise-Brief</li>
+          <li>TikTok Skripte</li>
+        </ul>
+        <a href="handwerker-neu.html" class="btn btn-gold">Handwerker-Paket ansehen →</a>
+      </div>
+      <div class="industry-card" data-reveal data-delay="300">
+        <div class="industry-card-icon">📊</div>
+        <h3>Steuerberater</h3>
+        <p>Mandantenbriefe, Akquise-Mails, Erstgespräch-Vorbereitung und LinkedIn-Texte sofort.</p>
+        <ul class="industry-card-features">
+          <li>Mandantenbrief Generator</li>
+          <li>Akquise-Mail</li>
+          <li>Erstgespräch-Vorbereitung</li>
+          <li>Unterlagen-Erinnerung</li>
+          <li>LinkedIn & Social Media</li>
+        </ul>
+        <a href="steuerberater-neu.html" class="btn btn-gold">Steuerberater-Paket ansehen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div class="section-label">Warum ZYNTEVO</div>
+      <h2 class="section-title">Kein ChatGPT.<br><span class="highlight">Ein fertiges Werkzeug.</span></h2>
+      <p class="section-sub">Kein leeres Blatt, kein Prompt-Raten. ZYNTEVO ist von Tag 1 auf deine Branche zugeschnitten.</p>
+    </div>
+    <div class="cards-3">
+      <div class="glass-card" data-reveal data-delay="100">
+        <div class="glass-card-icon">⚡</div>
+        <h3>In 30 Sekunden fertig</h3>
+        <p>Daten eingeben, Knopf drücken – professioneller Text sofort. Was früher 45 Minuten dauerte, ist in einer halben Minute erledigt.</p>
+        <ul class="glass-card-list">
+          <li>Kein Prompt-Wissen nötig</li>
+          <li>Sofort einsatzbereit</li>
+          <li>Direkt im Browser nutzbar</li>
+        </ul>
+      </div>
+      <div class="glass-card" data-reveal data-delay="200">
+        <div class="glass-card-icon">🎯</div>
+        <h3>Speziell für deine Branche</h3>
+        <p>ChatGPT kennt keine Makler-Fachsprache. ZYNTEVO kennt dein Business – und liefert Texte die sofort professionell klingen.</p>
+        <ul class="glass-card-list">
+          <li>Branchenspezifische KI-Prompts</li>
+          <li>Für Makler, Handwerker & StB</li>
+          <li>Kein Training nötig</li>
+        </ul>
+      </div>
+      <div class="glass-card" data-reveal data-delay="300">
+        <div class="glass-card-icon">💳</div>
+        <h3>Einmalig zahlen – für immer nutzen</h3>
+        <p>Kein Abo. Keine monatlichen Kosten. Einmal kaufen, dauerhaft profitieren. Nach einem Monat bereits amortisiert.</p>
+        <ul class="glass-card-list">
+          <li>Einmalzahlung ab 97€</li>
+          <li>Kein laufendes Abo</li>
+          <li>14 Tage Geld-zurück</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section-sm section-dark">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" data-reveal>
+        <div class="stat-number"><span data-count="8">0</span></div>
+        <div class="stat-label" style="color:rgba(248,250,252,.55);">KI-Tools im Premium-Paket</div>
+      </div>
+      <div class="stat-item" data-reveal data-delay="200">
+        <div class="stat-number"><span data-count="5">0</span><span style="font-size:32px;">h+</span></div>
+        <div class="stat-label" style="color:rgba(248,250,252,.55);">Zeitersparnis pro Woche</div>
+      </div>
+      <div class="stat-item" data-reveal data-delay="400">
+        <div class="stat-number">0€</div>
+        <div class="stat-label" style="color:rgba(248,250,252,.55);">Monatliche Kosten</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREISE -->
+<section class="section" id="preise">
+  <div class="container">
+    <div class="section-header section-header-center" data-reveal>
+      <div class="section-label">Preise</div>
+      <h2 class="section-title">Einmal zahlen.<br>Für immer nutzen.</h2>
+      <p class="section-sub">Keine monatlichen Kosten. Kein Abo. Wähle dein Paket und starte sofort.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card" data-reveal data-delay="100">
+        <div class="pricing-name">Starter</div>
+        <div class="pricing-desc">Das Fundament – perfekt zum Einsteigen</div>
+        <div class="pricing-price">97<span>€</span></div>
+        <div class="pricing-period">einmalig · kein Abo · sofortiger Download</div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> 25 Profi-Prompts</li>
+          <li><span class="check">✓</span> Branchenspezifische Vorlagen</li>
+          <li><span class="check">✓</span> Kundenkommunikation</li>
+          <li><span class="check">✓</span> Sofortiger Download</li>
+        </ul>
+        <a href="makler-neu.html" class="btn btn-outline btn-lg pricing-cta">Starter ansehen →</a>
+      </div>
+      <div class="pricing-card featured" data-reveal data-delay="200">
+        <div class="pricing-badge">⭐ Empfohlen</div>
+        <div class="pricing-name">Premium</div>
+        <div class="pricing-desc">Das vollständige KI-System inkl. KI-Tool</div>
+        <div class="pricing-price">297<span>€</span></div>
+        <div class="pricing-period">einmalig · kein Abo · sofort einsatzbereit</div>
+        <ul class="pricing-features">
+          <li><span class="star">⚡</span> <strong>KI-Tool mit 8 Generatoren</strong></li>
+          <li><span class="check">✓</span> 50+ Profi-Prompts</li>
+          <li><span class="check">✓</span> Alle Branchensysteme</li>
+          <li><span class="check">✓</span> Social-Media-System</li>
+          <li><span class="check">✓</span> 30 TikTok-Skripte</li>
+          <li><span class="check">✓</span> Sofort einsatzbereit</li>
+        </ul>
+        <a href="makler-neu.html" class="btn btn-gold btn-lg pricing-cta">Premium sichern →</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--text-3);">Wähle deine Branche: <a href="makler-neu.html" style="color:var(--gold);">Makler</a> · <a href="handwerker-neu.html" style="color:var(--gold);">Handwerker</a> · <a href="steuerberater-neu.html" style="color:var(--gold);">Steuerberater</a></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-alt" id="faq">
+  <div class="container-sm">
+    <div class="section-header section-header-center" data-reveal>
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Häufige Fragen</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" data-reveal>
+        <div class="faq-q" onclick="toggleFaq(this)">Was ist ZYNTEVO genau?<span class="faq-q-icon">+</span></div>
+        <div class="faq-a">ZYNTEVO ist ein spezialisiertes KI-Tool für Immobilienmakler, Handwerksbetriebe und Steuerberater. Du öffnest das Tool im Browser, gibst deine Eckdaten ein – und bekommst in Sekunden fertige, professionelle Texte. Kein ChatGPT, kein Prompt-Wissen, kein Abo.</div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <div class="faq-q" onclick="toggleFaq(this)">Brauche ich ChatGPT oder andere Tools?<span class="faq-q-icon">+</span></div>
+        <div class="faq-a">Nein. ZYNTEVO funktioniert komplett eigenständig – direkt im Browser. Du brauchst keinerlei technisches Wissen, kein ChatGPT-Abonnement und keine weiteren Tools. Einfach URL öffnen, Daten eingeben, Text generieren.</div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <div class="faq-q" onclick="toggleFaq(this)">Wie schnell kann ich nach dem Kauf loslegen?<span class="faq-q-icon">+</span></div>
+        <div class="faq-a">Sofort. Du erhältst deinen Zugangscode direkt auf der Bestätigungsseite und per E-Mail – in unter 60 Sekunden bist du im Tool und kannst deinen ersten Text generieren.</div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <div class="faq-q" onclick="toggleFaq(this)">Was ist der Unterschied zwischen Starter und Premium?<span class="faq-q-icon">+</span></div>
+        <div class="faq-a">Der Starter (97€) enthält 25 Profi-Prompts und Vorlagen zum sofortigen Herunterladen. Das Premium-Paket (297€) enthält zusätzlich das interaktive KI-Tool mit 8 Generatoren, das du direkt im Browser nutzt – ohne Copy-Paste, ohne Prompt-Tippen. Einfach Felder ausfüllen und Ergebnis kopieren.</div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <div class="faq-q" onclick="toggleFaq(this)">Gibt es eine Garantie?<span class="faq-q-icon">+</span></div>
+        <div class="faq-a">Ja. Du hast 14 Tage Widerrufsrecht. Wenn dir ZYNTEVO nicht gefällt, schreib einfach an jan@zyntevo.de – wir erstatten ohne Fragen, ohne Formular-Stress.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Bereit, Stunden pro Woche zurückzugewinnen?</h2>
+    <p>Starte noch heute – kostenlos testen, kein Account nötig.</p>
+    <div class="cta-band-btns">
+      <a href="demo-makler.html" class="btn btn-gold btn-lg">Kostenlos testen →</a>
+      <a href="makler-neu.html" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.2);color:#F8FAFC;background:rgba(255,255,255,.06);">Pakete ansehen</a>
+    </div>
+    <p class="cta-band-note">Einmalzahlung ab 97€ · Kein Abo · 14 Tage Garantie</p>
+  </div>
+</section>
+
+<!-- TRUSTPILOT -->
+<div class="trustpilot-section">
+  <div class="container">
+    <p class="trustpilot-eyebrow">Kundenbewertungen</p>
+    <div class="trustpilot-stars-row">
+      <span class="trustpilot-stars">★★★★★</span>
+      <span class="trustpilot-link">Erste Bewertungen · <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank">Jetzt bewerten</a></span>
+    </div>
+    <div class="trustpilot-widget" data-locale="de-DE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a1f169c3d4303165a630ce8" data-style-height="52px" data-style-width="100%" data-token="2dc6f057-8799-4c2b-9dcc-3c7a4950d1cc">
+      <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank" rel="noopener">Trustpilot</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="css/images/header.png" alt="ZYNTEVO" onerror="this.src='https://zyntevo.de/css/images/emaillogo.png'">
+        <p>Das KI-Betriebssystem für Steuerberater, Immobilienmakler und Handwerksbetriebe. Einmalig zahlen. Dauerhaft profitieren.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Lösungen</h4>
+        <a href="makler-neu.html">Für Makler</a>
+        <a href="handwerker-neu.html">Für Handwerker</a>
+        <a href="steuerberater-neu.html">Für Steuerberater</a>
+      </div>
+      <div class="footer-col">
+        <h4>Kostenlos testen</h4>
+        <a href="demo-makler.html">Makler Demo</a>
+        <a href="demo-handwerker.html">Handwerker Demo</a>
+        <a href="demo-steuerberater.html">Steuerberater Demo</a>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ZYNTEVO · info@zyntevo.de · Die Abbuchung erfolgt durch Digistore24.com</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/zyntevo.ki/" target="_blank" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.tiktok.com/@zyntevo.ki" target="_blank" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
+        <a href="https://www.linkedin.com/in/jan-wichmann-281059414" target="_blank" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <script>
-function acceptCookies() {
-  localStorage.setItem('cookieConsent', 'accepted');
-  document.getElementById('cookie-overlay').style.display = 'none';
-  loadAnalytics();
+// ── NAV scroll effect ──
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+// ── Mobile nav ──
+var t = document.getElementById('navToggle'), m = document.getElementById('navMobile');
+t.addEventListener('click', function() { m.classList.toggle('open'); });
+function closeNav() { m.classList.remove('open'); }
+document.addEventListener('click', function(e) {
+  if (!t.contains(e.target) && !m.contains(e.target)) closeNav();
+});
+
+// ── Scroll reveal ──
+var reveals = document.querySelectorAll('[data-reveal]');
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('revealed'); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(function(el) { revealObs.observe(el); });
+
+// ── Count-up ──
+var counted = false;
+function countUp() {
+  if (counted) return; counted = true;
+  document.querySelectorAll('[data-count]').forEach(function(el) {
+    var target = parseInt(el.getAttribute('data-count'));
+    var current = 0; var step = target / 40;
+    var timer = setInterval(function() {
+      current += step;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = Math.round(current);
+    }, 30);
+  });
 }
-function denyCookies() {
-  localStorage.setItem('cookieConsent', 'denied');
-  document.getElementById('cookie-overlay').style.display = 'none';
+var statsObs = new IntersectionObserver(function(entries) {
+  if (entries[0].isIntersecting) countUp();
+}, { threshold: 0.3 });
+var statsEl = document.querySelector('.stats-grid');
+if (statsEl) statsObs.observe(statsEl);
+
+// ── Typewriter on hero mockup ──
+var text = "Traumwohnung in München-Schwabing\n\nDiese stilvolle 3-Zi.-ETW mit 78 m² verbindet modernen Komfort mit bester Lage. Kernsaniert 2022, Fußbodenheizung, Einbauküche, Balkon & TG-Stellplatz.\n\nKaufpreis: 695.000 €\nBesichtigung auf Anfrage.";
+var el = document.getElementById('mockup-text');
+var i = 0;
+function typeHero() {
+  if (i < text.length) { el.textContent += text[i++]; setTimeout(typeHero, 22); }
 }
-function loadAnalytics() {
-  var script = document.createElement('script');
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2';
-  script.async = true;
-  document.head.appendChild(script);
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-GPT0KRVEM2');
+setTimeout(typeHero, 1800);
+
+// ── FAQ accordion ──
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(fi) { fi.classList.remove('open'); });
+  if (!wasOpen) item.classList.add('open');
 }
-window.addEventListener('load', function() {
-  const consent = localStorage.getItem('cookieConsent');
-  if (consent === 'accepted') {
-    loadAnalytics();
-    document.getElementById('cookie-overlay').style.display = 'none';
-  } else if (consent === 'denied') {
-    document.getElementById('cookie-overlay').style.display = 'none';
-  }
+
+// ── Smooth scroll ──
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
 });
 </script>
-<script>
-var t=document.getElementById('navToggle'),m=document.getElementById('navMobile');
-t.addEventListener('click',function(){t.classList.toggle('open');m.classList.toggle('open');});
-function closeNav(){t.classList.remove('open');m.classList.remove('open');}
-document.addEventListener('click',function(e){if(!t.contains(e.target)&&!m.contains(e.target)){closeNav();}});
-</script>
-
 </body>
 </html>
