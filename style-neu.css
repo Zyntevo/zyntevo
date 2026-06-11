@@ -133,8 +133,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .btn-gold:active { transform: translateY(0); }
 .btn-outline {
-  background: var(--bg-white); color: var(--text); font-size: 15px; padding: 13px 27px;
-  border: 1.5px solid var(--border); box-shadow: var(--shadow-sm);
+  background: rgba(255,255,255,0.7); color: #1E293B; font-size: 15px; padding: 13px 27px;
+  border: 1.5px solid rgba(0,0,0,.15); box-shadow: var(--shadow-sm);
 }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
 .btn-lg { font-size: 16px; padding: 16px 32px; }
