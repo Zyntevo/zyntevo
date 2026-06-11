@@ -1,5 +1,12 @@
 /* ===== ZYNTEVO LIGHT GLASSMORPHISM OVERRIDE ===== */
 
+/* CSS-Variablen überschreiben (für Tool-Seiten mit var(--bg)) */
+:root {
+  --bg: rgba(255,255,255,0.92) !important;
+  --text: #1E293B !important;
+  --card: rgba(255,255,255,0.65) !important;
+}
+
 html, body {
   background: #F0EEF8 !important;
   color: #1E293B !important;
@@ -88,16 +95,71 @@ p, li, label, td, th, span:not(.badge):not(.tag):not([class*="gold"]):not([class
 .gold, [style*="color: #D4AF37"], [style*="color:#D4AF37"],
 .price, .highlight, .badge-gold { color: #B8962E !important; }
 
-/* ---- INPUTS ---- */
-input[type="text"], input[type="email"], input[type="password"],
-input[type="number"], textarea, select {
-  background: rgba(255,255,255,0.85) !important;
+/* ---- INPUTS (universell) ---- */
+input, input[type], textarea, select,
+.form-input, .form-select, .form-textarea,
+.auth-input, .input, .field, .text-input {
+  background: rgba(255,255,255,0.92) !important;
   color: #1E293B !important;
-  border-color: rgba(0,0,0,.15) !important;
+  border: 1px solid rgba(0,0,0,.15) !important;
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder, textarea::placeholder,
+.form-input::placeholder, .form-textarea::placeholder {
   color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+
+/* Select-Optionen */
+select option, .form-select option {
+  background: #fff !important;
+  color: #1E293B !important;
+}
+
+/* Inline-Style Overrides für dunkle Inputs */
+input[style], textarea[style], select[style] {
+  background: rgba(255,255,255,0.92) !important;
+  color: #1E293B !important;
+}
+
+/* ---- INLINE STYLE OVERRIDES (Karten mit hardcoded dark gradient) ---- */
+div[style*="#0F172A"],
+div[style*="#111827"],
+div[style*="#070B11"],
+section[style*="#0F172A"],
+section[style*="#111827"] {
+  background: rgba(255,255,255,0.65) !important;
+  color: #1E293B !important;
+  border-color: rgba(255,255,255,0.8) !important;
+}
+
+/* Demo- und Tool-Card-Klassen aus inline <style> Blöcken */
+.demo-card, .result-card, .popup-box, .exit-box,
+.email-optional, .popup-plan,
+.auth-card, .sidebar, #sidebar,
+.dash-card, .tool-card, .tool-form, .tool-result,
+.profile-bar, .access-card {
+  background: rgba(255,255,255,0.7) !important;
+  color: #1E293B !important;
+  border-color: rgba(212,175,55,.25) !important;
+}
+
+/* Sidebar speziell */
+.sidebar, #sidebar {
+  background: rgba(255,255,255,0.72) !important;
+  backdrop-filter: blur(20px) !important;
+  border-right: 1px solid rgba(0,0,0,.08) !important;
+}
+
+/* Auth-Screen Hintergrund */
+#auth-screen {
+  background: #F0EEF8 !important;
+}
+
+/* Mobile Bottom Nav */
+.bottom-nav {
+  background: rgba(255,255,255,0.9) !important;
+  border-top: 1px solid rgba(0,0,0,.08) !important;
 }
 
 /* ---- SIDEBAR ---- */
