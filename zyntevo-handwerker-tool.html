@@ -720,7 +720,7 @@ async function generateSocial() {
 }
 async function generateAkquise() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('akquise-result', `Akquise-Brief für Handwerksbetrieb auf Deutsch. Zielgruppe: ${document.getElementById('akquise-ziel').value}, Gewerk: ${document.getElementById('akquise-gewerk').value}, Betrieb: ${document.getElementById('akquise-name').value||p.buero||''}, Region: ${document.getElementById('akquise-region').value||p.region||''}, Stärken: ${document.getElementById('akquise-usp').value||''}. WICHTIG: Kein Terminvorschlag, keine Einladung zu einem Telefonat oder persönlichen Gespräch, kein Vor-Ort-Besuch – der Brief weckt Interesse und endet mit einer klaren Handlungsaufforderung (z.B. Rückmeldung per Mail oder Anruf wenn gewünscht). Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('akquise-result', `Akquise-Brief für Handwerksbetrieb auf Deutsch. Zielgruppe: ${document.getElementById('akquise-ziel').value}, Gewerk: ${document.getElementById('akquise-gewerk').value}, Betrieb: ${document.getElementById('akquise-name').value||p.buero||''}, Region: ${document.getElementById('akquise-region').value||p.region||''}, Stärken: ${document.getElementById('akquise-usp').value||''}. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateBewertung() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
