@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -154,6 +154,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 @media(max-width:600px){.layout{padding-bottom:100px;}.main{padding-bottom:100px;}}
 @media(max-width:600px){.mobile-nav.mobile-nav-visible{display:flex!important;}}
 </style>
+<link rel="stylesheet" href="glass-overrides.css">
 </head>
 <body>
 
@@ -694,7 +695,8 @@ function downloadPDF(resultId) {
   const text = resultDiv.innerText;
   if (!text || text.includes('Fülle das Formular') || text.includes('Wähle')) { alert('Bitte zuerst einen Text generieren.'); return; }
   const win = window.open('', '_blank');
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Dokument</title><style>@page{margin:2cm;}body{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:20px 40px;color:#1a1a1a;line-height:1.8;}.briefkopf{min-height:120px;border-bottom:1px solid #ddd;margin-bottom:32px;padding-bottom:16px;}.briefkopf-hint{color:#bbb;font-size:11px;font-style:italic;}pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:13px;line-height:1.9;margin:0;}.footer{margin-top:48px;padding-top:12px;border-top:1px solid #eee;font-size:10px;color:#bbb;text-align:right;}</style></head><body><div class="briefkopf"><span class="briefkopf-hint">[ Hier Briefkopf / Logo einfügen ]</span></div><pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><div class="footer">Erstellt mit ZYNTEVO KI-Tool · zyntevo.de</div><script>window.onload=function(){window.print();}<\/script></body></html>`);
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Dokument</title><style>@page{margin:2cm;}body{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:20px 40px;color:#1a1a1a;line-height:1.8;}.briefkopf{min-height:120px;border-bottom:1px solid #ddd;margin-bottom:32px;padding-bottom:16px;}.briefkopf-hint{color:#bbb;font-size:11px;font-style:italic;}pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:13px;line-height:1.9;margin:0;}.footer{margin-top:48px;padding-top:12px;border-top:1px solid #eee;font-size:10px;color:#bbb;text-align:right;}</style><link rel="stylesheet" href="glass-overrides.css">
+</head><body><div class="briefkopf"><span class="briefkopf-hint">[ Hier Briefkopf / Logo einfügen ]</span></div><pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><div class="footer">Erstellt mit ZYNTEVO KI-Tool · zyntevo.de</div><script>window.onload=function(){window.print();}<\/script></body></html>`);
   win.document.close();
 }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -216,6 +216,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 @media(max-width:600px){.mobile-nav.mobile-nav-visible{display:flex!important;}}
 
 </style>
+<link rel="stylesheet" href="glass-overrides.css">
 </head>
 <body>
 
@@ -921,7 +922,8 @@ function downloadPDF(resultId) {
 }
 @media(max-width:600px){.mobile-nav.mobile-nav-visible{display:flex!important;}}
 
-</style></head><body><div class="briefkopf"><span class="briefkopf-hint">[ Hier Briefkopf / Logo einfügen ]</span></div><pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><div class="footer">Erstellt mit ZYNTEVO KI-Tool · zyntevo.de</div><script>window.onload=function(){window.print();}<\/script>
+</style><link rel="stylesheet" href="glass-overrides.css">
+</head><body><div class="briefkopf"><span class="briefkopf-hint">[ Hier Briefkopf / Logo einfügen ]</span></div><pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><div class="footer">Erstellt mit ZYNTEVO KI-Tool · zyntevo.de</div><script>window.onload=function(){window.print();}<\/script>
 <!-- MOBILE BOTTOM NAV -->
 <div class="mobile-nav">
   <div class="mobile-nav-inner">
