@@ -266,17 +266,6 @@
         </div>
     </div>
 </div>
-
-<!-- EXIT INTENT -->
-<div class="exit-overlay" id="exit-popup">
-    <div class="exit-box">
-        <div class="exit-title">Warte – hol dir den <span>Starter</span></div>
-        <div class="exit-desc">Du hast gesehen wie schnell ZYNTEVO professionelle Texte erstellt. Starte jetzt mit 5 Generatoren für einmalig:</div>
-        <div class="exit-price">97€</div>
-        <div class="exit-price-orig">Normalpreis 97€ · keine Abo-Falle</div>
-        <a href="https://zyntevo.de/makler.html" target="_blank" class="exit-btn" onclick="trackEvent('exit_starter_clicked','makler')">Jetzt Starter holen →</a>
-        <div class="exit-skip" onclick="document.getElementById('exit-popup').classList.remove('show')">Nein danke, ich verzichte auf 5h/Woche</div>
-    </div>
 </div>
 
 <script>
@@ -326,15 +315,6 @@ document.addEventListener('input', function(e) {
     if (e.target.closest('.demo-card') && !window._formStarted) {
         window._formStarted = true;
         trackEvent('form_started', BRANCHE);
-    }
-});
-
-// Exit intent
-let _exitShown = false;
-document.addEventListener('mouseleave', (e) => {
-    if (e.clientY < 20 && !_exitShown && generatedText) {
-        _exitShown = true;
-        document.getElementById('exit-popup').classList.add('show');
     }
 });
 
