@@ -3,40 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZYNTEVO | Kostenlose Demo – Mandantenbrief Generator</title>
+    <title>ZYNTEVO | Mandantenbrief in 30 Sekunden – kostenlos testen</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         * { box-sizing: border-box; }
         html, body { background: #070B11; overflow-x: hidden; }
-        .demo-wrap { min-height: 100vh; padding: 120px 0 80px; }
-        .demo-container { max-width: 800px; margin: 0 auto; width: 90%; }
-        .demo-badge { display: inline-block; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.2); color: #D4AF37; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 8px 18px; border-radius: 999px; margin-bottom: 20px; }
-        .demo-title { font-size: 42px; font-weight: 900; margin-bottom: 12px; color: #F8FAFC; }
-        .demo-desc { color: #94A3B8; margin-bottom: 40px; font-size: 16px; line-height: 1.7; }
-        .demo-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; margin-bottom: 20px; }
-        .form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 8px; text-transform: uppercase; }
-        .form-input, .form-select, .form-textarea { width: 100%; padding: 13px 16px; background: #070B11; border: 1px solid rgba(212,175,55,.15); border-radius: 12px; color: #F8FAFC; font-size: 14px; outline: none; transition: .3s; font-family: Inter, sans-serif; resize: vertical; margin-bottom: 16px; }
+
+        .demo-wrap { min-height: 100vh; padding: 90px 0 60px; }
+        .demo-container { max-width: 740px; margin: 0 auto; width: 92%; }
+
+        .demo-badge { display: inline-block; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.2); color: #D4AF37; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 7px 16px; border-radius: 999px; margin-bottom: 14px; }
+        .demo-title { font-size: 36px; font-weight: 900; margin-bottom: 28px; color: #F8FAFC; line-height: 1.2; }
+        .demo-title span { color: #D4AF37; }
+
+        .demo-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 20px; padding: 28px; margin-bottom: 16px; }
+
+        .form-row-two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 4px; }
+        .form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #D4AF37; margin-bottom: 7px; text-transform: uppercase; }
+        .req { color: #EF4444; }
+        .form-input, .form-select, .form-textarea { width: 100%; padding: 13px 15px; background: #070B11; border: 1px solid rgba(212,175,55,.15); border-radius: 11px; color: #F8FAFC; font-size: 14px; outline: none; transition: border-color .2s; font-family: Inter, sans-serif; resize: vertical; margin-bottom: 0; }
         .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: #D4AF37; }
-        .form-textarea { min-height: 80px; }
+        .form-textarea { min-height: 72px; }
         .form-select option { background: #0F172A; }
-        .generate-btn { width: 100%; padding: 16px; background: #D4AF37; color: #000; font-weight: 700; font-size: 15px; border: none; border-radius: 12px; cursor: pointer; transition: .3s; font-family: Inter, sans-serif; }
-        .generate-btn:hover { transform: translateY(-2px); opacity: .92; }
-        .generate-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-        .result-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.2); border-radius: 24px; padding: 36px; display: none; }
-        .result-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; margin-bottom: 16px; }
-        .result-text { color: #F8FAFC; font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
-        .result-actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
-        .btn-copy { flex: 1; padding: 12px 20px; background: rgba(212,175,55,.1); border: 1px solid rgba(212,175,55,.3); color: #D4AF37; font-weight: 700; font-size: 14px; border-radius: 12px; cursor: pointer; font-family: Inter, sans-serif; transition: .3s; }
-        .btn-copy:hover { background: rgba(212,175,55,.2); }
-        .btn-copy.copied { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.3); color: #22C55E; }
-        .email-optional { background: rgba(212,175,55,.04); border: 1px solid rgba(212,175,55,.15); border-radius: 14px; padding: 20px; margin-top: 20px; }
+
+        .optional-toggle { display: flex; align-items: center; gap: 8px; color: #64748B; font-size: 13px; font-weight: 600; cursor: pointer; margin: 18px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.05); user-select: none; transition: color .2s; }
+        .optional-toggle:hover { color: #D4AF37; }
+        .optional-toggle .ot-icon { font-size: 16px; transition: transform .25s; }
+        .optional-toggle.open .ot-icon { transform: rotate(45deg); }
+        .optional-fields { margin-top: 16px; display: flex; flex-direction: column; gap: 14px; }
+
+        .generate-btn { width: 100%; padding: 17px; background: #D4AF37; color: #000; font-weight: 800; font-size: 16px; border: none; border-radius: 12px; cursor: pointer; transition: .2s; font-family: Inter, sans-serif; margin-top: 20px; letter-spacing: .3px; }
+        .generate-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,175,55,.35); }
+        .generate-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .trust-row { display: flex; justify-content: center; gap: 20px; margin-top: 12px; flex-wrap: wrap; }
+        .trust-item { font-size: 12px; color: #475569; }
+
+        .result-card { background: linear-gradient(135deg,#0F172A,#111827); border: 1px solid rgba(212,175,55,.25); border-radius: 20px; padding: 28px; display: none; }
+        .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 12px; }
+        .result-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #D4AF37; flex-shrink: 0; }
+        .btn-copy-top { padding: 8px 16px; background: rgba(212,175,55,.12); border: 1px solid rgba(212,175,55,.3); color: #D4AF37; font-weight: 700; font-size: 13px; border-radius: 8px; cursor: pointer; font-family: Inter,sans-serif; transition: .2s; white-space: nowrap; }
+        .btn-copy-top:hover { background: rgba(212,175,55,.22); }
+        .btn-copy-top.copied { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.3); color: #22C55E; }
+
+        .result-text { color: #E2E8F0; font-size: 15px; line-height: 1.85; white-space: pre-wrap; }
+
+        .btn-copy-big { width: 100%; padding: 15px; background: #D4AF37; color: #000; font-weight: 800; font-size: 15px; border: none; border-radius: 12px; cursor: pointer; font-family: Inter,sans-serif; transition: .2s; margin-top: 22px; }
+        .btn-copy-big:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,175,55,.3); }
+        .btn-copy-big.copied { background: #22C55E; color: #fff; }
+
+        .email-optional { background: rgba(212,175,55,.04); border: 1px solid rgba(212,175,55,.15); border-radius: 14px; padding: 18px; margin-top: 18px; }
         .email-optional-label { font-size: 13px; color: #94A3B8; margin-bottom: 12px; line-height: 1.5; }
         .email-optional-label strong { color: #F8FAFC; }
         .email-optional-row { display: flex; gap: 10px; }
         .email-optional-row input { flex: 1; margin-bottom: 0; }
-        .btn-email { padding: 12px 20px; background: #D4AF37; color: #000; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; font-family: Inter, sans-serif; white-space: nowrap; }
+        .btn-email { padding: 13px 20px; background: #D4AF37; color: #000; font-weight: 700; font-size: 14px; border: none; border-radius: 11px; cursor: pointer; font-family: Inter,sans-serif; white-space: nowrap; }
+
         .loading { display: flex; align-items: center; gap: 12px; color: #94A3B8; font-size: 14px; padding: 20px 0; }
-        .spinner { width: 20px; height: 20px; border: 2px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; }
+        .spinner { width: 20px; height: 20px; border: 2px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; flex-shrink: 0; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
         .popup-overlay { display: none; position: fixed; top: 80px; left: 0; right: 0; z-index: 9999; padding: 0 16px; }
@@ -46,7 +70,7 @@
         .popup-title { font-size: 20px; font-weight: 900; color: #F8FAFC; }
         .popup-title span { color: #D4AF37; }
         .popup-subtitle { font-size: 13px; color: #94A3B8; margin-top: 4px; }
-        .popup-close { font-size: 20px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter, sans-serif; }
+        .popup-close { font-size: 20px; cursor: pointer; color: #94A3B8; background: none; border: none; font-family: Inter,sans-serif; }
         .popup-generatoren { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
         .popup-gen-item { background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2); color: #D4AF37; font-size: 11px; padding: 4px 10px; border-radius: 999px; }
         .popup-countdown { text-align: center; margin-bottom: 16px; }
@@ -64,6 +88,7 @@
         .popup-plan-btn.premium { background: #D4AF37; color: #000; }
         .popup-plan-btn:hover { transform: translateY(-2px); opacity: .9; }
         .popup-guarantee { display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25); border-radius: 10px; padding: 10px; }
+
         .exit-overlay { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,.7); align-items: center; justify-content: center; }
         .exit-overlay.show { display: flex; }
         .exit-box { background: linear-gradient(135deg,#0F172A,#111827); border: 2px solid #D4AF37; border-radius: 20px; padding: 32px; max-width: 480px; width: 90%; text-align: center; }
@@ -75,24 +100,18 @@
         .exit-btn { display: block; padding: 14px; background: #D4AF37; color: #000; font-weight: 700; font-size: 15px; border-radius: 12px; text-decoration: none; margin-bottom: 12px; transition: .3s; }
         .exit-btn:hover { opacity: .9; }
         .exit-skip { font-size: 12px; color: #64748B; cursor: pointer; text-decoration: underline; }
-        @media(max-width:600px) { .popup-plans { grid-template-columns: 1fr; } }
 
-        .guarantee-banner { display: flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(135deg, rgba(34,197,94,.12), rgba(34,197,94,.06)); border: 1.5px solid rgba(34,197,94,.4); border-radius: 14px; padding: 16px 24px; margin: 20px 0 0; }
-        .guarantee-banner-icon { font-size: 28px; flex-shrink: 0; }
-        .guarantee-banner-text { text-align: left; }
-        .guarantee-banner-title { font-size: 15px; font-weight: 800; color: #22C55E; margin-bottom: 3px; }
-        .guarantee-banner-sub { font-size: 12px; color: #94A3B8; }
         @media(max-width:600px) {
-            .demo-title { font-size: 28px; }
-            .demo-card, .result-card { padding: 20px; }
-            .popup-box { padding: 20px; }
-            .popup-title { font-size: 18px; }
-            .popup-price { font-size: 28px; }
-            .result-actions { flex-direction: column; }
+            .demo-wrap { padding: 80px 0 40px; }
+            .demo-title { font-size: 26px; }
+            .demo-card, .result-card { padding: 18px; }
+            .form-row-two { grid-template-columns: 1fr; }
+            .popup-plans { grid-template-columns: 1fr; }
+            .popup-box { padding: 18px; }
             .email-optional-row { flex-direction: column; }
+            .trust-row { gap: 12px; }
         }
     </style>
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -105,68 +124,98 @@
 
 <header class="header">
     <div class="container">
-        <a href="index.html" class="logo"><img src="css/images/header.png" alt="ZYNTEVO"></a>
+        <a href="index.html" class="logo"><img src="css/images/header.png" alt="ZYNTEVO" loading="lazy"></a>
     </div>
 </header>
 
 <div class="demo-wrap">
     <div class="demo-container">
         <div class="demo-badge">🎁 KOSTENLOSE DEMO</div>
-        <h1 class="demo-title">Mandantenbrief Generator – jetzt gratis testen</h1>
-        <p class="demo-desc">Gib die Mandantendaten ein und sieh selbst wie die KI in Sekunden einen professionellen Mandantenbrief schreibt. Kein Account nötig – kostenlos.</p>
+        <h1 class="demo-title">Mandantenbrief in <span>30 Sekunden</span> –<br>kostenlos testen</h1>
 
         <div id="used-section" style="display:none;">
-            <div class="used-banner">
-                <h3>⚡ Du hast die Demo bereits genutzt</h3>
-                <p>Hol dir jetzt das vollständige KI-Tool mit allen 8 Generatoren – für einmalig 297€.</p>
-                <a href="https://zyntevo.github.io/zyntevo/steuerberater.html" target="_blank" class="generate-btn" style="display:inline-block;width:auto;padding:14px 32px;text-decoration:none;">⚡ Jetzt Premium sichern</a>
+            <div class="demo-card" style="text-align:center;padding:36px;">
+                <div style="font-size:32px;margin-bottom:12px;">⚡</div>
+                <h3 style="color:#F8FAFC;font-size:20px;margin-bottom:8px;">Du hast die Demo bereits genutzt</h3>
+                <p style="color:#94A3B8;margin-bottom:24px;line-height:1.6;">Hol dir jetzt das vollständige KI-Tool mit allen 8 Generatoren – einmalig 297€.</p>
+                <a href="https://zyntevo.de/steuerberater.html" target="_blank" class="generate-btn" style="display:inline-block;width:auto;padding:14px 32px;text-decoration:none;">⚡ Jetzt Premium sichern</a>
             </div>
         </div>
 
         <div id="demo-section">
             <div class="demo-card">
-                <label class="form-label">Anliegen / Thema</label>
-                <select class="form-select" id="stb-typ">
-                    <option>Steuererklärung</option>
-                    <option>Betriebsprüfung</option>
-                    <option>Jahresabschluss</option>
-                    <option>Umsatzsteuer</option>
-                    <option>Lohnsteuer</option>
-                    <option>Erbschaftsteuer</option>
-                </select>
-                <label class="form-label">Mandant / Unternehmen</label>
-                <input class="form-input" id="stb-mandant" placeholder="z.B. Müller GmbH">
-                <label class="form-label">Branche</label>
-                <input class="form-input" id="stb-branche" placeholder="z.B. Gastronomie">
-                <label class="form-label">Besonderes Anliegen</label>
-                <input class="form-input" id="stb-anliegen" placeholder="z.B. Besonderes Anliegen">
-                <label class="form-label">Dringlichkeit</label>
-                <input class="form-input" id="stb-dringlichkeit" placeholder="z.B. Frist in 2 Wochen">
-                <label class="form-label">Zusätzliche Infos</label>
-                <textarea class="form-textarea" id="stb-details" placeholder="z.B. Mandant ist seit 5 Jahren Kunde"></textarea>
-                <label class="form-label">Ton</label>
-                <select class="form-select" id="stb-ton">
-                    <option>Professionell & klar</option>
-                    <option>Freundlich & zugänglich</option>
-                    <option>Formal & präzise</option>
-                </select>
-                <button class="generate-btn" id="gen-btn" onclick="generateDemo()">⚡ Kostenlosen Mandantenbrief generieren</button>
+                <div class="form-row-two">
+                    <div>
+                        <label class="form-label">Anliegen / Thema</label>
+                        <select class="form-select" id="stb-typ">
+                            <option>Steuererklärung</option>
+                            <option>Betriebsprüfung</option>
+                            <option>Jahresabschluss</option>
+                            <option>Umsatzsteuer</option>
+                            <option>Lohnsteuer</option>
+                            <option>Erbschaftsteuer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Mandant / Unternehmen <span class="req">*</span></label>
+                        <input class="form-input" id="stb-mandant" placeholder="z.B. Müller GmbH">
+                    </div>
+                </div>
+
+                <div class="optional-toggle" id="optional-toggle" onclick="toggleOptional()">
+                    <span class="ot-icon">➕</span>
+                    <span>Weitere Details hinzufügen (optional)</span>
+                </div>
+                <div class="optional-fields" id="optional-fields" style="display:none;">
+                    <div>
+                        <label class="form-label">Branche</label>
+                        <input class="form-input" id="stb-branche" placeholder="z.B. Gastronomie">
+                    </div>
+                    <div>
+                        <label class="form-label">Besonderes Anliegen</label>
+                        <input class="form-input" id="stb-anliegen" placeholder="z.B. Sonderabschreibung beantragen">
+                    </div>
+                    <div>
+                        <label class="form-label">Dringlichkeit</label>
+                        <input class="form-input" id="stb-dringlichkeit" placeholder="z.B. Frist in 2 Wochen">
+                    </div>
+                    <div>
+                        <label class="form-label">Zusätzliche Infos</label>
+                        <textarea class="form-textarea" id="stb-details" placeholder="z.B. Mandant ist seit 5 Jahren Kunde"></textarea>
+                    </div>
+                    <div>
+                        <label class="form-label">Ton</label>
+                        <select class="form-select" id="stb-ton">
+                            <option>Professionell & klar</option>
+                            <option>Freundlich & zugänglich</option>
+                            <option>Formal & präzise</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="generate-btn" id="gen-btn" onclick="generateDemo()">⚡ Jetzt kostenlos generieren</button>
+
+                <div class="trust-row">
+                    <span class="trust-item">🛡️ Kein Account nötig</span>
+                    <span class="trust-item">⚡ Ergebnis in ~10 Sek.</span>
+                    <span class="trust-item">🔒 100% kostenlos</span>
+                </div>
             </div>
 
             <div class="result-card" id="result-card">
-                <div class="result-label">DEIN MANDANTENBRIEF</div>
-                <div id="result-text"></div>
-                <div class="result-actions" id="result-actions" style="display:none;">
-                    <button class="btn-copy" id="copy-btn" onclick="copyResult()">📋 Text kopieren</button>
+                <div class="result-header">
+                    <div class="result-label">DEIN MANDANTENBRIEF</div>
+                    <button class="btn-copy-top" id="copy-btn-top" onclick="copyResult()" style="display:none">📋 Kopieren</button>
                 </div>
+                <div id="result-text"></div>
+                <button class="btn-copy-big" id="copy-btn" onclick="copyResult()" style="display:none">📋 Text kopieren</button>
                 <div class="email-optional" id="email-optional" style="display:none;">
-                    <div class="email-optional-label"><strong>Ergebnis per E-Mail erhalten?</strong><br>Optional – nur wenn du möchtest. Wir schicken dir das Ergebnis zu.</div>
+                    <div class="email-optional-label"><strong>Ergebnis per E-Mail erhalten?</strong><br>Optional – nur wenn du möchtest.</div>
                     <div class="email-optional-row">
                         <input class="form-input" type="email" id="demo-email" placeholder="deine@email.de">
                         <button class="btn-email" onclick="submitEmail()">📧 Senden</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -183,7 +232,9 @@
             <button class="popup-close" onclick="closePopup()">✕</button>
         </div>
         <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:#D4AF37;text-transform:uppercase;margin-bottom:6px;">⚡ Nur im Premium – alle 8 Generatoren:</div>
-        <div class="popup-generatoren"><span class="popup-gen-item">Mandantenbrief</span><span class="popup-gen-item">Erstgespräch-Vorbereitung</span><span class="popup-gen-item">Akquise-Mail</span><span class="popup-gen-item">Erinnerungsschreiben</span><span class="popup-gen-item">Jahresabschluss-Anschreiben</span><span class="popup-gen-item">Fristenwarnung</span><span class="popup-gen-item">Empfehlungsschreiben</span><span class="popup-gen-item">Follow-up-Mail</span></div>
+        <div class="popup-generatoren">
+            <span class="popup-gen-item">Mandantenbrief</span><span class="popup-gen-item">Erstberatungs-Mail</span><span class="popup-gen-item">Fristenerinnerung</span><span class="popup-gen-item">Jahresabschluss-Info</span><span class="popup-gen-item">Betriebsprüfungs-Brief</span><span class="popup-gen-item">Bewertungsantwort</span><span class="popup-gen-item">Akquise-Brief</span><span class="popup-gen-item">Follow-up-Mail</span>
+        </div>
         <div class="popup-countdown">
             <div class="popup-countdown-label">⏰ Sonderangebot endet in:</div>
             <div class="popup-countdown-timer" id="countdown">15:00</div>
@@ -192,14 +243,14 @@
             <div class="popup-plan">
                 <div class="popup-plan-label">STARTER</div>
                 <div class="popup-plan-price">97€</div>
-                <div class="popup-plan-desc">25 Profi-Prompts · Mandantenbrief-Vorlagen · Akquise-Hilfen</div>
-                <a href="https://zyntevo.de/steuerberater.html" target="_blank" class="popup-plan-btn starter" onclick="trackEvent('starter_clicked', 'steuerberater')">Starter holen →</a>
+                <div class="popup-plan-desc">25 Profi-Prompts · Brief-Vorlagen · Mandantenkommunikation</div>
+                <a href="https://zyntevo.de/steuerberater.html" target="_blank" class="popup-plan-btn starter" onclick="trackEvent('starter_clicked','steuerberater')">Starter holen →</a>
             </div>
             <div class="popup-plan featured">
                 <div class="popup-plan-label">★ EMPFOHLEN</div>
                 <div class="popup-plan-price">297€</div>
                 <div class="popup-plan-desc">Alle 8 Generatoren · 5+ Stunden Schreibarbeit pro Woche gespart</div>
-                <a href="https://zyntevo.de/steuerberater.html" target="_blank" class="popup-plan-btn premium" onclick="trackEvent('premium_clicked', 'steuerberater')">⚡ Premium sichern</a>
+                <a href="https://zyntevo.de/steuerberater.html" target="_blank" class="popup-plan-btn premium" onclick="trackEvent('premium_clicked','steuerberater')">⚡ Premium sichern</a>
             </div>
         </div>
         <div class="popup-guarantee">
@@ -217,7 +268,7 @@
         <div class="exit-desc">Du hast gesehen wie schnell ZYNTEVO professionelle Texte erstellt. Starte jetzt mit 5 Generatoren für einmalig:</div>
         <div class="exit-price">97€</div>
         <div class="exit-price-orig">Normalpreis 97€ · keine Abo-Falle</div>
-        <a href="https://www.digistore24.com/product/698395" target="_blank" class="exit-btn" onclick="trackEvent('exit_starter_clicked', 'steuerberater')">Jetzt Starter holen →</a>
+        <a href="https://zyntevo.de/steuerberater.html" target="_blank" class="exit-btn" onclick="trackEvent('exit_starter_clicked','steuerberater')">Jetzt Starter holen →</a>
         <div class="exit-skip" onclick="document.getElementById('exit-popup').classList.remove('show')">Nein danke, ich verzichte auf 5h/Woche</div>
     </div>
 </div>
@@ -230,17 +281,34 @@ let generatedText = '';
 
 function closePopup() { document.getElementById('popup').classList.remove('show'); }
 
-// GA4 Tracking Helper
 function trackEvent(eventName, branche, extra) {
-    if (typeof gtag !== 'undefined') {
-        gtag('event', eventName, { branche: branche, ...extra });
-    }
+    if (typeof gtag !== 'undefined') gtag('event', eventName, { branche, ...extra });
 }
 
-// Track page view
+function toggleOptional() {
+    const fields = document.getElementById('optional-fields');
+    const toggle = document.getElementById('optional-toggle');
+    const open = fields.style.display === 'none';
+    fields.style.display = open ? 'flex' : 'none';
+    toggle.classList.toggle('open', open);
+    const label = toggle.querySelector('span:last-child');
+    label.textContent = open ? 'Weniger anzeigen' : 'Weitere Details hinzufügen (optional)';
+}
+
+function startCountdown() {
+    let t = 15 * 60;
+    const el = document.getElementById('countdown');
+    if (!el) return;
+    const iv = setInterval(() => {
+        t--;
+        if (t <= 0) { clearInterval(iv); return; }
+        const m = Math.floor(t / 60), s = t % 60;
+        el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    }, 1000);
+}
+
 trackEvent('demo_page_view', BRANCHE);
 
-// Check if already used
 window.addEventListener('load', () => {
     if (localStorage.getItem(DEMO_KEY)) {
         document.getElementById('demo-section').style.display = 'none';
@@ -248,20 +316,31 @@ window.addEventListener('load', () => {
     }
 });
 
-// Track form interaction
 document.addEventListener('input', function(e) {
     if (e.target.closest('.demo-card') && !window._formStarted) {
         window._formStarted = true;
         trackEvent('form_started', BRANCHE);
     }
-}, { once: false });
+});
+
+let _exitShown = false;
+document.addEventListener('mouseleave', (e) => {
+    if (e.clientY < 20 && !_exitShown && generatedText) {
+        _exitShown = true;
+        document.getElementById('exit-popup').classList.add('show');
+    }
+});
 
 async function generateDemo() {
     const mandant = document.getElementById('stb-mandant').value.trim();
-    if (!mandant) { alert('Bitte mindestens den Mandanten eingeben.'); return; }
+    if (!mandant) {
+        document.getElementById('stb-mandant').focus();
+        document.getElementById('stb-mandant').style.borderColor = '#EF4444';
+        setTimeout(() => document.getElementById('stb-mandant').style.borderColor = '', 2000);
+        return;
+    }
 
     trackEvent('generate_clicked', BRANCHE);
-
     const btn = document.getElementById('gen-btn');
     btn.disabled = true;
     btn.textContent = 'Wird generiert...';
@@ -269,17 +348,18 @@ async function generateDemo() {
     const resultCard = document.getElementById('result-card');
     const resultText = document.getElementById('result-text');
     resultCard.style.display = 'block';
-    resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Text...</div>';
+    resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Mandantenbrief...</div>';
+    resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
     const prompt = `Professioneller Mandantenbrief eines Steuerberaters auf Deutsch.
-Anliegen: ${document.getElementById('stb-typ').value},
-Mandant: ${document.getElementById('stb-mandant').value},
-Branche: ${document.getElementById('stb-branche').value || 'nicht angegeben'},
-Besonderes Anliegen: ${document.getElementById('stb-anliegen').value || 'nicht angegeben'},
-Dringlichkeit: ${document.getElementById('stb-dringlichkeit').value || 'auf Anfrage'},
-Zusätzliche Infos: ${document.getElementById('stb-details').value || 'keine'},
-Ton: ${document.getElementById('stb-ton').value}.
-Struktur: Anrede, freundliche Einleitung, Sachverhalt erklären, nächste Schritte, professioneller Abschluss. Max. 200 Wörter. Kein Markdown.`;
+Thema: ${document.getElementById('stb-typ').value},
+Mandant: ${mandant},
+Branche: ${document.getElementById('stb-branche')?.value || 'nicht angegeben'},
+Anliegen: ${document.getElementById('stb-anliegen')?.value || 'nicht angegeben'},
+Dringlichkeit: ${document.getElementById('stb-dringlichkeit')?.value || 'normal'},
+Zusatzinfos: ${document.getElementById('stb-details')?.value || 'keine'},
+Ton: ${document.getElementById('stb-ton')?.value || 'Professionell & klar'}.
+Struktur: Betreff, Anrede, Kernaussage, notwendige Schritte, Frist wenn relevant, höfliche Schlussformel. Max. 200 Wörter. Kein Markdown.`;
 
     try {
         const res = await fetch(`${API}/api/query`, {
@@ -287,69 +367,61 @@ Struktur: Anrede, freundliche Einleitung, Sachverhalt erklären, nächste Schrit
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer demo-token' },
             body: JSON.stringify({ prompt, demo: true })
         });
-
         if (!res.ok) throw new Error('Fehler');
         const data = await res.json();
         generatedText = data.content[0].text;
 
         resultText.innerHTML = `<div class="result-text">${generatedText}</div>`;
-
-        // Show actions and email opt-in
-        document.getElementById('result-actions').style.display = 'flex';
+        document.getElementById('copy-btn').style.display = 'block';
+        document.getElementById('copy-btn-top').style.display = 'inline-block';
         document.getElementById('email-optional').style.display = 'block';
 
         trackEvent('result_generated', BRANCHE);
-
-        // Mark as used
         localStorage.setItem(DEMO_KEY, '1');
 
-        // Show popup after 4 seconds
         setTimeout(() => {
             document.getElementById('popup').classList.add('show');
-    startCountdown();
+            startCountdown();
         }, 4000);
 
         btn.disabled = false;
-        btn.textContent = '⚡ Nochmal generieren';
-
+        btn.textContent = '🔄 Nochmal generieren';
     } catch(e) {
-        resultText.innerHTML = '<div style="color:#EF4444">Fehler beim Generieren. Bitte versuche es erneut.</div>';
+        resultText.innerHTML = '<div style="color:#EF4444;font-size:14px;">Fehler beim Generieren. Bitte versuche es erneut.</div>';
         btn.disabled = false;
-        btn.textContent = '⚡ Kostenlosen Mandantenbrief generieren';
+        btn.textContent = '⚡ Jetzt kostenlos generieren';
     }
 }
 
 function copyResult() {
     if (!generatedText) return;
     navigator.clipboard.writeText(generatedText).then(() => {
-        const btn = document.getElementById('copy-btn');
-        btn.textContent = '✓ Kopiert!';
-        btn.classList.add('copied');
-        setTimeout(() => {
-            btn.textContent = '📋 Text kopieren';
-            btn.classList.remove('copied');
-        }, 2000);
+        ['copy-btn','copy-btn-top'].forEach(id => {
+            const b = document.getElementById(id);
+            if (!b) return;
+            const orig = b.textContent;
+            b.textContent = '✓ Kopiert!';
+            b.classList.add('copied');
+            setTimeout(() => { b.textContent = orig; b.classList.remove('copied'); }, 2000);
+        });
     });
 }
 
 async function submitEmail() {
     const email = document.getElementById('demo-email').value.trim();
     if (!email || !email.includes('@')) { alert('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
-
     trackEvent('email_submitted', BRANCHE, { lead_score: 75 });
-
     try {
         await fetch(`${API}/api/demo-lead`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, branche: BRANCHE, resultText: generatedText, tool: 'DEIN MANDANTENBRIEF' })
         });
-        document.getElementById('email-optional').innerHTML = '<p style="color:#22C55E;font-size:14px;text-align:center;">✓ Ergebnis wurde an deine E-Mail gesendet!</p>';
+        document.getElementById('email-optional').innerHTML = '<p style="color:#22C55E;font-size:14px;text-align:center;padding:8px 0;">✓ Ergebnis wurde an deine E-Mail gesendet!</p>';
     } catch(e) {
         alert('Fehler beim Senden. Bitte versuche es erneut.');
     }
 }
 </script>
-
 </body>
 </html>
