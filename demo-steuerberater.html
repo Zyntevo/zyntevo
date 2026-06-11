@@ -310,7 +310,7 @@ function startCountdown() {
 trackEvent('demo_page_view', BRANCHE);
 
 window.addEventListener('load', () => {
-    if (localStorage.getItem(DEMO_KEY)) {
+    if (parseInt(localStorage.getItem(DEMO_KEY) || '0') >= 3) {
         document.getElementById('demo-section').style.display = 'none';
         document.getElementById('used-section').style.display = 'block';
     }
@@ -377,7 +377,9 @@ Struktur: Betreff, Anrede, Kernaussage, notwendige Schritte, Frist wenn relevant
         document.getElementById('email-optional').style.display = 'block';
 
         trackEvent('result_generated', BRANCHE);
-        localStorage.setItem(DEMO_KEY, '1');
+        const uses = parseInt(localStorage.getItem(DEMO_KEY) || '0') + 1;
+        localStorage.setItem(DEMO_KEY, String(uses));
+        if (uses >= 3) { btn.textContent = 'Limit erreicht (3/3)'; btn.disabled = true; }
 
         setTimeout(() => {
             document.getElementById('popup').classList.add('show');
