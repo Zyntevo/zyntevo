@@ -369,6 +369,121 @@ body{
     .nav{
         display:none;
     }
+    .nav-hamburger{
+        display:flex;
+    }
+}
+
+/* ── Hamburger Button ── */
+.nav-hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    padding:8px;
+    z-index:1001;
+}
+.nav-hamburger span{
+    display:block;
+    width:24px;
+    height:2px;
+    background:#F8FAFC;
+    border-radius:2px;
+    transition:all .25s;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ── Mobile Nav Dropdown ── */
+.nav-mobile{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:#0F172A;
+    border-bottom:1px solid rgba(212,175,55,.15);
+    padding:16px 24px 24px;
+    gap:4px;
+    z-index:1000;
+}
+.nav-mobile.open{
+    display:flex;
+}
+.nav-mobile a{
+    color:#CBD5E1;
+    text-decoration:none;
+    font-size:16px;
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    transition:color .2s;
+}
+.nav-mobile a:last-child{
+    border-bottom:none;
+}
+.nav-mobile a:hover{
+    color:#D4AF37;
+}
+.nav-mobile .nav-btn{
+    margin-top:12px;
+    text-align:center;
+    padding:14px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+/* Make header position:relative so dropdown positions correctly */
+.header .container{
+    position:relative;
+}
+
+/* ── Mobile Fixes ── */
+@media (max-width:768px) {
+    /* System grid (3-col inline on homepage) → 1 col */
+    [style*="repeat(3,1fr)"]{
+        grid-template-columns:1fr !important;
+    }
+    /* Sticky CTA text */
+    .sticky-cta-text{
+        font-size:13px;
+    }
+    /* Comparison table scrollable */
+    .comparison-table{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+    .comparison-table table{
+        min-width:500px;
+    }
+    /* ROI box */
+    .roi-box{
+        padding:24px 16px;
+    }
+    /* Steps grid → 1 col on small screens */
+    .steps-grid{
+        grid-template-columns:1fr !important;
+    }
+    /* Tool grid → 1 col on small screens */
+    .tool-grid{
+        grid-template-columns:1fr !important;
+    }
+    /* Video wrapper */
+    .video-wrapper{
+        grid-template-columns:1fr !important;
+        justify-items:center;
+    }
+    .video-phone{
+        width:220px;
+    }
+    .video-phone video{
+        width:220px;
+        height:390px;
+    }
 }
 
 .hero-logo{

@@ -19,12 +19,19 @@
             </a>
             <nav class="nav">
                 <a href="#ki-tool">KI-Tool</a>
-                <a href="#systeme">Systeme</a>
-                <a href="#vorteile">Vorteile</a>
+                <a href="#systeme">Branchen</a>
                 <a href="#faq">FAQ</a>
-                <a href="premium.html">🔒 Premium-Zugang</a>
                 <a href="#systeme" class="nav-btn">Jetzt starten</a>
             </nav>
+            <button class="nav-hamburger" id="navToggle" aria-label="Menü öffnen">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-mobile" id="navMobile">
+                <a href="#ki-tool" onclick="closeNav()">KI-Tool</a>
+                <a href="#systeme" onclick="closeNav()">Branchen</a>
+                <a href="#faq" onclick="closeNav()">FAQ</a>
+                <a href="#systeme" class="nav-btn" onclick="closeNav()">Jetzt starten</a>
+            </div>
         </div>
     </header>
 
@@ -358,6 +365,12 @@ window.addEventListener('load', function() {
     document.getElementById('cookie-overlay').style.display = 'none';
   }
 });
+</script>
+<script>
+var t=document.getElementById('navToggle'),m=document.getElementById('navMobile');
+t.addEventListener('click',function(){t.classList.toggle('open');m.classList.toggle('open');});
+function closeNav(){t.classList.remove('open');m.classList.remove('open');}
+document.addEventListener('click',function(e){if(!t.contains(e.target)&&!m.contains(e.target)){closeNav();}});
 </script>
 
 </body>

@@ -112,12 +112,21 @@
         </a>
         <nav class="nav">
             <a href="index.html">Startseite</a>
-            <a href="#vorteile">Vorteile</a>
             <a href="#ki-tool">KI-Tool</a>
-            <a href="#systeme">Systeme</a>
             <a href="#preise">Preise</a>
             <a href="#faq">FAQ</a>
+            <a href="https://www.checkout-ds24.com/product/696893" target="_blank" class="nav-btn">Jetzt kaufen</a>
         </nav>
+        <button class="nav-hamburger" id="navToggle" aria-label="Menü öffnen">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-mobile" id="navMobile">
+            <a href="index.html">Startseite</a>
+            <a href="#ki-tool" onclick="closeNav()">KI-Tool</a>
+            <a href="#preise" onclick="closeNav()">Preise</a>
+            <a href="#faq" onclick="closeNav()">FAQ</a>
+            <a href="https://www.checkout-ds24.com/product/696893" target="_blank" class="nav-btn">Jetzt kaufen</a>
+        </div>
     </div>
 </header>
 
@@ -508,6 +517,12 @@ function calcRoi() {
     document.getElementById('roiMoney').textContent = '= ' + money.toLocaleString('de-DE') + '€ Zeitwert pro Monat (bei 80€/h)';
 }
 calcRoi();
+</script>
+<script>
+var t=document.getElementById('navToggle'),m=document.getElementById('navMobile');
+t.addEventListener('click',function(){t.classList.toggle('open');m.classList.toggle('open');});
+function closeNav(){t.classList.remove('open');m.classList.remove('open');}
+document.addEventListener('click',function(e){if(!t.contains(e.target)&&!m.contains(e.target)){closeNav();}});
 </script>
 </body>
 </html>
