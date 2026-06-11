@@ -623,7 +623,7 @@ async function generateMandantenmail() {
 
 async function generateAkquise() {
   const p = getProfile();
-  run('akquise-result', `Steuerberater Akquise-Mail auf Deutsch. Zielgruppe: ${document.getElementById('aq-zielgruppe').value}, Anlass: ${document.getElementById('aq-anlass').value}, Empfänger: ${document.getElementById('aq-empfaenger').value||''}, Absender: ${p.name||''} von ${p.kanzlei||''}, USP: ${document.getElementById('aq-usp').value||p.usp||''}. Überzeugend, professionell, keine Floskeln. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('akquise-result', `Steuerberater Akquise-Mail auf Deutsch. Zielgruppe: ${document.getElementById('aq-zielgruppe').value}, Anlass: ${document.getElementById('aq-anlass').value}, Empfänger: ${document.getElementById('aq-empfaenger').value||''}, Absender: ${p.name||''} von ${p.kanzlei||''}, USP: ${document.getElementById('aq-usp').value||p.usp||''}. Überzeugend, professionell, keine Floskeln. WICHTIG: Kein Terminvorschlag, keine Einladung zu einem Telefonat oder Gespräch, kein "Use-Case", kein Angebot eines Vor-Ort-Besuchs – die Mail weckt Interesse und endet mit einer konkreten Handlungsaufforderung (z.B. Antwort-Mail oder Rückruf wenn gewünscht). Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 
 async function generateUnterlagen() {
