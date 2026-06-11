@@ -144,6 +144,19 @@ section[style*="#111827"] {
   border-color: rgba(212,175,55,.25) !important;
 }
 
+/* Popup-Texte explizit dunkel (waren weiß auf weißem Hintergrund) */
+.popup-title { color: #1E293B !important; }
+.popup-title span { color: #B8962E !important; }
+.popup-subtitle { color: #64748B !important; }
+.popup-plan-price { color: #1E293B !important; font-weight: 900 !important; }
+.popup-plan-label { color: #64748B !important; }
+.popup-plan.featured .popup-plan-label { color: #B8962E !important; }
+.popup-plan-desc { color: #64748B !important; }
+.popup-countdown-label { color: #64748B !important; }
+.popup-countdown-timer { color: #B8962E !important; }
+.popup-gen-item { color: #B8962E !important; }
+.popup-close { color: #64748B !important; background: none !important; border: none !important; }
+
 /* Sidebar speziell */
 .sidebar, #sidebar {
   background: rgba(255,255,255,0.72) !important;
