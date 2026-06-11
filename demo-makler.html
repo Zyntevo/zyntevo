@@ -122,52 +122,7 @@
       gtag("config", "G-GPT0KRVEM2");
     </script>
 <link rel="stylesheet" href="glass-overrides.css">
-  <!-- DARK GLASS ENHANCEMENT -->
-  <style>
-    body { position: relative; }
-    body::before {
-      content: '';
-      position: fixed; top: -200px; left: 50%;
-      transform: translateX(-50%);
-      width: 120vw; height: 600px;
-      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,168,76,.13) 0%, transparent 65%);
-      pointer-events: none; z-index: 0;
-    }
-    body::after {
-      content: '';
-      position: fixed; bottom: -150px; right: -100px;
-      width: 700px; height: 700px; border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(99,102,241,.07) 0%, transparent 65%);
-      pointer-events: none; z-index: 0;
-    }
-    .header, .topbar {
-      backdrop-filter: blur(32px) saturate(200%) !important;
-      -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
-      background: rgba(7,11,17,.82) !important;
-      border-bottom: 1px solid rgba(212,175,55,.12) !important;
-      box-shadow: 0 1px 0 rgba(212,175,55,.06), 0 4px 24px rgba(0,0,0,.3) !important;
-    }
-    .demo-card, .result-card, .access-card, .steps-card,
-    .auth-card, .login-box, .section, .login-card,
-    .upsell-box, .download-card, .inc-item, .popup-box,
-    .exit-box, .panel, .stat, .code-box, .tool-form, .tool-result,
-    .profile-bar, .dash-card, .tool-card, .cta-box {
-      backdrop-filter: blur(16px) saturate(140%) !important;
-      -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
-    }
-    .demo-card, .result-card, .access-card, .steps-card,
-    .auth-card, .login-box, .section, .login-card,
-    .tool-form, .tool-result, .profile-bar, .dash-card {
-      border-color: rgba(212,175,55,.18) !important;
-    }
-    .hero { z-index: 1; position: relative; }
-    main, .main, .demo-wrap, #app, #admin-screen { position: relative; z-index: 1; }
-    .download-card:hover, .inc-item:hover, .tool-card:hover {
-      box-shadow: 0 8px 40px rgba(201,168,76,.15), 0 2px 12px rgba(99,102,241,.1) !important;
-      border-color: rgba(212,175,55,.45) !important;
-    }
-    .legal-content h1, .page-title { position: relative; z-index: 1; }
-  </style>
+  <link rel="stylesheet" href="light-mode.css">
 </head>
 <body>
 

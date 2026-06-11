@@ -1,0 +1,235 @@
+/* ===== ZYNTEVO LIGHT GLASSMORPHISM OVERRIDE ===== */
+
+html, body {
+  background: #F0EEF8 !important;
+  color: #1E293B !important;
+}
+
+/* Mesh gradient background */
+body::before {
+  content: '' !important;
+  position: fixed !important;
+  inset: 0 !important;
+  background:
+    radial-gradient(ellipse 80% 55% at 15% -10%, rgba(201,168,76,.14) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 105%, rgba(99,102,241,.11) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 55% 50%, rgba(139,92,246,.06) 0%, transparent 65%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  border-radius: 0 !important;
+}
+
+body::after {
+  display: none !important;
+}
+
+/* ---- NAVIGATION ---- */
+.header, nav.header, header.header, header, .topbar, .nav-bar {
+  background: rgba(255,255,255,0.72) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.55) !important;
+  box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 4px 24px rgba(0,0,0,.04) !important;
+}
+
+/* Logo sichtbar auf weißem Hintergrund */
+.logo img, .nav-logo img, header img, .header img {
+  filter: brightness(0) !important;
+}
+
+.header a, nav a, .topbar a {
+  color: #1E293B !important;
+}
+
+/* ---- CARDS & BOXEN ---- */
+.demo-card, .result-card, .access-card, .steps-card,
+.auth-card, .login-box, .login-card, .section,
+.upsell-box, .download-card, .inc-item,
+.popup-box, .exit-box, .panel, .stat,
+.code-box, .tool-form, .tool-result,
+.profile-bar, .dash-card, .tool-card,
+.cta-box, .card, .info-box, .widerruf-content,
+.tab-content, .admin-card, .filter-bar,
+.user-table-wrap, .table-wrap, .block-wrap,
+.legal-content {
+  background: rgba(255,255,255,0.62) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border-color: rgba(255,255,255,0.75) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,.06), 0 1px 0 rgba(255,255,255,.9) inset !important;
+  color: #1E293B !important;
+}
+
+/* ---- TEXT FARBEN ---- */
+h1, h2, h3, h4, h5, h6 {
+  color: #1E293B !important;
+}
+
+p, li, label, td, th, span:not(.badge):not(.tag):not([class*="gold"]):not([class*="icon"]) {
+  color: #374151 !important;
+}
+
+.subtitle, .muted, .hint, .desc, .meta, small {
+  color: #64748B !important;
+}
+
+/* Legal page text */
+.legal-content h2 { color: #D4AF37 !important; }
+.legal-content p, .legal-content ul, .legal-content li { color: #374151 !important; }
+.legal-content a { color: #D4AF37 !important; }
+.legal-content .subtitle { color: #64748B !important; }
+
+/* Gold bleibt gold */
+.gold, [style*="color: #D4AF37"], [style*="color:#D4AF37"],
+.price, .highlight, .badge-gold { color: #B8962E !important; }
+
+/* ---- INPUTS ---- */
+input[type="text"], input[type="email"], input[type="password"],
+input[type="number"], textarea, select {
+  background: rgba(255,255,255,0.85) !important;
+  color: #1E293B !important;
+  border-color: rgba(0,0,0,.15) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* ---- SIDEBAR ---- */
+.sidebar, #sidebar, .side-nav {
+  background: rgba(255,255,255,0.58) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-right: 1px solid rgba(0,0,0,.07) !important;
+}
+
+.sidebar *, #sidebar * { color: #374151 !important; }
+
+.tool-btn, .nav-item, .side-item {
+  color: #374151 !important;
+}
+
+.tool-btn:hover, .nav-item:hover, .side-item:hover {
+  background: rgba(212,175,55,.12) !important;
+  color: #B8962E !important;
+}
+
+.tool-btn.active, .nav-item.active, .side-item.active {
+  background: rgba(212,175,55,.18) !important;
+  color: #B8962E !important;
+}
+
+/* ---- MOBILE BOTTOM NAV ---- */
+.bottom-nav, .mobile-nav {
+  background: rgba(255,255,255,0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-top: 1px solid rgba(0,0,0,.07) !important;
+}
+
+.bottom-nav *, .mobile-nav * { color: #374151 !important; }
+
+/* ---- FOOTER ---- */
+footer, .footer {
+  background: rgba(240,238,248,0.75) !important;
+  border-top: 1px solid rgba(0,0,0,.08) !important;
+}
+
+footer p, footer a, .footer p, .footer a { color: #64748B !important; }
+footer h4, .footer h4 { color: #1E293B !important; }
+
+/* ---- AUTH SCREEN ---- */
+#auth-screen, .auth-screen, .auth-wrap {
+  background: #F0EEF8 !important;
+}
+
+/* ---- POPUP OVERLAYS ---- */
+.popup, .modal, .overlay, #exit-popup, #success-popup,
+[id*="popup"], [id*="modal"], [class*="overlay"] {
+  background: rgba(0,0,0,.40) !important;
+}
+
+/* ---- WIDERRUF MODAL ---- */
+.widerruf-modal, #widerruf-modal, .modal-content {
+  background: rgba(255,255,255,0.95) !important;
+  color: #1E293B !important;
+}
+
+/* ---- ADMIN TABLE ---- */
+table { background: transparent !important; }
+thead { background: rgba(212,175,55,.1) !important; }
+tr { border-color: rgba(0,0,0,.07) !important; }
+tr:hover { background: rgba(255,255,255,.6) !important; }
+th, td { color: #374151 !important; }
+
+/* ---- CODE / RESULT BOX ---- */
+.result-text, .output, pre, code, .generated-text {
+  background: rgba(255,255,255,0.7) !important;
+  color: #1E293B !important;
+  border-color: rgba(0,0,0,.1) !important;
+}
+
+/* ---- UPSELL / DANKE SEITEN ---- */
+.upsell-box, .upsell-card {
+  background: linear-gradient(135deg, rgba(255,255,255,.7), rgba(255,255,255,.5)) !important;
+  border-color: rgba(212,175,55,.3) !important;
+}
+
+.countdown-box, .timer-box {
+  background: rgba(255,255,255,0.6) !important;
+  color: #1E293B !important;
+}
+
+/* ---- STICKY BARS ---- */
+.sticky-bar, .widerruf-bar, .sticky-cta-bar {
+  background: rgba(255,255,255,0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-top: 1px solid rgba(0,0,0,.08) !important;
+  color: #374151 !important;
+}
+
+/* ---- Z-INDEX FIX ---- */
+body { position: relative; }
+main, .main, .demo-wrap, #app, #admin-screen,
+section, .container, .content-area { position: relative; z-index: 1; }
+
+/* ---- BUTTONS bleiben gold ---- */
+.btn, button[class*="btn"], .cta-btn, .submit-btn, .copy-btn,
+input[type="submit"] {
+  background: linear-gradient(135deg, #D4AF37, #B8962E) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.btn:hover, .cta-btn:hover { opacity: .9 !important; }
+
+.btn-outline, .btn-secondary {
+  background: rgba(255,255,255,.6) !important;
+  color: #1E293B !important;
+  border-color: rgba(0,0,0,.2) !important;
+}
+
+/* ---- PROFILE BAR ---- */
+.profile-bar {
+  background: rgba(255,255,255,0.65) !important;
+  border-bottom: 1px solid rgba(0,0,0,.07) !important;
+  color: #1E293B !important;
+}
+
+/* ---- DOWNLOAD GRID ITEMS ---- */
+.download-item, .dl-item, .file-card {
+  background: rgba(255,255,255,.6) !important;
+  border-color: rgba(0,0,0,.1) !important;
+  color: #1E293B !important;
+}
+
+.download-item:hover, .dl-item:hover, .file-card:hover {
+  box-shadow: 0 8px 32px rgba(212,175,55,.18) !important;
+  border-color: rgba(212,175,55,.4) !important;
+}
