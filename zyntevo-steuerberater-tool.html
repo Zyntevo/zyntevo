@@ -159,6 +159,35 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 </head>
 <body>
 
+
+<!-- TRIAL MODAL -->
+<div id="trial-screen" style="display:flex;">
+  <div class="trial-card">
+    <div class="trial-badge">🎁 KOSTENLOS TESTEN</div>
+    <div class="trial-title">7 Tage kostenlos testen</div>
+    <div class="trial-desc">Gib deine E-Mail ein und teste ZYNTEVO 7 Tage lang vollständig kostenlos – alle 8 Generatoren ohne Einschränkung.</div>
+    <input class="trial-input" type="email" id="trial-email" placeholder="deine@email.de" onkeydown="if(event.key==='Enter')startTrial()" />
+    <div class="trial-error" id="trial-error"></div>
+    <button class="trial-btn" id="trial-btn" onclick="startTrial()">Jetzt kostenlos starten →</button>
+    <div class="trial-note">Kein Abo. Keine Kreditkarte. Jederzeit kündbar.<br>Bereits gekauft? <a onclick="showAuthFromTrial()">Hier einloggen →</a></div>
+  </div>
+</div>
+
+<!-- TRIAL EXPIRED MODAL -->
+<div id="trial-expired-screen">
+  <div class="trial-card">
+    <div class="trial-badge">⏰ TEST ABGELAUFEN</div>
+    <div class="trial-title">Dein kostenloser Test ist abgelaufen</div>
+    <div class="trial-desc">Du hast ZYNTEVO 7 Tage getestet. Wie war's?<br>Sichere dir jetzt das vollständige Tool – nur für Tester:</div>
+    <div class="expired-price-old">297€</div>
+    <div class="expired-price">197€</div>
+    <div class="expired-price-note">Rabattcode <strong style="color:var(--gold);">TESTER-X9K2</strong> wird automatisch angewendet</div>
+    <a href="https://www.checkout-ds24.com/product/698384?coupon=TESTER-X9K2" target="_blank" class="trial-btn" style="display:block;text-decoration:none;color:#000;margin-bottom:12px;">⚡ Jetzt für 197€ kaufen →</a>
+    <div class="trial-note">Einmalzahlung · Kein Abo · 14 Tage Geld-zurück-Garantie<br>
+      <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank" style="color:var(--muted);">Bewertung hinterlassen → weiteren Zugang erhalten</a>
+    </div>
+  </div>
+</div>
 <!-- AUTH SCREEN -->
 <div id="auth-screen">
   <div class="auth-card">
@@ -490,6 +519,10 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 const API = "https://zyntevo-tool.jan-6a7.workers.dev";
 const STORAGE_KEY = "zyntevo_steuerberater_token";
 const EMAIL_KEY = "zyntevo_steuerberater_email";
+const TRIAL_KEY = "zyntevo_stb_trial";
+const BRANCHE = "steuerberater";
+let isTrial = false;
+let trialEmail = null;
 
 let authToken = null;
 let userEmail = null;
@@ -571,6 +604,8 @@ function showApp() {
 }
 
 function doLogout() {
+  localStorage.removeItem(TRIAL_KEY);
+  isTrial = false; trialEmail = null;
   localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(EMAIL_KEY);
   authToken = null; userEmail = null;
   document.getElementById('auth-screen').style.display = 'flex';
