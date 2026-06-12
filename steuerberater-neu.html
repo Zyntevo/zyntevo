@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
@@ -53,7 +53,9 @@
     .faq-item:hover, .faq-item.open { background: rgba(255,255,255,.65); border-color: rgba(201,168,76,.4); box-shadow: 0 4px 24px rgba(201,168,76,.1); }
     .trustpilot-section { background: rgba(255,255,255,.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,.6); }
     .trustpilot-stars-row { background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.75); backdrop-filter: blur(8px); }
-    .cta-band { background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,.12) 0%, transparent 65%), linear-gradient(135deg, rgba(15,23,42,.95) 0%, rgba(20,30,56,.95) 50%, rgba(15,23,42,.95) 100%); backdrop-filter: blur(20px); }
+    .cta-band { background: linear-gradient(135deg, rgba(235,232,252,1) 0%, rgba(225,220,248,1) 50%, rgba(235,232,252,1) 100%) !important; border-top: 1px solid rgba(212,175,55,.2) !important; border-bottom: 1px solid rgba(212,175,55,.2) !important; }
+    .cta-band::before { background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,.12) 0%, transparent 65%) !important; }
+    .cta-band h2, .cta-band p, .cta-band-note { color: #1E293B !important; }
   </style>
 </head>
 <body>
@@ -69,11 +71,11 @@
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index-neu.html" class="nav-logo">
+    <a href="https://zyntevo.de" class="nav-logo">
       <img src="css/images/header.png" alt="ZYNTEVO" onerror="this.src='https://zyntevo.de/css/images/emaillogo.png'">
     </a>
     <div class="nav-links">
-      <a href="index-neu.html">Startseite</a>
+      <a href="https://zyntevo.de">Startseite</a>
       <a href="#ki-tool">KI-Tool</a>
       <a href="#preise">Preise</a>
       <a href="#faq">FAQ</a>
@@ -85,7 +87,7 @@
     <button class="nav-hamburger" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
   </div>
   <div class="nav-mobile" id="navMobile">
-    <a href="index-neu.html">Startseite</a>
+    <a href="https://zyntevo.de">Startseite</a>
     <a href="#ki-tool" onclick="closeNav()">KI-Tool</a>
     <a href="#preise" onclick="closeNav()">Preise</a>
     <a href="#faq" onclick="closeNav()">FAQ</a>
@@ -435,7 +437,7 @@ Mit freundlichen Grüßen
     <p>Nutze ZYNTEVO Premium – Mandantenbriefe, Akquise und Social Media auf Knopfdruck.</p>
     <div class="cta-band-btns">
       <a href="https://www.checkout-ds24.com/product/698384" target="_blank" class="btn btn-gold btn-lg">⚡ Premium sichern</a>
-      <a href="demo-steuerberater.html" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.2);color:#F8FAFC;background:rgba(255,255,255,.06);">🎁 Kostenlos testen</a>
+      <a href="demo-steuerberater.html" class="btn btn-outline btn-lg" style="border-color:rgba(201,168,76,.4);color:#1E293B;background:rgba(255,255,255,.6);">🎁 Kostenlos testen</a>
     </div>
     <p class="cta-band-note">Einmalzahlung 297€ · Kein Abo · 14 Tage Garantie</p>
   </div>
