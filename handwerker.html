@@ -34,7 +34,21 @@
     .hero-mockup { background: rgba(255,255,255,.55); backdrop-filter: blur(28px) saturate(160%); -webkit-backdrop-filter: blur(28px) saturate(160%); border: 1px solid rgba(255,255,255,.85); box-shadow: 0 32px 80px rgba(99,102,241,.12), 0 8px 24px rgba(201,168,76,.15), inset 0 1px 0 rgba(255,255,255,.9); }
     .mockup-field { background: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.8); backdrop-filter: blur(8px); }
     .mockup-output { background: rgba(201,168,76,.06); border: 1px solid rgba(201,168,76,.25); backdrop-filter: blur(8px); }
-    .proof-strip { background: rgba(255,255,255,.45); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); border-top: 1px solid rgba(255,255,255,.7); border-bottom: 1px solid rgba(255,255,255,.5); box-shadow: 0 4px 24px rgba(99,102,241,.06); }
+      /* === 7-TAGE-TRIAL BANNER === */
+  .trial-banner{position:relative;overflow:hidden;padding:48px 0;background:linear-gradient(135deg,rgba(212,175,55,.15) 0%,rgba(99,102,241,.12) 50%,rgba(212,175,55,.10) 100%);border-top:1px solid rgba(212,175,55,.3);border-bottom:1px solid rgba(212,175,55,.3);text-align:center;}
+  .trial-banner::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+  .trial-banner-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px;}
+  .trial-banner-tag{display:inline-block;padding:6px 18px;background:rgba(212,175,55,.18);border:1px solid rgba(212,175,55,.5);border-radius:999px;color:#B8962E;font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase;}
+  .trial-banner h2{font-size:clamp(22px,4vw,38px);font-weight:900;color:#1E293B;margin-bottom:10px;line-height:1.2;}
+  .trial-banner h2 span{color:#D4AF37;}
+  .trial-banner p{font-size:16px;color:#475569;margin-bottom:28px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;}
+  .trial-banner-perks{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:32px;}
+  .trial-banner-perk{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#334155;}
+  .trial-banner-perk-dot{width:8px;height:8px;background:#D4AF37;border-radius:50%;flex-shrink:0;}
+  .trial-banner-btn{display:inline-block;padding:16px 40px;background:#D4AF37;color:#000;font-weight:800;font-size:16px;border-radius:14px;text-decoration:none;transition:.25s;box-shadow:0 4px 20px rgba(212,175,55,.35);}
+  .trial-banner-btn:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(212,175,55,.45);}
+  .trial-banner-sub{font-size:12px;color:#94A3B8;margin-top:14px;}
+  .proof-strip { background: rgba(255,255,255,.45); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); border-top: 1px solid rgba(255,255,255,.7); border-bottom: 1px solid rgba(255,255,255,.5); box-shadow: 0 4px 24px rgba(99,102,241,.06); }
     .section { background: transparent; }
     .section-alt { background: rgba(255,255,255,.18); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(255,255,255,.5); border-bottom: 1px solid rgba(255,255,255,.5); }
     .glass-card { background: rgba(255,255,255,.5); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); border: 1px solid rgba(255,255,255,.75); box-shadow: 0 8px 32px rgba(99,102,241,.08), 0 2px 8px rgba(201,168,76,.06), inset 0 1px 0 rgba(255,255,255,.9); }
@@ -161,6 +175,23 @@
 </section>
 
 <!-- PROOF STRIP -->
+<!-- 7-TAGE-TRIAL BANNER -->
+<section class="trial-banner">
+  <div class="trial-banner-inner">
+    <div class="trial-banner-tag">🎁 Neu – 7 Tage kostenlos</div>
+    <h2>Teste ZYNTEVO <span>7 Tage kostenlos</span> – ohne Risiko</h2>
+    <p>Teste alle 8 KI-Generatoren für Handwerker 7 Tage lang komplett kostenlos – Angebote, Mails, Social Media und mehr.</p>
+    <div class="trial-banner-perks">
+      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div>Alle 8 Generatoren freigeschaltet</div>
+      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div>Keine Kreditkarte nötig</div>
+      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div>Kein Abo, kein Risiko</div>
+      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div>Sofort starten</div>
+    </div>
+      <a href="https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html" target="_blank" class="trial-banner-btn">🎁 Jetzt 7 Tage kostenlos testen →</a>
+    <div class="trial-banner-sub">Nach 7 Tagen läuft der Zugang automatisch aus – kein Kauf nötig</div>
+  </div>
+</section>
+
 <div class="proof-strip">
   <div class="proof-strip-inner">
     <div class="proof-item"><div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Angebot in 30 Sekunden</div>

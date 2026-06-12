@@ -38,7 +38,21 @@
       position: relative; z-index: 1;
     }
 
-    /* ─── Nav – stronger glass ─── */
+      /* === 7-TAGE-TRIAL BANNER === */
+  .trial-banner{position:relative;overflow:hidden;padding:48px 0;background:linear-gradient(135deg,rgba(212,175,55,.15) 0%,rgba(99,102,241,.12) 50%,rgba(212,175,55,.10) 100%);border-top:1px solid rgba(212,175,55,.3);border-bottom:1px solid rgba(212,175,55,.3);text-align:center;}
+  .trial-banner::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+  .trial-banner-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px;}
+  .trial-banner-tag{display:inline-block;padding:6px 18px;background:rgba(212,175,55,.18);border:1px solid rgba(212,175,55,.5);border-radius:999px;color:#B8962E;font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase;}
+  .trial-banner h2{font-size:clamp(22px,4vw,38px);font-weight:900;color:#1E293B;margin-bottom:10px;line-height:1.2;}
+  .trial-banner h2 span{color:#D4AF37;}
+  .trial-banner p{font-size:16px;color:#475569;margin-bottom:28px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;}
+  .trial-banner-perks{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:32px;}
+  .trial-banner-perk{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#334155;}
+  .trial-banner-perk-dot{width:8px;height:8px;background:#D4AF37;border-radius:50%;flex-shrink:0;}
+  .trial-banner-btn{display:inline-block;padding:16px 40px;background:#D4AF37;color:#000;font-weight:800;font-size:16px;border-radius:14px;text-decoration:none;transition:.25s;box-shadow:0 4px 20px rgba(212,175,55,.35);}
+  .trial-banner-btn:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(212,175,55,.45);}
+  .trial-banner-sub{font-size:12px;color:#94A3B8;margin-top:14px;}
+  /* ─── Nav – stronger glass ─── */
     .nav {
       background: rgba(240,238,248,.55);
       backdrop-filter: blur(28px) saturate(180%);
@@ -371,6 +385,27 @@
 </section>
 
 <!-- PROOF STRIP -->
+<!-- 7-TAGE-TRIAL BANNER -->
+<section class="trial-banner">
+  <div class="trial-banner-inner">
+    <div class="trial-banner-tag">🎁 Neu – 7 Tage kostenlos</div>
+    <h2>Teste ZYNTEVO <span>7 Tage kostenlos</span> – ohne Risiko</h2>
+    <p>Teste alle 8 KI-Generatoren 7 Tage lang komplett kostenlos – keine Kreditkarte, kein Abo, kein Risiko.</p>
+    <div class="trial-banner-perks">
+      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div>Alle 8 Generatoren freigeschaltet</div>
+      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div>Keine Kreditkarte nötig</div>
+      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div>Kein Abo, kein Risiko</div>
+      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div>Sofort starten</div>
+    </div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:0;">
+        <a href="https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html" target="_blank" class="trial-banner-btn">🏠 Makler – 7 Tage testen</a>
+        <a href="https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html" target="_blank" class="trial-banner-btn" style="background:rgba(212,175,55,.15);color:#B8962E;box-shadow:none;border:1.5px solid rgba(212,175,55,.5);">🔧 Handwerker testen</a>
+        <a href="https://zyntevo.github.io/zyntevo/zyntevo-steuerberater-tool.html" target="_blank" class="trial-banner-btn" style="background:rgba(212,175,55,.15);color:#B8962E;box-shadow:none;border:1.5px solid rgba(212,175,55,.5);">📊 Steuerberater testen</a>
+      </div>
+    <div class="trial-banner-sub">Nach 7 Tagen läuft der Zugang automatisch aus – kein Kauf nötig</div>
+  </div>
+</section>
+
 <div class="proof-strip">
   <div class="proof-strip-inner">
     <div class="proof-item">
