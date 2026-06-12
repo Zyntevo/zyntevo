@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO Admin</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{min-height:100vh;font-family:Inter,-apple-system,sans-serif;background:#F0EEF8;color:#1E293B;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 80% 55% at 15% -10%,rgba(201,168,76,.14) 0%,transparent 60%),
+  radial-gradient(ellipse 60% 50% at 85% 105%,rgba(99,102,241,.11) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 60% at 55% 50%,rgba(139,92,246,.06) 0%,transparent 65%);
+  pointer-events:none;z-index:0;}
+
+/* LOGIN */
+#login-screen{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;}
+.login-card{position:relative;z-index:1;width:400px;max-width:95vw;padding:48px 40px;background:rgba(255,255,255,0.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:0 8px 48px rgba(0,0,0,.10);text-align:center;}
+.login-logo{font-size:28px;font-weight:900;letter-spacing:3px;color:#D4AF37;margin-bottom:4px;}
+.login-sub{font-size:12px;color:#94A3B8;letter-spacing:1px;font-weight:600;margin-bottom:32px;}
+.login-input{width:100%;padding:13px 16px;background:rgba(255,255,255,.7);border:1px solid rgba(212,175,55,.3);border-radius:12px;font-size:14px;font-family:Inter,sans-serif;color:#1E293B;outline:none;margin-bottom:12px;transition:.2s;}
+.login-input:focus{border-color:#D4AF37;background:#fff;}
+.login-btn{width:100%;padding:14px;background:#D4AF37;color:#000;font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;font-family:Inter,sans-serif;transition:.2s;}
+.login-btn:hover{opacity:.9;}
+.login-error{color:#EF4444;font-size:13px;margin-top:10px;display:none;}
+
+/* APP */
+#app{display:none;position:relative;z-index:1;min-height:100vh;}
+
+/* HEADER */
+.admin-header{background:rgba(255,255,255,.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.7);padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 0 rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.04);}
+.admin-logo{font-size:20px;font-weight:900;letter-spacing:2px;color:#D4AF37;}
+.admin-logo span{color:#1E293B;font-size:12px;font-weight:600;letter-spacing:1px;margin-left:8px;}
+.header-right{display:flex;align-items:center;gap:12px;}
+.admin-badge{padding:5px 12px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.3);border-radius:999px;font-size:11px;font-weight:700;color:#B8962E;letter-spacing:1px;}
+.logout-btn{padding:7px 14px;border:1px solid rgba(0,0,0,.12);border-radius:8px;background:transparent;font-size:12px;font-weight:600;color:#64748B;cursor:pointer;font-family:Inter,sans-serif;transition:.2s;}
+.logout-btn:hover{background:rgba(0,0,0,.05);}
+
+/* MAIN */
+.admin-main{padding:32px;max-width:1400px;margin:0 auto;}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.stat-card{background:rgba(255,255,255,.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.85);border-radius:20px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.stat-num{font-size:36px;font-weight:900;color:#D4AF37;line-height:1;margin-bottom:4px;}
+.stat-label{font-size:12px;color:#64748B;font-weight:600;letter-spacing:.5px;}
+.stat-sub{font-size:11px;color:#94A3B8;margin-top:2px;}
+
+/* TABS */
+.tabs{display:flex;gap:4px;background:rgba(255,255,255,.5);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.7);border-radius:14px;padding:4px;margin-bottom:24px;width:fit-content;}
+.tab{padding:9px 20px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:transparent;color:#64748B;font-family:Inter,sans-serif;transition:.2s;}
+.tab.active{background:#fff;color:#1E293B;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+
+/* TABLE CARD */
+.table-card{background:rgba(255,255,255,.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.85);border-radius:20px;box-shadow:0 2px 12px rgba(0,0,0,.06);overflow:hidden;}
+.table-header{padding:20px 24px;border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between;}
+.table-title{font-size:15px;font-weight:700;color:#1E293B;}
+.table-count{font-size:12px;color:#94A3B8;font-weight:500;}
+.refresh-btn{padding:7px 14px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);border-radius:8px;font-size:12px;font-weight:600;color:#B8962E;cursor:pointer;font-family:Inter,sans-serif;transition:.2s;}
+.refresh-btn:hover{background:rgba(212,175,55,.2);}
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{padding:12px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:1.5px;color:#94A3B8;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,.06);white-space:nowrap;}
+td{padding:14px 16px;font-size:13px;color:#1E293B;border-bottom:1px solid rgba(0,0,0,.04);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(212,175,55,.03);}
+
+/* BADGES */
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;}
+.badge-active{background:rgba(34,197,94,.1);color:#16A34A;border:1px solid rgba(34,197,94,.2);}
+.badge-expired{background:rgba(148,163,184,.1);color:#64748B;border:1px solid rgba(148,163,184,.2);}
+.badge-blocked{background:rgba(239,68,68,.1);color:#DC2626;border:1px solid rgba(239,68,68,.2);}
+.badge-makler{background:rgba(99,102,241,.1);color:#4F46E5;border:1px solid rgba(99,102,241,.2);}
+.badge-handwerker{background:rgba(245,158,11,.1);color:#D97706;border:1px solid rgba(245,158,11,.2);}
+.badge-steuerberater{background:rgba(16,185,129,.1);color:#059669;border:1px solid rgba(16,185,129,.2);}
+
+/* PROGRESS BAR */
+.progress{height:6px;background:rgba(0,0,0,.08);border-radius:999px;width:80px;display:inline-block;vertical-align:middle;}
+.progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#D4AF37,#B8962E);}
+
+/* ACTION BTNS */
+.action-btns{display:flex;gap:6px;}
+.btn-block{padding:5px 11px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;border:none;font-family:Inter,sans-serif;transition:.2s;background:rgba(239,68,68,.08);color:#DC2626;border:1px solid rgba(239,68,68,.2);}
+.btn-block:hover{background:rgba(239,68,68,.18);}
+.btn-unblock{background:rgba(34,197,94,.08);color:#16A34A;border:1px solid rgba(34,197,94,.2);}
+.btn-unblock:hover{background:rgba(34,197,94,.18);}
+.btn-delete{padding:5px 11px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;background:rgba(239,68,68,.12);color:#DC2626;border:1px solid rgba(239,68,68,.25);font-family:Inter,sans-serif;transition:.2s;}
+.btn-delete:hover{background:#EF4444;color:#fff;}
+.btn-extend{padding:5px 11px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;background:rgba(212,175,55,.1);color:#B8962E;border:1px solid rgba(212,175,55,.25);font-family:Inter,sans-serif;transition:.2s;}
+.btn-extend:hover{background:rgba(212,175,55,.25);}
+
+/* EMAIL copy */
+.email-cell{display:flex;align-items:center;gap:6px;}
+.copy-icon{color:#94A3B8;cursor:pointer;font-size:13px;transition:.2s;}
+.copy-icon:hover{color:#D4AF37;}
+
+/* LOADING */
+.loading{text-align:center;padding:48px;color:#94A3B8;font-size:14px;}
+.spinner{display:inline-block;width:24px;height:24px;border:2px solid rgba(212,175,55,.2);border-top-color:#D4AF37;border-radius:50%;animation:spin .7s linear infinite;margin-bottom:8px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.12);font-size:13px;font-weight:600;color:#1E293B;z-index:999;transform:translateY(80px);opacity:0;transition:.3s;}
+#toast.show{transform:translateY(0);opacity:1;}
+#toast.success{border-color:rgba(34,197,94,.3);color:#16A34A;}
+#toast.error{border-color:rgba(239,68,68,.3);color:#DC2626;}
+
+/* EMPTY */
+.empty{text-align:center;padding:60px 24px;color:#94A3B8;}
+.empty-icon{font-size:40px;margin-bottom:12px;}
+
+/* SECTION HIDDEN */
+.section{display:none;}
+.section.active{display:block;}
+
+/* SEARCH */
+.search-wrap{position:relative;width:240px;}
+.search-input{width:100%;padding:8px 12px 8px 34px;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.1);border-radius:10px;font-size:13px;font-family:Inter,sans-serif;color:#1E293B;outline:none;transition:.2s;}
+.search-input:focus{border-color:#D4AF37;background:#fff;}
+.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#94A3B8;font-size:14px;}
+
+@media(max-width:900px){
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .admin-main{padding:16px;}
+  th,td{padding:10px 12px;}
+}
+@media(max-width:600px){
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .tabs{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">ZYNTEVO</div>
+    <div class="login-sub">ADMIN DASHBOARD</div>
+    <input class="login-input" type="password" id="admin-key-input" placeholder="Admin-Schlüssel eingeben" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Einloggen</button>
+    <div class="login-error" id="login-error">Falscher Admin-Schlüssel</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header class="admin-header">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="admin-logo">ZYNTEVO <span>ADMIN</span></div>
+      <div class="admin-badge">🔒 Gesichert</div>
+    </div>
+    <div class="header-right">
+      <span id="header-date" style="font-size:12px;color:#94A3B8;"></span>
+      <button class="logout-btn" onclick="doLogout()">Abmelden</button>
+    </div>
+  </header>
+
+  <div class="admin-main">
+
+    <!-- STATS -->
+    <div class="stats-row" id="stats-row">
+      <div class="stat-card">
+        <div class="stat-num" id="stat-trials">–</div>
+        <div class="stat-label">Trial-Nutzer gesamt</div>
+        <div class="stat-sub" id="stat-trials-active">davon aktiv</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-users">–</div>
+        <div class="stat-label">Käufer gesamt</div>
+        <div class="stat-sub" id="stat-users-blocked">davon gesperrt</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-gen">–</div>
+        <div class="stat-label">Trial-Generierungen</div>
+        <div class="stat-sub">gesamt</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-today">–</div>
+        <div class="stat-label">Generierungen heute</div>
+        <div class="stat-sub">Trial-Nutzer</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('trials',this)">🎁 Trial-Nutzer</button>
+      <button class="tab" onclick="switchTab('users',this)">👥 Käufer</button>
+    </div>
+
+    <!-- TRIAL SECTION -->
+    <div class="section active" id="section-trials">
+      <div class="table-card">
+        <div class="table-header">
+          <div>
+            <div class="table-title">Trial-Nutzer</div>
+            <div class="table-count" id="trial-count">Lade…</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <div class="search-wrap">
+              <span class="search-icon">🔍</span>
+              <input class="search-input" type="text" id="trial-search" placeholder="E-Mail suchen…" oninput="filterTrials()">
+            </div>
+            <button class="refresh-btn" onclick="loadTrials()">↺ Aktualisieren</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="trial-table">
+            <thead>
+              <tr>
+                <th>E-Mail</th>
+                <th>Branche</th>
+                <th>Start</th>
+                <th>Tage genutzt</th>
+                <th>Verbleibend</th>
+                <th>Generierungen</th>
+                <th>Heute</th>
+                <th>Status</th>
+                <th>Aktionen</th>
+              </tr>
+            </thead>
+            <tbody id="trial-tbody">
+              <tr><td colspan="9" class="loading"><div class="spinner"></div><br>Lade Trial-Nutzer…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS SECTION -->
+    <div class="section" id="section-users">
+      <div class="table-card">
+        <div class="table-header">
+          <div>
+            <div class="table-title">Registrierte Käufer</div>
+            <div class="table-count" id="user-count">Lade…</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <div class="search-wrap">
+              <span class="search-icon">🔍</span>
+              <input class="search-input" type="text" id="user-search" placeholder="E-Mail suchen…" oninput="filterUsers()">
+            </div>
+            <button class="refresh-btn" onclick="loadUsers()">↺ Aktualisieren</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="user-table">
+            <thead>
+              <tr>
+                <th>E-Mail</th>
+                <th>Produkt</th>
+                <th>Registriert</th>
+                <th>Gesamt-Gen.</th>
+                <th>Heute</th>
+                <th>Letzter Zugriff</th>
+                <th>Status</th>
+                <th>Aktionen</th>
+              </tr>
+            </thead>
+            <tbody id="user-tbody">
+              <tr><td colspan="8" class="loading"><div class="spinner"></div><br>Lade Käufer…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const WORKER = 'https://zyntevo-tool.jan-6a7.workers.dev';
+let ADMIN_KEY = '';
+let allTrials = [];
+let allUsers = [];
+
+// ─── LOGIN ───
+function doLogin() {
+  const key = document.getElementById('admin-key-input').value.trim();
+  if (!key) return;
+  ADMIN_KEY = key;
+  // Test with a real call
+  fetch(`${WORKER}/api/admin/trial/list`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ adminKey: key })
+  }).then(r => r.json()).then(d => {
+    if (d.error) {
+      document.getElementById('login-error').style.display = 'block';
+      ADMIN_KEY = '';
+    } else {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      document.getElementById('header-date').textContent = new Date().toLocaleDateString('de-DE', { weekday:'short', day:'2-digit', month:'long', year:'numeric' });
+      processTrials(d.trials || []);
+      loadUsers();
+    }
+  }).catch(() => {
+    document.getElementById('login-error').style.display = 'block';
+    ADMIN_KEY = '';
+  });
+}
+
+function doLogout() {
+  ADMIN_KEY = '';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('admin-key-input').value = '';
+}
+
+// ─── TABS ───
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('section-' + tab).classList.add('active');
+  if (tab === 'users' && allUsers.length === 0) loadUsers();
+}
+
+// ─── TRIALS ───
+async function loadTrials() {
+  document.getElementById('trial-tbody').innerHTML = '<tr><td colspan="9" class="loading"><div class="spinner"></div><br>Lade…</td></tr>';
+  const r = await fetch(`${WORKER}/api/admin/trial/list`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ adminKey: ADMIN_KEY })
+  });
+  const d = await r.json();
+  processTrials(d.trials || []);
+}
+
+function processTrials(trials) {
+  allTrials = trials.sort((a, b) => b.startDate - a.startDate);
+  const totalGen = trials.reduce((s, t) => s + (t.totalRequests || 0), 0);
+  const totalToday = trials.reduce((s, t) => s + (t.todayRequests || 0), 0);
+  const active = trials.filter(t => t.daysLeft > 0 && !t.blocked).length;
+  document.getElementById('stat-trials').textContent = trials.length;
+  document.getElementById('stat-trials-active').textContent = `${active} aktiv`;
+  document.getElementById('stat-gen').textContent = totalGen;
+  document.getElementById('stat-today').textContent = totalToday;
+  renderTrials(allTrials);
+}
+
+function renderTrials(trials) {
+  document.getElementById('trial-count').textContent = `${trials.length} Einträge`;
+  if (!trials.length) {
+    document.getElementById('trial-tbody').innerHTML = '<tr><td colspan="9" class="empty"><div class="empty-icon">🎁</div>Noch keine Trial-Nutzer</td></tr>';
+    return;
+  }
+  document.getElementById('trial-tbody').innerHTML = trials.map(t => {
+    const date = new Date(t.startDate).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'2-digit' });
+    const status = t.blocked ? '<span class="badge badge-blocked">Gesperrt</span>'
+      : t.daysLeft > 0 ? '<span class="badge badge-active">Aktiv</span>'
+      : '<span class="badge badge-expired">Abgelaufen</span>';
+    const brancheBadge = t.branche ? `<span class="badge badge-${t.branche}">${cap(t.branche)}</span>` : '–';
+    const progress = Math.round((t.daysUsed / 7) * 100);
+    const blockBtn = t.blocked
+      ? `<button class="btn-block btn-unblock" onclick="blockTrial('${t.email}',false)">✓ Entsperren</button>`
+      : `<button class="btn-block" onclick="blockTrial('${t.email}',true)">⊘ Sperren</button>`;
+    return `<tr>
+      <td><div class="email-cell"><span>${t.email}</span><span class="copy-icon" onclick="copy('${t.email}')" title="Kopieren">⎘</span></div></td>
+      <td>${brancheBadge}</td>
+      <td style="color:#64748B;">${date}</td>
+      <td>
+        <span style="margin-right:6px;">${t.daysUsed}/7</span>
+        <span class="progress"><span class="progress-fill" style="width:${progress}%"></span></span>
+      </td>
+      <td style="color:${t.daysLeft > 2 ? '#16A34A' : t.daysLeft > 0 ? '#D97706' : '#94A3B8'};">${t.daysLeft > 0 ? t.daysLeft + ' Tag' + (t.daysLeft !== 1 ? 'e' : '') : '–'}</td>
+      <td style="font-weight:600;">${t.totalRequests || 0}</td>
+      <td style="color:#64748B;">${t.todayRequests || 0}</td>
+      <td>${status}</td>
+      <td><div class="action-btns">${blockBtn}<button class="btn-delete" onclick="deleteTrial('${t.email}')">🗑</button></div></td>
+    </tr>`;
+  }).join('');
+}
+
+function filterTrials() {
+  const q = document.getElementById('trial-search').value.toLowerCase();
+  renderTrials(allTrials.filter(t => t.email.toLowerCase().includes(q) || (t.branche||'').toLowerCase().includes(q)));
+}
+
+async function blockTrial(email, blocked) {
+  const r = await fetch(`${WORKER}/api/admin/trial/block`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ adminKey: ADMIN_KEY, email, blocked })
+  });
+  const d = await r.json();
+  if (d.success) { toast(d.message, 'success'); loadTrials(); }
+  else toast(d.error || 'Fehler', 'error');
+}
+
+async function deleteTrial(email) {
+  if (!confirm(`Trial-Nutzer "${email}" wirklich löschen?`)) return;
+  const r = await fetch(`${WORKER}/api/admin/trial/delete`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ adminKey: ADMIN_KEY, email })
+  });
+  const d = await r.json();
+  if (d.success) { toast(d.message, 'success'); loadTrials(); }
+  else toast(d.error || 'Fehler', 'error');
+}
+
+// ─── USERS ───
+async function loadUsers() {
+  document.getElementById('user-tbody').innerHTML = '<tr><td colspan="8" class="loading"><div class="spinner"></div><br>Lade…</td></tr>';
+  const r = await fetch(`${WORKER}/api/admin/users`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ adminKey: ADMIN_KEY })
+  });
+  const d = await r.json();
+  allUsers = (d.users || []).sort((a, b) => (b.created || 0) - (a.created || 0));
+  const blocked = allUsers.filter(u => u.blocked).length;
+  document.getElementById('stat-users').textContent = allUsers.length;
+  document.getElementById('stat-users-blocked').textContent = `${blocked} gesperrt`;
+  renderUsers(allUsers);
+}
+
+function renderUsers(users) {
+  document.getElementById('user-count').textContent = `${users.length} Einträge`;
+  if (!users.length) {
+    document.getElementById('user-tbody').innerHTML = '<tr><td colspan="8" class="empty"><div class="empty-icon">👥</div>Noch keine Käufer</td></tr>';
+    return;
+  }
+  document.getElementById('user-tbody').innerHTML = users.map(u => {
+    const date = u.created ? new Date(u.created).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'2-digit' }) : '–';
+    const lastActive = u.lastActive ? new Date(u.lastActive).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'2-digit', hour:'2-digit', minute:'2-digit' }) : '–';
+    const status = u.blocked ? '<span class="badge badge-blocked">Gesperrt</span>' : '<span class="badge badge-active">Aktiv</span>';
+    const productLabel = (u.product || '–').replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase());
+    const blockBtn = u.blocked
+      ? `<button class="btn-block btn-unblock" onclick="blockUser('${u.email}',false)">✓ Entsperren</button>`
+      : `<button class="btn-block" onclick="blockUser('${u.email}',true)">⊘ Sperren</button>`;
+    return `<tr>
+      <td><div class="email-cell"><span>${u.email}</span><span class="copy-icon" onclick="copy('${u.email}')" title="Kopieren">⎘</span></div></td>
+      <td><span style="font-size:12px;color:#64748B;">${productLabel}</span></td>
+      <td style="color:#64748B;">${date}</td>
+      <td style="font-weight:600;">${u.totalRequests || 0}</td>
+      <td style="color:#64748B;">${u.todayRequests || 0}</td>
+      <td style="color:#94A3B8;font-size:12px;">${lastActive}</td>
+      <td>${status}</td>
+      <td><div class="action-btns">${blockBtn}<button class="btn-delete" onclick="deleteUser('${u.email}')">🗑</button></div></td>
+    </tr>`;
+  }).join('');
+}
+
+function filterUsers() {
+  const q = document.getElementById('user-search').value.toLowerCase();
+  renderUsers(allUsers.filter(u => u.email.toLowerCase().includes(q) || (u.product||'').toLowerCase().includes(q)));
+}
+
+async function blockUser(email, blocked) {
+  const r = await fetch(`${WORKER}/api/admin/block`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ adminKey: ADMIN_KEY, email, blocked })
+  });
+  const d = await r.json();
+  if (d.success) { toast(d.message, 'success'); loadUsers(); }
+  else toast(d.error || 'Fehler', 'error');
+}
+
+async function deleteUser(email) {
+  if (!confirm(`Käufer "${email}" wirklich löschen?`)) return;
+  const r = await fetch(`${WORKER}/api/admin/delete-user`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ adminKey: ADMIN_KEY, email })
+  });
+  const d = await r.json();
+  if (d.success) { toast(d.message, 'success'); loadUsers(); }
+  else toast(d.error || 'Fehler', 'error');
+}
+
+// ─── UTILS ───
+function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+function copy(text) {
+  navigator.clipboard.writeText(text).then(() => toast('E-Mail kopiert', 'success'));
+}
+
+function toast(msg, type = '') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show ' + type;
+  setTimeout(() => el.className = '', 2800);
+}
+</script>
+</body>
+</html>
