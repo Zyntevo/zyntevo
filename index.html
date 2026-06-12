@@ -227,6 +227,7 @@
     }
 
     /* ─── Trustpilot / Footer ─── */
+    .trustpilot-section { display: none !important; }
     .trustpilot-section {
       background: rgba(255,255,255,.4);
       backdrop-filter: blur(20px);
@@ -577,7 +578,7 @@
           <li><span class="check">✓</span> Kundenkommunikation</li>
           <li><span class="check">✓</span> Sofortiger Download</li>
         </ul>
-        <a href="makler.html" id="btn-starter" class="btn btn-outline btn-lg pricing-cta">Starter sichern →</a>
+        <a href="https://www.checkout-ds24.com/product/696579" id="btn-starter" target="_blank" class="btn btn-outline btn-lg pricing-cta">Starter sichern →</a>
       </div>
       <div class="pricing-card featured" data-reveal data-delay="200">
         <div class="pricing-badge">⭐ Empfohlen</div>
@@ -593,7 +594,7 @@
           <li><span class="check">✓</span> 30 TikTok-Skripte</li>
           <li><span class="check">✓</span> Sofort einsatzbereit</li>
         </ul>
-        <a href="makler.html" id="btn-premium" class="btn btn-gold btn-lg pricing-cta">Premium sichern →</a>
+        <a href="https://www.checkout-ds24.com/product/696893" id="btn-premium" target="_blank" class="btn btn-gold btn-lg pricing-cta">Premium sichern →</a>
       </div>
     </div>
   </div>
@@ -772,9 +773,11 @@ const _pricingLinks = {
   steuerberater: { starter: 'https://www.checkout-ds24.com/product/698395', premium: 'https://www.checkout-ds24.com/product/698384' }
 };
 function setPricingBranche(b) {
+  const links = _pricingLinks[b];
+  const s = document.getElementById('btn-starter'); const p = document.getElementById('btn-premium');
+  s.href = links.starter; s.target = '_blank';
+  p.href = links.premium; p.target = '_blank';
   document.querySelectorAll('.pricing-branch-btn').forEach(el => el.classList.toggle('active', el.id === 'pbtn-' + b));
-  document.getElementById('btn-starter').href = _pricingLinks[b].starter;
-  document.getElementById('btn-premium').href = _pricingLinks[b].premium;
 }
 </script>
 </body>
