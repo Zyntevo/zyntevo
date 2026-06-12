@@ -169,6 +169,15 @@
       backdrop-filter: blur(8px);
     }
 
+    /* ─── Pricing Branch Selector ─── */
+    .pricing-branch-btn {
+      padding: 9px 20px; border-radius: 999px; font-size: 13px; font-weight: 700;
+      cursor: pointer; border: 1.5px solid rgba(0,0,0,.12); background: rgba(255,255,255,.7);
+      color: #64748B; font-family: inherit; transition: .2s;
+    }
+    .pricing-branch-btn:hover { border-color: rgba(212,175,55,.5); color: #B8962E; }
+    .pricing-branch-btn.active { border-color: #D4AF37; background: rgba(212,175,55,.12); color: #B8962E; }
+
     /* ─── Pricing Cards – glass ─── */
     .pricing-card {
       background: rgba(255,255,255,.5);
@@ -281,8 +290,8 @@
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-right">
-      <a href="demo-makler.html" class="nav-btn-ghost">Kostenlos testen</a>
-      <a href="makler-neu.html" class="nav-btn-cta">Jetzt starten →</a>
+      <a href="#loesungen" class="nav-btn-ghost">Kostenlos testen</a>
+      <a href="#loesungen" class="nav-btn-cta">Jetzt starten →</a>
     </div>
     <button class="nav-hamburger" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
   </div>
@@ -291,7 +300,7 @@
     <a href="#features" onclick="closeNav()">Features</a>
     <a href="#preise" onclick="closeNav()">Preise</a>
     <a href="#faq" onclick="closeNav()">FAQ</a>
-    <a href="makler-neu.html" class="nav-btn-cta">Jetzt starten →</a>
+    <a href="#loesungen" class="nav-btn-cta" onclick="closeNav()">Jetzt starten →</a>
   </div>
 </nav>
 
@@ -308,7 +317,7 @@
         ZYNTEVO ist das spezialisierte KI-Tool für Immobilienmakler, Handwerksbetriebe und Steuerberater – fertige Texte in Sekunden, ohne Prompt-Kenntnisse.
       </p>
       <div class="hero-btns" data-reveal data-delay="300">
-        <a href="demo-makler.html" class="btn btn-gold btn-lg">Kostenlos testen →</a>
+        <a href="#loesungen" class="btn btn-gold btn-lg">Kostenlos testen →</a>
         <a href="#loesungen" class="btn btn-outline btn-lg">Mehr erfahren</a>
       </div>
       <div class="hero-trust" data-reveal data-delay="400">
@@ -548,6 +557,14 @@
       <h2 class="section-title">Einmal zahlen.<br>Für immer nutzen.</h2>
       <p class="section-sub">Keine monatlichen Kosten. Kein Abo. Wähle dein Paket und starte sofort.</p>
     </div>
+    <!-- Branchen-Selektor -->
+    <div style="display:flex;justify-content:center;gap:10px;margin-bottom:32px;flex-wrap:wrap;" data-reveal>
+      <span style="font-size:14px;color:var(--text-3);align-self:center;margin-right:4px;">Deine Branche:</span>
+      <button class="pricing-branch-btn active" id="pbtn-makler" onclick="setPricingBranche('makler')">🏠 Makler</button>
+      <button class="pricing-branch-btn" id="pbtn-handwerker" onclick="setPricingBranche('handwerker')">🔧 Handwerker</button>
+      <button class="pricing-branch-btn" id="pbtn-steuerberater" onclick="setPricingBranche('steuerberater')">📊 Steuerberater</button>
+    </div>
+
     <div class="pricing-grid">
       <div class="pricing-card" data-reveal data-delay="100">
         <div class="pricing-name">Starter</div>
@@ -560,7 +577,7 @@
           <li><span class="check">✓</span> Kundenkommunikation</li>
           <li><span class="check">✓</span> Sofortiger Download</li>
         </ul>
-        <a href="makler-neu.html" class="btn btn-outline btn-lg pricing-cta">Starter ansehen →</a>
+        <a href="makler-neu.html" id="btn-starter" class="btn btn-outline btn-lg pricing-cta">Starter ansehen →</a>
       </div>
       <div class="pricing-card featured" data-reveal data-delay="200">
         <div class="pricing-badge">⭐ Empfohlen</div>
@@ -576,10 +593,9 @@
           <li><span class="check">✓</span> 30 TikTok-Skripte</li>
           <li><span class="check">✓</span> Sofort einsatzbereit</li>
         </ul>
-        <a href="makler-neu.html" class="btn btn-gold btn-lg pricing-cta">Premium sichern →</a>
+        <a href="makler-neu.html" id="btn-premium" class="btn btn-gold btn-lg pricing-cta">Premium sichern →</a>
       </div>
     </div>
-    <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--text-3);">Wähle deine Branche: <a href="makler-neu.html" style="color:var(--gold);">Makler</a> · <a href="handwerker-neu.html" style="color:var(--gold);">Handwerker</a> · <a href="steuerberater-neu.html" style="color:var(--gold);">Steuerberater</a></p>
   </div>
 </section>
 
@@ -621,8 +637,8 @@
     <h2>Bereit, Stunden pro Woche zurückzugewinnen?</h2>
     <p>Starte noch heute – kostenlos testen, kein Account nötig.</p>
     <div class="cta-band-btns">
-      <a href="demo-makler.html" class="btn btn-gold btn-lg">Kostenlos testen →</a>
-      <a href="makler-neu.html" class="btn btn-outline btn-lg" style="border-color:rgba(0,0,0,.15);color:#1E293B;background:rgba(255,255,255,.7);">Pakete ansehen</a>
+      <a href="#loesungen" class="btn btn-gold btn-lg">Kostenlos testen →</a>
+      <a href="#preise" class="btn btn-outline btn-lg" style="border-color:rgba(0,0,0,.15);color:#1E293B;background:rgba(255,255,255,.7);">Pakete ansehen</a>
     </div>
     <p class="cta-band-note">Einmalzahlung ab 97€ · Kein Abo · 14 Tage Garantie</p>
   </div>
@@ -747,6 +763,19 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+</script>
+
+<script>
+const _pricingLinks = {
+  makler:        { starter: 'makler-neu.html',        premium: 'https://www.checkout-ds24.com/product/696893' },
+  handwerker:    { starter: 'handwerker-neu.html',    premium: 'https://www.checkout-ds24.com/product/696900' },
+  steuerberater: { starter: 'steuerberater-neu.html', premium: 'https://www.checkout-ds24.com/product/698384' }
+};
+function setPricingBranche(b) {
+  document.querySelectorAll('.pricing-branch-btn').forEach(el => el.classList.toggle('active', el.id === 'pbtn-' + b));
+  document.getElementById('btn-starter').href = _pricingLinks[b].starter;
+  document.getElementById('btn-premium').href = _pricingLinks[b].premium;
+}
 </script>
 </body>
 </html>
