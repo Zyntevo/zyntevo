@@ -222,7 +222,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
 
 <!-- TRIAL MODAL -->
-<div id="trial-screen" style="display:flex;">
+<div id="trial-screen">
   <div class="trial-card">
     <div class="trial-badge">🎁 KOSTENLOS TESTEN</div>
     <div class="trial-title">7 Tage kostenlos testen</div>
@@ -610,12 +610,64 @@ window.addEventListener('load', function() {
     }
   }
 
-  if (token && email) {
-    authToken = token;
-    userEmail = email;
-    showApp();
+  if (token && email) { authToken = token; userEmail = email; showApp(); return; }
+
+  const savedTrialEmail = localStorage.getItem(TRIAL_KEY);
+  if (savedTrialEmail) {
+    checkTrialStatus(savedTrialEmail).then(check => {
+      if (check.active) {
+        isTrial = true; trialEmail = savedTrialEmail;
+        document.getElementById('auth-screen').style.display = 'none';
+        showApp();
+      } else {
+        localStorage.removeItem(TRIAL_KEY);
+        document.getElementById('auth-screen').style.display = 'none';
+        document.getElementById('trial-expired-screen').style.display = 'flex';
+      }
+    });
+    return;
   }
+
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('trial-screen').style.display = 'flex';
 });
+
+async function checkTrialStatus(email) {
+  try {
+    const r = await fetch(`${API}/api/trial/check`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({email})
+    });
+    return await r.json();
+  } catch(e) { return { active: true, daysLeft: 7 }; }
+}
+
+async function startTrial() {
+  const email = document.getElementById('trial-email').value.trim();
+  const errEl = document.getElementById('trial-error');
+  errEl.style.display = 'none';
+  if (!email || !email.includes('@')) {
+    errEl.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
+    errEl.style.display = 'block'; return;
+  }
+  const btn = document.getElementById('trial-btn');
+  btn.disabled = true; btn.textContent = 'Wird gestartet...';
+  try {
+    await fetch(`${API}/api/trial/start`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({email, branche: BRANCHE})
+    });
+  } catch(e) { /* fail open */ }
+  localStorage.setItem(TRIAL_KEY, email);
+  isTrial = true; trialEmail = email;
+  document.getElementById('trial-screen').style.display = 'none';
+  showApp();
+}
+
+function showAuthFromTrial() {
+  document.getElementById('trial-screen').style.display = 'none';
+  document.getElementById('auth-screen').style.display = 'flex';
+}
 
 function switchTab(tab) {
   document.getElementById('tab-login').classList.toggle('active', tab === 'login');
