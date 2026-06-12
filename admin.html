@@ -276,12 +276,39 @@ let ADMIN_KEY = '';
 let allTrials = [];
 let allUsers = [];
 
+// ─── AUTO-LOGIN ───
+window.addEventListener('load', () => {
+  const saved = localStorage.getItem('zyntevo_admin_key');
+  if (saved) {
+    ADMIN_KEY = saved;
+    fetch(`${WORKER}/api/admin/trial/list`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ adminKey: saved })
+    }).then(r => r.json()).then(d => {
+      if (!d.error) {
+        showApp(d.trials || []);
+      } else {
+        localStorage.removeItem('zyntevo_admin_key');
+        ADMIN_KEY = '';
+      }
+    }).catch(() => { localStorage.removeItem('zyntevo_admin_key'); ADMIN_KEY = ''; });
+  }
+});
+
+function showApp(trials) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('header-date').textContent = new Date().toLocaleDateString('de-DE', { weekday:'short', day:'2-digit', month:'long', year:'numeric' });
+  processTrials(trials);
+  loadUsers();
+}
+
 // ─── LOGIN ───
 function doLogin() {
   const key = document.getElementById('admin-key-input').value.trim();
   if (!key) return;
   ADMIN_KEY = key;
-  // Test with a real call
   fetch(`${WORKER}/api/admin/trial/list`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -291,11 +318,8 @@ function doLogin() {
       document.getElementById('login-error').style.display = 'block';
       ADMIN_KEY = '';
     } else {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
-      document.getElementById('header-date').textContent = new Date().toLocaleDateString('de-DE', { weekday:'short', day:'2-digit', month:'long', year:'numeric' });
-      processTrials(d.trials || []);
-      loadUsers();
+      localStorage.setItem('zyntevo_admin_key', key);
+      showApp(d.trials || []);
     }
   }).catch(() => {
     document.getElementById('login-error').style.display = 'block';
@@ -305,6 +329,7 @@ function doLogin() {
 
 function doLogout() {
   ADMIN_KEY = '';
+  localStorage.removeItem('zyntevo_admin_key');
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('app').style.display = 'none';
   document.getElementById('admin-key-input').value = '';
