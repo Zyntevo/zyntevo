@@ -165,8 +165,8 @@ button { font-family: inherit; cursor: pointer; }
 .section-sm { padding: 56px 0; }
 .section-alt { background: #F5F6F8; }
 .section-dark {
-  background: linear-gradient(135deg, #0F172A 0%, #1E2A45 100%);
-  color: #F8FAFC;
+  background: rgba(255,255,255,0.35);
+  color: #1E293B;
 }
 .section-label {
   display: inline-flex; align-items: center; gap: 7px;
