@@ -107,6 +107,61 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     </script>
 <link rel="stylesheet" href="glass-overrides.css">
   <link rel="stylesheet" href="light-mode.css">
+  <!-- === LIGHT GLASSMORPHISM === -->
+  <style>
+    :root{--bg:#F0EEF8;--card:#FFFFFF;--text:#1E293B;--muted:#475569;}
+    body{background:#F0EEF8;color:#1E293B;}
+    body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(ellipse 55% 45% at 10% 15%,rgba(201,168,76,.18) 0%,transparent 65%),
+        radial-gradient(ellipse 50% 50% at 88% 10%,rgba(99,102,241,.14) 0%,transparent 60%),
+        radial-gradient(ellipse 60% 40% at 70% 85%,rgba(201,168,76,.12) 0%,transparent 60%),
+        radial-gradient(ellipse 45% 50% at 20% 80%,rgba(139,92,246,.10) 0%,transparent 55%),
+        linear-gradient(145deg,#EAE8F5 0%,#F2EFF5 40%,#EDF0F8 70%,#EAE8F0 100%);}
+    body::after{display:none;}
+    .header{background:rgba(240,238,248,.75)!important;border-bottom:1px solid rgba(255,255,255,.6)!important;box-shadow:0 4px 24px rgba(99,102,241,.08)!important;backdrop-filter:blur(28px) saturate(180%)!important;-webkit-backdrop-filter:blur(28px) saturate(180%)!important;}
+    .hero{background:transparent!important;}
+    .hero h1,.hero-sub,.hero h2{color:#1E293B!important;}
+    .hero-sub{color:#475569!important;}
+    .hero-thanks{background:rgba(255,255,255,.65)!important;border:1px solid rgba(201,168,76,.3)!important;color:#1E293B!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+    .section.dark{background:rgba(255,255,255,.15)!important;}
+    .section-header h2,.section-header p{color:#1E293B!important;}
+    .section-header p{color:#475569!important;}
+    .access-card,.steps-card{background:rgba(255,255,255,.6)!important;border:1px solid rgba(255,255,255,.8)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 8px 32px rgba(99,102,241,.08);}
+    .access-card h3,.steps-card h3{color:#1E293B!important;}
+    .access-card .sub{color:#475569!important;}
+    .access-row{background:rgba(255,255,255,.55)!important;border:1px solid rgba(201,168,76,.25)!important;backdrop-filter:blur(8px);}
+    .access-label{color:#C9A84C!important;}
+    .access-value{color:#1E293B!important;}
+    .access-value a{color:#C9A84C!important;}
+    .copy-btn{border-color:rgba(201,168,76,.4)!important;color:#475569!important;}
+    .copy-btn:hover{border-color:#C9A84C!important;color:#C9A84C!important;}
+    .download-card{background:rgba(255,255,255,.55)!important;border:1px solid rgba(255,255,255,.75)!important;color:#1E293B!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+    .download-card:hover{border-color:rgba(201,168,76,.5)!important;box-shadow:0 8px 32px rgba(201,168,76,.15)!important;}
+    .dl-title{color:#1E293B!important;}
+    .inc-item{background:rgba(255,255,255,.55)!important;border:1px solid rgba(255,255,255,.75)!important;backdrop-filter:blur(16px);}
+    .inc-title{color:#1E293B!important;}
+    .upsell-box{background:rgba(255,255,255,.6)!important;border:2px solid var(--gold)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+    .upsell-box h2,.upsell-box p{color:#1E293B!important;}
+    .upsell-box p{color:#475569!important;}
+    .upsell-feat{background:rgba(255,255,255,.5)!important;border:1px solid rgba(201,168,76,.2)!important;}
+    .upsell-feat-title{color:#1E293B!important;}
+    .upsell-feat-desc{color:#475569!important;}
+    .upsell-sub{color:#475569!important;}
+    .cta-box{background:rgba(255,255,255,.6)!important;border:1px solid rgba(201,168,76,.4)!important;backdrop-filter:blur(20px);}
+    .cta-box h2,.cta-box p{color:#1E293B!important;}
+    .cta-box p{color:#475569!important;}
+    .footer{border-top:1px solid rgba(201,168,76,.15)!important;}
+    .footer,.footer a{color:#475569!important;}
+    .widerruf-box{background:rgba(255,255,255,.85)!important;border:1px solid rgba(239,68,68,.3)!important;backdrop-filter:blur(20px);}
+    .widerruf-box h3{color:#EF4444!important;}
+    .widerruf-box p{color:#475569!important;}
+    .step-title{color:#1E293B!important;}
+    .step-desc{color:#475569!important;}
+    header,section,footer,.hero,.widerruf-bar,.widerruf-modal{position:relative;z-index:1;}
+    .code-box{background:rgba(255,255,255,.55)!important;border:1px solid rgba(201,168,76,.3)!important;}
+    .code-label{color:#475569!important;}
+  </style>
 </head>
 <body>
 
