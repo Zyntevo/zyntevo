@@ -29,7 +29,7 @@ window.ZYN_T = {
       cta_handwerker: "🎁 Jetzt 7 Tage kostenlos testen →",
       cta_steuerberater: "🎁 Jetzt 7 Tage kostenlos testen →",
       sub: "Nach 7 Tagen läuft der Zugang automatisch aus – kein Kauf nötig",
-      btn_makler: "🏠 Makler – 7 Tage testen",
+      btn_makler: "🏠 Makler testen",
       btn_handwerker: "🔧 Handwerker testen",
       btn_steuerberater: "📊 Steuerberater testen",
     },
