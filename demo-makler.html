@@ -152,9 +152,9 @@
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
         <a href="index.html" class="logo"><img src="css/images/header.png" alt="ZYNTEVO" loading="lazy"></a>
         <div id="zyn-lang-switcher" style="display:flex;align-items:center;gap:2px;">
-          <button type="button" data-lang="de" style="background:none;border:1px solid #D4AF37;border-radius:6px;padding:3px 6px;cursor:pointer;font-size:11px;font-weight:700;color:#D4AF37;font-family:inherit;line-height:1;"><img src="https://flagcdn.com/24x18/de.png" alt="DE" style="display:block;width:24px;height:18px;"></button>
-          <button type="button" data-lang="en" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;font-size:11px;font-weight:700;color:#475569;font-family:inherit;line-height:1;"><img src="https://flagcdn.com/24x18/gb.png" alt="GB" style="display:block;width:24px;height:18px;"></button>
-          <button type="button" data-lang="fr" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;font-size:11px;font-weight:700;color:#475569;font-family:inherit;line-height:1;"><img src="https://flagcdn.com/24x18/fr.png" alt="FR" style="display:block;width:24px;height:18px;"></button>
+          <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><img src="https://flagcdn.com/20x15/de.png" alt="DE" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+          <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+          <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
         </div>
     </div>
 </header>
@@ -423,6 +423,7 @@ async function submitEmail() {
 <script src="lang.js?v=3"></script>
 </body>
 </html>
+
 
 
 

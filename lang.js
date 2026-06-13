@@ -50,8 +50,9 @@
   function updateSwitcher(lang) {
     document.querySelectorAll('[data-lang]').forEach(function (btn) {
       var active = btn.getAttribute('data-lang') === lang;
-      btn.style.borderColor = active ? '#D4AF37' : 'transparent';
-      btn.style.color = active ? '#D4AF37' : (btn.closest('.zyn-tool-header') ? '#94A3B8' : '#475569');
+      btn.style.background = active ? 'white' : 'transparent';
+      btn.style.boxShadow = active ? '0 1px 3px rgba(0,0,0,0.18)' : 'none';
+      btn.style.opacity = active ? '1' : '0.5';
     });
   }
 
