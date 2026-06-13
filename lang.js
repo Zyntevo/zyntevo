@@ -1,27 +1,30 @@
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'zyntevo_lang';
+  var SK = 'zyntevo_lang';
   var SUPPORTED = ['de', 'en', 'fr'];
 
   function getLang() {
-    var stored = localStorage.getItem(STORAGE_KEY);
-    return SUPPORTED.indexOf(stored) !== -1 ? stored : 'de';
+    try {
+      var s = sessionStorage.getItem(SK);
+      return SUPPORTED.indexOf(s) !== -1 ? s : 'de';
+    } catch (e) { return 'de'; }
   }
 
   function setLang(lang) {
-    localStorage.setItem(STORAGE_KEY, lang);
+    try { sessionStorage.setItem(SK, lang); } catch (e) {}
     applyLang(lang);
     updateSwitcher(lang);
     document.documentElement.lang = lang;
   }
 
-  /* ── DOM updater ─────────────────────────────────────────── */
   function applyLang(lang) {
     var T = window.ZYN_T;
-    if (!T) return;
+    if (!T) {
+      setTimeout(function () { applyLang(lang); }, 100);
+      return;
+    }
     var t = T[lang] || T['de'];
-
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
       var val = resolve(t, key);
@@ -31,7 +34,6 @@
       }
       el.innerHTML = (lang === 'de') ? el.getAttribute('data-i18n-orig') : val;
     });
-
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-placeholder');
       var val = resolve(t, key);
@@ -41,29 +43,28 @@
 
   function resolve(obj, key) {
     return key.split('.').reduce(function (o, k) {
-      return o && o[k] !== undefined ? o[k] : undefined;
+      return (o != null && o[k] !== undefined) ? o[k] : undefined;
     }, obj);
   }
 
-  /* ── Switcher state update ───────────────────────────────── */
   function updateSwitcher(lang) {
-    document.querySelectorAll('#zyn-lang-switcher button[data-lang]').forEach(function (btn) {
+    document.querySelectorAll('[data-lang]').forEach(function (btn) {
       var active = btn.getAttribute('data-lang') === lang;
       btn.style.borderColor = active ? '#D4AF37' : 'transparent';
-      btn.style.color = active ? '#D4AF37' : '#475569';
+      btn.style.color = active ? '#D4AF37' : (btn.closest('.zyn-tool-header') ? '#94A3B8' : '#475569');
     });
   }
 
-  /* ── Wire click events on existing HTML switcher ─────────── */
   function wireSwitcher() {
-    document.querySelectorAll('#zyn-lang-switcher button[data-lang]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
+    document.querySelectorAll('[data-lang]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         setLang(btn.getAttribute('data-lang'));
       });
     });
   }
 
-  /* ── Init ────────────────────────────────────────────────── */
   function init() {
     wireSwitcher();
     var lang = getLang();
