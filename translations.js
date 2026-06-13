@@ -189,7 +189,7 @@ window.ZYN_T = {
       badge: "KOSTENLOSE DEMO", ready: "Bereit", generating: "Generiert...",
       btn_generate: "⚡ Generieren", btn_copy: "Kopieren", btn_copied: "Kopiert ✓",
       result_label: "KI-ERGEBNIS",
-      placeholder: "Klicke auf „Generieren" um die KI zu starten...",
+      placeholder: "Klicke auf „Generieren“ um die KI zu starten...",
       email_label: "Ergebnis per E-Mail senden?",
       email_btn: "Senden",
       limit_msg: "Demo-Limit erreicht. Teste das vollständige Tool kostenlos.",
