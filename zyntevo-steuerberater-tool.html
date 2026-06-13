@@ -705,6 +705,8 @@ function updateRateDisplays() {
   if (dash) dash.textContent = todayCount;
 }
 
+function _ll(){var m={de:'${_ll()}',en:'in English',fr:'en français'};return m[window.ZYN_LANG?window.ZYN_LANG.get():'de']||'${_ll()}';}
+
 async function callAI(prompt) {
   if (!authToken) { doLogout(); throw new Error('Nicht eingeloggt'); }
   const r = await fetch(`${API}/api/query`, { method: 'POST', headers: {'Content-Type':'application/json','Authorization': 'Bearer ' + authToken}, body: JSON.stringify({prompt, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')}) });
@@ -745,42 +747,42 @@ function getProfile() { return JSON.parse(localStorage.getItem('zynSteuerProfile
 
 async function generateMandantenbrief() {
   const p = getProfile();
-  run('mandantenbrief-result', `Professioneller Steuerberater-Mandantenbrief auf Deutsch. Anlass: ${document.getElementById('mb-anlass').value}, Mandant: ${document.getElementById('mb-name').value||'Mandant'}, Details: ${document.getElementById('mb-details').value||''}, Ton: ${document.getElementById('mb-ton').value}. Absender: ${p.name||''}, ${p.kanzlei||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}. Struktur: Briefkopf-Platzhalter, Betreff, Anrede, Text, Schluss mit Unterschrift. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('mandantenbrief-result', `Professioneller Steuerberater-Mandantenbrief ${_ll()}. Anlass: ${document.getElementById('mb-anlass').value}, Mandant: ${document.getElementById('mb-name').value||'Mandant'}, Details: ${document.getElementById('mb-details').value||''}, Ton: ${document.getElementById('mb-ton').value}. Absender: ${p.name||''}, ${p.kanzlei||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}. Struktur: Briefkopf-Platzhalter, Betreff, Anrede, Text, Schluss mit Unterschrift. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 
 async function generateMandantenmail() {
   const p = getProfile();
-  run('mandantenmail-result', `Professionelle Steuerberater-E-Mail auf Deutsch. Situation: ${document.getElementById('mm-situation').value}, An: ${document.getElementById('mm-name').value||'Mandant'}, Kontext: ${document.getElementById('mm-kontext').value||''}, Ton: ${document.getElementById('mm-ton').value}. Absender: ${p.name||''}, ${p.kanzlei||''}. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('mandantenmail-result', `Professionelle Steuerberater-E-Mail ${_ll()}. Situation: ${document.getElementById('mm-situation').value}, An: ${document.getElementById('mm-name').value||'Mandant'}, Kontext: ${document.getElementById('mm-kontext').value||''}, Ton: ${document.getElementById('mm-ton').value}. Absender: ${p.name||''}, ${p.kanzlei||''}. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 
 async function generateAkquise() {
   const p = getProfile();
-  run('akquise-result', `Steuerberater Akquise-Mail auf Deutsch. Zielgruppe: ${document.getElementById('aq-zielgruppe').value}, Anlass: ${document.getElementById('aq-anlass').value}, Empfänger: ${document.getElementById('aq-empfaenger').value||''}, Absender: ${p.name||''} von ${p.kanzlei||''}, USP: ${document.getElementById('aq-usp').value||p.usp||''}. Überzeugend, professionell, keine Floskeln. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('akquise-result', `Steuerberater Akquise-Mail ${_ll()}. Zielgruppe: ${document.getElementById('aq-zielgruppe').value}, Anlass: ${document.getElementById('aq-anlass').value}, Empfänger: ${document.getElementById('aq-empfaenger').value||''}, Absender: ${p.name||''} von ${p.kanzlei||''}, USP: ${document.getElementById('aq-usp').value||p.usp||''}. Überzeugend, professionell, keine Floskeln. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 
 async function generateUnterlagen() {
   const p = getProfile();
-  run('unterlagen-result', `Steuerberater Unterlagen-Erinnerung auf Deutsch. Mandant: ${document.getElementById('ul-name').value||'Mandant'}, Fehlende Unterlagen: ${document.getElementById('ul-unterlagen').value||''}, Stufe: ${document.getElementById('ul-stufe').value}, Frist: ${document.getElementById('ul-frist').value||''}. Absender: ${p.name||''}, ${p.kanzlei||''}. Höflich aber klar. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('unterlagen-result', `Steuerberater Unterlagen-Erinnerung ${_ll()}. Mandant: ${document.getElementById('ul-name').value||'Mandant'}, Fehlende Unterlagen: ${document.getElementById('ul-unterlagen').value||''}, Stufe: ${document.getElementById('ul-stufe').value}, Frist: ${document.getElementById('ul-frist').value||''}. Absender: ${p.name||''}, ${p.kanzlei||''}. Höflich aber klar. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 
 async function generateEinspruch() {
   const p = getProfile();
-  run('einspruch-result', `Steuerberater Einspruch-Schreiben auf Deutsch. Art: ${document.getElementById('ep-typ').value}, Mandant: ${document.getElementById('ep-mandant').value||''}, Begründung: ${document.getElementById('ep-begruendung').value||''}, Empfänger: ${document.getElementById('ep-empfaenger').value}. Absender: ${p.name||''}, ${p.kanzlei||''}. Juristisch präzise, professionell. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('einspruch-result', `Steuerberater Einspruch-Schreiben ${_ll()}. Art: ${document.getElementById('ep-typ').value}, Mandant: ${document.getElementById('ep-mandant').value||''}, Begründung: ${document.getElementById('ep-begruendung').value||''}, Empfänger: ${document.getElementById('ep-empfaenger').value}. Absender: ${p.name||''}, ${p.kanzlei||''}. Juristisch präzise, professionell. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 
 async function generateBegruessung() {
   const p = getProfile();
-  run('begruessung-result', `Steuerberater Neukunden-Begrüßung auf Deutsch. Mandant: ${document.getElementById('bg-name').value||''}, Typ: ${document.getElementById('bg-typ').value}, Erstes Mandat: ${document.getElementById('bg-auftrag').value||''}, Format: ${document.getElementById('bg-format').value}. Absender: ${p.name||''}, ${p.kanzlei||''}. Herzlich, professionell, vertrauenswürdig. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('begruessung-result', `Steuerberater Neukunden-Begrüßung ${_ll()}. Mandant: ${document.getElementById('bg-name').value||''}, Typ: ${document.getElementById('bg-typ').value}, Erstes Mandat: ${document.getElementById('bg-auftrag').value||''}, Format: ${document.getElementById('bg-format').value}. Absender: ${p.name||''}, ${p.kanzlei||''}. Herzlich, professionell, vertrauenswürdig. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 
 async function generateLinkedIn() {
   const p = getProfile();
-  run('linkedin-result', `LinkedIn-Post für Steuerberater auf Deutsch. Typ: ${document.getElementById('li-typ').value}, Thema: ${document.getElementById('li-thema').value||''}, Zielgruppe: ${document.getElementById('li-zielgruppe').value}, Länge: ${document.getElementById('li-laenge').value}. Autor: ${p.name||''} von ${p.kanzlei||''}. Starker Hook, Mehrwert, CTA, 4-6 relevante Hashtags. Kein Fachjargon.`);
+  run('linkedin-result', `LinkedIn-Post für Steuerberater ${_ll()}. Typ: ${document.getElementById('li-typ').value}, Thema: ${document.getElementById('li-thema').value||''}, Zielgruppe: ${document.getElementById('li-zielgruppe').value}, Länge: ${document.getElementById('li-laenge').value}. Autor: ${p.name||''} von ${p.kanzlei||''}. Starker Hook, Mehrwert, CTA, 4-6 relevante Hashtags. Kein Fachjargon.`);
 }
 
 async function generateFristverlaengerung() {
   const p = getProfile();
-  run('fristverlaengerung-result', `Steuerberater Fristverlängerungsschreiben auf Deutsch. Art: ${document.getElementById('fv-typ').value}, Mandant/StNr: ${document.getElementById('fv-mandant').value||''}, Aktuelle Frist: ${document.getElementById('fv-frist-alt').value||''}, Gewünschte Frist: ${document.getElementById('fv-frist-neu').value||''}, Begründung: ${document.getElementById('fv-begruendung').value||''}. Absender: ${p.name||''}, ${p.kanzlei||''}. Professionell, sachlich, überzeugend. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('fristverlaengerung-result', `Steuerberater Fristverlängerungsschreiben ${_ll()}. Art: ${document.getElementById('fv-typ').value}, Mandant/StNr: ${document.getElementById('fv-mandant').value||''}, Aktuelle Frist: ${document.getElementById('fv-frist-alt').value||''}, Gewünschte Frist: ${document.getElementById('fv-frist-neu').value||''}, Begründung: ${document.getElementById('fv-begruendung').value||''}. Absender: ${p.name||''}, ${p.kanzlei||''}. Professionell, sachlich, überzeugend. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 
 async function generateFrei() {

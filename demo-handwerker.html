@@ -323,7 +323,9 @@ async function generateDemo() {
     resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert dein Angebot...</div>';
     resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-    const prompt = `Schreibe ein professionelles Handwerker-Angebot auf Deutsch.
+    const _lang = window.ZYN_LANG ? window.ZYN_LANG.get() : 'de';
+    const _langLabel = { de: 'auf Deutsch', en: 'in English', fr: 'en français' }[_lang] || 'auf Deutsch';
+    const prompt = `Schreibe ein professionelles Handwerker-Angebot ${_langLabel}.
 Gewerk: ${document.getElementById('ang-gewerk').value},
 Kundenname: ${kunde},
 Leistung: ${document.getElementById('ang-leistung')?.value || 'nicht angegeben'},
@@ -335,7 +337,7 @@ Struktur: Anrede, Leistungsumfang, Preis, Zeitraum, Zahlungsbedingungen, freundl
         const res = await fetch(`${API}/api/query`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer demo-token' },
-            body: JSON.stringify({ prompt, demo: true })
+            body: JSON.stringify({ prompt, demo: true, language: _lang })
         });
         if (!res.ok) throw new Error('Fehler');
         const data = await res.json();

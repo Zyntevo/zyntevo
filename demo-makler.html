@@ -338,7 +338,9 @@ async function generateDemo() {
     resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert dein Exposé...</div>';
     resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-    const prompt = `Professionelles Immobilienexposé auf Deutsch.
+    const _lang = window.ZYN_LANG ? window.ZYN_LANG.get() : 'de';
+    const _langLabel = { de: 'auf Deutsch', en: 'in English', fr: 'en français' }[_lang] || 'auf Deutsch';
+    const prompt = `Professionelles Immobilienexposé ${_langLabel}.
 Typ: ${document.getElementById('expose-typ').value},
 Lage: ${lage},
 Fläche: ${document.getElementById('expose-flaeche')?.value || 'nicht angegeben'},
@@ -352,7 +354,7 @@ Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstatt
         const res = await fetch(`${API}/api/query`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer demo-token' },
-            body: JSON.stringify({ prompt, demo: true })
+            body: JSON.stringify({ prompt, demo: true, language: _lang })
         });
         if (!res.ok) throw new Error('Fehler');
         const data = await res.json();

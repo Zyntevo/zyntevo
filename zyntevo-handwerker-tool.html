@@ -794,6 +794,8 @@ function updateRateDisplays() {
   if (dash) dash.textContent = todayCount;
 }
 
+function _ll(){var m={de:'${_ll()}',en:'in English',fr:'en français'};return m[window.ZYN_LANG?window.ZYN_LANG.get():'de']||'${_ll()}';}
+
 async function callAI(prompt) {
   if (!authToken) { doLogout(); throw new Error('Nicht eingeloggt'); }
   const r = await fetch(`${API}/api/query`, {
@@ -836,33 +838,33 @@ async function run(id, prompt) {
 
 async function generateAngebot() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('angebot-result', `Schreibe ein professionelles Handwerker-Angebot auf Deutsch. Absender: ${p.buero||p.name||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}. Gewerk: ${document.getElementById('ang-gewerk').value}, Kunde: ${document.getElementById('ang-kunde').value||'Kunde'}, Leistung: ${document.getElementById('ang-leistung').value||''}, Preis: ${document.getElementById('ang-preis').value||'nach Aufwand'}, Zeitraum: ${document.getElementById('ang-zeitraum').value||'nach Vereinbarung'}, Besonderheiten: ${document.getElementById('ang-details').value||''}. Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinweis. Nutze NUR die angegebenen Daten.`);
+  run('angebot-result', `Schreibe ein professionelles Handwerker-Angebot ${_ll()}. Absender: ${p.buero||p.name||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}. Gewerk: ${document.getElementById('ang-gewerk').value}, Kunde: ${document.getElementById('ang-kunde').value||'Kunde'}, Leistung: ${document.getElementById('ang-leistung').value||''}, Preis: ${document.getElementById('ang-preis').value||'nach Aufwand'}, Zeitraum: ${document.getElementById('ang-zeitraum').value||'nach Vereinbarung'}, Besonderheiten: ${document.getElementById('ang-details').value||''}. Format: Positionsliste, Netto/Brutto, 14 Tage Zahlungsziel, Gewährleistungshinweis. Nutze NUR die angegebenen Daten.`);
 }
 async function generateEmail() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('email-result', `Professionelle E-Mail für Handwerksbetrieb auf Deutsch. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Absender: ${p.name||''} von ${p.buero||''}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('email-result', `Professionelle E-Mail für Handwerksbetrieb ${_ll()}. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Absender: ${p.name||''} von ${p.buero||''}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateSocial() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('social-result', `${document.getElementById('social-plattform').value}-Post für Handwerksbetrieb auf Deutsch. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Betrieb: ${document.getElementById('social-name').value||p.buero||''}. Starker Hook, Inhalt, CTA, 5 lokale Hashtags.`);
+  run('social-result', `${document.getElementById('social-plattform').value}-Post für Handwerksbetrieb ${_ll()}. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Betrieb: ${document.getElementById('social-name').value||p.buero||''}. Starker Hook, Inhalt, CTA, 5 lokale Hashtags.`);
 }
 async function generateAkquise() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('akquise-result', `Akquise-Brief für Handwerksbetrieb auf Deutsch. Zielgruppe: ${document.getElementById('akquise-ziel').value}, Gewerk: ${document.getElementById('akquise-gewerk').value}, Betrieb: ${document.getElementById('akquise-name').value||p.buero||''}, Region: ${document.getElementById('akquise-region').value||p.region||''}, Stärken: ${document.getElementById('akquise-usp').value||''}. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('akquise-result', `Akquise-Brief für Handwerksbetrieb ${_ll()}. Zielgruppe: ${document.getElementById('akquise-ziel').value}, Gewerk: ${document.getElementById('akquise-gewerk').value}, Betrieb: ${document.getElementById('akquise-name').value||p.buero||''}, Region: ${document.getElementById('akquise-region').value||p.region||''}, Stärken: ${document.getElementById('akquise-usp').value||''}. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateBewertung() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('bewertung-result', `Professionelle Antwort auf Google-Bewertung auf Deutsch. Art: ${document.getElementById('bew-art').value}, Bewertung: ${document.getElementById('bew-text').value||''}, Betrieb: ${document.getElementById('bew-betrieb').value||p.buero||''}, Kontext: ${document.getElementById('bew-kontext').value||''}. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('bewertung-result', `Professionelle Antwort auf Google-Bewertung ${_ll()}. Art: ${document.getElementById('bew-art').value}, Bewertung: ${document.getElementById('bew-text').value||''}, Betrieb: ${document.getElementById('bew-betrieb').value||p.buero||''}, Kontext: ${document.getElementById('bew-kontext').value||''}. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateKunde() {
-  run('kunde-result', `Analysiere potenziellen Handwerkskunden auf Deutsch. Kontaktweg: ${document.getElementById('kd-kontakt').value}, Angebote: ${document.getElementById('kd-angebote').value}, Budget: ${document.getElementById('kd-budget').value}, Termin: ${document.getElementById('kd-termin').value}, Infos: ${document.getElementById('kd-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Red Flags, 4) Empfehlung.`);
+  run('kunde-result', `Analysiere potenziellen Handwerkskunden ${_ll()}. Kontaktweg: ${document.getElementById('kd-kontakt').value}, Angebote: ${document.getElementById('kd-angebote').value}, Budget: ${document.getElementById('kd-budget').value}, Termin: ${document.getElementById('kd-termin').value}, Infos: ${document.getElementById('kd-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Red Flags, 4) Empfehlung.`);
 }
 async function generatePlanung() {
-  run('planung-result', `Auftragsplanung für Handwerksbetrieb auf Deutsch. Gewerk: ${document.getElementById('plan-gewerk').value}, Aufträge: ${document.getElementById('plan-auftraege').value||''}, Ruhige Monate: ${document.getElementById('plan-ruhig').value||''}, Umsatzziel: ${document.getElementById('plan-ziel').value||''}, Was gebraucht: ${document.getElementById('plan-was').value}. Konkreter Plan mit klaren Schritten.`);
+  run('planung-result', `Auftragsplanung für Handwerksbetrieb ${_ll()}. Gewerk: ${document.getElementById('plan-gewerk').value}, Aufträge: ${document.getElementById('plan-auftraege').value||''}, Ruhige Monate: ${document.getElementById('plan-ruhig').value||''}, Umsatzziel: ${document.getElementById('plan-ziel').value||''}, Was gebraucht: ${document.getElementById('plan-was').value}. Konkreter Plan mit klaren Schritten.`);
 }
 async function generateTikTok() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('tiktok-result', `TikTok-Skript für Handwerker auf Deutsch. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||p.name||''}. HOOK, HAUPTTEIL, CTA. Nur gesprochener Text.`);
+  run('tiktok-result', `TikTok-Skript für Handwerker ${_ll()}. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||p.name||''}. HOOK, HAUPTTEIL, CTA. Nur gesprochener Text.`);
 }
 async function generateFrei() {
   const prompt = document.getElementById('frei-prompt').value;

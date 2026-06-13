@@ -316,7 +316,9 @@ async function generateDemo() {
     resultText.innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Mandantenbrief...</div>';
     resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-    const prompt = `Professioneller Mandantenbrief eines Steuerberaters auf Deutsch.
+    const _lang = window.ZYN_LANG ? window.ZYN_LANG.get() : 'de';
+    const _langLabel = { de: 'auf Deutsch', en: 'in English', fr: 'en français' }[_lang] || 'auf Deutsch';
+    const prompt = `Professioneller Mandantenbrief eines Steuerberaters ${_langLabel}.
 Thema: ${document.getElementById('stb-typ').value},
 Mandant: ${mandant},
 Branche: ${document.getElementById('stb-branche')?.value || 'nicht angegeben'},
@@ -330,7 +332,7 @@ Struktur: Betreff, Anrede, Kernaussage, notwendige Schritte, Frist wenn relevant
         const res = await fetch(`${API}/api/query`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer demo-token' },
-            body: JSON.stringify({ prompt, demo: true })
+            body: JSON.stringify({ prompt, demo: true, language: _lang })
         });
         if (!res.ok) throw new Error('Fehler');
         const data = await res.json();

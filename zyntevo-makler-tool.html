@@ -816,6 +816,9 @@ function updateRateDisplays() {
   if (dash) dash.textContent = todayCount;
 }
 
+// === LANGUAGE HELPER ===
+function _ll(){var m={de:'${_ll()}',en:'in English',fr:'en français'};return m[window.ZYN_LANG?window.ZYN_LANG.get():'de']||'${_ll()}';}
+
 // === KI CALL ===
 async function callAI(prompt) {
   if (!authToken) { doLogout(); throw new Error('Nicht eingeloggt'); }
@@ -866,32 +869,32 @@ async function run(id, prompt) {
 // === GENERATORS ===
 async function generateExpose() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('expose-result', `Professionelles Immobilienexposé auf Deutsch. Typ: ${document.getElementById('expose-typ').value}, Lage: ${document.getElementById('expose-lage').value||''}, Fläche: ${document.getElementById('expose-flaeche').value||''}, Zimmer: ${document.getElementById('expose-zimmer').value||''}, Preis: ${document.getElementById('expose-preis').value||'auf Anfrage'}, Besonderheiten: ${document.getElementById('expose-details').value||''}, Stil: ${document.getElementById('expose-stil').value}, Makler: ${p.name||''} von ${p.buero||''}. Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('expose-result', `Professionelles Immobilienexposé ${_ll()}. Typ: ${document.getElementById('expose-typ').value}, Lage: ${document.getElementById('expose-lage').value||''}, Fläche: ${document.getElementById('expose-flaeche').value||''}, Zimmer: ${document.getElementById('expose-zimmer').value||''}, Preis: ${document.getElementById('expose-preis').value||'auf Anfrage'}, Besonderheiten: ${document.getElementById('expose-details').value||''}, Stil: ${document.getElementById('expose-stil').value}, Makler: ${p.name||''} von ${p.buero||''}. Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateEmail() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('email-result', `Professionelle Makler-E-Mail auf Deutsch. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Absender: ${p.name||''} von ${p.buero||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('email-result', `Professionelle Makler-E-Mail ${_ll()}. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Absender: ${p.name||''} von ${p.buero||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateSocial() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('social-result', `${document.getElementById('social-plattform').value}-Post für Immobilienmakler auf Deutsch. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Büro: ${document.getElementById('social-name').value||p.buero||''}. Starker Hook, Inhalt, CTA, 5-8 Hashtags.`);
+  run('social-result', `${document.getElementById('social-plattform').value}-Post für Immobilienmakler ${_ll()}. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Büro: ${document.getElementById('social-name').value||p.buero||''}. Starker Hook, Inhalt, CTA, 5-8 Hashtags.`);
 }
 async function generateAkquise() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('akquise-result', `Akquise-Brief an Eigentümer auf Deutsch. Lage: ${document.getElementById('akquise-lage').value||p.region||''}, Anlass: ${document.getElementById('akquise-anlass').value}, Makler: ${document.getElementById('akquise-name').value||p.name||''} von ${document.getElementById('akquise-buero').value||p.buero||''}, USP: ${document.getElementById('akquise-usp').value||''}. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('akquise-result', `Akquise-Brief an Eigentümer ${_ll()}. Lage: ${document.getElementById('akquise-lage').value||p.region||''}, Anlass: ${document.getElementById('akquise-anlass').value}, Makler: ${document.getElementById('akquise-name').value||p.name||''} von ${document.getElementById('akquise-buero').value||p.buero||''}, USP: ${document.getElementById('akquise-usp').value||''}. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateMarkt() {
-  run('markt-result', `Immobilien-Marktbericht auf Deutsch. Region: ${document.getElementById('markt-region').value||''}, Zeitraum: ${document.getElementById('markt-monat').value||''}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
+  run('markt-result', `Immobilien-Marktbericht ${_ll()}. Region: ${document.getElementById('markt-region').value||''}, Zeitraum: ${document.getElementById('markt-monat').value||''}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Länge: ${(document.querySelector(".page.active .laenge-select") || document.querySelector(".laenge-select")).value}.`);
 }
 async function generateKaeufer() {
-  run('kaeufer-result', `Analysiere Kaufinteressenten auf Deutsch. Sucht seit: ${document.getElementById('kaeufer-seit').value}, Finanzierung: ${document.getElementById('kaeufer-finanz').value}, Budget: ${document.getElementById('kaeufer-budget').value||''}, Einzug: ${document.getElementById('kaeufer-termin').value}, Infos: ${document.getElementById('kaeufer-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Hindernisse, 4) Empfehlung, 5) Nächster Schritt.`);
+  run('kaeufer-result', `Analysiere Kaufinteressenten ${_ll()}. Sucht seit: ${document.getElementById('kaeufer-seit').value}, Finanzierung: ${document.getElementById('kaeufer-finanz').value}, Budget: ${document.getElementById('kaeufer-budget').value||''}, Einzug: ${document.getElementById('kaeufer-termin').value}, Infos: ${document.getElementById('kaeufer-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Hindernisse, 4) Empfehlung, 5) Nächster Schritt.`);
 }
 async function generateVerhandlung() {
-  run('verhandlung-result', `Immobilien-Verhandlungsstrategie auf Deutsch. Typ: ${document.getElementById('vh-typ').value}, Situation: ${document.getElementById('vh-situation').value||''}, Position: ${document.getElementById('vh-position').value||''}. Gib: 1) Lageeinschätzung, 2) Strategie, 3) Konkrete Formulierungen, 4) Gegenargumente, 5) Red Lines.`);
+  run('verhandlung-result', `Immobilien-Verhandlungsstrategie ${_ll()}. Typ: ${document.getElementById('vh-typ').value}, Situation: ${document.getElementById('vh-situation').value||''}, Position: ${document.getElementById('vh-position').value||''}. Gib: 1) Lageeinschätzung, 2) Strategie, 3) Konkrete Formulierungen, 4) Gegenargumente, 5) Red Lines.`);
 }
 async function generateTikTok() {
   const p = JSON.parse(localStorage.getItem('zynProfile') || '{}');
-  run('tiktok-result', `TikTok-Skript für Immobilienmakler auf Deutsch. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||p.name||''}. HOOK, HAUPTTEIL, CTA. Nur gesprochener Text.`);
+  run('tiktok-result', `TikTok-Skript für Immobilienmakler ${_ll()}. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||p.name||''}. HOOK, HAUPTTEIL, CTA. Nur gesprochener Text.`);
 }
 async function generateFrei() {
   const prompt = document.getElementById('frei-prompt').value;
