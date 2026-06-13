@@ -16,6 +16,7 @@
     applyLang(lang);
     updateSwitcher(lang);
     document.documentElement.lang = lang;
+    document.dispatchEvent(new CustomEvent('zyn-lang-change', { detail: { lang: lang } }));
   }
 
   function applyLang(lang) {

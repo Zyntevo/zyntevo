@@ -781,13 +781,25 @@ var statsEl = document.querySelector('.stats-grid');
 if (statsEl) statsObs.observe(statsEl);
 
 // ── Typewriter on hero mockup ──
-var text = "Traumwohnung in München-Schwabing\n\nDiese stilvolle 3-Zi.-ETW mit 78 m² verbindet modernen Komfort mit bester Lage. Kernsaniert 2022, Fußbodenheizung, Einbauküche, Balkon & TG-Stellplatz.\n\nKaufpreis: 695.000 €\nBesichtigung auf Anfrage.";
+var heroTexts = {
+  de: "Traumwohnung in München-Schwabing\n\nDiese stilvolle 3-Zi.-ETW mit 78 m² verbindet modernen Komfort mit bester Lage. Kernsaniert 2022, Fußbodenheizung, Einbauküche, Balkon & TG-Stellplatz.\n\nKaufpreis: 695.000 €\nBesichtigung auf Anfrage.",
+  en: "Dream apartment in Munich-Schwabing\n\nThis stylish 3-room apartment with 78 m² combines modern comfort with a prime location. Fully renovated 2022, underfloor heating, fitted kitchen, balcony & underground parking.\n\nPrice: €695,000\nViewings available on request.",
+  fr: "Appartement de rêve à Munich-Schwabing\n\nCet élégant appartement de 3 pièces et 78 m² allie confort moderne et emplacement privilégié. Entièrement rénové en 2022, chauffage au sol, cuisine équipée, balcon & parking souterrain.\n\nPrix : 695 000 €\nVisites sur rendez-vous."
+};
 var el = document.getElementById('mockup-text');
-var i = 0;
-function typeHero() {
-  if (i < text.length) { el.textContent += text[i++]; setTimeout(typeHero, 22); }
+var i = 0, text = '', typeTimer;
+function startTypeHero() {
+  var lang = (window.ZYN_LANG && window.ZYN_LANG.get()) || 'de';
+  text = heroTexts[lang] || heroTexts.de;
+  el.textContent = ''; i = 0;
+  clearTimeout(typeTimer);
+  typeHero();
 }
-setTimeout(typeHero, 1800);
+function typeHero() {
+  if (i < text.length) { el.textContent += text[i++]; typeTimer = setTimeout(typeHero, 22); }
+}
+setTimeout(startTypeHero, 1800);
+document.addEventListener('zyn-lang-change', startTypeHero);
 
 // ── FAQ accordion ──
 function toggleFaq(btn) {
