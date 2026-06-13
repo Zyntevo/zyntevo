@@ -254,22 +254,22 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 <!-- TRIAL MODAL -->
 <div id="trial-screen">
   <div class="trial-card">
-    <div class="trial-badge">🎁 KOSTENLOS TESTEN</div>
-    <div class="trial-title">7 Tage kostenlos testen</div>
-    <div class="trial-desc">Gib deine E-Mail ein und teste ZYNTEVO 7 Tage lang vollständig kostenlos – alle 8 Generatoren ohne Einschränkung.</div>
-    <input class="trial-input" type="email" id="trial-email" placeholder="deine@email.de" onkeydown="if(event.key==='Enter')startTrial()" />
+    <div class="trial-badge" data-i18n="tool.trial_badge">🎁 KOSTENLOS TESTEN</div>
+    <div class="trial-title" data-i18n="tool.trial_title">7 Tage kostenlos testen</div>
+    <div class="trial-desc" data-i18n="tool.trial_desc">Gib deine E-Mail ein und teste ZYNTEVO 7 Tage lang vollständig kostenlos – alle 8 Generatoren ohne Einschränkung.</div>
+    <input class="trial-input" type="email" id="trial-email" placeholder="deine@email.de" data-i18n-placeholder="tool.trial_placeholder" onkeydown="if(event.key==='Enter')startTrial()" />
     <div class="trial-error" id="trial-error"></div>
-    <button class="trial-btn" id="trial-btn" onclick="startTrial()">Jetzt kostenlos starten →</button>
-    <div class="trial-note">Kein Abo. Keine Kreditkarte. Jederzeit kündbar.<br>Bereits gekauft? <a onclick="showAuthFromTrial()">Hier einloggen →</a></div>
+    <button class="trial-btn" id="trial-btn" onclick="startTrial()" data-i18n="tool.trial_btn">Jetzt kostenlos starten →</button>
+    <div class="trial-note" data-i18n="tool.trial_note">Kein Abo. Keine Kreditkarte. Jederzeit kündbar.<br>Bereits gekauft? <a onclick="showAuthFromTrial()">Hier einloggen →</a></div>
   </div>
 </div>
 
 <!-- TRIAL EXPIRED MODAL -->
 <div id="trial-expired-screen">
   <div class="trial-card">
-    <div class="trial-badge">⏰ TEST ABGELAUFEN</div>
-    <div class="trial-title">Dein kostenloser Test ist abgelaufen</div>
-    <div class="trial-desc">Du hast ZYNTEVO 7 Tage getestet. Wie war's?<br>Sichere dir jetzt das vollständige Tool – nur für Tester:</div>
+    <div class="trial-badge" data-i18n="tool.expired_badge">⏰ TEST ABGELAUFEN</div>
+    <div class="trial-title" data-i18n="tool.expired_title">Dein kostenloser Test ist abgelaufen</div>
+    <div class="trial-desc" data-i18n="tool.expired_desc">Du hast ZYNTEVO 7 Tage getestet. Wie war's?<br>Sichere dir jetzt das vollständige Tool – nur für Tester:</div>
     <div class="expired-price-old">297€</div>
     <div class="expired-price">197€</div>
     <div class="expired-price-note">Rabattcode <strong style="color:var(--gold);">TESTER-X9K2</strong> wird automatisch angewendet</div>
@@ -283,17 +283,17 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo">ZYNTEVO</div>
-    <div class="auth-sub">KI-Tool · Makler Premium</div>
+    <div class="auth-sub" data-i18n="tool.sub_makler">KI-Tool · Makler Premium</div>
 
     <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Einloggen</button>
-      <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Registrieren</button>
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')" data-i18n="tool.auth_login">Einloggen</button>
+      <button class="auth-tab" id="tab-register" onclick="switchTab('register')" data-i18n="tool.auth_register">Registrieren</button>
     </div>
 
     <!-- LOGIN -->
     <div id="panel-login">
       <div class="auth-input-wrap">
-        <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" />
+        <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
       </div>
       <div class="auth-input-wrap">
         <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()" />
@@ -301,11 +301,11 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       </div>
       <div class="remember-row">
         <input type="checkbox" id="remember-me" />
-        <label for="remember-me">Angemeldet bleiben</label>
+        <label for="remember-me" data-i18n="tool.remember">Angemeldet bleiben</label>
       </div>
-      <button class="auth-btn" onclick="doLogin()">Einloggen</button>
+      <button class="auth-btn" onclick="doLogin()" data-i18n="tool.auth_login">Einloggen</button>
       <div class="auth-error" id="login-error"></div>
-      <div class="auth-hint">Noch kein Account? Klick auf <strong style="color:var(--gold)">Registrieren</strong> und löse deinen Code ein.</div>
+      <div class="auth-hint" data-i18n="tool.login_hint">Noch kein Account? Klick auf <strong style="color:var(--gold)">Registrieren</strong> und löse deinen Code ein.</div>
     </div>
 
     <!-- REGISTER -->
@@ -320,10 +320,10 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" onkeydown="if(event.key==='Enter')doRegister()" />
         <span class="pw-eye" onclick="togglePW('reg-pw')">👁</span>
       </div>
-      <button class="auth-btn" onclick="doRegister()">Account erstellen</button>
+      <button class="auth-btn" onclick="doRegister()" data-i18n="tool.register_btn">Account erstellen</button>
       <div class="auth-error" id="reg-error"></div>
       <div class="auth-success" id="reg-success"></div>
-      <div class="auth-hint">Deinen Registrierungscode hast du per E-Mail nach dem Kauf erhalten.</div>
+      <div class="auth-hint" data-i18n="tool.reg_hint2">Deinen Registrierungscode hast du per E-Mail nach dem Kauf erhalten.</div>
     </div>
   </div>
 </div>
@@ -333,65 +333,65 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
   <div class="header">
     <div class="container">
       <div class="logo">ZYNTEVO</div>
-      <div class="header-badge">🔒 MAKLER PREMIUM</div>
+      <div class="header-badge" data-i18n="tool.badge_makler">🔒 MAKLER PREMIUM</div>
       <div id="zyn-lang-switcher" style="display:flex;align-items:center;gap:2px;margin-left:auto;">
         <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><img src="https://flagcdn.com/20x15/de.png" alt="DE" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-        <button type="button" data-lang="en" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;font-size:11px;font-weight:700;color:#94A3B8;font-family:inherit;line-height:1;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-        <button type="button" data-lang="fr" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;font-size:11px;font-weight:700;color:#94A3B8;font-family:inherit;line-height:1;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+        <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;opacity:0.5;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+        <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;opacity:0.5;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
       </div>
     </div>
   </div>
   <div class="layout">
     <div class="sidebar">
-      <div class="sidebar-section">ÜBERSICHT</div>
-      <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
-      <div class="sidebar-section">KI-TOOLS</div>
-      <div class="nav-item" onclick="showPage('expose',this)"><span class="nav-icon">🏠</span> Exposé Generator</div>
-      <div class="nav-item" onclick="showPage('email',this)"><span class="nav-icon">✉️</span> E-Mail Generator</div>
-      <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> Social Media</div>
-      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> Akquise-Brief</div>
-      <div class="nav-item" onclick="showPage('markt',this)"><span class="nav-icon">📊</span> Marktbericht</div>
-      <div class="nav-item" onclick="showPage('kaeufer',this)"><span class="nav-icon">🎯</span> Käufer-Analyse</div>
-      <div class="nav-item" onclick="showPage('verhandlung',this)"><span class="nav-icon">🤝</span> Verhandlungs-Coach</div>
-      <div class="nav-item" onclick="showPage('tiktok',this)"><span class="nav-icon">🎬</span> TikTok Skript</div>
-      <div class="sidebar-section">FREI</div>
-      <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> Freier Generator</div>
+      <div class="sidebar-section" data-i18n="tool.nav_overview">ÜBERSICHT</div>
+      <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> <span data-i18n="tool.nav_dashboard">Dashboard</span></div>
+      <div class="sidebar-section" data-i18n="tool.nav_tools">KI-TOOLS</div>
+      <div class="nav-item" onclick="showPage('expose',this)"><span class="nav-icon">🏠</span> <span data-i18n="tool.nav_makler_expose">Exposé Generator</span></div>
+      <div class="nav-item" onclick="showPage('email',this)"><span class="nav-icon">✉️</span> <span data-i18n="tool.nav_makler_email">E-Mail Generator</span></div>
+      <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> <span data-i18n="tool.nav_makler_social">Social Media</span></div>
+      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> <span data-i18n="tool.nav_makler_akquise">Akquise-Brief</span></div>
+      <div class="nav-item" onclick="showPage('markt',this)"><span class="nav-icon">📊</span> <span data-i18n="tool.nav_makler_markt">Marktbericht</span></div>
+      <div class="nav-item" onclick="showPage('kaeufer',this)"><span class="nav-icon">🎯</span> <span data-i18n="tool.nav_makler_kaeufer">Käufer-Analyse</span></div>
+      <div class="nav-item" onclick="showPage('verhandlung',this)"><span class="nav-icon">🤝</span> <span data-i18n="tool.nav_makler_verhandlung">Verhandlungs-Coach</span></div>
+      <div class="nav-item" onclick="showPage('tiktok',this)"><span class="nav-icon">🎬</span> <span data-i18n="tool.nav_makler_tiktok">TikTok Skript</span></div>
+      <div class="sidebar-section" data-i18n="tool.nav_free_section">FREI</div>
+      <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> <span data-i18n="tool.free_title">Freier Generator</span></div>
       <div class="logout-nav">
-        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> Ausloggen</div>
+        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> <span data-i18n="tool.nav_logout">Ausloggen</span></div>
       </div>
     </div>
     <div class="main">
 
       <div class="page active" id="page-dashboard">
         <div class="profile-bar">
-          <div class="profile-bar-title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
+          <div class="profile-bar-title" data-i18n="tool.profile_title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
           <div class="profile-grid">
-            <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann Immobilien" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_name_lbl" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_office_lbl" style="font-size:10px;">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann Immobilien" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_street_lbl" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_city_lbl" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_phone_lbl" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_usp_lbl" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
           </div>
-          <button class="profile-save-btn" onclick="saveProfile()">💾 Profil speichern</button>
-          <span class="profile-saved" id="profile-saved">✓ Gespeichert</span>
+          <button class="profile-save-btn" onclick="saveProfile()" data-i18n="tool.profile_save">💾 Profil speichern</button>
+          <span class="profile-saved" id="profile-saved" data-i18n="tool.profile_saved">✓ Gespeichert</span>
         </div>
-        <div class="page-header"><div class="page-tag">WILLKOMMEN</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">8 KI-Tools die dir als Immobilienmakler täglich Zeit sparen.</div></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.welcome_tag">WILLKOMMEN</div><div class="page-title" data-i18n="tool.welcome_title">Dein KI-Cockpit</div><div class="page-desc" data-i18n="tool.dash_desc_makler">8 KI-Tools die dir als Immobilienmakler täglich Zeit sparen.</div></div>
         <div class="dash-grid">
-          <div class="dash-card"><div class="dash-num">9</div><div class="dash-label">KI-TOOLS</div></div>
-          <div class="dash-card"><div class="dash-num" id="dash-today">–</div><div class="dash-label">ANFRAGEN HEUTE</div></div>
-          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label">ERSPARNIS/WOCHE</div></div>
-          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
+          <div class="dash-card"><div class="dash-num">9</div><div class="dash-label" data-i18n="tool.dash_tools">KI-TOOLS</div></div>
+          <div class="dash-card"><div class="dash-num" id="dash-today">–</div><div class="dash-label" data-i18n="tool.dash_today">ANFRAGEN HEUTE</div></div>
+          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label" data-i18n="tool.dash_saving">ERSPARNIS/WOCHE</div></div>
+          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label" data-i18n="tool.dash_avail">VERFÜGBAR</div></div>
         </div>
         <div class="tool-cards">
-          <div class="tool-card" onclick="showPage('expose',null)"><div class="tool-card-icon">🏠</div><div class="tool-card-title">Exposé Generator</div><div class="tool-card-desc">Professionelles Exposé in Sekunden</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('email',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title">E-Mail Generator</div><div class="tool-card-desc">Fertige Mails für jede Situation</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title">Social Media</div><div class="tool-card-desc">Posts für Instagram & LinkedIn</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title">Akquise-Brief</div><div class="tool-card-desc">Eigentümer professionell anschreiben</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('markt',null)"><div class="tool-card-icon">📊</div><div class="tool-card-title">Marktbericht</div><div class="tool-card-desc">Monatsbericht in 5 Minuten</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('kaeufer',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title">Käufer-Analyse</div><div class="tool-card-desc">Echte Käufer sofort erkennen</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('verhandlung',null)"><div class="tool-card-icon">🤝</div><div class="tool-card-title">Verhandlungs-Coach</div><div class="tool-card-desc">Strategie für jeden Deal</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('tiktok',null)"><div class="tool-card-icon">🎬</div><div class="tool-card-title">TikTok Skript</div><div class="tool-card-desc">Fertige Video-Skripte sofort</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('expose',null)"><div class="tool-card-icon">🏠</div><div class="tool-card-title" data-i18n="tool.nav_makler_expose">Exposé Generator</div><div class="tool-card-desc">Professionelles Exposé in Sekunden</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('email',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title" data-i18n="tool.nav_makler_email">E-Mail Generator</div><div class="tool-card-desc">Fertige Mails für jede Situation</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title" data-i18n="tool.nav_makler_social">Social Media</div><div class="tool-card-desc">Posts für Instagram & LinkedIn</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title" data-i18n="tool.nav_makler_akquise">Akquise-Brief</div><div class="tool-card-desc">Eigentümer professionell anschreiben</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('markt',null)"><div class="tool-card-icon">📊</div><div class="tool-card-title" data-i18n="tool.nav_makler_markt">Marktbericht</div><div class="tool-card-desc">Monatsbericht in 5 Minuten</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('kaeufer',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title" data-i18n="tool.nav_makler_kaeufer">Käufer-Analyse</div><div class="tool-card-desc">Echte Käufer sofort erkennen</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('verhandlung',null)"><div class="tool-card-icon">🤝</div><div class="tool-card-title" data-i18n="tool.nav_makler_verhandlung">Verhandlungs-Coach</div><div class="tool-card-desc">Strategie für jeden Deal</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('tiktok',null)"><div class="tool-card-icon">🎬</div><div class="tool-card-title" data-i18n="tool.nav_makler_tiktok">TikTok Skript</div><div class="tool-card-desc">Fertige Video-Skripte sofort</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
         </div>
       </div>
 
@@ -417,7 +417,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateExpose()">⚡ Exposé generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-expose" onclick="copyResult('expose-result','copy-expose')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('expose-result')">PDF ↓</button><button class="edit-btn" id="edit-expose-result" onclick="toggleEdit('expose-result','edit-expose-result')">✏ Bearbeiten</button></div></div><div id="expose-result"><div class="result-placeholder"><div class="placeholder-icon">🏠</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-expose" onclick="copyResult('expose-result','copy-expose')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('expose-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-expose-result" onclick="toggleEdit('expose-result','edit-expose-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="expose-result"><div class="result-placeholder"><div class="placeholder-icon">🏠</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
         </div>
       </div>
 
@@ -440,7 +440,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')">✏ Bearbeiten</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
         </div>
       </div>
 
@@ -463,7 +463,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
         </div>
       </div>
 
@@ -487,7 +487,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
         </div>
       </div>
 
@@ -511,7 +511,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateMarkt()">⚡ Marktbericht generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('markt-result')">PDF ↓</button><button class="edit-btn" id="edit-markt-result" onclick="toggleEdit('markt-result','edit-markt-result')">✏ Bearbeiten</button></div></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">📊</div><div>Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('markt-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-markt-result" onclick="toggleEdit('markt-result','edit-markt-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">📊</div><div>Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
         </div>
       </div>
 
@@ -535,7 +535,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateKaeufer()">⚡ Käufer analysieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kaeufer" onclick="copyResult('kaeufer-result','copy-kaeufer')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kaeufer-result')">PDF ↓</button><button class="edit-btn" id="edit-kaeufer-result" onclick="toggleEdit('kaeufer-result','edit-kaeufer-result')">✏ Bearbeiten</button></div></div><div id="kaeufer-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Käufer</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kaeufer" onclick="copyResult('kaeufer-result','copy-kaeufer')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kaeufer-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-kaeufer-result" onclick="toggleEdit('kaeufer-result','edit-kaeufer-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="kaeufer-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Käufer</div></div></div></div>
         </div>
       </div>
 
@@ -557,7 +557,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateVerhandlung()">⚡ Strategie generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('verhandlung-result')">PDF ↓</button><button class="edit-btn" id="edit-verhandlung-result" onclick="toggleEdit('verhandlung-result','edit-verhandlung-result')">✏ Bearbeiten</button></div></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('verhandlung-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-verhandlung-result" onclick="toggleEdit('verhandlung-result','edit-verhandlung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
         </div>
       </div>
 
@@ -580,12 +580,12 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')">✏ Bearbeiten</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
         </div>
       </div>
 
       <div class="page" id="page-frei">
-        <div class="page-header"><div class="page-tag">FREIER GENERATOR</div><div class="page-title">Freier KI-Generator</div><div class="page-desc">Schreibe deinen eigenen Prompt oder nutze die Vorlagen aus deinen PDFs direkt hier.</div></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.free_tag">FREIER GENERATOR</div><div class="page-title" data-i18n="tool.free_title">Freier KI-Generator</div><div class="page-desc" data-i18n="tool.free_desc">Schreibe deinen eigenen Prompt oder nutze die Vorlagen aus deinen PDFs direkt hier.</div></div>
         <div class="rate-bar">Heutige Anfragen: <span id="rate-frei">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
@@ -602,7 +602,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')" data-i18n="tool.pdf_btn">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
         </div>
       </div>
 
@@ -648,26 +648,30 @@ window.addEventListener('load', function() {
 
   if (token && email) { authToken = token; userEmail = email; showApp(); return; }
 
-  // Trial prüfen
-  const savedTrialEmail = localStorage.getItem(TRIAL_KEY);
-  if (savedTrialEmail) {
-    checkTrialStatus(savedTrialEmail).then(check => {
-      if (check.active) {
-        isTrial = true; trialEmail = savedTrialEmail;
-        document.getElementById('auth-screen').style.display = 'none';
-        showApp();
-      } else {
-        localStorage.removeItem(TRIAL_KEY);
-        document.getElementById('auth-screen').style.display = 'none';
-        document.getElementById('trial-expired-screen').style.display = 'flex';
-      }
-    });
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('trial') === '1') {
+    const savedTrialEmail = localStorage.getItem(TRIAL_KEY);
+    if (savedTrialEmail) {
+      checkTrialStatus(savedTrialEmail).then(check => {
+        if (check.active) {
+          isTrial = true; trialEmail = savedTrialEmail;
+          document.getElementById('auth-screen').style.display = 'none';
+          showApp();
+        } else {
+          localStorage.removeItem(TRIAL_KEY);
+          document.getElementById('auth-screen').style.display = 'none';
+          document.getElementById('trial-expired-screen').style.display = 'flex';
+        }
+      });
+      return;
+    }
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('trial-screen').style.display = 'flex';
     return;
   }
 
-  // Trial Modal anzeigen
-  document.getElementById('auth-screen').style.display = 'none';
-  document.getElementById('trial-screen').style.display = 'flex';
+  // Premium-Modus: Auth-Screen anzeigen, kein Trial-Modal
+  document.getElementById('auth-screen').style.display = 'flex';
 });
 
 async function checkTrialStatus(email) {
@@ -1155,7 +1159,7 @@ function showPageMobile(id, el) {
 </div>
 
 
-<script src="zyn.js?v=4"></script>
+<script src="zyn.js?v=6"></script>
 </body>
 </html>
 

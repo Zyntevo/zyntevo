@@ -221,14 +221,14 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo">ZYNTEVO</div>
-    <div class="auth-sub">KI-Tool · Steuerberater Premium</div>
+    <div class="auth-sub" data-i18n="tool.sub_stb">KI-Tool · Steuerberater Premium</div>
     <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Einloggen</button>
-      <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Registrieren</button>
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')" data-i18n="tool.auth_login">Einloggen</button>
+      <button class="auth-tab" id="tab-register" onclick="switchTab('register')" data-i18n="tool.auth_register">Registrieren</button>
     </div>
     <div id="panel-login">
       <div class="auth-input-wrap">
-        <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" />
+        <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
       </div>
       <div class="auth-input-wrap">
         <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()" />
@@ -236,11 +236,11 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       </div>
       <div class="remember-row">
         <input type="checkbox" id="remember-me" />
-        <label for="remember-me">Angemeldet bleiben</label>
+        <label for="remember-me" data-i18n="tool.remember">Angemeldet bleiben</label>
       </div>
-      <button class="auth-btn" onclick="doLogin()">Einloggen</button>
+      <button class="auth-btn" onclick="doLogin()" data-i18n="tool.auth_login">Einloggen</button>
       <div class="auth-error" id="login-error"></div>
-      <div class="auth-hint">Noch kein Account? Klick auf <strong style="color:var(--gold)">Registrieren</strong> und löse deinen Code ein.</div>
+      <div class="auth-hint" data-i18n="tool.login_hint">Noch kein Account? Klick auf <strong style="color:var(--gold)">Registrieren</strong> und löse deinen Code ein.</div>
     </div>
     <div id="panel-register" style="display:none;">
       <div class="auth-input-wrap">
@@ -266,31 +266,31 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
   <div class="header">
     <div class="container">
       <div class="logo">ZYNTEVO</div>
-      <div class="header-badge">🔒 STEUERBERATER PREMIUM</div>
+      <div class="header-badge" data-i18n="tool.badge_stb">🔒 STEUERBERATER PREMIUM</div>
       <div id="zyn-lang-switcher" style="display:flex;align-items:center;gap:2px;margin-left:auto;">
         <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><img src="https://flagcdn.com/20x15/de.png" alt="DE" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-        <button type="button" data-lang="en" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;font-size:11px;font-weight:700;color:#94A3B8;font-family:inherit;line-height:1;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-        <button type="button" data-lang="fr" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;font-size:11px;font-weight:700;color:#94A3B8;font-family:inherit;line-height:1;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+        <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;opacity:0.5;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+        <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:none;border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:pointer;opacity:0.5;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
       </div>
     </div>
   </div>
   <div class="layout">
     <div class="sidebar">
-      <div class="sidebar-section">ÜBERSICHT</div>
-      <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
-      <div class="sidebar-section">KI-TOOLS</div>
-      <div class="nav-item" onclick="showPage('mandantenbrief',this)"><span class="nav-icon">📝</span> Mandantenbrief Generator</div>
-      <div class="nav-item" onclick="showPage('mandantenmail',this)"><span class="nav-icon">✉️</span> Mandanten-Mail Generator</div>
-      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> Akquise-Mail</div>
-      <div class="nav-item" onclick="showPage('unterlagen',this)"><span class="nav-icon">📋</span> Unterlagen-Erinnerung</div>
-      <div class="nav-item" onclick="showPage('einspruch',this)"><span class="nav-icon">⚖️</span> Einspruch-Ankündigung</div>
-      <div class="nav-item" onclick="showPage('begruessung',this)"><span class="nav-icon">🤝</span> Neukunden-Begrüßung</div>
-      <div class="nav-item" onclick="showPage('linkedin',this)"><span class="nav-icon">📱</span> LinkedIn Posts</div>
-      <div class="nav-item" onclick="showPage('fristverlaengerung',this)"><span class="nav-icon">📅</span> Fristverlängerungsschreiben</div>
-      <div class="sidebar-section">FREI</div>
-      <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> Freier Generator</div>
+      <div class="sidebar-section" data-i18n="tool.nav_overview">ÜBERSICHT</div>
+      <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> <span data-i18n="tool.nav_dashboard">Dashboard</span></div>
+      <div class="sidebar-section" data-i18n="tool.nav_tools">KI-TOOLS</div>
+      <div class="nav-item" onclick="showPage('mandantenbrief',this)"><span class="nav-icon">📝</span> <span data-i18n="tool.nav_stb_brief">Mandantenbrief Generator</span></div>
+      <div class="nav-item" onclick="showPage('mandantenmail',this)"><span class="nav-icon">✉️</span> <span data-i18n="tool.nav_stb_mail">Mandanten-Mail Generator</span></div>
+      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> <span data-i18n="tool.nav_stb_akquise">Akquise-Mail</span></div>
+      <div class="nav-item" onclick="showPage('unterlagen',this)"><span class="nav-icon">📋</span> <span data-i18n="tool.nav_stb_unterlagen">Unterlagen-Erinnerung</span></div>
+      <div class="nav-item" onclick="showPage('einspruch',this)"><span class="nav-icon">⚖️</span> <span data-i18n="tool.nav_stb_einspruch">Einspruch-Ankündigung</span></div>
+      <div class="nav-item" onclick="showPage('begruessung',this)"><span class="nav-icon">🤝</span> <span data-i18n="tool.nav_stb_begruessung">Neukunden-Begrüßung</span></div>
+      <div class="nav-item" onclick="showPage('linkedin',this)"><span class="nav-icon">📱</span> <span data-i18n="tool.nav_stb_linkedin">LinkedIn Posts</span></div>
+      <div class="nav-item" onclick="showPage('fristverlaengerung',this)"><span class="nav-icon">📅</span> <span data-i18n="tool.nav_stb_frist">Fristverlängerungsschreiben</span></div>
+      <div class="sidebar-section" data-i18n="tool.nav_free_section">FREI</div>
+      <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> <span data-i18n="tool.free_title">Freier Generator</span></div>
       <div class="logout-nav">
-        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> Ausloggen</div>
+        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> <span data-i18n="tool.nav_logout">Ausloggen</span></div>
       </div>
     </div>
     <div class="main">
@@ -298,34 +298,34 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       <!-- DASHBOARD -->
       <div class="page active" id="page-dashboard">
         <div class="profile-bar">
-          <div class="profile-bar-title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
+          <div class="profile-bar-title" data-i18n="tool.profile_title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
           <div class="profile-grid">
-            <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Dr. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Deine Kanzlei</label><input class="form-input" id="profile-kanzlei" placeholder="z.B. Mustermann Steuerberatung" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 15 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_name_lbl" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Dr. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_office_lbl" style="font-size:10px;">Deine Kanzlei</label><input class="form-input" id="profile-kanzlei" placeholder="z.B. Mustermann Steuerberatung" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_street_lbl" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_city_lbl" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_phone_lbl" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_usp_lbl" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 15 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
           </div>
-          <button class="profile-save-btn" onclick="saveProfile()">💾 Profil speichern</button>
-          <span class="profile-saved" id="profile-saved">✓ Gespeichert</span>
+          <button class="profile-save-btn" onclick="saveProfile()" data-i18n="tool.profile_save">💾 Profil speichern</button>
+          <span class="profile-saved" id="profile-saved" data-i18n="tool.profile_saved">✓ Gespeichert</span>
         </div>
-        <div class="page-header"><div class="page-tag">WILLKOMMEN</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">8 KI-Tools die dir als Steuerberater täglich Zeit sparen.</div></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.welcome_tag">WILLKOMMEN</div><div class="page-title" data-i18n="tool.welcome_title">Dein KI-Cockpit</div><div class="page-desc" data-i18n="tool.dash_desc_stb">8 KI-Tools die dir als Steuerberater täglich Zeit sparen.</div></div>
         <div class="dash-grid">
-          <div class="dash-card"><div class="dash-num">8</div><div class="dash-label">KI-TOOLS</div></div>
-          <div class="dash-card"><div class="dash-num" id="dash-today">–</div><div class="dash-label">ANFRAGEN HEUTE</div></div>
-          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label">ERSPARNIS/WOCHE</div></div>
-          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
+          <div class="dash-card"><div class="dash-num">8</div><div class="dash-label" data-i18n="tool.dash_tools">KI-TOOLS</div></div>
+          <div class="dash-card"><div class="dash-num" id="dash-today">–</div><div class="dash-label" data-i18n="tool.dash_today">ANFRAGEN HEUTE</div></div>
+          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label" data-i18n="tool.dash_saving">ERSPARNIS/WOCHE</div></div>
+          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label" data-i18n="tool.dash_avail">VERFÜGBAR</div></div>
         </div>
         <div class="tool-cards">
-          <div class="tool-card" onclick="showPage('mandantenbrief',null)"><div class="tool-card-icon">📝</div><div class="tool-card-title">Mandantenbrief Generator</div><div class="tool-card-desc">Professionelle Briefe in Sekunden</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('mandantenmail',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title">Mandanten-Mail Generator</div><div class="tool-card-desc">Fertige Mails für jede Situation</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title">Akquise-Mail</div><div class="tool-card-desc">Neue Mandanten professionell ansprechen</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('unterlagen',null)"><div class="tool-card-icon">📋</div><div class="tool-card-title">Unterlagen-Erinnerung</div><div class="tool-card-desc">Höfliche Erinnerungen auf Knopfdruck</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('einspruch',null)"><div class="tool-card-icon">⚖️</div><div class="tool-card-title">Einspruch-Ankündigung</div><div class="tool-card-desc">Einsprüche professionell kommunizieren</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('begruessung',null)"><div class="tool-card-icon">🤝</div><div class="tool-card-title">Neukunden-Begrüßung</div><div class="tool-card-desc">Ersten Eindruck perfekt gestalten</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('linkedin',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title">LinkedIn Posts</div><div class="tool-card-desc">Steuertipps & Expertise zeigen</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('fristverlaengerung',null)"><div class="tool-card-icon">📅</div><div class="tool-card-title">Fristverlängerungsschreiben</div><div class="tool-card-desc">Fristen professionell verschieben</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('mandantenbrief',null)"><div class="tool-card-icon">📝</div><div class="tool-card-title" data-i18n="tool.nav_stb_brief">Mandantenbrief Generator</div><div class="tool-card-desc">Professionelle Briefe in Sekunden</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('mandantenmail',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title" data-i18n="tool.nav_stb_mail">Mandanten-Mail Generator</div><div class="tool-card-desc">Fertige Mails für jede Situation</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title" data-i18n="tool.nav_stb_akquise">Akquise-Mail</div><div class="tool-card-desc">Neue Mandanten professionell ansprechen</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('unterlagen',null)"><div class="tool-card-icon">📋</div><div class="tool-card-title" data-i18n="tool.nav_stb_unterlagen">Unterlagen-Erinnerung</div><div class="tool-card-desc">Höfliche Erinnerungen auf Knopfdruck</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('einspruch',null)"><div class="tool-card-icon">⚖️</div><div class="tool-card-title" data-i18n="tool.nav_stb_einspruch">Einspruch-Ankündigung</div><div class="tool-card-desc">Einsprüche professionell kommunizieren</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('begruessung',null)"><div class="tool-card-icon">🤝</div><div class="tool-card-title" data-i18n="tool.nav_stb_begruessung">Neukunden-Begrüßung</div><div class="tool-card-desc">Ersten Eindruck perfekt gestalten</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('linkedin',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title" data-i18n="tool.nav_stb_linkedin">LinkedIn Posts</div><div class="tool-card-desc">Steuertipps & Expertise zeigen</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('fristverlaengerung',null)"><div class="tool-card-icon">📅</div><div class="tool-card-title" data-i18n="tool.nav_stb_frist">Fristverlängerungsschreiben</div><div class="tool-card-desc">Fristen professionell verschieben</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
         </div>
       </div>
 
@@ -349,7 +349,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateMandantenbrief()">⚡ Brief generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-mandantenbrief" onclick="copyResult('mandantenbrief-result','copy-mandantenbrief')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('mandantenbrief-result')">PDF ↓</button><button class="edit-btn" id="edit-mandantenbrief-result" onclick="toggleEdit('mandantenbrief-result','edit-mandantenbrief-result')">✏ Bearbeiten</button></div></div><div id="mandantenbrief-result"><div class="result-placeholder"><div class="placeholder-icon">📝</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-mandantenbrief" onclick="copyResult('mandantenbrief-result','copy-mandantenbrief')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('mandantenbrief-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-mandantenbrief-result" onclick="toggleEdit('mandantenbrief-result','edit-mandantenbrief-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="mandantenbrief-result"><div class="result-placeholder"><div class="placeholder-icon">📝</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
         </div>
       </div>
 
@@ -373,7 +373,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateMandantenmail()">⚡ E-Mail generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-mandantenmail" onclick="copyResult('mandantenmail-result','copy-mandantenmail')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('mandantenmail-result')">PDF ↓</button><button class="edit-btn" id="edit-mandantenmail-result" onclick="toggleEdit('mandantenmail-result','edit-mandantenmail-result')">✏ Bearbeiten</button></div></div><div id="mandantenmail-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-mandantenmail" onclick="copyResult('mandantenmail-result','copy-mandantenmail')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('mandantenmail-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-mandantenmail-result" onclick="toggleEdit('mandantenmail-result','edit-mandantenmail-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="mandantenmail-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
         </div>
       </div>
 
@@ -397,7 +397,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateAkquise()">⚡ Akquise-Mail generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deine Akquise-Mail</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deine Akquise-Mail</div></div></div></div>
         </div>
       </div>
 
@@ -421,7 +421,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateUnterlagen()">⚡ Erinnerung generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-unterlagen" onclick="copyResult('unterlagen-result','copy-unterlagen')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('unterlagen-result')">PDF ↓</button><button class="edit-btn" id="edit-unterlagen-result" onclick="toggleEdit('unterlagen-result','edit-unterlagen-result')">✏ Bearbeiten</button></div></div><div id="unterlagen-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle die Details aus und generiere die Erinnerung</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-unterlagen" onclick="copyResult('unterlagen-result','copy-unterlagen')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('unterlagen-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-unterlagen-result" onclick="toggleEdit('unterlagen-result','edit-unterlagen-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="unterlagen-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle die Details aus und generiere die Erinnerung</div></div></div></div>
         </div>
       </div>
 
@@ -445,7 +445,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateEinspruch()">⚡ Schreiben generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-einspruch" onclick="copyResult('einspruch-result','copy-einspruch')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('einspruch-result')">PDF ↓</button><button class="edit-btn" id="edit-einspruch-result" onclick="toggleEdit('einspruch-result','edit-einspruch-result')">✏ Bearbeiten</button></div></div><div id="einspruch-result"><div class="result-placeholder"><div class="placeholder-icon">⚖️</div><div>Fülle die Details aus und generiere das Schreiben</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-einspruch" onclick="copyResult('einspruch-result','copy-einspruch')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('einspruch-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-einspruch-result" onclick="toggleEdit('einspruch-result','edit-einspruch-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="einspruch-result"><div class="result-placeholder"><div class="placeholder-icon">⚖️</div><div>Fülle die Details aus und generiere das Schreiben</div></div></div></div>
         </div>
       </div>
 
@@ -469,7 +469,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateBegruessung()">⚡ Begrüßung generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-begruessung" onclick="copyResult('begruessung-result','copy-begruessung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('begruessung-result')">PDF ↓</button><button class="edit-btn" id="edit-begruessung-result" onclick="toggleEdit('begruessung-result','edit-begruessung-result')">✏ Bearbeiten</button></div></div><div id="begruessung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Fülle die Details aus und generiere die Begrüßung</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-begruessung" onclick="copyResult('begruessung-result','copy-begruessung')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('begruessung-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-begruessung-result" onclick="toggleEdit('begruessung-result','edit-begruessung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="begruessung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Fülle die Details aus und generiere die Begrüßung</div></div></div></div>
         </div>
       </div>
 
@@ -493,7 +493,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateLinkedIn()">⚡ LinkedIn Post generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-linkedin" onclick="copyResult('linkedin-result','copy-linkedin')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('linkedin-result')">PDF ↓</button><button class="edit-btn" id="edit-linkedin-result" onclick="toggleEdit('linkedin-result','edit-linkedin-result')">✏ Bearbeiten</button></div></div><div id="linkedin-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle einen Post-Typ und generiere deinen Post</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-linkedin" onclick="copyResult('linkedin-result','copy-linkedin')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('linkedin-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-linkedin-result" onclick="toggleEdit('linkedin-result','edit-linkedin-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="linkedin-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle einen Post-Typ und generiere deinen Post</div></div></div></div>
         </div>
       </div>
 
@@ -518,7 +518,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateFristverlaengerung()">⚡ Schreiben generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-fristverlaengerung" onclick="copyResult('fristverlaengerung-result','copy-fristverlaengerung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('fristverlaengerung-result')">PDF ↓</button><button class="edit-btn" id="edit-fristverlaengerung-result" onclick="toggleEdit('fristverlaengerung-result','edit-fristverlaengerung-result')">✏ Bearbeiten</button></div></div><div id="fristverlaengerung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Fülle die Details aus und generiere das Schreiben</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-fristverlaengerung" onclick="copyResult('fristverlaengerung-result','copy-fristverlaengerung')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('fristverlaengerung-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-fristverlaengerung-result" onclick="toggleEdit('fristverlaengerung-result','edit-fristverlaengerung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="fristverlaengerung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Fülle die Details aus und generiere das Schreiben</div></div></div></div>
         </div>
       </div>
 
@@ -541,7 +541,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         </div>
         <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')" data-i18n="tool.pdf_btn">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
         </div>
       </div>
 
@@ -579,24 +579,30 @@ window.addEventListener('load', function() {
   }
   if (token && email) { authToken = token; userEmail = email; showApp(); return; }
 
-  const savedTrialEmail = localStorage.getItem(TRIAL_KEY);
-  if (savedTrialEmail) {
-    checkTrialStatus(savedTrialEmail).then(check => {
-      if (check.active) {
-        isTrial = true; trialEmail = savedTrialEmail;
-        document.getElementById('auth-screen').style.display = 'none';
-        showApp();
-      } else {
-        localStorage.removeItem(TRIAL_KEY);
-        document.getElementById('auth-screen').style.display = 'none';
-        document.getElementById('trial-expired-screen').style.display = 'flex';
-      }
-    });
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('trial') === '1') {
+    const savedTrialEmail = localStorage.getItem(TRIAL_KEY);
+    if (savedTrialEmail) {
+      checkTrialStatus(savedTrialEmail).then(check => {
+        if (check.active) {
+          isTrial = true; trialEmail = savedTrialEmail;
+          document.getElementById('auth-screen').style.display = 'none';
+          showApp();
+        } else {
+          localStorage.removeItem(TRIAL_KEY);
+          document.getElementById('auth-screen').style.display = 'none';
+          document.getElementById('trial-expired-screen').style.display = 'flex';
+        }
+      });
+      return;
+    }
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('trial-screen').style.display = 'flex';
     return;
   }
 
-  document.getElementById('auth-screen').style.display = 'none';
-  document.getElementById('trial-screen').style.display = 'flex';
+  // Premium-Modus: Auth-Screen anzeigen, kein Trial-Modal
+  document.getElementById('auth-screen').style.display = 'flex';
 });
 
 async function checkTrialStatus(email) {
@@ -902,7 +908,7 @@ function showPageMobile(id, el) {
     <div class="mobile-nav-item" onclick="doLogout()"><span class="mobile-nav-icon">🚪</span><span class="mobile-nav-label">LOGOUT</span></div>
   </div>
 </div>
-<script src="zyn.js?v=4"></script>
+<script src="zyn.js?v=6"></script>
 </body>
 </html>
 

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 Tage kostenlos testen | ZYNTEVO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        html, body {
+            background: #070B11 !important;
+            min-height: 100vh;
+        }
+        .auth-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, rgba(212,175,55,.12), transparent 50%);
+            padding: 1rem;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 460px;
+            background: linear-gradient(135deg, #0F172A, #111827);
+            border: 1px solid rgba(212,175,55,.25);
+            border-radius: 30px;
+            padding: 44px 40px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(212,175,55,.08);
+            box-sizing: border-box;
+        }
+        .auth-logo { font-size: 26px; font-weight: 900; letter-spacing: 3px; color: #D4AF37; margin-bottom: 4px; }
+        .auth-sub { color: #94A3B8; font-size: 13px; margin-bottom: 24px; }
+
+        .trial-badge {
+            display: inline-block;
+            background: rgba(212,175,55,.12);
+            border: 1px solid rgba(212,175,55,.3);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #D4AF37;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .trial-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #F8FAFC;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .trial-desc {
+            font-size: 13px;
+            color: #94A3B8;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .branche-select-wrap {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        .branche-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #D4AF37;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .branche-select {
+            width: 100%;
+            padding: 11px 14px;
+            background: #070B11;
+            border: 1px solid rgba(212,175,55,.2);
+            border-radius: 12px;
+            color: #F8FAFC;
+            font-size: 13px;
+            outline: none;
+            font-family: Inter, sans-serif;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .branche-select:focus { border-color: #D4AF37; }
+
+        .auth-input-wrap { position: relative; margin-bottom: 14px; width: 100%; }
+        .auth-input {
+            width: 100%;
+            padding: 12px 14px;
+            background: #070B11;
+            border: 1px solid rgba(212,175,55,.2);
+            border-radius: 12px;
+            color: #F8FAFC;
+            font-size: 13px;
+            outline: none;
+            transition: .3s;
+            font-family: Inter, sans-serif;
+            box-sizing: border-box;
+        }
+        .auth-input:focus { border-color: #D4AF37; }
+        .auth-btn {
+            width: 100%;
+            padding: 13px;
+            background: #D4AF37;
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: .3s;
+            font-family: Inter, sans-serif;
+            box-sizing: border-box;
+        }
+        .auth-btn:hover { transform: translateY(-2px); opacity: .92; }
+        .auth-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+        .auth-error { color: #EF4444; font-size: 12px; margin-top: 10px; display: none; }
+        .auth-hint { font-size: 11px; color: #94A3B8; margin-top: 14px; line-height: 1.6; }
+        .auth-hint a { color: #D4AF37; text-decoration: none; }
+
+        .loading-wrap { display: none; flex-direction: column; align-items: center; gap: 14px; padding: 20px 0; }
+        .spinner { width: 28px; height: 28px; border: 3px solid rgba(212,175,55,.2); border-top-color: #D4AF37; border-radius: 50%; animation: spin .8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { color: #94A3B8; font-size: 13px; }
+
+        .success-wrap { display: none; flex-direction: column; align-items: center; gap: 12px; padding: 10px 0; }
+        .success-icon { font-size: 40px; }
+        .success-title { font-size: 18px; font-weight: 800; color: #22C55E; }
+        .success-text { font-size: 13px; color: #94A3B8; line-height: 1.6; }
+
+        #zyn-lang-switcher { position: fixed; top: 16px; right: 16px; z-index: 999; display: flex; align-items: center; gap: 2px; background: rgba(0,0,0,.25); border-radius: 8px; padding: 2px; }
+    </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-GPT0KRVEM2");
+    </script>
+    <link rel="stylesheet" href="glass-overrides.css">
+</head>
+<body>
+
+<div id="zyn-lang-switcher">
+  <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><img src="https://flagcdn.com/20x15/de.png" alt="DE" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+  <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:none;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;opacity:0.5;display:flex;align-items:center;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+  <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:none;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;opacity:0.5;display:flex;align-items:center;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+</div>
+
+<div class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-logo">ZYNTEVO</div>
+        <div class="auth-sub" data-i18n="trial.page_sub">KI-Tool · 7 Tage kostenlos</div>
+
+        <div id="form-wrap">
+            <div class="trial-badge" data-i18n="trial.badge">KOSTENLOSE TESTPHASE</div>
+            <div class="trial-title" data-i18n="trial.title">7 Tage kostenlos testen</div>
+            <div class="trial-desc" data-i18n="trial.desc">Kein Kreditkarte. Kein Risiko. Sofortzugang zu deinem KI-Tool — einfach E-Mail eintragen und loslegen.</div>
+
+            <div class="branche-select-wrap">
+                <label class="branche-label" data-i18n="trial.branche_lbl">Deine Branche</label>
+                <select class="branche-select" id="trial-branche">
+                    <option value="makler" data-i18n="trial.opt_makler">Immobilienmakler</option>
+                    <option value="handwerker" data-i18n="trial.opt_handwerker">Handwerker</option>
+                    <option value="steuerberater" data-i18n="trial.opt_stb">Steuerberater</option>
+                </select>
+            </div>
+
+            <div class="auth-input-wrap">
+                <input class="auth-input" type="email" id="trial-email" data-i18n-placeholder="trial.placeholder" placeholder="Deine E-Mail Adresse" onkeydown="if(event.key==='Enter')startTrial()" />
+            </div>
+            <button class="auth-btn" id="trial-btn" onclick="startTrial()" data-i18n="trial.btn">⚡ Jetzt kostenlos starten</button>
+            <div class="auth-error" id="trial-error"></div>
+            <div class="auth-hint" data-i18n="trial.note">Bereits Premium-Kunde? <a href="premium.html">Hier einloggen →</a></div>
+        </div>
+
+        <div class="loading-wrap" id="loading-wrap">
+            <div class="spinner"></div>
+            <div class="loading-text" data-i18n="trial.loading">Trial wird gestartet...</div>
+        </div>
+
+        <div class="success-wrap" id="success-wrap">
+            <div class="success-icon">✓</div>
+            <div class="success-title" data-i18n="trial.success_title">Trial gestartet!</div>
+            <div class="success-text" data-i18n="trial.success_text">Du wirst gleich weitergeleitet...</div>
+        </div>
+    </div>
+</div>
+
+<script>
+const API = "https://zyntevo-tool.jan-6a7.workers.dev";
+const TOOL_URLS = {
+    makler:        'zyntevo-makler-tool.html?trial=1',
+    handwerker:    'zyntevo-handwerker-tool.html?trial=1',
+    steuerberater: 'zyntevo-steuerberater-tool.html?trial=1',
+};
+const TRIAL_KEYS = {
+    makler:        'zyntevo_makler_trial',
+    handwerker:    'zyntevo_handwerker_trial',
+    steuerberater: 'zyntevo_stb_trial',
+};
+
+async function startTrial() {
+    const email = document.getElementById('trial-email').value.trim();
+    const branche = document.getElementById('trial-branche').value;
+    const errEl = document.getElementById('trial-error');
+    errEl.style.display = 'none';
+
+    if (!email || !email.includes('@')) {
+        errEl.textContent = 'Bitte eine gültige E-Mail-Adresse eingeben.';
+        errEl.style.display = 'block';
+        return;
+    }
+
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('loading-wrap').style.display = 'flex';
+
+    try {
+        const res = await fetch(`${API}/api/trial/start`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, branche })
+        });
+        const data = await res.json();
+
+        if (data.success || data.already_active) {
+            localStorage.setItem(TRIAL_KEYS[branche], email);
+            document.getElementById('loading-wrap').style.display = 'none';
+            document.getElementById('success-wrap').style.display = 'flex';
+            setTimeout(() => {
+                window.location.href = TOOL_URLS[branche];
+            }, 1200);
+        } else {
+            showError(data.error || 'Fehler beim Starten des Trials. Bitte erneut versuchen.');
+        }
+    } catch(e) {
+        // Fallback: direkt weiterleiten (Trial-Prüfung beim Tool)
+        localStorage.setItem(TRIAL_KEYS[branche], email);
+        document.getElementById('loading-wrap').style.display = 'none';
+        document.getElementById('success-wrap').style.display = 'flex';
+        setTimeout(() => {
+            window.location.href = TOOL_URLS[branche];
+        }, 1200);
+    }
+}
+
+function showError(msg) {
+    document.getElementById('loading-wrap').style.display = 'none';
+    document.getElementById('form-wrap').style.display = 'block';
+    const errEl = document.getElementById('trial-error');
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+}
+</script>
+<script src="zyn.js?v=6"></script>
+</body>
+</html>
