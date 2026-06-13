@@ -120,10 +120,15 @@
   }
 
   function injectSwitcher() {
-    // Try nav area first, then header container
-    var nav = document.querySelector('nav.nav') || document.querySelector('.header .container');
-    if (!nav) return;
-    nav.appendChild(buildSwitcher());
+    // 1. Marketing pages: inject into .nav-right (inside .nav-inner flex row)
+    // 2. Legal pages: inject into nav.nav (simple single-link nav)
+    // 3. KI-tool / AGB pages: inject into .header .container
+    var target =
+      document.querySelector('.nav-right') ||
+      document.querySelector('nav.nav') ||
+      document.querySelector('.header .container');
+    if (!target) return;
+    target.appendChild(buildSwitcher());
   }
 
   /* ── Init ────────────────────────────────────────────────── */
