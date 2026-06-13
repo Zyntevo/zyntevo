@@ -1,4 +1,4 @@
-﻿window.ZYN_T = {
+window.ZYN_T = {
   de: {
     meta: {
       title_index: "ZYNTEVO | Das KI-Betriebssystem für Unternehmer",
