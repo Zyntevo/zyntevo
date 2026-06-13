@@ -299,14 +299,14 @@
       <img src="css/images/header.png" alt="ZYNTEVO" onerror="this.src='https://zyntevo.de/css/images/emaillogo.png'">
     </a>
     <div class="nav-links">
-      <a href="#loesungen">Lösungen</a>
-      <a href="#features">Features</a>
-      <a href="#preise">Preise</a>
-      <a href="#faq">FAQ</a>
+      <a href="#loesungen" data-i18n="nav.solutions">Lösungen</a>
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#preise" data-i18n="nav.pricing">Preise</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
     </div>
     <div class="nav-right">
-      <a href="#trial-banner" class="nav-btn-ghost">Kostenlos testen</a>
-      <a href="#trial-banner" class="nav-btn-cta">Jetzt starten →</a>
+      <a href="#trial-banner" class="nav-btn-ghost" data-i18n="nav.free_trial">Kostenlos testen</a>
+      <a href="#trial-banner" class="nav-btn-cta" data-i18n="nav.start_now">Jetzt starten →</a>
     </div>
     <button class="nav-hamburger" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
   </div>
@@ -323,30 +323,30 @@
 <section class="hero" id="top">
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow" data-reveal>KI-Betriebssystem für KMU</div>
-      <h1 data-reveal data-delay="100">
+      <div class="hero-eyebrow" data-reveal data-i18n="index.hero_eyebrow">KI-Betriebssystem für KMU</div>
+      <h1 data-reveal data-delay="100" data-i18n="index.hero_h1">
         5 Stunden pro Woche.<br>
         <span class="grad">Zurückgewonnen.</span>
       </h1>
-      <p class="hero-sub" data-reveal data-delay="200">
+      <p class="hero-sub" data-reveal data-delay="200" data-i18n="index.hero_sub">
         ZYNTEVO ist das spezialisierte KI-Tool für Immobilienmakler, Handwerksbetriebe und Steuerberater – fertige Texte in Sekunden, ohne Prompt-Kenntnisse.
       </p>
       <div class="hero-btns" data-reveal data-delay="300">
-        <a href="#trial-banner" class="btn btn-gold btn-lg">Kostenlos testen →</a>
-        <a href="#loesungen" class="btn btn-outline btn-lg">Mehr erfahren</a>
+        <a href="#trial-banner" class="btn btn-gold btn-lg" data-i18n="index.btn_trial">Kostenlos testen →</a>
+        <a href="#loesungen" class="btn btn-outline btn-lg" data-i18n="index.btn_more">Mehr erfahren</a>
       </div>
       <div class="hero-trust" data-reveal data-delay="400">
         <div class="hero-trust-item">
           <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          Kein Abo
+          <span data-i18n="index.trust1">Kein Abo</span>
         </div>
         <div class="hero-trust-item">
           <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          Einmalzahlung
+          <span data-i18n="index.trust2">Einmalzahlung</span>
         </div>
         <div class="hero-trust-item">
           <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          14 Tage Geld-zurück-Garantie
+          <span data-i18n="index.trust3">14 Tage Geld-zurück-Garantie</span>
         </div>
       </div>
     </div>
@@ -815,5 +815,7 @@ function setPricingBranche(b) {
   document.querySelectorAll('.pricing-branch-btn').forEach(el => el.classList.toggle('active', el.id === 'pbtn-' + b));
 }
 </script>
+<script src="translations.js"></script>
+<script src="lang.js"></script>
 </body>
 </html>

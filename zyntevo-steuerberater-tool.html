@@ -707,7 +707,7 @@ function updateRateDisplays() {
 
 async function callAI(prompt) {
   if (!authToken) { doLogout(); throw new Error('Nicht eingeloggt'); }
-  const r = await fetch(`${API}/api/query`, { method: 'POST', headers: {'Content-Type':'application/json','Authorization': 'Bearer ' + authToken}, body: JSON.stringify({prompt}) });
+  const r = await fetch(`${API}/api/query`, { method: 'POST', headers: {'Content-Type':'application/json','Authorization': 'Bearer ' + authToken}, body: JSON.stringify({prompt, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')}) });
   if (r.status === 401 || r.status === 403) { doLogout(); throw new Error('Session abgelaufen. Bitte erneut einloggen.'); }
   if (r.status === 429) throw new Error('Tageslimit von 50 Anfragen erreicht. Morgen wieder verfügbar.');
   if (!r.ok) throw new Error('Fehler ' + r.status);
@@ -895,6 +895,7 @@ function showPageMobile(id, el) {
     <div class="mobile-nav-item" onclick="doLogout()"><span class="mobile-nav-icon">🚪</span><span class="mobile-nav-label">LOGOUT</span></div>
   </div>
 </div>
-
+<script src="translations.js"></script>
+<script src="lang.js"></script>
 </body>
 </html>

@@ -822,7 +822,7 @@ async function callAI(prompt) {
   const r = await fetch(`${API}/api/query`, {
     method: 'POST',
     headers: {'Content-Type':'application/json', 'Authorization': 'Bearer ' + authToken},
-    body: JSON.stringify({prompt})
+    body: JSON.stringify({prompt, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')})
   });
   if (r.status === 401 || r.status === 403) {
     doLogout();
@@ -1146,5 +1146,8 @@ function showPageMobile(id, el) {
   </div>
 </div>
 
+
+<script src="translations.js"></script>
+<script src="lang.js"></script>
 </body>
 </html>

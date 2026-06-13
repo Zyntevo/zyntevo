@@ -89,14 +89,14 @@
       <img src="css/images/header.png" alt="ZYNTEVO" onerror="this.src='https://zyntevo.de/css/images/emaillogo.png'">
     </a>
     <div class="nav-links">
-      <a href="index.html">Startseite</a>
-      <a href="#ki-tool">KI-Tool</a>
-      <a href="#preise">Preise</a>
-      <a href="#faq">FAQ</a>
+      <a href="index.html" data-i18n="nav.home">Startseite</a>
+      <a href="#ki-tool" data-i18n="nav.ki_tool">KI-Tool</a>
+      <a href="#preise" data-i18n="nav.pricing">Preise</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
     </div>
     <div class="nav-right">
-      <a href="https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html" target="_blank" class="nav-btn-ghost">Kostenlos testen</a>
-      <a href="https://www.checkout-ds24.com/product/696900" target="_blank" class="nav-btn-cta">Jetzt kaufen →</a>
+      <a href="https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html" target="_blank" class="nav-btn-ghost" data-i18n="nav.free_trial">Kostenlos testen</a>
+      <a href="https://www.checkout-ds24.com/product/696900" target="_blank" class="nav-btn-cta" data-i18n="nav.buy_now">Jetzt kaufen →</a>
     </div>
     <button class="nav-hamburger" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
   </div>
@@ -113,30 +113,30 @@
 <section class="hero" id="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow" data-reveal>🔨 KI-Tool für Handwerksbetriebe</div>
-      <h1 data-reveal data-delay="100">
+      <div class="hero-eyebrow" data-reveal data-i18n="handwerker.hero_eyebrow">🔨 KI-Tool für Handwerksbetriebe</div>
+      <h1 data-reveal data-delay="100" data-i18n="handwerker.hero_h1">
         Mehr Aufträge.<br>
         Weniger <span class="grad">Schreibarbeit.</span>
       </h1>
-      <p class="hero-sub" data-reveal data-delay="200">
+      <p class="hero-sub" data-reveal data-delay="200" data-i18n="handwerker.hero_sub">
         Das spezialisierte KI-Tool für Handwerker: Angebote, Kunden-Mails, Bewertungsantworten und Social Media – fertig in 30 Sekunden, direkt im Browser.
       </p>
       <div class="hero-btns" data-reveal data-delay="300">
-        <a href="https://www.checkout-ds24.com/product/696900" target="_blank" class="btn btn-gold btn-lg">⚡ Premium sichern</a>
-        <a href="https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html" target="_blank" class="btn btn-outline btn-lg">🎁 Kostenlos testen</a>
+        <a href="https://www.checkout-ds24.com/product/696900" target="_blank" class="btn btn-gold btn-lg" data-i18n="makler.btn_premium">⚡ Premium sichern</a>
+        <a href="https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html" target="_blank" class="btn btn-outline btn-lg" data-i18n="makler.btn_trial">🎁 Kostenlos testen</a>
       </div>
       <div class="hero-trust" data-reveal data-delay="400">
         <div class="hero-trust-item">
           <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          297€ einmalig
+          <span data-i18n="handwerker.trust1">297€ einmalig</span>
         </div>
         <div class="hero-trust-item">
           <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          Kein Abo
+          <span data-i18n="handwerker.trust2">Kein Abo</span>
         </div>
         <div class="hero-trust-item">
           <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          14 Tage Geld-zurück-Garantie
+          <span data-i18n="handwerker.trust3">14 Tage Geld-zurück-Garantie</span>
         </div>
       </div>
     </div>
@@ -568,5 +568,7 @@ function toggleFaq(btn){var item=btn.parentElement;var open=item.classList.conta
 
 function submitWiderruf(){var s=encodeURIComponent("Widerruf meines Kaufs bei ZYNTEVO");var b=encodeURIComponent("Hiermit widerrufe ich meinen bei ZYNTEVO abgeschlossenen Vertrag.\n\nMein Name:\nMeine E-Mail:\nKaufdatum:\nBestellnummer:\n\nMit freundlichen Grüßen");window.location.href="mailto:jan@zyntevo.de?subject="+s+"&body="+b;document.getElementById("widerruf-modal").classList.remove("open");}
 </script>
+<script src="translations.js"></script>
+<script src="lang.js"></script>
 </body>
 </html>
