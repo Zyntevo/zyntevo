@@ -730,7 +730,9 @@ async function callAI(prompt) {
   const sessionGen = parseInt(sessionStorage.getItem('zyn_gen_count') || '0') + 1;
   sessionStorage.setItem('zyn_gen_count', sessionGen);
   if (sessionGen === 5) showTrustpilotToast();
-  return d.content[0].text;
+  if (d.text) return d.text;
+  if (d.content && d.content[0]) return d.content[0].text;
+  throw new Error(d.error || 'Unbekannter Fehler vom Server.');
 }
 
 function showTrustpilotToast() {

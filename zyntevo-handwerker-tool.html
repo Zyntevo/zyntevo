@@ -294,7 +294,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()" />
+        <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" data-i18n-placeholder="tool.ph_password" onkeydown="if(event.key==='Enter')doLogin()" />
         <span class="pw-eye" onclick="togglePW('login-pw')">👁</span>
       </div>
       <div class="remember-row">
@@ -309,19 +309,19 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     <!-- REGISTER -->
     <div id="panel-register" style="display:none;">
       <div class="auth-input-wrap">
-        <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (z.B. XXXX-XXXX-XXXX-XXXX)" />
+        <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (z.B. XXXX-XXXX-XXXX-XXXX)" data-i18n-placeholder="tool.ph_reg_code" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" />
+        <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" onkeydown="if(event.key==='Enter')doRegister()" />
+        <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" data-i18n-placeholder="tool.ph_reg_pw" onkeydown="if(event.key==='Enter')doRegister()" />
         <span class="pw-eye" onclick="togglePW('reg-pw')">👁</span>
       </div>
-      <button class="auth-btn" onclick="doRegister()">Account erstellen</button>
+      <button class="auth-btn" onclick="doRegister()" data-i18n="tool.register_btn">Account erstellen</button>
       <div class="auth-error" id="reg-error"></div>
       <div class="auth-success" id="reg-success"></div>
-      <div class="auth-hint">Deinen Registrierungscode hast du per E-Mail nach dem Kauf erhalten.</div>
+      <div class="auth-hint" data-i18n="tool.reg_hint2">Deinen Registrierungscode hast du per E-Mail nach dem Kauf erhalten.</div>
     </div>
   </div>
 </div>
@@ -364,12 +364,12 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="profile-bar">
           <div class="profile-bar-title" data-i18n="tool.profile_title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
           <div class="profile-grid">
-            <div><label class="form-label" data-i18n="tool.profile_name_lbl" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_company_lbl" style="font-size:10px;">Dein Betrieb</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann GmbH" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_street_lbl" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_city_lbl" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_phone_lbl" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_trade_lbl" style="font-size:10px;">Dein Gewerk</label><input class="form-input" id="profile-gewerk-p" placeholder="z.B. Elektriker" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_name_lbl" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" data-i18n-placeholder="tool.ph_profile_name" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_company_lbl" style="font-size:10px;">Dein Betrieb</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann GmbH" data-i18n-placeholder="tool.ph_profile_betrieb" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_street_lbl" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" data-i18n-placeholder="tool.ph_profile_strasse" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_city_lbl" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" data-i18n-placeholder="tool.ph_profile_stadt" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_phone_lbl" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" data-i18n-placeholder="tool.ph_profile_telefon" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_trade_lbl" style="font-size:10px;">Dein Gewerk</label><input class="form-input" id="profile-gewerk-p" placeholder="z.B. Elektriker" data-i18n-placeholder="tool.ph_profile_gewerk" style="font-size:13px;padding:10px 14px;"></div>
           </div>
           <button class="profile-save-btn" onclick="saveProfile()" data-i18n="tool.profile_save">💾 Profil speichern</button>
           <span class="profile-saved" id="profile-saved" data-i18n="tool.profile_saved">✓ Gespeichert</span>
@@ -823,7 +823,9 @@ async function callAI(prompt) {
   const sessionGen = parseInt(sessionStorage.getItem('zyn_gen_count') || '0') + 1;
   sessionStorage.setItem('zyn_gen_count', sessionGen);
   if (sessionGen === 5) showTrustpilotToast();
-  return d.content[0].text;
+  if (d.text) return d.text;
+  if (d.content && d.content[0]) return d.content[0].text;
+  throw new Error(d.error || 'Unbekannter Fehler vom Server.');
 }
 
 function showTrustpilotToast() {

@@ -296,7 +296,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()" />
+        <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" data-i18n-placeholder="tool.ph_password" onkeydown="if(event.key==='Enter')doLogin()" />
         <span class="pw-eye" onclick="togglePW('login-pw')">👁</span>
       </div>
       <div class="remember-row">
@@ -311,13 +311,13 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     <!-- REGISTER -->
     <div id="panel-register" style="display:none;">
       <div class="auth-input-wrap">
-        <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (z.B. XXXX-XXXX-XXXX-XXXX)" />
+        <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (z.B. XXXX-XXXX-XXXX-XXXX)" data-i18n-placeholder="tool.ph_reg_code" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" />
+        <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" onkeydown="if(event.key==='Enter')doRegister()" />
+        <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" data-i18n-placeholder="tool.ph_reg_pw" onkeydown="if(event.key==='Enter')doRegister()" />
         <span class="pw-eye" onclick="togglePW('reg-pw')">👁</span>
       </div>
       <button class="auth-btn" onclick="doRegister()" data-i18n="tool.register_btn">Account erstellen</button>
@@ -366,12 +366,12 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="profile-bar">
           <div class="profile-bar-title" data-i18n="tool.profile_title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
           <div class="profile-grid">
-            <div><label class="form-label" data-i18n="tool.profile_name_lbl" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_office_lbl" style="font-size:10px;">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann Immobilien" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_street_lbl" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_city_lbl" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_phone_lbl" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" data-i18n="tool.profile_usp_lbl" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_name_lbl" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" data-i18n-placeholder="tool.ph_profile_name" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_office_lbl" style="font-size:10px;">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann Immobilien" data-i18n-placeholder="tool.ph_profile_buero" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_street_lbl" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" data-i18n-placeholder="tool.ph_profile_strasse" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_city_lbl" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" data-i18n-placeholder="tool.ph_profile_stadt" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_phone_lbl" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" data-i18n-placeholder="tool.ph_profile_telefon" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" data-i18n="tool.profile_usp_lbl" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" data-i18n-placeholder="tool.ph_profile_usp" style="font-size:13px;padding:10px 14px;"></div>
           </div>
           <button class="profile-save-btn" onclick="saveProfile()" data-i18n="tool.profile_save">💾 Profil speichern</button>
           <span class="profile-saved" id="profile-saved" data-i18n="tool.profile_saved">✓ Gespeichert</span>
@@ -400,19 +400,19 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-expose">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Objekttyp</label><select class="form-select" id="expose-typ"><option>Eigentumswohnung</option><option>Einfamilienhaus</option><option>Doppelhaushälfte</option><option>Reihenhaus</option><option>Mehrfamilienhaus</option><option>Grundstück</option><option>Gewerbeimmobilie</option></select></div>
-            <div class="form-group"><label class="form-label">Lage / Stadtteil</label><input class="form-input" id="expose-lage" placeholder="z.B. München-Schwabing"></div>
-            <div class="form-group"><label class="form-label">Wohnfläche m²</label><input class="form-input" id="expose-flaeche" placeholder="z.B. 85 m²"></div>
-            <div class="form-group"><label class="form-label">Zimmer</label><input class="form-input" id="expose-zimmer" placeholder="z.B. 3 Zimmer"></div>
-            <div class="form-group"><label class="form-label">Kaufpreis</label><input class="form-input" id="expose-preis" placeholder="z.B. 450.000 €"></div>
-            <div class="form-group"><label class="form-label">Besonderheiten</label><textarea class="form-textarea" id="expose-details" placeholder="z.B. Dachterrasse, Tiefgaragenstellplatz..."></textarea></div>
-            <div class="form-group"><label class="form-label">Stil</label><select class="form-select" id="expose-stil"><option>Emotional & verkaufsstark</option><option>Sachlich & informativ</option><option>Luxury & exklusiv</option><option>Modern & minimalistisch</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_objekttyp">Objekttyp</label><select class="form-select" id="expose-typ"><option data-i18n="tool.opt_eigentumswohnung">Eigentumswohnung</option><option data-i18n="tool.opt_einfamilienhaus">Einfamilienhaus</option><option data-i18n="tool.opt_doppelhaushaelfte">Doppelhaushälfte</option><option data-i18n="tool.opt_reihenhaus">Reihenhaus</option><option data-i18n="tool.opt_mehrfamilienhaus">Mehrfamilienhaus</option><option data-i18n="tool.opt_grundstueck">Grundstück</option><option data-i18n="tool.opt_gewerbeimmobilie">Gewerbeimmobilie</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_lage">Lage / Stadtteil</label><input class="form-input" id="expose-lage" placeholder="z.B. München-Schwabing" data-i18n-placeholder="tool.ph_lage"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_wohnflaeche">Wohnfläche m²</label><input class="form-input" id="expose-flaeche" placeholder="z.B. 85 m²" data-i18n-placeholder="tool.ph_wohnflaeche"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_zimmer">Zimmer</label><input class="form-input" id="expose-zimmer" placeholder="z.B. 3 Zimmer" data-i18n-placeholder="tool.ph_zimmer"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_kaufpreis">Kaufpreis</label><input class="form-input" id="expose-preis" placeholder="z.B. 450.000 €" data-i18n-placeholder="tool.ph_kaufpreis"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_besonderheiten">Besonderheiten</label><textarea class="form-textarea" id="expose-details" placeholder="z.B. Dachterrasse, Tiefgaragenstellplatz..." data-i18n-placeholder="tool.ph_expose_details"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_stil">Stil</label><select class="form-select" id="expose-stil"><option data-i18n="tool.opt_stil_emotional">Emotional & verkaufsstark</option><option data-i18n="tool.opt_stil_sachlich">Sachlich & informativ</option><option data-i18n="tool.opt_stil_luxury">Luxury & exklusiv</option><option data-i18n="tool.opt_stil_modern">Modern & minimalistisch</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateExpose()">⚡ Exposé generieren</button>
@@ -426,16 +426,16 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-email">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Situation</label><select class="form-select" id="email-situation"><option>Antwort auf Kaufinteresse</option><option>Besichtigungstermin bestätigen</option><option>Nach Besichtigung nachfassen</option><option>Preisreduktion mitteilen</option><option>Angebot abgelehnt</option><option>Verkaufsauftrag gewinnen</option><option>Schlüsselübergabe</option></select></div>
-            <div class="form-group"><label class="form-label">Kundenname</label><input class="form-input" id="email-name" placeholder="z.B. Herr Müller"></div>
-            <div class="form-group"><label class="form-label">Objekt / Kontext</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. 3-Zimmer-Wohnung München..."></textarea></div>
-            <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="email-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_situation">Situation</label><select class="form-select" id="email-situation"><option data-i18n="tool.opt_makler_sit1">Antwort auf Kaufinteresse</option><option data-i18n="tool.opt_makler_sit2">Besichtigungstermin bestätigen</option><option data-i18n="tool.opt_makler_sit3">Nach Besichtigung nachfassen</option><option data-i18n="tool.opt_makler_sit4">Preisreduktion mitteilen</option><option data-i18n="tool.opt_makler_sit5">Angebot abgelehnt</option><option data-i18n="tool.opt_makler_sit6">Verkaufsauftrag gewinnen</option><option data-i18n="tool.opt_makler_sit7">Schlüsselübergabe</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_kundenname">Kundenname</label><input class="form-input" id="email-name" placeholder="z.B. Herr Müller" data-i18n-placeholder="tool.ph_kundenname"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_objekt_kontext">Objekt / Kontext</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. 3-Zimmer-Wohnung München..." data-i18n-placeholder="tool.ph_email_kontext"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ton">Ton</label><select class="form-select" id="email-ton"><option data-i18n="tool.opt_ton_prof">Professionell & freundlich</option><option data-i18n="tool.opt_ton_pers">Persönlich & warm</option><option data-i18n="tool.opt_ton_foerm">Förmlich & seriös</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
@@ -449,16 +449,16 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-social">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>LinkedIn</option><option>TikTok Caption</option><option>Facebook</option></select></div>
-            <div class="form-group"><label class="form-label">Content-Typ</label><select class="form-select" id="social-typ"><option>Objektvorstellung</option><option>Markt-Tipp</option><option>Persönliche Geschichte</option><option>Kundenstimme</option><option>Behind the Scenes</option><option>Bildungs-Content</option></select></div>
-            <div class="form-group"><label class="form-label">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Heute haben wir eine traumhafte Penthouse-Wohnung verkauft..."></textarea></div>
-            <div class="form-group"><label class="form-label">Dein Name / Büro</label><input class="form-input" id="social-name" placeholder="z.B. Jan Wichmann Immobilien"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_plattform">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>LinkedIn</option><option data-i18n="tool.opt_tiktok_caption">TikTok Caption</option><option>Facebook</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_content_typ">Content-Typ</label><select class="form-select" id="social-typ"><option data-i18n="tool.opt_makler_ct1">Objektvorstellung</option><option data-i18n="tool.opt_makler_ct2">Markt-Tipp</option><option data-i18n="tool.opt_makler_ct3">Persönliche Geschichte</option><option data-i18n="tool.opt_makler_ct4">Kundenstimme</option><option data-i18n="tool.opt_behind_scenes">Behind the Scenes</option><option data-i18n="tool.opt_makler_ct6">Bildungs-Content</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_details_thema">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Heute haben wir eine traumhafte Penthouse-Wohnung verkauft..." data-i18n-placeholder="tool.ph_makler_social_details"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_name_buero">Dein Name / Büro</label><input class="form-input" id="social-name" placeholder="z.B. Jan Wichmann Immobilien" data-i18n-placeholder="tool.ph_makler_social_name"></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
@@ -472,17 +472,17 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-akquise">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Stadtteil / Lage</label><input class="form-input" id="akquise-lage" placeholder="z.B. München-Schwabing"></div>
-            <div class="form-group"><label class="form-label">Anlass</label><select class="form-select" id="akquise-anlass"><option>Kostenlose Bewertung anbieten</option><option>Marktupdate mitteilen</option><option>Hohe Nachfrage kommunizieren</option><option>Reaktivierung nach längerer Zeit</option><option>Erstkontakt kalt</option></select></div>
-            <div class="form-group"><label class="form-label">Dein Name</label><input class="form-input" id="akquise-name" placeholder="z.B. Max Mustermann"></div>
-            <div class="form-group"><label class="form-label">Dein Büro</label><input class="form-input" id="akquise-buero" placeholder="z.B. Zyntevo Immobilien"></div>
-            <div class="form-group"><label class="form-label">Dein USP</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_stadtteil_lage">Stadtteil / Lage</label><input class="form-input" id="akquise-lage" placeholder="z.B. München-Schwabing" data-i18n-placeholder="tool.ph_lage"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_anlass">Anlass</label><select class="form-select" id="akquise-anlass"><option data-i18n="tool.opt_akq_anlass1">Kostenlose Bewertung anbieten</option><option data-i18n="tool.opt_akq_anlass2">Marktupdate mitteilen</option><option data-i18n="tool.opt_akq_anlass3">Hohe Nachfrage kommunizieren</option><option data-i18n="tool.opt_akq_anlass4">Reaktivierung nach längerer Zeit</option><option data-i18n="tool.opt_akq_anlass5">Erstkontakt kalt</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_name">Dein Name</label><input class="form-input" id="akquise-name" placeholder="z.B. Max Mustermann" data-i18n-placeholder="tool.ph_dein_name"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_buero">Dein Büro</label><input class="form-input" id="akquise-buero" placeholder="z.B. Zyntevo Immobilien" data-i18n-placeholder="tool.ph_dein_buero"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_usp">Dein USP</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung..." data-i18n-placeholder="tool.ph_usp"></textarea></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
@@ -496,17 +496,17 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-markt">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Region / Stadt</label><input class="form-input" id="markt-region" placeholder="z.B. München, Schwabing"></div>
-            <div class="form-group"><label class="form-label">Monat / Jahr</label><input class="form-input" id="markt-monat" placeholder="z.B. Juni 2026"></div>
-            <div class="form-group"><label class="form-label">Marktlage</label><select class="form-select" id="markt-lage"><option>Steigende Preise</option><option>Stabile Preise</option><option>Leicht sinkende Preise</option><option>Käufermarkt</option><option>Verkäufermarkt</option></select></div>
-            <div class="form-group"><label class="form-label">Aktuelle Zahlen</label><textarea class="form-textarea" id="markt-daten" placeholder="z.B. Durchschnittspreis 7.500€/m²..."></textarea></div>
-            <div class="form-group"><label class="form-label">Deine Einschätzung</label><textarea class="form-textarea" id="markt-einschaetzung" placeholder="z.B. Ich erwarte in den nächsten Monaten..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_region_stadt">Region / Stadt</label><input class="form-input" id="markt-region" placeholder="z.B. München, Schwabing" data-i18n-placeholder="tool.ph_region_stadt"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_monat_jahr">Monat / Jahr</label><input class="form-input" id="markt-monat" placeholder="z.B. Juni 2026" data-i18n-placeholder="tool.ph_monat_jahr"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_marktlage">Marktlage</label><select class="form-select" id="markt-lage"><option data-i18n="tool.opt_markt1">Steigende Preise</option><option data-i18n="tool.opt_markt2">Stabile Preise</option><option data-i18n="tool.opt_markt3">Leicht sinkende Preise</option><option data-i18n="tool.opt_markt4">Käufermarkt</option><option data-i18n="tool.opt_markt5">Verkäufermarkt</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_aktuelle_zahlen">Aktuelle Zahlen</label><textarea class="form-textarea" id="markt-daten" placeholder="z.B. Durchschnittspreis 7.500€/m²..." data-i18n-placeholder="tool.ph_markt_daten"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_einschaetzung">Deine Einschätzung</label><textarea class="form-textarea" id="markt-einschaetzung" placeholder="z.B. Ich erwarte in den nächsten Monaten..." data-i18n-placeholder="tool.ph_markt_einschaetzung"></textarea></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateMarkt()">⚡ Marktbericht generieren</button>
@@ -520,17 +520,17 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-kaeufer">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Seit wann sucht der Interessent?</label><select class="form-select" id="kaeufer-seit"><option>Weniger als 1 Monat</option><option>1–3 Monate</option><option>3–6 Monate</option><option>Mehr als 6 Monate</option></select></div>
-            <div class="form-group"><label class="form-label">Finanzierung geklärt?</label><select class="form-select" id="kaeufer-finanz"><option>Ja – Bankzusage vorhanden</option><option>In Gespräch mit Bank</option><option>Noch nicht begonnen</option><option>Eigenkapital vorhanden</option></select></div>
-            <div class="form-group"><label class="form-label">Budget</label><input class="form-input" id="kaeufer-budget" placeholder="z.B. 400.000 – 450.000 €"></div>
-            <div class="form-group"><label class="form-label">Gewünschter Einzugstermin</label><select class="form-select" id="kaeufer-termin"><option>So schnell wie möglich</option><option>Innerhalb 3 Monate</option><option>In 3–6 Monaten</option><option>In 6–12 Monaten</option><option>Irgendwann</option></select></div>
-            <div class="form-group"><label class="form-label">Weitere Infos</label><textarea class="form-textarea" id="kaeufer-info" placeholder="z.B. Ehepaar, 2 Kinder..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_kaeufer_seit">Seit wann sucht der Interessent?</label><select class="form-select" id="kaeufer-seit"><option data-i18n="tool.opt_seit1">Weniger als 1 Monat</option><option data-i18n="tool.opt_seit2">1–3 Monate</option><option data-i18n="tool.opt_seit3">3–6 Monate</option><option data-i18n="tool.opt_seit4">Mehr als 6 Monate</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_finanzierung">Finanzierung geklärt?</label><select class="form-select" id="kaeufer-finanz"><option data-i18n="tool.opt_finanz1">Ja – Bankzusage vorhanden</option><option data-i18n="tool.opt_finanz2">In Gespräch mit Bank</option><option data-i18n="tool.opt_finanz3">Noch nicht begonnen</option><option data-i18n="tool.opt_finanz4">Eigenkapital vorhanden</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_budget">Budget</label><input class="form-input" id="kaeufer-budget" placeholder="z.B. 400.000 – 450.000 €" data-i18n-placeholder="tool.ph_budget"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_einzugstermin">Gewünschter Einzugstermin</label><select class="form-select" id="kaeufer-termin"><option data-i18n="tool.opt_termin1">So schnell wie möglich</option><option data-i18n="tool.opt_termin2">Innerhalb 3 Monate</option><option data-i18n="tool.opt_termin3">In 3–6 Monaten</option><option data-i18n="tool.opt_termin4">In 6–12 Monaten</option><option data-i18n="tool.opt_termin5">Irgendwann</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_weitere_infos">Weitere Infos</label><textarea class="form-textarea" id="kaeufer-info" placeholder="z.B. Ehepaar, 2 Kinder..." data-i18n-placeholder="tool.ph_kaeufer_info"></textarea></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateKaeufer()">⚡ Käufer analysieren</button>
@@ -544,15 +544,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-verhandlung">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Typ der Verhandlung</label><select class="form-select" id="vh-typ"><option>Käufer verhandelt Preis runter</option><option>Verkäufer will zu hohen Preis</option><option>Maklerauftrag gewinnen</option><option>Bieterverfahren moderieren</option><option>Deal vor dem Platzen retten</option></select></div>
-            <div class="form-group"><label class="form-label">Situation</label><textarea class="form-textarea" id="vh-situation" placeholder="z.B. Käufer bietet 380.000€..."></textarea></div>
-            <div class="form-group"><label class="form-label">Meine Position</label><textarea class="form-textarea" id="vh-position" placeholder="z.B. Ich vertrete den Verkäufer..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_vh_typ">Typ der Verhandlung</label><select class="form-select" id="vh-typ"><option data-i18n="tool.opt_vh1">Käufer verhandelt Preis runter</option><option data-i18n="tool.opt_vh2">Verkäufer will zu hohen Preis</option><option data-i18n="tool.opt_vh3">Maklerauftrag gewinnen</option><option data-i18n="tool.opt_vh4">Bieterverfahren moderieren</option><option data-i18n="tool.opt_vh5">Deal vor dem Platzen retten</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_situation">Situation</label><textarea class="form-textarea" id="vh-situation" placeholder="z.B. Käufer bietet 380.000€..." data-i18n-placeholder="tool.ph_vh_situation"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_meine_position">Meine Position</label><textarea class="form-textarea" id="vh-position" placeholder="z.B. Ich vertrete den Verkäufer..." data-i18n-placeholder="tool.ph_vh_position"></textarea></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateVerhandlung()">⚡ Strategie generieren</button>
@@ -566,16 +566,16 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-tiktok">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Video-Format</label><select class="form-select" id="tt-format"><option>Fehler-Video</option><option>Tipp-Video</option><option>Behind the Scenes</option><option>Markt-Update</option><option>Persönliche Geschichte</option><option>Vorher/Nachher</option></select></div>
-            <div class="form-group"><label class="form-label">Thema</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. 3 Fehler die Immobilienkäufer machen..."></textarea></div>
-            <div class="form-group"><label class="form-label">Videolänge</label><select class="form-select" id="tt-laenge"><option>30 Sekunden</option><option>45 Sekunden</option><option>60 Sekunden</option></select></div>
-            <div class="form-group"><label class="form-label">Dein Name / Büro</label><input class="form-input" id="tt-name" placeholder="z.B. Jan – Immobilienmakler München"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_video_format">Video-Format</label><select class="form-select" id="tt-format"><option data-i18n="tool.opt_tt_fehler">Fehler-Video</option><option data-i18n="tool.opt_tt_tipp">Tipp-Video</option><option data-i18n="tool.opt_behind_scenes">Behind the Scenes</option><option data-i18n="tool.opt_tt_markt">Markt-Update</option><option data-i18n="tool.opt_makler_ct3">Persönliche Geschichte</option><option data-i18n="tool.opt_tt_vorher_nachher">Vorher/Nachher</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_thema">Thema</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. 3 Fehler die Immobilienkäufer machen..." data-i18n-placeholder="tool.ph_makler_tt_thema"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_videolarenge">Videolänge</label><select class="form-select" id="tt-laenge"><option data-i18n="tool.opt_30sek">30 Sekunden</option><option data-i18n="tool.opt_45sek">45 Sekunden</option><option data-i18n="tool.opt_60sek">60 Sekunden</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_name_buero">Dein Name / Büro</label><input class="form-input" id="tt-name" placeholder="z.B. Jan – Immobilienmakler München" data-i18n-placeholder="tool.ph_makler_tt_name"></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
@@ -589,15 +589,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="rate-bar">Heutige Anfragen: <span id="rate-frei">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Dein Prompt / Aufgabe</label><p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage..."></textarea></div>
-            <div class="form-group"><label class="form-label">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Mein Betrieb heißt..."></textarea></div>
-            <div class="form-group"><label class="form-label">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Kurz & prägnant</option><option>Ausführlich & detailliert</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_label">Dein Prompt / Aufgabe</label><p class="free-hint" data-i18n="tool.free_hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage..." data-i18n-placeholder="tool.free_placeholder"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_kontext">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Mein Betrieb heißt..." data-i18n-placeholder="tool.ph_frei_kontext"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_stil">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option data-i18n="tool.opt_stil_prof_sachlich">Professionell & sachlich</option><option data-i18n="tool.opt_stil_freundlich">Freundlich & persönlich</option><option data-i18n="tool.opt_stil_kurz">Kurz & prägnant</option><option data-i18n="tool.opt_stil_ausfuehrlich">Ausführlich & detailliert</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
         <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
@@ -850,7 +850,9 @@ async function callAI(prompt) {
   const sessionGen = parseInt(sessionStorage.getItem('zyn_gen_count') || '0') + 1;
   sessionStorage.setItem('zyn_gen_count', sessionGen);
   if (sessionGen === 5) showTrustpilotToast();
-  return d.content[0].text;
+  if (d.text) return d.text;
+  if (d.content && d.content[0]) return d.content[0].text;
+  throw new Error(d.error || 'Unbekannter Fehler vom Server.');
 }
 
 function showTrustpilotToast() {
