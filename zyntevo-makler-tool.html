@@ -850,9 +850,9 @@ async function callAI(prompt) {
   const sessionGen = parseInt(sessionStorage.getItem('zyn_gen_count') || '0') + 1;
   sessionStorage.setItem('zyn_gen_count', sessionGen);
   if (sessionGen === 5) showTrustpilotToast();
-  if (d.text) return d.text;
-  if (d.content && d.content[0]) return d.content[0].text;
-  throw new Error(d.error || 'Unbekannter Fehler vom Server.');
+  if (d.content && d.content[0] && d.content[0].text) return d.content[0].text;
+  const errMsg = d.error ? (typeof d.error === 'object' ? (d.error.message || JSON.stringify(d.error)) : d.error) : 'Unbekannter Fehler vom Server.';
+  throw new Error(errMsg);
 }
 
 function showTrustpilotToast() {
