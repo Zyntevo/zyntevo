@@ -1,7 +1,7 @@
 const DAILY_LIMIT = 50;
 const DEMO_IP_LIMIT = 50; // Max 50 Demo-Generierungen pro IP pro Tag
 const ADMIN_KEY = "Zyn#Bwh4zUtTbq5bxtb9!2024";
-const RESEND_API_KEY = "re_QpcYZKXy_CoU1FJnhNn12d5ZDNLmYxJKC";
+const RESEND_API_KEY = "re_8mjBwLuV_Am8uVR5REkd8t6n5gdouEqn7";
 const FROM_EMAIL = "jan@zyntevo.de";
 
 const PRODUCT_MAP = {
