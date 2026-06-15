@@ -835,14 +835,18 @@ function _ll(){var m={de:'${_ll()}',en:'in English',fr:'en français'};return m[
 
 // === KI CALL ===
 async function callAI(prompt) {
-  if (!authToken) { doLogout(); throw new Error('Nicht eingeloggt'); }
+  if (!authToken && !isTrial) { doLogout(); throw new Error('Nicht eingeloggt'); }
+  const token = isTrial ? 'demo-token' : authToken;
+  const body = isTrial
+    ? JSON.stringify({prompt, demo: true, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')})
+    : JSON.stringify({prompt, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')});
   const r = await fetch(`${API}/api/query`, {
     method: 'POST',
-    headers: {'Content-Type':'application/json', 'Authorization': 'Bearer ' + authToken},
-    body: JSON.stringify({prompt, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')})
+    headers: {'Content-Type':'application/json', 'Authorization': 'Bearer ' + token},
+    body
   });
   if (r.status === 401 || r.status === 403) {
-    doLogout();
+    if (!isTrial) doLogout();
     throw new Error('Session abgelaufen. Bitte erneut einloggen.');
   }
   if (r.status === 429) {

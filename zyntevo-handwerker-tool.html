@@ -813,13 +813,17 @@ function updateRateDisplays() {
 function _ll(){var m={de:'${_ll()}',en:'in English',fr:'en français'};return m[window.ZYN_LANG?window.ZYN_LANG.get():'de']||'${_ll()}';}
 
 async function callAI(prompt) {
-  if (!authToken) { doLogout(); throw new Error('Nicht eingeloggt'); }
+  if (!authToken && !isTrial) { doLogout(); throw new Error('Nicht eingeloggt'); }
+  const token = isTrial ? 'demo-token' : authToken;
+  const body = isTrial
+    ? JSON.stringify({prompt, demo: true, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')})
+    : JSON.stringify({prompt, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')});
   const r = await fetch(`${API}/api/query`, {
     method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
-    body: JSON.stringify({prompt, language: (window.ZYN_LANG ? window.ZYN_LANG.get() : 'de')})
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+    body
   });
-  if (r.status === 401 || r.status === 403) { doLogout(); throw new Error('Session abgelaufen. Bitte erneut einloggen.'); }
+  if (r.status === 401 || r.status === 403) { if (!isTrial) doLogout(); throw new Error('Session abgelaufen. Bitte erneut einloggen.'); }
   if (r.status === 429) throw new Error('Tageslimit von 50 Anfragen erreicht. Morgen wieder verfügbar.');
   if (!r.ok) throw new Error('Fehler ' + r.status);
   const d = await r.json();
