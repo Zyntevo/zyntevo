@@ -95,6 +95,9 @@ tr:hover td{background:rgba(212,175,55,.04);}
     <div class="login-logo">ZYNTEVO</div>
     <div class="login-sub">Enterprise Admin Dashboard</div>
     <input class="login-input" type="password" id="admin-pw" placeholder="Admin-Passwort" onkeydown="if(event.key==='Enter')doLogin()">
+    <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:#6a6a8a;margin-bottom:12px;cursor:pointer;justify-content:center;letter-spacing:0;text-transform:none;font-weight:400;">
+      <input type="checkbox" id="remember-me" style="width:auto;padding:0;border:none;background:none;margin:0;cursor:pointer;"> Eingeloggt bleiben
+    </label>
     <button class="login-btn" onclick="doLogin()">🔐 Einloggen</button>
     <div class="login-error" id="login-error">Falsches Passwort.</div>
   </div>
@@ -205,16 +208,19 @@ const PW_KEY = "zyn_admin_pw";
 let currentBstEntId = null;
 
 window.addEventListener('load', function() {
-  const saved = sessionStorage.getItem(PW_KEY);
+  const saved = localStorage.getItem(PW_KEY) || sessionStorage.getItem(PW_KEY);
   if (saved === ADMIN_KEY) showAdminApp();
 });
 
 function doLogin() {
   const pw = document.getElementById('admin-pw').value;
-  if (pw === ADMIN_KEY) { sessionStorage.setItem(PW_KEY, pw); showAdminApp(); }
-  else { document.getElementById('login-error').style.display = 'block'; }
+  if (pw === ADMIN_KEY) {
+    if (document.getElementById('remember-me').checked) localStorage.setItem(PW_KEY, pw);
+    else sessionStorage.setItem(PW_KEY, pw);
+    showAdminApp();
+  } else { document.getElementById('login-error').style.display = 'block'; }
 }
-function doAdminLogout() { sessionStorage.removeItem(PW_KEY); location.reload(); }
+function doAdminLogout() { localStorage.removeItem(PW_KEY); sessionStorage.removeItem(PW_KEY); location.reload(); }
 function showAdminApp() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
