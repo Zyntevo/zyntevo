@@ -121,9 +121,9 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
   </div>
   <div class="layout">
     <div class="sidebar">
-      <div class="sidebar-section">ÜBERSICHT</div>
+      <div class="sidebar-section" data-i18n="tool.nav_overview">ÜBERSICHT</div>
       <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
-      <div class="sidebar-section">KI-TOOLS</div>
+      <div class="sidebar-section" data-i18n="tool.nav_tools">KI-TOOLS</div>
       <div class="nav-item" onclick="showPage('angebot',this)"><span class="nav-icon">📋</span> Angebot Generator</div>
       <div class="nav-item" onclick="showPage('email',this)"><span class="nav-icon">✉️</span> E-Mail Generator</div>
       <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> Social Media</div>
@@ -132,10 +132,10 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       <div class="nav-item" onclick="showPage('kunde',this)"><span class="nav-icon">🎯</span> Kunden-Analyse</div>
       <div class="nav-item" onclick="showPage('planung',this)"><span class="nav-icon">📅</span> Auftragsplanung</div>
       <div class="nav-item" onclick="showPage('tiktok',this)"><span class="nav-icon">🎬</span> TikTok Skript</div>
-      <div class="sidebar-section">FREI</div>
+      <div class="sidebar-section" data-i18n="tool.nav_free_section">FREI</div>
       <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> Freier Generator</div>
       <div class="logout-nav">
-        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> Ausloggen</div>
+        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> <span data-i18n="tool.nav_logout">Ausloggen</span></div>
       </div>
     </div>
     <div class="main">
@@ -151,8 +151,8 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Dein Gewerk</label><input class="form-input" id="profile-gewerk" placeholder="z.B. Elektriker" style="font-size:13px;padding:10px 14px;"></div>
           </div>
-          <button class="profile-save-btn" onclick="saveProfile()">💾 Profil speichern</button>
-          <span class="profile-saved" id="profile-saved">✓ Gespeichert</span>
+          <button class="profile-save-btn" onclick="saveProfile()" data-i18n="tool.profile_save">💾 Profil speichern</button>
+          <span class="profile-saved" id="profile-saved" data-i18n="tool.profile_saved">✓ Gespeichert</span>
         </div>
         <div class="page-header"><div class="page-tag">🏢 ENTERPRISE</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">9 KI-Tools für dein Team – unbegrenzte Generierungen, keine Tageslimits.</div></div>
         <div class="dash-grid">
@@ -162,14 +162,14 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
           <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
         </div>
         <div class="tool-cards">
-          <div class="tool-card" onclick="showPage('angebot',null)"><div class="tool-card-icon">📋</div><div class="tool-card-title">Angebot Generator</div><div class="tool-card-desc">Professionelles Angebot in Sekunden</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('email',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title">E-Mail Generator</div><div class="tool-card-desc">Fertige Mails für jede Situation</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title">Social Media</div><div class="tool-card-desc">Posts für Instagram & Facebook</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title">Akquise-Brief</div><div class="tool-card-desc">Neukunden professionell ansprechen</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('bewertung',null)"><div class="tool-card-icon">⭐</div><div class="tool-card-title">Bewertungs-Antwort</div><div class="tool-card-desc">Professionell auf Rezensionen reagieren</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('kunde',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title">Kunden-Analyse</div><div class="tool-card-desc">Gute von schlechten Kunden unterscheiden</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('planung',null)"><div class="tool-card-icon">📅</div><div class="tool-card-title">Auftragsplanung</div><div class="tool-card-desc">Auftragsablauf strukturieren</div><div class="card-link">→ Tool öffnen</div></div>
-          <div class="tool-card" onclick="showPage('tiktok',null)"><div class="tool-card-icon">🎬</div><div class="tool-card-title">TikTok Skript</div><div class="tool-card-desc">Video-Skripte für dein Handwerk</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('angebot',null)"><div class="tool-card-icon">📋</div><div class="tool-card-title">Angebot Generator</div><div class="tool-card-desc">Professionelles Angebot in Sekunden</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('email',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title">E-Mail Generator</div><div class="tool-card-desc">Fertige Mails für jede Situation</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title">Social Media</div><div class="tool-card-desc">Posts für Instagram & Facebook</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title">Akquise-Brief</div><div class="tool-card-desc">Neukunden professionell ansprechen</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('bewertung',null)"><div class="tool-card-icon">⭐</div><div class="tool-card-title">Bewertungs-Antwort</div><div class="tool-card-desc">Professionell auf Rezensionen reagieren</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('kunde',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title">Kunden-Analyse</div><div class="tool-card-desc">Gute von schlechten Kunden unterscheiden</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('planung',null)"><div class="tool-card-icon">📅</div><div class="tool-card-title">Auftragsplanung</div><div class="tool-card-desc">Auftragsablauf strukturieren</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('tiktok',null)"><div class="tool-card-icon">🎬</div><div class="tool-card-title">TikTok Skript</div><div class="tool-card-desc">Video-Skripte für dein Handwerk</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
         </div>
       </div>
 
@@ -185,7 +185,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
             <button class="generate-btn" onclick="generateAngebot()">⚡ Angebot generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-angebot" onclick="copyResult('angebot-result','copy-angebot')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('angebot-result')">PDF ↓</button><button class="edit-btn" id="edit-angebot-result" onclick="toggleEdit('angebot-result','edit-angebot-result')">✏ Bearbeiten</button></div></div><div id="angebot-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-angebot" onclick="copyResult('angebot-result','copy-angebot')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('angebot-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-angebot-result" onclick="toggleEdit('angebot-result','edit-angebot-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="angebot-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
         </div>
       </div>
 
@@ -201,7 +201,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
             <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')">✏ Bearbeiten</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
         </div>
       </div>
 
@@ -217,7 +217,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
             <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
         </div>
       </div>
 
@@ -234,7 +234,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
             <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
         </div>
       </div>
 
@@ -249,7 +249,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (2-3 Sätze)" selected>Kurz – 2-3 Sätze</option><option value="Mittel (4-5 Sätze)">Mittel – 4-5 Sätze</option><option value="Lang (6-8 Sätze)">Lang – 6-8 Sätze</option></select></div>
             <button class="generate-btn" onclick="generateBewertung()">⚡ Antwort generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-bewertung" onclick="copyResult('bewertung-result','copy-bewertung')">Kopieren</button><button class="edit-btn" id="edit-bewertung-result" onclick="toggleEdit('bewertung-result','edit-bewertung-result')">✏ Bearbeiten</button></div></div><div id="bewertung-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Füge die Bewertung ein und generiere deine Antwort</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-bewertung" onclick="copyResult('bewertung-result','copy-bewertung')" data-i18n="tool.copy_btn">Kopieren</button><button class="edit-btn" id="edit-bewertung-result" onclick="toggleEdit('bewertung-result','edit-bewertung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="bewertung-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Füge die Bewertung ein und generiere deine Antwort</div></div></div></div>
         </div>
       </div>
 
@@ -264,7 +264,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Weitere Beobachtungen</label><textarea class="form-textarea" id="kunde-info" placeholder="z.B. Hat bereits 3 andere Angebote eingeholt, sehr kritisch..."></textarea></div>
             <button class="generate-btn" onclick="generateKunde()">⚡ Kunden analysieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kunde" onclick="copyResult('kunde-result','copy-kunde')">Kopieren</button><button class="edit-btn" id="edit-kunde-result" onclick="toggleEdit('kunde-result','edit-kunde-result')">✏ Bearbeiten</button></div></div><div id="kunde-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Kunden</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kunde" onclick="copyResult('kunde-result','copy-kunde')" data-i18n="tool.copy_btn">Kopieren</button><button class="edit-btn" id="edit-kunde-result" onclick="toggleEdit('kunde-result','edit-kunde-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="kunde-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Kunden</div></div></div></div>
         </div>
       </div>
 
@@ -280,7 +280,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Punkte)">Kurz – 5-7 Punkte</option><option value="Mittel (10-12 Punkte)" selected>Mittel – 10-12 Punkte</option><option value="Lang (15-20 Punkte, detailliert)">Lang – Detailliert</option></select></div>
             <button class="generate-btn" onclick="generatePlanung()">⚡ Ablaufplan generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-planung" onclick="copyResult('planung-result','copy-planung')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('planung-result')">PDF ↓</button><button class="edit-btn" id="edit-planung-result" onclick="toggleEdit('planung-result','edit-planung-result')">✏ Bearbeiten</button></div></div><div id="planung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Gib den Auftrag ein und erstelle deinen Ablaufplan</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-planung" onclick="copyResult('planung-result','copy-planung')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('planung-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-planung-result" onclick="toggleEdit('planung-result','edit-planung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="planung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Gib den Auftrag ein und erstelle deinen Ablaufplan</div></div></div></div>
         </div>
       </div>
 
@@ -296,7 +296,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
             <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')">✏ Bearbeiten</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
         </div>
       </div>
 
@@ -310,7 +310,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <div class="form-group"><label class="form-label">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Kurz & prägnant</option><option>Ausführlich & detailliert</option></select></div>
             <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
           </div>
-          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')" data-i18n="tool.pdf_btn">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
         </div>
       </div>
 
