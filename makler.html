@@ -308,14 +308,14 @@ Besichtigungstermin auf Anfrage – sprechen Sie uns an!</div>
       </div>
     </div>
     <div class="tool-grid">
-      <div class="tool-item" data-reveal data-delay="100"><div class="tool-item-icon">🏠</div><div class="tool-item-name">Exposé-Generator</div></div>
-      <div class="tool-item" data-reveal data-delay="150"><div class="tool-item-icon">📬</div><div class="tool-item-name">Akquise-Brief</div></div>
-      <div class="tool-item" data-reveal data-delay="200"><div class="tool-item-icon">✉️</div><div class="tool-item-name">Kunden-Mail</div></div>
+      <div class="tool-item" data-reveal data-delay="100"><div class="tool-item-icon">🏠</div><div class="tool-item-name" data-i18n="makler.tool_t1">Exposé-Generator</div></div>
+      <div class="tool-item" data-reveal data-delay="150"><div class="tool-item-icon">📬</div><div class="tool-item-name" data-i18n="makler.tool_t2">Akquise-Brief</div></div>
+      <div class="tool-item" data-reveal data-delay="200"><div class="tool-item-icon">✉️</div><div class="tool-item-name" data-i18n="makler.tool_t3">Kunden-Mail</div></div>
       <div class="tool-item" data-reveal data-delay="250"><div class="tool-item-icon">📱</div><div class="tool-item-name">TikTok & Reels</div></div>
-      <div class="tool-item" data-reveal data-delay="300"><div class="tool-item-icon">🎯</div><div class="tool-item-name">Käufer-Analyse</div></div>
-      <div class="tool-item" data-reveal data-delay="350"><div class="tool-item-icon">⭐</div><div class="tool-item-name">Bewertungs-Antwort</div></div>
-      <div class="tool-item" data-reveal data-delay="400"><div class="tool-item-icon">📊</div><div class="tool-item-name">Marktbericht</div></div>
-      <div class="tool-item" data-reveal data-delay="450"><div class="tool-item-icon">🤝</div><div class="tool-item-name">Verhandlungs-Coach</div></div>
+      <div class="tool-item" data-reveal data-delay="300"><div class="tool-item-icon">🎯</div><div class="tool-item-name" data-i18n="makler.tool_t5">Käufer-Analyse</div></div>
+      <div class="tool-item" data-reveal data-delay="350"><div class="tool-item-icon">⭐</div><div class="tool-item-name" data-i18n="makler.tool_t6">Bewertungs-Antwort</div></div>
+      <div class="tool-item" data-reveal data-delay="400"><div class="tool-item-icon">📊</div><div class="tool-item-name" data-i18n="makler.tool_t7">Marktbericht</div></div>
+      <div class="tool-item" data-reveal data-delay="450"><div class="tool-item-icon">🤝</div><div class="tool-item-name" data-i18n="makler.tool_t8">Verhandlungs-Coach</div></div>
     </div>
     <div style="text-align:center;margin-top:40px;" data-reveal>
       <a href="https://www.checkout-ds24.com/product/696893" target="_blank" class="btn btn-gold btn-lg" data-i18n="makler.tool_unlock_btn">⚡ KI-Tool jetzt freischalten</a>
@@ -332,41 +332,41 @@ Besichtigungstermin auf Anfrage – sprechen Sie uns an!</div>
 <section class="section section-alt">
   <div class="container">
     <div class="section-header section-header-center" data-reveal>
-      <div class="section-label">So sieht das Ergebnis aus</div>
-      <h2 class="section-title">Echtzeit-Vorschau</h2>
-      <p class="section-sub">Sieh wie ZYNTEVO in Echtzeit einen professionellen Akquise-Brief erstellt.</p>
+      <div class="section-label" data-i18n="makler.demo_label">So sieht das Ergebnis aus</div>
+      <h2 class="section-title" data-i18n="makler.demo_h2">Echtzeit-Vorschau</h2>
+      <p class="section-sub" data-i18n="makler.demo_sub">Sieh wie ZYNTEVO in Echtzeit einen professionellen Akquise-Brief erstellt.</p>
     </div>
     <div class="demo-wrap">
       <div class="demo-form-card" data-reveal="left">
-        <div class="demo-form-title">🎯 Akquise-Brief Generator</div>
+        <div class="demo-form-title" data-i18n="makler.demo_form_title">🎯 Akquise-Brief Generator</div>
         <div class="demo-form-field">
-          <label>Eigentümer</label>
+          <label data-i18n="makler.demo_f_owner">Eigentümer</label>
           <input type="text" value="Familie Bauer" readonly>
         </div>
         <div class="demo-form-field">
-          <label>Adresse</label>
+          <label data-i18n="makler.demo_f_addr">Adresse</label>
           <input type="text" value="Mozartstr. 12, München" readonly>
         </div>
         <div class="demo-form-field">
-          <label>Marktlage</label>
-          <select><option>Starke Nachfrage, wenig Angebot</option></select>
+          <label data-i18n="makler.demo_f_market">Marktlage</label>
+          <select><option data-i18n="makler.demo_f_market_val">Starke Nachfrage, wenig Angebot</option></select>
         </div>
         <div class="demo-form-field">
-          <label>Dein USP</label>
+          <label data-i18n="makler.demo_f_usp">Dein USP</label>
           <input type="text" value="Über 200 vorgemerkte Käufer" readonly>
         </div>
         <div style="margin-top:20px;">
-          <button class="btn btn-gold" style="width:100%;" onclick="startDemo()">⚡ Brief generieren</button>
+          <button class="btn btn-gold" style="width:100%;" onclick="startDemo()" data-i18n="makler.demo_btn">⚡ Brief generieren</button>
         </div>
       </div>
       <div class="demo-output-card" data-reveal="right">
         <div class="demo-output-header">
           <div class="demo-output-header-dot"></div>
-          <span class="demo-output-header-title">KI-Ergebnis</span>
-          <span class="demo-output-header-badge" id="demoStatus">Bereit</span>
+          <span class="demo-output-header-title" data-i18n="makler.demo_output_title">KI-Ergebnis</span>
+          <span class="demo-output-header-badge" id="demoStatus" data-i18n="makler.demo_status_ready">Bereit</span>
         </div>
         <div class="demo-output-body">
-          <div id="demo-output-text" style="color:var(--text-3);font-style:italic;font-size:14px;">Klicke auf „Brief generieren" um die KI zu starten...</div>
+          <div id="demo-output-text" style="color:var(--text-3);font-style:italic;font-size:14px;" data-i18n="makler.demo_placeholder">Klicke auf „Brief generieren" um die KI zu starten...</div>
         </div>
       </div>
     </div>
@@ -391,11 +391,11 @@ Besichtigungstermin auf Anfrage – sprechen Sie uns an!</div>
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid #F8F9FA;"><td style="padding:14px 24px;color:var(--text);">Speziell für Immobilienmakler</td><td style="padding:14px 24px;text-align:center;color:#EF4444;font-weight:700;">✗</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.03);border-left:1px solid rgba(201,168,76,.15);color:#22C55E;font-weight:700;">✓</td></tr>
-          <tr style="border-bottom:1px solid #F8F9FA;"><td style="padding:14px 24px;color:var(--text);">Kein Prompt-Wissen nötig</td><td style="padding:14px 24px;text-align:center;color:#EF4444;font-weight:700;">✗</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.03);border-left:1px solid rgba(201,168,76,.15);color:#22C55E;font-weight:700;">✓</td></tr>
-          <tr style="border-bottom:1px solid #F8F9FA;"><td style="padding:14px 24px;color:var(--text);">Fertiges Exposé auf Knopfdruck</td><td style="padding:14px 24px;text-align:center;color:#F59E0B;font-size:12px;">Nur mit langen Prompts</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.03);border-left:1px solid rgba(201,168,76,.15);color:#22C55E;font-weight:700;">✓</td></tr>
+          <tr style="border-bottom:1px solid #F8F9FA;"><td style="padding:14px 24px;color:var(--text);" data-i18n="makler.cmp_r1">Speziell für Immobilienmakler</td><td style="padding:14px 24px;text-align:center;color:#EF4444;font-weight:700;">✗</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.03);border-left:1px solid rgba(201,168,76,.15);color:#22C55E;font-weight:700;">✓</td></tr>
+          <tr style="border-bottom:1px solid #F8F9FA;"><td style="padding:14px 24px;color:var(--text);" data-i18n="makler.cmp_r2">Kein Prompt-Wissen nötig</td><td style="padding:14px 24px;text-align:center;color:#EF4444;font-weight:700;">✗</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.03);border-left:1px solid rgba(201,168,76,.15);color:#22C55E;font-weight:700;">✓</td></tr>
+          <tr style="border-bottom:1px solid #F8F9FA;"><td style="padding:14px 24px;color:var(--text);" data-i18n="makler.cmp_r3">Fertiges Exposé auf Knopfdruck</td><td style="padding:14px 24px;text-align:center;color:#F59E0B;font-size:12px;">Nur mit langen Prompts</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.03);border-left:1px solid rgba(201,168,76,.15);color:#22C55E;font-weight:700;">✓</td></tr>
           <tr style="border-bottom:1px solid #F8F9FA;"><td style="padding:14px 24px;color:var(--text);">Exposé, Akquise, Käufer-Qualifizierung</td><td style="padding:14px 24px;text-align:center;color:#F59E0B;font-size:12px;">Möglich, aber zeitaufwendig</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.03);border-left:1px solid rgba(201,168,76,.15);color:#22C55E;font-weight:700;">✓ Alles in einem</td></tr>
-          <tr><td style="padding:14px 24px;color:var(--text);font-weight:600;">Preis</td><td style="padding:14px 24px;text-align:center;color:var(--text-3);font-size:13px;">20$/Monat = 240$/Jahr</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.04);border-left:1px solid rgba(201,168,76,.2);color:var(--gold);font-weight:800;font-size:16px;">297€ einmalig</td></tr>
+          <tr><td style="padding:14px 24px;color:var(--text);font-weight:600;">Preis</td><td style="padding:14px 24px;text-align:center;color:var(--text-3);font-size:13px;">20$/Monat = 240$/Jahr</td><td style="padding:14px 24px;text-align:center;background:rgba(201,168,76,.04);border-left:1px solid rgba(201,168,76,.2);color:var(--gold);font-weight:800;font-size:16px;" data-i18n="makler.cmp_zyn_price">297€ einmalig</td></tr>
         </tbody>
       </table>
     </div>
@@ -412,38 +412,38 @@ Besichtigungstermin auf Anfrage – sprechen Sie uns an!</div>
     </div>
     <div class="pricing-grid">
       <div class="pricing-card" data-reveal data-delay="100">
-        <div class="pricing-name">Makler Starter</div>
-        <div class="pricing-desc">Das Fundament für Makler</div>
+        <div class="pricing-name" data-i18n="makler.starter_name">Makler Starter</div>
+        <div class="pricing-desc" data-i18n="makler.starter_desc">Das Fundament für Makler</div>
         <div class="pricing-price">97<span>€</span></div>
-        <div class="pricing-period">einmalig · kein Abo · sofortiger Download</div>
+        <div class="pricing-period" data-i18n="makler.starter_period">einmalig · kein Abo · sofortiger Download</div>
         <ul class="pricing-features">
-          <li><span class="check">✓</span> 25 Profi-Prompts</li>
-          <li><span class="check">✓</span> Exposé-Vorlagen</li>
-          <li><span class="check">✓</span> Kundenkommunikation</li>
-          <li><span class="check">✓</span> Sofortiger Download</li>
+          <li><span class="check">✓</span> <span data-i18n="makler.s_f1">25 Profi-Prompts</span></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.s_f2">Exposé-Vorlagen</span></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.s_f3">Kundenkommunikation</span></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.s_f4">Sofortiger Download</span></li>
         </ul>
-        <a href="https://www.checkout-ds24.com/product/696579" target="_blank" class="btn btn-outline btn-lg pricing-cta">Starter kaufen</a>
+        <a href="https://www.checkout-ds24.com/product/696579" target="_blank" class="btn btn-outline btn-lg pricing-cta" data-i18n="makler.starter_btn">Starter kaufen</a>
       </div>
       <div class="pricing-card featured" data-reveal data-delay="200">
-        <div class="pricing-badge">⭐ Beliebteste Wahl</div>
-        <div class="pricing-name">Makler Premium</div>
-        <div class="pricing-desc">Das vollständige KI-System</div>
+        <div class="pricing-badge" data-i18n="makler.premium_badge">⭐ Beliebteste Wahl</div>
+        <div class="pricing-name" data-i18n="makler.premium_name">Makler Premium</div>
+        <div class="pricing-desc" data-i18n="makler.premium_desc">Das vollständige KI-System</div>
         <div class="pricing-price">297<span>€</span></div>
-        <div class="pricing-period">einmalig · kein Abo · sofort einsatzbereit</div>
+        <div class="pricing-period" data-i18n="makler.premium_period">einmalig · kein Abo · sofort einsatzbereit</div>
         <ul class="pricing-features">
-          <li><span class="star">⚡</span> <strong>KI-Tool mit 8 Generatoren</strong></li>
-          <li><span class="check">✓</span> 50+ Profi-Prompts</li>
-          <li><span class="check">✓</span> Exposé-System</li>
-          <li><span class="check">✓</span> Akquise-System</li>
-          <li><span class="check">✓</span> Käufer-Qualifizierung</li>
-          <li><span class="check">✓</span> 30 TikTok-Skripte</li>
-          <li><span class="check">✓</span> Sofort einsatzbereit</li>
+          <li><span class="star">⚡</span> <strong data-i18n="makler.p_f1">KI-Tool mit 8 Generatoren</strong></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.p_f2">50+ Profi-Prompts</span></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.p_f3">Exposé-System</span></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.p_f4">Akquise-System</span></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.p_f5">Käufer-Qualifizierung</span></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.p_f6">30 TikTok-Skripte</span></li>
+          <li><span class="check">✓</span> <span data-i18n="makler.p_f7">Sofort einsatzbereit</span></li>
         </ul>
-        <a href="https://www.checkout-ds24.com/product/696893" target="_blank" class="btn btn-gold btn-lg pricing-cta">Premium sichern →</a>
+        <a href="https://www.checkout-ds24.com/product/696893" target="_blank" class="btn btn-gold btn-lg pricing-cta" data-i18n="makler.premium_btn">Premium sichern →</a>
       </div>
     </div>
     <div style="text-align:center;margin-top:24px;" data-reveal>
-      <a href="https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html" target="_blank" style="font-size:14px;color:var(--text-2);">🎁 Erst kostenlos testen – keine Registrierung nötig</a>
+      <a href="https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html" target="_blank" style="font-size:14px;color:var(--text-2);" data-i18n="makler.pricing_trial_link">🎁 Erst kostenlos testen – keine Registrierung nötig</a>
     </div>
   </div>
 </section>
@@ -456,11 +456,11 @@ Besichtigungstermin auf Anfrage – sprechen Sie uns an!</div>
       <h2 class="section-title">Häufige Fragen von Maklern</h2>
     </div>
     <div class="faq-list">
-      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)">Was ist das KI-Tool im Premium-Paket?<span class="faq-q-icon">+</span></div><div class="faq-a">Ein interaktives Web-Tool das du direkt im Browser öffnest. Eckdaten eingeben, auf Generieren klicken – fertige Texte in Sekunden. Kein ChatGPT nötig, kein Download, keine Installation.</div></div>
-      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)">Was genau bekomme ich für 297€?<span class="faq-q-icon">+</span></div><div class="faq-a">Das KI-Tool mit 8 Generatoren (Exposé, Akquise-Brief, Kunden-Mail, TikTok-Text, uvm.), das Exposé-System, das Akquise-System, die Käufer-Qualifizierung, 50+ Profi-Prompts und 30 TikTok-Skripte. Alles einmalig – kein Abo.</div></div>
-      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)">Was wenn es mir nicht gefällt?<span class="faq-q-icon">+</span></div><div class="faq-a">Du hast 14 Tage Widerrufsrecht. Schreib uns an jan@zyntevo.de – wir erstatten ohne Fragen.</div></div>
-      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)">Brauche ich ChatGPT Plus oder andere Tools?<span class="faq-q-icon">+</span></div><div class="faq-a">Nein. Das KI-Tool funktioniert komplett eigenständig. Du brauchst nur einen Browser – sonst nichts.</div></div>
-      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)">Wie schnell kann ich loslegen?<span class="faq-q-icon">+</span></div><div class="faq-a">Sofort nach dem Kauf. Du erhältst deinen Zugangscode direkt auf der Bestätigungsseite und per E-Mail – in unter 60 Sekunden bist du im Tool.</div></div>
+      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="makler.faq1_q">Was ist das KI-Tool im Premium-Paket?</span><span class="faq-q-icon">+</span></div><div class="faq-a" data-i18n="makler.faq1_a">Ein interaktives Web-Tool das du direkt im Browser öffnest. Eckdaten eingeben, auf Generieren klicken – fertige Texte in Sekunden. Kein ChatGPT nötig, kein Download, keine Installation.</div></div>
+      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="makler.faq2_q">Was genau bekomme ich für 297€?</span><span class="faq-q-icon">+</span></div><div class="faq-a" data-i18n="makler.faq2_a">Das KI-Tool mit 8 Generatoren (Exposé, Akquise-Brief, Kunden-Mail, TikTok-Text, uvm.), das Exposé-System, das Akquise-System, die Käufer-Qualifizierung, 50+ Profi-Prompts und 30 TikTok-Skripte. Alles einmalig – kein Abo.</div></div>
+      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="makler.faq3_q">Was wenn es mir nicht gefällt?</span><span class="faq-q-icon">+</span></div><div class="faq-a" data-i18n="makler.faq3_a">Du hast 14 Tage Widerrufsrecht. Schreib uns an jan@zyntevo.de – wir erstatten ohne Fragen.</div></div>
+      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="makler.faq4_q">Brauche ich ChatGPT Plus oder andere Tools?</span><span class="faq-q-icon">+</span></div><div class="faq-a" data-i18n="makler.faq4_a">Nein. Das KI-Tool funktioniert komplett eigenständig. Du brauchst nur einen Browser – sonst nichts.</div></div>
+      <div class="faq-item" data-reveal><div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="makler.faq5_q">Wie schnell kann ich loslegen?</span><span class="faq-q-icon">+</span></div><div class="faq-a" data-i18n="makler.faq5_a">Sofort nach dem Kauf. Du erhältst deinen Zugangscode direkt auf der Bestätigungsseite und per E-Mail – in unter 60 Sekunden bist du im Tool.</div></div>
     </div>
   </div>
 </section>
