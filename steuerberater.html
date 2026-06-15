@@ -549,19 +549,17 @@ var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){i
 document.querySelectorAll('[data-reveal]').forEach(function(el){obs.observe(el);});
 
 // Hero typewriter
-var _hl=(window.ZYN_LANG&&window.ZYN_LANG.get())||'de';
-var _hns=window.ZYN_T&&window.ZYN_T[_hl]&&window.ZYN_T[_hl].steuerberater;
-var txt=(_hns&&_hns.hero_txt)||"Betreff: Jahresabschluss 2024 – Unterlagen fehlen\n\nSehr geehrte Damen und Herren,\n\nfür den Jahresabschluss der Müller GmbH benötigen wir noch die Belege für Dezember.\n\nBitte bis [Datum] einreichen.\n\nMit freundlichen Grüßen\n[Kanzleiname]";
-var el=document.getElementById('mockup-text'),i=0;
-function typeHero(){if(i<txt.length){el.textContent+=txt[i++];setTimeout(typeHero,20);}}
-setTimeout(typeHero,1600);
+var _heroEl=document.getElementById('mockup-text');
+function startHero(lang){
+  var _hns=window.ZYN_T&&window.ZYN_T[lang]&&window.ZYN_T[lang].steuerberater;
+  var htxt=(_hns&&_hns.hero_txt)||"Betreff: Jahresabschluss 2024 – Unterlagen fehlen\n\nSehr geehrte Damen und Herren,\n\nfür den Jahresabschluss der Müller GmbH benötigen wir noch die Belege für Dezember.\n\nBitte bis [Datum] einreichen.\n\nMit freundlichen Grüßen\n[Kanzleiname]";
+  _heroEl.textContent='';var hi=0;
+  function typeHero(){if(hi<htxt.length){_heroEl.textContent+=htxt[hi++];setTimeout(typeHero,20);}}
+  typeHero();
+}
+setTimeout(function(){startHero((window.ZYN_LANG&&window.ZYN_LANG.get())||'de');},1600);
+if(window.ZYN_LANG){var _origSet=window.ZYN_LANG.set;window.ZYN_LANG.set=function(l){_origSet(l);startHero(l);};}
 
-// Demo typewriter
-var _dl=(window.ZYN_LANG&&window.ZYN_LANG.get())||'de';
-var _dns=window.ZYN_T&&window.ZYN_T[_dl]&&window.ZYN_T[_dl].steuerberater;
-var _date=new Date().toLocaleDateString(_dl==='en'?'en-GB':_dl==='fr'?'fr-FR':'de-DE');
-var _demoTpl=(_dns&&_dns.demo_txt)||"[Kanzleiname], {DATE}\n\nSehr geehrte Damen und Herren,\n\nals Steuerberater mit Spezialisierung auf die Gastronomiebranche kenne ich die steuerlichen Herausforderungen Ihres Sektors genau – von der Trinkgeldbesteuerung bis zu branchenspezifischen Abschreibungen.\n\nGern stelle ich Ihnen in einem kostenlosen Erstgespräch vor, wie ich Ihren Betrieb steuerlich optimal aufstelle.\n\nBitte vereinbaren Sie einen Termin unter: [Telefonnummer]\n\nMit freundlichen Grüßen\n[Ihr Name]";
-var demoTxt=_demoTpl.replace('{DATE}',_date);
 var demoRunning=false;
 function startDemo(){
   if(demoRunning)return;
@@ -569,7 +567,12 @@ function startDemo(){
   var el=document.getElementById('demo-output-text');
   var status=document.getElementById('demoStatus');
   el.textContent='';el.style.fontStyle='normal';el.style.color='var(--text)';
-  var _lang=(window.ZYN_LANG&&window.ZYN_LANG.get())||'de';var _t=window.ZYN_T&&window.ZYN_T[_lang]&&window.ZYN_T[_lang].demo;
+  var _lang=(window.ZYN_LANG&&window.ZYN_LANG.get())||'de';
+  var _t=window.ZYN_T&&window.ZYN_T[_lang]&&window.ZYN_T[_lang].demo;
+  var _dns=window.ZYN_T&&window.ZYN_T[_lang]&&window.ZYN_T[_lang].steuerberater;
+  var _date=new Date().toLocaleDateString(_lang==='en'?'en-GB':_lang==='fr'?'fr-FR':'de-DE');
+  var _demoTpl=(_dns&&_dns.demo_txt)||"[Kanzleiname], {DATE}\n\nSehr geehrte Damen und Herren,\n\nals Steuerberater mit Spezialisierung auf die Gastronomiebranche kenne ich die steuerlichen Herausforderungen Ihres Sektors genau – von der Trinkgeldbesteuerung bis zu branchenspezifischen Abschreibungen.\n\nGern stelle ich Ihnen in einem kostenlosen Erstgespräch vor, wie ich Ihren Betrieb steuerlich optimal aufstelle.\n\nBitte vereinbaren Sie einen Termin unter: [Telefonnummer]\n\nMit freundlichen Grüßen\n[Ihr Name]";
+  var demoTxt=_demoTpl.replace('{DATE}',_date);
   status.textContent=(_t&&_t.generating)||'Generiert...';status.style.background='rgba(201,168,76,.15)';status.style.color='var(--gold)';
   var j=0;
   function type(){
@@ -585,7 +588,7 @@ function toggleFaq(btn){var item=btn.parentElement;var open=item.classList.conta
 // Widerruf
 function submitWiderruf(){var s=encodeURIComponent("Widerruf meines Kaufs bei ZYNTEVO");var b=encodeURIComponent("Hiermit widerrufe ich meinen bei ZYNTEVO abgeschlossenen Vertrag.\n\nMein Name:\nMeine E-Mail:\nKaufdatum:\nBestellnummer:\n\nMit freundlichen Grüßen");window.location.href="mailto:jan@zyntevo.de?subject="+s+"&body="+b;document.getElementById("widerruf-modal").classList.remove("open");}
 </script>
-<script src="zyn.js?v=8"></script>
+<script src="zyn.js?v=9"></script>
 </body>
 </html>
 

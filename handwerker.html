@@ -551,23 +551,27 @@ document.addEventListener('click',function(e){if(!t.contains(e.target)&&!m.conta
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('revealed');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('[data-reveal]').forEach(function(el){obs.observe(el);});
 
-var _hl=(window.ZYN_LANG&&window.ZYN_LANG.get())||'de';
-var _hns=window.ZYN_T&&window.ZYN_T[_hl]&&window.ZYN_T[_hl].handwerker;
-var txt=(_hns&&_hns.hero_txt)||"Angebot Nr. 2024-047\n\nSehr geehrte Familie Müller,\n\nvielen Dank für Ihr Vertrauen. Wir bieten folgende Leistung an:\n\nElektroinstallation 6 Zimmer · 3.200 € inkl. MwSt.\nAusführung: KW 26\n\nMit freundlichen Grüßen\n[Ihr Betrieb]";
-var el=document.getElementById('mockup-text'),i=0;
-function typeHero(){if(i<txt.length){el.textContent+=txt[i++];setTimeout(typeHero,20);}}
-setTimeout(typeHero,1600);
+var _heroEl=document.getElementById('mockup-text');
+function startHero(lang){
+  var _hns=window.ZYN_T&&window.ZYN_T[lang]&&window.ZYN_T[lang].handwerker;
+  var htxt=(_hns&&_hns.hero_txt)||"Angebot Nr. 2024-047\n\nSehr geehrte Familie Müller,\n\nvielen Dank für Ihr Vertrauen. Wir bieten folgende Leistung an:\n\nElektroinstallation 6 Zimmer · 3.200 € inkl. MwSt.\nAusführung: KW 26\n\nMit freundlichen Grüßen\n[Ihr Betrieb]";
+  _heroEl.textContent='';var hi=0;
+  function typeHero(){if(hi<htxt.length){_heroEl.textContent+=htxt[hi++];setTimeout(typeHero,20);}}
+  typeHero();
+}
+setTimeout(function(){startHero((window.ZYN_LANG&&window.ZYN_LANG.get())||'de');},1600);
+if(window.ZYN_LANG){var _origSet=window.ZYN_LANG.set;window.ZYN_LANG.set=function(l){_origSet(l);startHero(l);};}
 
-var _dl=(window.ZYN_LANG&&window.ZYN_LANG.get())||'de';
-var _dns=window.ZYN_T&&window.ZYN_T[_dl]&&window.ZYN_T[_dl].handwerker;
-var demoTxt=(_dns&&_dns.demo_txt)||"Betreff: Terminbestätigung Ihrer Heizungswartung\n\nSehr geehrter Herr Schmidt,\n\nwir freuen uns, Ihnen mitteilen zu können, dass wir Ihre Heizungswartung für Mittwoch, den 14.08. um 9:00 Uhr terminiert haben.\n\nBitte stellen Sie sicher, dass der Heizungskeller zugänglich ist.\n\nBei Fragen erreichen Sie uns jederzeit unter unserer Telefonnummer.\n\nMit freundlichen Grüßen\n[Ihr Betrieb]";
 var demoRunning=false;
 function startDemo(){
   if(demoRunning)return;demoRunning=true;
   var el=document.getElementById('demo-output-text');
   var status=document.getElementById('demoStatus');
   el.textContent='';el.style.fontStyle='normal';el.style.color='var(--text)';
-  var _lang=(window.ZYN_LANG&&window.ZYN_LANG.get())||'de';var _t=window.ZYN_T&&window.ZYN_T[_lang]&&window.ZYN_T[_lang].demo;
+  var _lang=(window.ZYN_LANG&&window.ZYN_LANG.get())||'de';
+  var _t=window.ZYN_T&&window.ZYN_T[_lang]&&window.ZYN_T[_lang].demo;
+  var _dns=window.ZYN_T&&window.ZYN_T[_lang]&&window.ZYN_T[_lang].handwerker;
+  var demoTxt=(_dns&&_dns.demo_txt)||"Betreff: Terminbestätigung Ihrer Heizungswartung\n\nSehr geehrter Herr Schmidt,\n\nwir freuen uns, Ihnen mitteilen zu können, dass wir Ihre Heizungswartung für Mittwoch, den 14.08. um 9:00 Uhr terminiert haben.\n\nBitte stellen Sie sicher, dass der Heizungskeller zugänglich ist.\n\nBei Fragen erreichen Sie uns jederzeit unter unserer Telefonnummer.\n\nMit freundlichen Grüßen\n[Ihr Betrieb]";
   status.textContent=(_t&&_t.generating)||'Generiert...';status.style.background='rgba(201,168,76,.15)';status.style.color='var(--gold)';
   var j=0;
   function type(){if(j<demoTxt.length){el.textContent+=demoTxt[j++];setTimeout(type,18);}else{status.textContent=(_t&&_t.done)||'Fertig ✓';status.style.background='rgba(34,197,94,.1)';status.style.color='#16A34A';demoRunning=false;}}
@@ -578,7 +582,7 @@ function toggleFaq(btn){var item=btn.parentElement;var open=item.classList.conta
 
 function submitWiderruf(){var s=encodeURIComponent("Widerruf meines Kaufs bei ZYNTEVO");var b=encodeURIComponent("Hiermit widerrufe ich meinen bei ZYNTEVO abgeschlossenen Vertrag.\n\nMein Name:\nMeine E-Mail:\nKaufdatum:\nBestellnummer:\n\nMit freundlichen Grüßen");window.location.href="mailto:jan@zyntevo.de?subject="+s+"&body="+b;document.getElementById("widerruf-modal").classList.remove("open");}
 </script>
-<script src="zyn.js?v=8"></script>
+<script src="zyn.js?v=9"></script>
 </body>
 </html>
 
