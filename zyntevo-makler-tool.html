@@ -396,8 +396,8 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       </div>
 
       <div class="page" id="page-expose">
-        <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Exposé Generator</div><div class="page-desc">Gib die Objektdaten ein – die KI schreibt ein professionelles Exposé.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-expose">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.makler_t1_tag">TOOL 1 VON 8</div><div class="page-title" data-i18n="tool.makler_t1_title">Exposé Generator</div><div class="page-desc" data-i18n="tool.makler_t1_desc">Gib die Objektdaten ein – die KI schreibt ein professionelles Exposé.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-expose">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label" data-i18n="tool.lbl_objekttyp">Objekttyp</label><select class="form-select" id="expose-typ"><option data-i18n="tool.opt_eigentumswohnung">Eigentumswohnung</option><option data-i18n="tool.opt_einfamilienhaus">Einfamilienhaus</option><option data-i18n="tool.opt_doppelhaushaelfte">Doppelhaushälfte</option><option data-i18n="tool.opt_reihenhaus">Reihenhaus</option><option data-i18n="tool.opt_mehrfamilienhaus">Mehrfamilienhaus</option><option data-i18n="tool.opt_grundstueck">Grundstück</option><option data-i18n="tool.opt_gewerbeimmobilie">Gewerbeimmobilie</option></select></div>
@@ -415,15 +415,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
             <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateExpose()">⚡ Exposé generieren</button>
+        <button class="generate-btn" onclick="generateExpose()" data-i18n="tool.gen_expose">⚡ Exposé generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-expose" onclick="copyResult('expose-result','copy-expose')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('expose-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-expose-result" onclick="toggleEdit('expose-result','edit-expose-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="expose-result"><div class="result-placeholder"><div class="placeholder-icon">🏠</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
         </div>
       </div>
 
       <div class="page" id="page-email">
-        <div class="page-header"><div class="page-tag">TOOL 2 VON 8</div><div class="page-title">E-Mail Generator</div><div class="page-desc">Wähle die Situation – die KI schreibt die perfekte E-Mail.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-email">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.makler_t2_tag">TOOL 2 VON 8</div><div class="page-title" data-i18n="tool.makler_t2_title">E-Mail Generator</div><div class="page-desc" data-i18n="tool.makler_t2_desc">Wähle die Situation – die KI schreibt die perfekte E-Mail.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-email">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
             <div class="form-group"><label class="form-label" data-i18n="tool.lbl_situation">Situation</label><select class="form-select" id="email-situation"><option data-i18n="tool.opt_makler_sit1">Antwort auf Kaufinteresse</option><option data-i18n="tool.opt_makler_sit2">Besichtigungstermin bestätigen</option><option data-i18n="tool.opt_makler_sit3">Nach Besichtigung nachfassen</option><option data-i18n="tool.opt_makler_sit4">Preisreduktion mitteilen</option><option data-i18n="tool.opt_makler_sit5">Angebot abgelehnt</option><option data-i18n="tool.opt_makler_sit6">Verkaufsauftrag gewinnen</option><option data-i18n="tool.opt_makler_sit7">Schlüsselübergabe</option></select></div>

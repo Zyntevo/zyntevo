@@ -231,7 +231,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()" />
+        <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" data-i18n-placeholder="tool.ph_password" onkeydown="if(event.key==='Enter')doLogin()" />
         <span class="pw-eye" onclick="togglePW('login-pw')">👁</span>
       </div>
       <div class="remember-row">
@@ -244,13 +244,13 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
     </div>
     <div id="panel-register" style="display:none;">
       <div class="auth-input-wrap">
-        <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (z.B. XXXX-XXXX-XXXX-XXXX)" />
+        <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (z.B. XXXX-XXXX-XXXX-XXXX)" data-i18n-placeholder="tool.ph_reg_code" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" />
+        <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
       </div>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" onkeydown="if(event.key==='Enter')doRegister()" />
+        <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" data-i18n-placeholder="tool.ph_reg_pw" onkeydown="if(event.key==='Enter')doRegister()" />
         <span class="pw-eye" onclick="togglePW('reg-pw')">👁</span>
       </div>
       <button class="auth-btn" onclick="doRegister()">Account erstellen</button>
@@ -331,23 +331,23 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- TOOL 1: MANDANTENBRIEF -->
       <div class="page" id="page-mandantenbrief">
-        <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Mandantenbrief Generator</div><div class="page-desc">Professionelle Mandantenbriefe für jeden Anlass – in Sekunden fertig.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-mandantenbrief">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_t1_tag">TOOL 1 VON 8</div><div class="page-title" data-i18n="tool.stb_t1_title">Mandantenbrief Generator</div><div class="page-desc" data-i18n="tool.stb_t1_desc">Professionelle Mandantenbriefe für jeden Anlass – in Sekunden fertig.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-mandantenbrief">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Anlass</label><select class="form-select" id="mb-anlass"><option>Jahresabschluss fertiggestellt</option><option>Steuererklärung eingereicht</option><option>Steuerbescheid erhalten</option><option>Nachzahlung mitteilen</option><option>Erstattung mitteilen</option><option>Wichtige Rechtsänderung</option><option>Allgemeine Mandanteninformation</option></select></div>
-            <div class="form-group"><label class="form-label">Mandantenname</label><input class="form-input" id="mb-name" placeholder="z.B. Herr Schmidt / Firma XY GmbH"></div>
-            <div class="form-group"><label class="form-label">Kernaussage / Zahlen</label><textarea class="form-textarea" id="mb-details" placeholder="z.B. Körperschaftsteuer 8.400€, Gewerbesteuer 3.200€..."></textarea></div>
-            <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="mb-ton"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Förmlich & seriös</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mb_anlass">Anlass</label><select class="form-select" id="mb-anlass"><option data-i18n="tool.opt_mb_anlass1">Jahresabschluss fertiggestellt</option><option data-i18n="tool.opt_mb_anlass2">Steuererklärung eingereicht</option><option data-i18n="tool.opt_mb_anlass3">Steuerbescheid erhalten</option><option data-i18n="tool.opt_mb_anlass4">Nachzahlung mitteilen</option><option data-i18n="tool.opt_mb_anlass5">Erstattung mitteilen</option><option data-i18n="tool.opt_mb_anlass6">Wichtige Rechtsänderung</option><option data-i18n="tool.opt_mb_anlass7">Allgemeine Mandanteninformation</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mandantenname">Mandantenname</label><input class="form-input" id="mb-name" placeholder="z.B. Herr Schmidt / Firma XY GmbH" data-i18n-placeholder="tool.ph_mb_name"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mb_kernaussage">Kernaussage / Zahlen</label><textarea class="form-textarea" id="mb-details" placeholder="z.B. Körperschaftsteuer 8.400€, Gewerbesteuer 3.200€..." data-i18n-placeholder="tool.ph_mb_details"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mb_ton">Ton</label><select class="form-select" id="mb-ton"><option data-i18n="tool.opt_mb_ton1">Professionell & sachlich</option><option data-i18n="tool.opt_mb_ton2">Freundlich & persönlich</option><option data-i18n="tool.opt_mb_ton3">Förmlich & seriös</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateMandantenbrief()">⚡ Brief generieren</button>
+        <button class="generate-btn" onclick="generateMandantenbrief()" data-i18n="tool.gen_brief">⚡ Brief generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-mandantenbrief" onclick="copyResult('mandantenbrief-result','copy-mandantenbrief')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('mandantenbrief-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-mandantenbrief-result" onclick="toggleEdit('mandantenbrief-result','edit-mandantenbrief-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="mandantenbrief-result"><div class="result-placeholder"><div class="placeholder-icon">📝</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
         </div>
@@ -355,23 +355,23 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- TOOL 2: MANDANTEN-MAIL -->
       <div class="page" id="page-mandantenmail">
-        <div class="page-header"><div class="page-tag">TOOL 2 VON 8</div><div class="page-title">Mandanten-Mail Generator</div><div class="page-desc">Wähle die Situation – die KI schreibt die perfekte E-Mail.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-mandantenmail">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_t2_tag">TOOL 2 VON 8</div><div class="page-title" data-i18n="tool.stb_t2_title">Mandanten-Mail Generator</div><div class="page-desc" data-i18n="tool.stb_t2_desc">Wähle die Situation – die KI schreibt die perfekte E-Mail.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-mandantenmail">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Situation</label><select class="form-select" id="mm-situation"><option>Termin vereinbaren</option><option>Termin bestätigen</option><option>Unterlagen anfordern</option><option>Bescheid weiterleiten</option><option>Rückfrage klären</option><option>Vollmacht einholen</option><option>Frist mitteilen</option><option>Allgemeine Rückmeldung</option></select></div>
-            <div class="form-group"><label class="form-label">Mandantenname</label><input class="form-input" id="mm-name" placeholder="z.B. Herr Müller / Frau Weber"></div>
-            <div class="form-group"><label class="form-label">Kontext / Details</label><textarea class="form-textarea" id="mm-kontext" placeholder="z.B. Steuererklärung 2024, Abgabefrist 31.07..."></textarea></div>
-            <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="mm-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mm_situation">Situation</label><select class="form-select" id="mm-situation"><option data-i18n="tool.opt_mm_sit1">Termin vereinbaren</option><option data-i18n="tool.opt_mm_sit2">Termin bestätigen</option><option data-i18n="tool.opt_mm_sit3">Unterlagen anfordern</option><option data-i18n="tool.opt_mm_sit4">Bescheid weiterleiten</option><option data-i18n="tool.opt_mm_sit5">Rückfrage klären</option><option data-i18n="tool.opt_mm_sit6">Vollmacht einholen</option><option data-i18n="tool.opt_mm_sit7">Frist mitteilen</option><option data-i18n="tool.opt_mm_sit8">Allgemeine Rückmeldung</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mandantenname">Mandantenname</label><input class="form-input" id="mm-name" placeholder="z.B. Herr Müller / Frau Weber" data-i18n-placeholder="tool.ph_mm_name"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mm_kontext">Kontext / Details</label><textarea class="form-textarea" id="mm-kontext" placeholder="z.B. Steuererklärung 2024, Abgabefrist 31.07..." data-i18n-placeholder="tool.ph_mm_kontext"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mb_ton">Ton</label><select class="form-select" id="mm-ton"><option data-i18n="tool.opt_mb_ton1">Professionell & freundlich</option><option data-i18n="tool.opt_mb_ton2">Persönlich & warm</option><option data-i18n="tool.opt_mb_ton3">Förmlich & seriös</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateMandantenmail()">⚡ E-Mail generieren</button>
+        <button class="generate-btn" onclick="generateMandantenmail()" data-i18n="tool.gen_email">⚡ E-Mail generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-mandantenmail" onclick="copyResult('mandantenmail-result','copy-mandantenmail')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('mandantenmail-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-mandantenmail-result" onclick="toggleEdit('mandantenmail-result','edit-mandantenmail-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="mandantenmail-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
         </div>
@@ -379,23 +379,23 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- TOOL 3: AKQUISE-MAIL -->
       <div class="page" id="page-akquise">
-        <div class="page-header"><div class="page-tag">TOOL 3 VON 8</div><div class="page-title">Akquise-Mail Generator</div><div class="page-desc">Professionelle Anschreiben zur Mandantengewinnung.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-akquise">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_t3_tag">TOOL 3 VON 8</div><div class="page-title" data-i18n="tool.stb_t3_title">Akquise-Mail Generator</div><div class="page-desc" data-i18n="tool.stb_t3_desc">Professionelle Anschreiben zur Mandantengewinnung.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-akquise">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Zielgruppe</label><select class="form-select" id="aq-zielgruppe"><option>Selbstständige / Freiberufler</option><option>GmbH / Kapitalgesellschaft</option><option>Handwerksbetrieb</option><option>Arztpraxis / Heilberufe</option><option>Immobilieninvestor</option><option>Startup / Gründer</option><option>Privatperson</option></select></div>
-            <div class="form-group"><label class="form-label">Anlass / Aufhänger</label><select class="form-select" id="aq-anlass"><option>Kostenlose Erstberatung anbieten</option><option>Jahreswechsel / Steueroptimierung</option><option>Unzufriedenheit mit aktuellem Berater</option><option>Neue Kanzlei in der Region</option><option>Spezialisierung kommunizieren</option><option>Kaltakquise allgemein</option></select></div>
-            <div class="form-group"><label class="form-label">Empfänger (optional)</label><input class="form-input" id="aq-empfaenger" placeholder="z.B. Herr Mayer, Bäckerei Mayer GmbH"></div>
-            <div class="form-group"><label class="form-label">Dein USP</label><textarea class="form-textarea" id="aq-usp" placeholder="z.B. Spezialist für Handwerk, 15 Jahre Erfahrung..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_aq_zielgruppe">Zielgruppe</label><select class="form-select" id="aq-zielgruppe"><option data-i18n="tool.opt_aq_ziel1">Selbstständige / Freiberufler</option><option data-i18n="tool.opt_aq_ziel2">GmbH / Kapitalgesellschaft</option><option data-i18n="tool.opt_aq_ziel3">Handwerksbetrieb</option><option data-i18n="tool.opt_aq_ziel4">Arztpraxis / Heilberufe</option><option data-i18n="tool.opt_aq_ziel5">Immobilieninvestor</option><option data-i18n="tool.opt_aq_ziel6">Startup / Gründer</option><option data-i18n="tool.opt_aq_ziel7">Privatperson</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_aq_anlass">Anlass / Aufhänger</label><select class="form-select" id="aq-anlass"><option data-i18n="tool.opt_aq_anlass_stb1">Kostenlose Erstberatung anbieten</option><option data-i18n="tool.opt_aq_anlass_stb2">Jahreswechsel / Steueroptimierung</option><option data-i18n="tool.opt_aq_anlass_stb3">Unzufriedenheit mit aktuellem Berater</option><option data-i18n="tool.opt_aq_anlass_stb4">Neue Kanzlei in der Region</option><option data-i18n="tool.opt_aq_anlass_stb5">Spezialisierung kommunizieren</option><option data-i18n="tool.opt_aq_anlass_stb6">Kaltakquise allgemein</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_aq_empfaenger">Empfänger (optional)</label><input class="form-input" id="aq-empfaenger" placeholder="z.B. Herr Mayer, Bäckerei Mayer GmbH" data-i18n-placeholder="tool.ph_aq_empfaenger"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_aq_usp">Dein USP</label><textarea class="form-textarea" id="aq-usp" placeholder="z.B. Spezialist für Handwerk, 15 Jahre Erfahrung..." data-i18n-placeholder="tool.ph_aq_usp"></textarea></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateAkquise()">⚡ Akquise-Mail generieren</button>
+        <button class="generate-btn" onclick="generateAkquise()" data-i18n="tool.gen_akquise_mail">⚡ Akquise-Mail generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deine Akquise-Mail</div></div></div></div>
         </div>
@@ -403,23 +403,23 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- TOOL 4: UNTERLAGEN-ERINNERUNG -->
       <div class="page" id="page-unterlagen">
-        <div class="page-header"><div class="page-tag">TOOL 4 VON 8</div><div class="page-title">Unterlagen-Erinnerung</div><div class="page-desc">Höfliche, professionelle Erinnerungen an ausstehende Unterlagen.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-unterlagen">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_t4_tag">TOOL 4 VON 8</div><div class="page-title" data-i18n="tool.stb_t4_title">Unterlagen-Erinnerung</div><div class="page-desc" data-i18n="tool.stb_t4_desc">Höfliche, professionelle Erinnerungen an ausstehende Unterlagen.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-unterlagen">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Mandantenname</label><input class="form-input" id="ul-name" placeholder="z.B. Herr Müller / Frau Weber GmbH"></div>
-            <div class="form-group"><label class="form-label">Fehlende Unterlagen</label><textarea class="form-textarea" id="ul-unterlagen" placeholder="z.B. Kontoauszüge 2024, Kassenbuch Q4, Lohnunterlagen..."></textarea></div>
-            <div class="form-group"><label class="form-label">Wieviel Erinnerung?</label><select class="form-select" id="ul-stufe"><option>1. Erinnerung (freundlich)</option><option>2. Erinnerung (bestimmter)</option><option>3. Erinnerung (dringend)</option></select></div>
-            <div class="form-group"><label class="form-label">Frist</label><input class="form-input" id="ul-frist" placeholder="z.B. 15. Juli 2025"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mandantenname">Mandantenname</label><input class="form-input" id="ul-name" placeholder="z.B. Herr Müller / Frau Weber GmbH" data-i18n-placeholder="tool.ph_ul_name"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ul_unterlagen">Fehlende Unterlagen</label><textarea class="form-textarea" id="ul-unterlagen" placeholder="z.B. Kontoauszüge 2024, Kassenbuch Q4, Lohnunterlagen..." data-i18n-placeholder="tool.ph_ul_unterlagen"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ul_stufe">Wieviel Erinnerung?</label><select class="form-select" id="ul-stufe"><option data-i18n="tool.opt_ul_stufe1">1. Erinnerung (freundlich)</option><option data-i18n="tool.opt_ul_stufe2">2. Erinnerung (bestimmter)</option><option data-i18n="tool.opt_ul_stufe3">3. Erinnerung (dringend)</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ul_frist">Frist</label><input class="form-input" id="ul-frist" placeholder="z.B. 15. Juli 2025" data-i18n-placeholder="tool.ph_ul_frist"></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateUnterlagen()">⚡ Erinnerung generieren</button>
+        <button class="generate-btn" onclick="generateUnterlagen()" data-i18n="tool.gen_erinnerung">⚡ Erinnerung generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-unterlagen" onclick="copyResult('unterlagen-result','copy-unterlagen')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('unterlagen-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-unterlagen-result" onclick="toggleEdit('unterlagen-result','edit-unterlagen-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="unterlagen-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle die Details aus und generiere die Erinnerung</div></div></div></div>
         </div>
@@ -427,23 +427,23 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- TOOL 5: EINSPRUCH-ANKÜNDIGUNG -->
       <div class="page" id="page-einspruch">
-        <div class="page-header"><div class="page-tag">TOOL 5 VON 8</div><div class="page-title">Einspruch-Ankündigung</div><div class="page-desc">Kommuniziere Einsprüche professionell gegenüber Mandanten und Behörden.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-einspruch">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_t5_tag">TOOL 5 VON 8</div><div class="page-title" data-i18n="tool.stb_t5_title">Einspruch-Ankündigung</div><div class="page-desc" data-i18n="tool.stb_t5_desc">Kommuniziere Einsprüche professionell gegenüber Mandanten und Behörden.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-einspruch">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Art des Einspruchs</label><select class="form-select" id="ep-typ"><option>Einspruch gegen Steuerbescheid</option><option>Einspruch gegen Gewerbesteuerbescheid</option><option>Einspruch gegen USt-Bescheid</option><option>Einspruch gegen Vorauszahlungsbescheid</option><option>Einspruch gegen Zinsbescheid</option></select></div>
-            <div class="form-group"><label class="form-label">Mandantenname</label><input class="form-input" id="ep-mandant" placeholder="z.B. Herr Schmidt / XY GmbH"></div>
-            <div class="form-group"><label class="form-label">Begründung (Stichworte)</label><textarea class="form-textarea" id="ep-begruendung" placeholder="z.B. Betriebsausgaben nicht anerkannt, falsche Einkommensberechnung..."></textarea></div>
-            <div class="form-group"><label class="form-label">Empfänger des Schreibens</label><select class="form-select" id="ep-empfaenger"><option>Mandant (Information)</option><option>Finanzamt (Ankündigung)</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ep_typ">Art des Einspruchs</label><select class="form-select" id="ep-typ"><option data-i18n="tool.opt_ep_typ1">Einspruch gegen Steuerbescheid</option><option data-i18n="tool.opt_ep_typ2">Einspruch gegen Gewerbesteuerbescheid</option><option data-i18n="tool.opt_ep_typ3">Einspruch gegen USt-Bescheid</option><option data-i18n="tool.opt_ep_typ4">Einspruch gegen Vorauszahlungsbescheid</option><option data-i18n="tool.opt_ep_typ5">Einspruch gegen Zinsbescheid</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mandantenname">Mandantenname</label><input class="form-input" id="ep-mandant" placeholder="z.B. Herr Schmidt / XY GmbH" data-i18n-placeholder="tool.ph_ep_mandant"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ep_begruendung">Begründung (Stichworte)</label><textarea class="form-textarea" id="ep-begruendung" placeholder="z.B. Betriebsausgaben nicht anerkannt, falsche Einkommensberechnung..." data-i18n-placeholder="tool.ph_ep_begruendung"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ep_empfaenger">Empfänger des Schreibens</label><select class="form-select" id="ep-empfaenger"><option data-i18n="tool.opt_ep_empf1">Mandant (Information)</option><option data-i18n="tool.opt_ep_empf2">Finanzamt (Ankündigung)</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateEinspruch()">⚡ Schreiben generieren</button>
+        <button class="generate-btn" onclick="generateEinspruch()" data-i18n="tool.gen_schreiben">⚡ Schreiben generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-einspruch" onclick="copyResult('einspruch-result','copy-einspruch')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('einspruch-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-einspruch-result" onclick="toggleEdit('einspruch-result','edit-einspruch-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="einspruch-result"><div class="result-placeholder"><div class="placeholder-icon">⚖️</div><div>Fülle die Details aus und generiere das Schreiben</div></div></div></div>
         </div>
@@ -451,23 +451,23 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- TOOL 6: NEUKUNDEN-BEGRÜSSUNG -->
       <div class="page" id="page-begruessung">
-        <div class="page-header"><div class="page-tag">TOOL 6 VON 8</div><div class="page-title">Neukunden-Begrüßung</div><div class="page-desc">Hinterlasse beim neuen Mandanten vom ersten Tag an einen perfekten Eindruck.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-begruessung">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_t6_tag">TOOL 6 VON 8</div><div class="page-title" data-i18n="tool.stb_t6_title">Neukunden-Begrüßung</div><div class="page-desc" data-i18n="tool.stb_t6_desc">Hinterlasse beim neuen Mandanten vom ersten Tag an einen perfekten Eindruck.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-begruessung">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Name des neuen Mandanten</label><input class="form-input" id="bg-name" placeholder="z.B. Herr Hoffmann / Hoffmann GmbH"></div>
-            <div class="form-group"><label class="form-label">Mandantentyp</label><select class="form-select" id="bg-typ"><option>Privatperson</option><option>Selbstständiger / Freiberufler</option><option>GmbH</option><option>UG</option><option>Handwerksbetrieb</option><option>Arztpraxis</option></select></div>
-            <div class="form-group"><label class="form-label">Erstes Mandat / Auftrag</label><textarea class="form-textarea" id="bg-auftrag" placeholder="z.B. Jahresabschluss + Steuererklärung 2024, Lohnbuchhaltung..."></textarea></div>
-            <div class="form-group"><label class="form-label">Format</label><select class="form-select" id="bg-format"><option>Willkommens-E-Mail</option><option>Willkommensbrief (förmlich)</option><option>Kurze persönliche Nachricht</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_bg_name">Name des neuen Mandanten</label><input class="form-input" id="bg-name" placeholder="z.B. Herr Hoffmann / Hoffmann GmbH" data-i18n-placeholder="tool.ph_bg_name"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_bg_typ">Mandantentyp</label><select class="form-select" id="bg-typ"><option data-i18n="tool.opt_bg_typ1">Privatperson</option><option data-i18n="tool.opt_bg_typ2">Selbstständiger / Freiberufler</option><option data-i18n="tool.opt_bg_typ3">GmbH</option><option data-i18n="tool.opt_bg_typ4">UG</option><option data-i18n="tool.opt_bg_typ5">Handwerksbetrieb</option><option data-i18n="tool.opt_bg_typ6">Arztpraxis</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_bg_auftrag">Erstes Mandat / Auftrag</label><textarea class="form-textarea" id="bg-auftrag" placeholder="z.B. Jahresabschluss + Steuererklärung 2024, Lohnbuchhaltung..." data-i18n-placeholder="tool.ph_bg_auftrag"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_bg_format">Format</label><select class="form-select" id="bg-format"><option data-i18n="tool.opt_bg_fmt1">Willkommens-E-Mail</option><option data-i18n="tool.opt_bg_fmt2">Willkommensbrief (förmlich)</option><option data-i18n="tool.opt_bg_fmt3">Kurze persönliche Nachricht</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateBegruessung()">⚡ Begrüßung generieren</button>
+        <button class="generate-btn" onclick="generateBegruessung()" data-i18n="tool.gen_begruessung">⚡ Begrüßung generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-begruessung" onclick="copyResult('begruessung-result','copy-begruessung')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('begruessung-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-begruessung-result" onclick="toggleEdit('begruessung-result','edit-begruessung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="begruessung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div>Fülle die Details aus und generiere die Begrüßung</div></div></div></div>
         </div>
@@ -475,23 +475,23 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- TOOL 7: LINKEDIN POSTS -->
       <div class="page" id="page-linkedin">
-        <div class="page-header"><div class="page-tag">TOOL 7 VON 8</div><div class="page-title">LinkedIn Posts Generator</div><div class="page-desc">Steuertipps und Expertise als LinkedIn-Post – in Sekunden fertig.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-linkedin">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_t7_tag">TOOL 7 VON 8</div><div class="page-title" data-i18n="tool.stb_t7_title">LinkedIn Posts Generator</div><div class="page-desc" data-i18n="tool.stb_t7_desc">Steuertipps und Expertise als LinkedIn-Post – in Sekunden fertig.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-linkedin">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Post-Typ</label><select class="form-select" id="li-typ"><option>Steuertipp des Monats</option><option>Gesetzesänderung erklären</option><option>Häufiger Mandantenfehler</option><option>Behind the Scenes Kanzlei</option><option>Karriere / Team-Post</div><option>Persönliche Geschichte</option><option>Fachlicher Einblick</option></select></div>
-            <div class="form-group"><label class="form-label">Thema / Inhalt</label><textarea class="form-textarea" id="li-thema" placeholder="z.B. GWG-Grenze 2024 auf 800€ erhöht, was das für Selbstständige bedeutet..."></textarea></div>
-            <div class="form-group"><label class="form-label">Zielgruppe</label><select class="form-select" id="li-zielgruppe"><option>Selbstständige & Unternehmer</option><option>GmbH-Inhaber</option><option>Handwerker</option><option>Allgemein / gemischt</option></select></div>
-            <div class="form-group"><label class="form-label">Länge</label><select class="form-select" id="li-laenge"><option>Kurz (150-200 Zeichen)</option><option>Mittel (300-400 Zeichen)</option><option>Lang (500-700 Zeichen)</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_li_typ">Post-Typ</label><select class="form-select" id="li-typ"><option data-i18n="tool.opt_li_typ1">Steuertipp des Monats</option><option data-i18n="tool.opt_li_typ2">Gesetzesänderung erklären</option><option data-i18n="tool.opt_li_typ3">Häufiger Mandantenfehler</option><option data-i18n="tool.opt_li_typ4">Behind the Scenes Kanzlei</option><option data-i18n="tool.opt_li_typ5">Karriere / Team-Post</option><option data-i18n="tool.opt_li_typ6">Persönliche Geschichte</option><option data-i18n="tool.opt_li_typ7">Fachlicher Einblick</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_li_thema">Thema / Inhalt</label><textarea class="form-textarea" id="li-thema" placeholder="z.B. GWG-Grenze 2024 auf 800€ erhöht, was das für Selbstständige bedeutet..." data-i18n-placeholder="tool.ph_li_thema"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_li_zielgruppe">Zielgruppe</label><select class="form-select" id="li-zielgruppe"><option data-i18n="tool.opt_li_ziel1">Selbstständige & Unternehmer</option><option data-i18n="tool.opt_li_ziel2">GmbH-Inhaber</option><option data-i18n="tool.opt_li_ziel3">Handwerker</option><option data-i18n="tool.opt_li_ziel4">Allgemein / gemischt</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_li_laenge">Länge</label><select class="form-select" id="li-laenge"><option data-i18n="tool.opt_li_laenge1">Kurz (150-200 Zeichen)</option><option data-i18n="tool.opt_li_laenge2">Mittel (300-400 Zeichen)</option><option data-i18n="tool.opt_li_laenge3">Lang (500-700 Zeichen)</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateLinkedIn()">⚡ LinkedIn Post generieren</button>
+        <button class="generate-btn" onclick="generateLinkedIn()" data-i18n="tool.gen_linkedin">⚡ LinkedIn Post generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-linkedin" onclick="copyResult('linkedin-result','copy-linkedin')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('linkedin-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-linkedin-result" onclick="toggleEdit('linkedin-result','edit-linkedin-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="linkedin-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle einen Post-Typ und generiere deinen Post</div></div></div></div>
         </div>
@@ -499,24 +499,24 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- TOOL 8: FRISTVERLÄNGERUNGSSCHREIBEN -->
       <div class="page" id="page-fristverlaengerung">
-        <div class="page-header"><div class="page-tag">TOOL 8 VON 8</div><div class="page-title">Fristverlängerungsschreiben</div><div class="page-desc">Fristverlängerungen professionell beim Finanzamt oder Mandanten beantragen.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-fristverlaengerung">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_t8_tag">TOOL 8 VON 8</div><div class="page-title" data-i18n="tool.stb_t8_title">Fristverlängerungsschreiben</div><div class="page-desc" data-i18n="tool.stb_t8_desc">Fristverlängerungen professionell beim Finanzamt oder Mandanten beantragen.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-fristverlaengerung">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Art der Fristverlängerung</label><select class="form-select" id="fv-typ"><option>Steuererklärung beim Finanzamt</option><option>Jahresabschluss beim Finanzamt</option><option>Abgabe an Mandant (intern)</option><option>Sonstige Frist</option></select></div>
-            <div class="form-group"><label class="form-label">Mandant / Steuernummer</label><input class="form-input" id="fv-mandant" placeholder="z.B. Müller GmbH / St.-Nr. 123/456/7890"></div>
-            <div class="form-group"><label class="form-label">Aktuelle Frist</label><input class="form-input" id="fv-frist-alt" placeholder="z.B. 31. Juli 2025"></div>
-            <div class="form-group"><label class="form-label">Gewünschte neue Frist</label><input class="form-input" id="fv-frist-neu" placeholder="z.B. 30. September 2025"></div>
-            <div class="form-group"><label class="form-label">Begründung</label><textarea class="form-textarea" id="fv-begruendung" placeholder="z.B. Mandant hat Unterlagen verspätet eingereicht, erhöhtes Arbeitsaufkommen..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_fv_typ">Art der Fristverlängerung</label><select class="form-select" id="fv-typ"><option data-i18n="tool.opt_fv_typ1">Steuererklärung beim Finanzamt</option><option data-i18n="tool.opt_fv_typ2">Jahresabschluss beim Finanzamt</option><option data-i18n="tool.opt_fv_typ3">Abgabe an Mandant (intern)</option><option data-i18n="tool.opt_fv_typ4">Sonstige Frist</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_fv_mandant">Mandant / Steuernummer</label><input class="form-input" id="fv-mandant" placeholder="z.B. Müller GmbH / St.-Nr. 123/456/7890" data-i18n-placeholder="tool.ph_fv_mandant"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_fv_frist_alt">Aktuelle Frist</label><input class="form-input" id="fv-frist-alt" placeholder="z.B. 31. Juli 2025" data-i18n-placeholder="tool.ph_fv_frist_alt"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_fv_frist_neu">Gewünschte neue Frist</label><input class="form-input" id="fv-frist-neu" placeholder="z.B. 30. September 2025" data-i18n-placeholder="tool.ph_fv_frist_neu"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_fv_begruendung">Begründung</label><textarea class="form-textarea" id="fv-begruendung" placeholder="z.B. Mandant hat Unterlagen verspätet eingereicht, erhöhtes Arbeitsaufkommen..." data-i18n-placeholder="tool.ph_fv_begruendung"></textarea></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateFristverlaengerung()">⚡ Schreiben generieren</button>
+        <button class="generate-btn" onclick="generateFristverlaengerung()" data-i18n="tool.gen_schreiben">⚡ Schreiben generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-fristverlaengerung" onclick="copyResult('fristverlaengerung-result','copy-fristverlaengerung')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('fristverlaengerung-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-fristverlaengerung-result" onclick="toggleEdit('fristverlaengerung-result','edit-fristverlaengerung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="fristverlaengerung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Fülle die Details aus und generiere das Schreiben</div></div></div></div>
         </div>
@@ -524,22 +524,22 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <!-- FREIER GENERATOR -->
       <div class="page" id="page-frei">
-        <div class="page-header"><div class="page-tag">FREIER GENERATOR</div><div class="page-title">Freier KI-Generator</div><div class="page-desc">Schreibe deinen eigenen Prompt oder nutze die Vorlagen aus deinen PDFs direkt hier.</div></div>
-        <div class="rate-bar">Heutige Anfragen: <span id="rate-frei">–/50</span></div>
+        <div class="page-header"><div class="page-tag" data-i18n="tool.stb_free_tag">FREIER GENERATOR</div><div class="page-title" data-i18n="tool.stb_free_title">Freier KI-Generator</div><div class="page-desc" data-i18n="tool.stb_free_desc">Schreibe deinen eigenen Prompt oder nutze die Vorlagen aus deinen PDFs direkt hier.</div></div>
+        <div class="rate-bar"><span data-i18n="tool.rate_bar_prefix">Heutige Anfragen: </span><span id="rate-frei">–/50</span></div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Dein Prompt / Aufgabe</label><p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage an einen potenziellen Mandanten..."></textarea></div>
-            <div class="form-group"><label class="form-label">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Meine Kanzlei heißt..."></textarea></div>
-            <div class="form-group"><label class="form-label">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Kurz & prägnant</option><option>Ausführlich & detailliert</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_stb_prompt">Dein Prompt / Aufgabe</label><p class="free-hint" data-i18n="tool.free_hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage an einen potenziellen Mandanten..." data-i18n-placeholder="tool.ph_stb_prompt"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_stb_kontext">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Meine Kanzlei heißt..." data-i18n-placeholder="tool.ph_stb_kontext"></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_stb_stil">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option data-i18n="tool.opt_stil_prof_sachlich">Professionell & sachlich</option><option data-i18n="tool.opt_stil_freundlich">Freundlich & persönlich</option><option data-i18n="tool.opt_stil_kurz">Kurz & prägnant</option><option data-i18n="tool.opt_stil_ausfuehrlich">Ausführlich & detailliert</option></select></div>
                     <div style="margin-bottom:16px;">
-          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">Textlänge</label>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;" data-i18n="tool.length_label">Textlänge</label>
           <select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;">
-            <option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option>
-            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option>
-            <option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option>
+            <option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_laenge_kurz">Kurz – 5-7 Sätze</option>
+            <option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_laenge_mittel">Mittel – 10-12 Sätze</option>
+            <option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_laenge_lang">Lang – 15-20 Sätze</option>
           </select>
         </div>
-        <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
+        <button class="generate-btn" onclick="generateFrei()" data-i18n="tool.gen_generieren">⚡ Generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')" data-i18n="tool.pdf_btn">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
         </div>
