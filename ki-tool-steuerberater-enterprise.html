@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO | KI-Tool Steuerberater Enterprise</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{overflow-x:hidden;max-width:100%;}
+:root{--bg:#070B11;--card:#111827;--gold:#D4AF37;--text:#F8FAFC;--muted:#94A3B8;}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+.container{width:90%;max-width:1300px;margin:auto;}
+.header{height:80px;position:fixed;top:0;width:100%;z-index:1000;background:rgba(7,11,17,0.95);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,255,255,.05);}
+.header .container{display:flex;justify-content:space-between;align-items:center;height:100%;}
+.logo{text-decoration:none;color:var(--gold);font-size:24px;font-weight:900;letter-spacing:2px;}
+.header-badge{display:inline-block;padding:6px 14px;border:1px solid rgba(212,175,55,.3);border-radius:999px;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:1px;}
+#auth-screen{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;background:var(--bg);}
+.auth-card{width:440px;padding:50px 40px;background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:30px;text-align:center;box-shadow:0 0 40px rgba(212,175,55,.08);}
+.auth-logo{font-size:32px;font-weight:900;color:var(--gold);margin-bottom:6px;}
+.auth-sub{color:var(--muted);font-size:14px;margin-bottom:8px;}
+.auth-badge{display:inline-block;padding:5px 14px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);border-radius:999px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:28px;}
+.auth-input{width:100%;padding:14px 16px;background:var(--bg);border:1px solid rgba(212,175,55,.2);border-radius:12px;color:var(--text);font-size:15px;outline:none;transition:.3s;font-family:Inter,sans-serif;margin-bottom:12px;text-align:center;letter-spacing:2px;}
+.auth-input:focus{border-color:var(--gold);}
+.auth-input::placeholder{letter-spacing:0;font-size:14px;}
+.auth-btn{width:100%;padding:14px;background:var(--gold);color:#000;font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:.3s;font-family:Inter,sans-serif;margin-top:4px;}
+.auth-btn:hover{transform:translateY(-2px);opacity:.92;}
+.auth-error{color:#EF4444;font-size:13px;margin-top:10px;display:none;}
+.auth-hint{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;}
+#app{display:none;padding-top:80px;}
+.layout{display:flex;min-height:calc(100vh - 80px);}
+.sidebar{width:260px;flex-shrink:0;background:linear-gradient(135deg,#0F172A,#111827);border-right:1px solid rgba(212,175,55,.1);padding:30px 0;position:sticky;top:80px;height:calc(100vh - 80px);overflow-y:auto;}
+.sidebar-section{padding:8px 20px 4px;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);}
+.nav-item{display:flex;align-items:center;gap:12px;padding:12px 20px;cursor:pointer;transition:.3s;font-size:14px;color:var(--muted);border-left:3px solid transparent;}
+.nav-item:hover{color:var(--text);background:rgba(212,175,55,.05);}
+.nav-item.active{color:var(--gold);border-left-color:var(--gold);background:rgba(212,175,55,.08);}
+.nav-icon{font-size:16px;width:20px;text-align:center;}
+.logout-nav{margin-top:20px;border-top:1px solid rgba(255,255,255,.05);padding-top:16px;}
+.main{flex:1;padding:40px;}
+.page{display:none;}
+.page.active{display:block;}
+.page-header{margin-bottom:40px;}
+.page-tag{display:inline-block;color:var(--gold);border:1px solid rgba(212,175,55,.25);padding:8px 16px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:16px;}
+.page-title{font-size:42px;font-weight:900;margin-bottom:12px;line-height:1.1;}
+.page-desc{color:var(--muted);font-size:16px;max-width:600px;}
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:40px;}
+.dash-card{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:28px;}
+.dash-num{font-size:44px;font-weight:900;color:var(--gold);line-height:1;margin-bottom:6px;}
+.dash-label{font-size:12px;color:var(--muted);letter-spacing:1px;}
+.tool-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.tool-card{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:28px;cursor:pointer;transition:.3s;}
+.tool-card:hover{transform:translateY(-6px);border-color:rgba(212,175,55,.4);box-shadow:0 0 25px rgba(212,175,55,.12);}
+.tool-card-icon{font-size:32px;margin-bottom:14px;}
+.tool-card-title{font-size:16px;font-weight:700;margin-bottom:6px;}
+.tool-card-desc{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+.card-link{color:var(--gold);font-weight:700;font-size:14px;}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start;}
+.tool-form{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:36px;}
+.tool-result{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:36px;min-height:400px;}
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;}
+.form-input,.form-select,.form-textarea{width:100%;padding:13px 16px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:12px;color:var(--text);font-size:14px;outline:none;transition:.3s;font-family:Inter,sans-serif;resize:vertical;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);}
+.form-textarea{min-height:90px;}
+.form-select{cursor:pointer;}
+.form-select option{background:#0F172A;}
+.generate-btn{width:100%;padding:16px;background:var(--gold);color:#000;font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:.3s;margin-top:8px;}
+.generate-btn:hover{transform:translateY(-2px);}
+.result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.result-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);}
+.copy-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;}
+.copy-btn:hover{border-color:var(--gold);color:var(--gold);}
+.copy-btn.copied{border-color:#22C55E;color:#22C55E;}
+.edit-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
+.pdf-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
+.result-actions{display:flex;align-items:center;gap:0;}
+.profile-bar{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:24px 28px;margin-bottom:28px;}
+.profile-bar-title{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:14px;}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.profile-save-btn{margin-top:14px;padding:10px 20px;background:var(--gold);color:#000;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer;transition:.3s;}
+.profile-saved{color:#22C55E;font-size:12px;margin-left:10px;display:none;}
+.result-text[contenteditable="true"]{outline:1px solid rgba(212,175,55,.3);border-radius:8px;padding:8px;cursor:text;}
+.result-text{color:var(--text);font-size:14px;line-height:1.8;white-space:pre-wrap;}
+.result-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;gap:12px;color:var(--muted);}
+.placeholder-icon{font-size:48px;opacity:.3;}
+.loading{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px;padding:20px 0;}
+.spinner{width:20px;height:20px;border:2px solid rgba(212,175,55,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.free-hint{font-size:12px;color:var(--muted);margin-bottom:16px;padding:12px 16px;background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.1);border-radius:10px;}
+.unlim-bar{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:10px 16px;font-size:12px;color:#4ADE80;margin-bottom:20px;font-weight:600;}
+@media(max-width:900px){.sidebar{display:none;}.tool-grid{grid-template-columns:1fr;}.dash-grid,.tool-cards{grid-template-columns:1fr 1fr;}.main{padding:20px;}}
+@media(max-width:600px){.auth-card{width:92vw;padding:32px 20px;}.dash-grid{grid-template-columns:1fr 1fr;gap:12px;}.tool-cards{grid-template-columns:1fr 1fr;gap:12px;}.tool-grid{grid-template-columns:1fr;gap:16px;}.page-title{font-size:26px;}}
+</style>
+</head>
+<body>
+
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">ZYNTEVO</div>
+    <div class="auth-sub">KI-Tool · Steuerberater Enterprise</div>
+    <div class="auth-badge">🏢 ENTERPRISE ZUGANG</div>
+    <input class="auth-input" type="text" id="ent-code" placeholder="Enterprise-Code eingeben" autocomplete="off" onkeydown="if(event.key==='Enter')doEntLogin()" />
+    <div class="auth-error" id="ent-error"></div>
+    <button class="auth-btn" onclick="doEntLogin()">⚡ Zugang freischalten →</button>
+    <div class="auth-hint">Deinen persönlichen Enterprise-Code hast du per E-Mail erhalten.<br>Fragen? <a href="mailto:jan@zyntevo.de" style="color:var(--gold);">jan@zyntevo.de</a></div>
+  </div>
+</div>
+
+<div id="app">
+  <div class="header">
+    <div class="container">
+      <div class="logo">ZYNTEVO</div>
+      <div class="header-badge">🏢 STEUERBERATER ENTERPRISE</div>
+      <div style="display:flex;align-items:center;gap:2px;margin-left:auto;background:rgba(255,255,255,0.06);border-radius:8px;padding:2px;">
+        <button type="button" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><svg width="20" height="15" viewBox="0 0 5 3" style="display:block;" xmlns="http://www.w3.org/2000/svg"><rect width="5" height="3" fill="#000"/><rect y="1" width="5" height="2" fill="#D00"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg></button>
+        <button type="button" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 60 30" style="display:block;" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></button>
+        <button type="button" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 3 2" style="display:block;" xmlns="http://www.w3.org/2000/svg"><rect width="3" height="2" fill="#ED2939"/><rect width="2" height="2" fill="#fff"/><rect width="1" height="2" fill="#002395"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="layout">
+    <div class="sidebar">
+      <div class="sidebar-section">ÜBERSICHT</div>
+      <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
+      <div class="sidebar-section">KI-TOOLS</div>
+      <div class="nav-item" onclick="showPage('mandantenbrief',this)"><span class="nav-icon">📄</span> Mandantenbrief</div>
+      <div class="nav-item" onclick="showPage('mandantenmail',this)"><span class="nav-icon">✉️</span> Mandanten-Mail</div>
+      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> Akquise-Mail</div>
+      <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> Social Media</div>
+      <div class="nav-item" onclick="showPage('fristen',this)"><span class="nav-icon">📅</span> Fristenmanagement</div>
+      <div class="nav-item" onclick="showPage('bewertung',this)"><span class="nav-icon">⭐</span> Bewertungs-Antwort</div>
+      <div class="nav-item" onclick="showPage('analyse',this)"><span class="nav-icon">🎯</span> Mandanten-Analyse</div>
+      <div class="nav-item" onclick="showPage('newsletter',this)"><span class="nav-icon">📰</span> Newsletter</div>
+      <div class="sidebar-section">FREI</div>
+      <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> Freier Generator</div>
+      <div class="logout-nav">
+        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> Ausloggen</div>
+      </div>
+    </div>
+    <div class="main">
+
+      <div class="page active" id="page-dashboard">
+        <div class="profile-bar">
+          <div class="profile-bar-title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
+          <div class="profile-grid">
+            <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Dr. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Kanzleiname</label><input class="form-input" id="profile-kanzlei" placeholder="z.B. Mustermann Steuerberatung" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;">Spezialisierung</label><input class="form-input" id="profile-spez" placeholder="z.B. GmbH, Freiberufler, Immobilien" style="font-size:13px;padding:10px 14px;"></div>
+          </div>
+          <button class="profile-save-btn" onclick="saveProfile()">💾 Profil speichern</button>
+          <span class="profile-saved" id="profile-saved">✓ Gespeichert</span>
+        </div>
+        <div class="page-header"><div class="page-tag">🏢 ENTERPRISE</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">9 KI-Tools für deine Kanzlei – unbegrenzte Generierungen, keine Tageslimits.</div></div>
+        <div class="dash-grid">
+          <div class="dash-card"><div class="dash-num">9</div><div class="dash-label">KI-TOOLS</div></div>
+          <div class="dash-card"><div class="dash-num">∞</div><div class="dash-label">UNBEGRENZT</div></div>
+          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label">ERSPARNIS/WOCHE</div></div>
+          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
+        </div>
+        <div class="tool-cards">
+          <div class="tool-card" onclick="showPage('mandantenbrief',null)"><div class="tool-card-icon">📄</div><div class="tool-card-title">Mandantenbrief</div><div class="tool-card-desc">Professionelle Briefe an Mandanten</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('mandantenmail',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title">Mandanten-Mail</div><div class="tool-card-desc">E-Mails für jede Situation</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title">Akquise-Mail</div><div class="tool-card-desc">Neue Mandanten gewinnen</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title">Social Media</div><div class="tool-card-desc">LinkedIn & Instagram Posts</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('fristen',null)"><div class="tool-card-icon">📅</div><div class="tool-card-title">Fristenmanagement</div><div class="tool-card-desc">Fristenhinweise automatisch erstellen</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('bewertung',null)"><div class="tool-card-icon">⭐</div><div class="tool-card-title">Bewertungs-Antwort</div><div class="tool-card-desc">Auf Google-Rezensionen reagieren</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('analyse',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title">Mandanten-Analyse</div><div class="tool-card-desc">Mandantenpotenzial bewerten</div><div class="card-link">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('newsletter',null)"><div class="tool-card-icon">📰</div><div class="tool-card-title">Newsletter</div><div class="tool-card-desc">Steuer-Newsletter für Mandanten</div><div class="card-link">→ Tool öffnen</div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-mandantenbrief">
+        <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Mandantenbrief Generator</div><div class="page-desc">Professionelle Briefe für jeden Anlass.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Anlass</label><select class="form-select" id="mb-anlass"><option>Jahresabschluss übermitteln</option><option>Steuerbescheid erläutern</option><option>Honorarrechnung begleiten</option><option>Neue Steuergesetze informieren</option><option>Frist-Erinnerung</option><option>Vollmacht / Unterlagen anfordern</option><option>Mandatskündigung</option></select></div>
+            <div class="form-group"><label class="form-label">Mandantenname / Firma</label><input class="form-input" id="mb-mandant" placeholder="z.B. Familie Müller / Müller GmbH"></div>
+            <div class="form-group"><label class="form-label">Anrede</label><select class="form-select" id="mb-anrede"><option>Sehr geehrte/r Herr/Frau [Name]</option><option>Sehr geehrte Damen und Herren</option><option>Liebe/r [Vorname]</option></select></div>
+            <div class="form-group"><label class="form-label">Details / Besonderheiten</label><textarea class="form-textarea" id="mb-details" placeholder="z.B. Erstattung von 2.400€, Frist für ESt 31.05..."></textarea></div>
+            <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="mb-ton"><option>Professionell & klar</option><option>Freundlich & persönlich</option><option>Förmlich & seriös</option></select></div>
+            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" onclick="generateMandantenbrief()">⚡ Brief generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-mb" onclick="copyResult('mb-result','copy-mb')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('mb-result')">PDF ↓</button><button class="edit-btn" id="edit-mb-result" onclick="toggleEdit('mb-result','edit-mb-result')">✏ Bearbeiten</button></div></div><div id="mb-result"><div class="result-placeholder"><div class="placeholder-icon">📄</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-mandantenmail">
+        <div class="page-header"><div class="page-tag">TOOL 2 VON 8</div><div class="page-title">Mandanten-Mail Generator</div><div class="page-desc">E-Mails für jede Situation in der Kanzlei.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Situation</label><select class="form-select" id="mm-situation"><option>Termin vereinbaren</option><option>Unterlagen anfordern</option><option>Rückfrage stellen</option><option>Ergebnis mitteilen</option><option>Frist erinnern</option><option>Mandatsübernahme begrüßen</option><option>Aufgaben zurücksenden</option></select></div>
+            <div class="form-group"><label class="form-label">Mandantenname</label><input class="form-input" id="mm-name" placeholder="z.B. Herr / Frau Müller"></div>
+            <div class="form-group"><label class="form-label">Kontext / Details</label><textarea class="form-textarea" id="mm-kontext" placeholder="z.B. Jahresabschluss 2023, fehlende Belege..."></textarea></div>
+            <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="mm-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Sachlich & direkt</option></select></div>
+            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" onclick="generateMandantenmail()">⚡ E-Mail generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-mm" onclick="copyResult('mm-result','copy-mm')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('mm-result')">PDF ↓</button><button class="edit-btn" id="edit-mm-result" onclick="toggleEdit('mm-result','edit-mm-result')">✏ Bearbeiten</button></div></div><div id="mm-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-akquise">
+        <div class="page-header"><div class="page-tag">TOOL 3 VON 8</div><div class="page-title">Akquise-Mail Generator</div><div class="page-desc">Neue Mandanten professionell gewinnen.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Zielgruppe</label><select class="form-select" id="ak-ziel"><option>Selbstständige & Freiberufler</option><option>GmbH-Gründer</option><option>Immobilieninvestoren</option><option>E-Commerce-Händler</option><option>Ärzte & Heilberufe</option><option>Handwerksbetriebe</option></select></div>
+            <div class="form-group"><label class="form-label">Anlass / Aufhänger</label><select class="form-select" id="ak-anlass"><option>Kostenloses Erstgespräch</option><option>Neue Steueränderungen</option><option>Jahreswechsel-Angebot</option><option>Spezialisierung vorstellen</option><option>Kanzlei-Eröffnung / Übernahme</option></select></div>
+            <div class="form-group"><label class="form-label">Kanzleiname</label><input class="form-input" id="ak-kanzlei" placeholder="z.B. Mustermann Steuerberatung"></div>
+            <div class="form-group"><label class="form-label">Deine Spezialisierung / USP</label><textarea class="form-textarea" id="ak-usp" placeholder="z.B. Spezialisiert auf digitale Unternehmen, 15 Jahre Erfahrung..."></textarea></div>
+            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" onclick="generateAkquise()">⚡ Akquise-Mail generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-ak" onclick="copyResult('ak-result','copy-ak')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('ak-result')">PDF ↓</button><button class="edit-btn" id="edit-ak-result" onclick="toggleEdit('ak-result','edit-ak-result')">✏ Bearbeiten</button></div></div><div id="ak-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deine Akquise-Mail</div></div></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-social">
+        <div class="page-header"><div class="page-tag">TOOL 4 VON 8</div><div class="page-title">Social Media Generator</div><div class="page-desc">Posts für LinkedIn, Instagram & Xing.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Plattform</label><select class="form-select" id="soc-plattform"><option>LinkedIn</option><option>Instagram</option><option>Xing</option><option>Facebook</option></select></div>
+            <div class="form-group"><label class="form-label">Content-Typ</label><select class="form-select" id="soc-typ"><option>Steuer-Tipp des Monats</option><option>Gesetzes-Update erklären</option><option>Mandanten-Erfolg (anonym)</option><option>Team / Kanzlei vorstellen</option><option>Branche / Nische vorstellen</option><option>Häufige Fehler aufzeigen</option></select></div>
+            <div class="form-group"><label class="form-label">Thema / Details</label><textarea class="form-textarea" id="soc-details" placeholder="z.B. Homeoffice-Pauschale 2024 erhöht..."></textarea></div>
+            <div class="form-group"><label class="form-label">Kanzleiname</label><input class="form-input" id="soc-kanzlei" placeholder="z.B. Mustermann Steuerberatung"></div>
+            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-soc" onclick="copyResult('soc-result','copy-soc')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('soc-result')">PDF ↓</button><button class="edit-btn" id="edit-soc-result" onclick="toggleEdit('soc-result','edit-soc-result')">✏ Bearbeiten</button></div></div><div id="soc-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-fristen">
+        <div class="page-header"><div class="page-tag">TOOL 5 VON 8</div><div class="page-title">Fristenmanagement</div><div class="page-desc">Professionelle Fristenhinweise für Mandanten automatisch erstellen.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Art der Frist</label><select class="form-select" id="fr-typ"><option>Steuererklärung abgeben</option><option>Umsatzsteuervoranmeldung</option><option>Lohnsteueranmeldung</option><option>Jahresabschluss einreichen</option><option>Unterlagen einreichen</option><option>Einspruchsfrist</option><option>Gewerbesteuererklärung</option></select></div>
+            <div class="form-group"><label class="form-label">Mandantenname</label><input class="form-input" id="fr-mandant" placeholder="z.B. Herr / Frau Müller"></div>
+            <div class="form-group"><label class="form-label">Fristdatum</label><input class="form-input" id="fr-datum" placeholder="z.B. 31. Mai 2025"></div>
+            <div class="form-group"><label class="form-label">Besonderheiten</label><textarea class="form-textarea" id="fr-details" placeholder="z.B. Verlängerung wurde beantragt, 2 Wochen Vorlauf benötigt..."></textarea></div>
+            <div style="margin-bottom:16px;"><label class="form-label">Ton</label><select class="form-select" id="fr-ton"><option>Freundlich erinnernd</option><option>Dringend & klar</option><option>Sachlich & direkt</option></select></div>
+            <button class="generate-btn" onclick="generateFristen()">⚡ Fristenhinweis generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-fr" onclick="copyResult('fr-result','copy-fr')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('fr-result')">PDF ↓</button><button class="edit-btn" id="edit-fr-result" onclick="toggleEdit('fr-result','edit-fr-result')">✏ Bearbeiten</button></div></div><div id="fr-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Fülle die Details aus und generiere den Fristenhinweis</div></div></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-bewertung">
+        <div class="page-header"><div class="page-tag">TOOL 6 VON 8</div><div class="page-title">Bewertungs-Antwort Generator</div><div class="page-desc">Professionell auf Google- und andere Rezensionen reagieren.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Bewertungstyp</label><select class="form-select" id="bew-typ"><option>Positive Bewertung (4-5 Sterne)</option><option>Neutrale Bewertung (3 Sterne)</option><option>Negative Bewertung (1-2 Sterne)</option><option>Ungerechtfertigte Kritik</option></select></div>
+            <div class="form-group"><label class="form-label">Bewertungstext</label><textarea class="form-textarea" id="bew-text" placeholder="z.B. Sehr lange Wartezeiten, kaum erreichbar..."></textarea></div>
+            <div class="form-group"><label class="form-label">Kanzleiname</label><input class="form-input" id="bew-kanzlei" placeholder="z.B. Mustermann Steuerberatung"></div>
+            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (2-3 Sätze)" selected>Kurz – 2-3 Sätze</option><option value="Mittel (4-5 Sätze)">Mittel – 4-5 Sätze</option><option value="Lang (6-8 Sätze)">Lang – 6-8 Sätze</option></select></div>
+            <button class="generate-btn" onclick="generateBewertung()">⚡ Antwort generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-bew" onclick="copyResult('bew-result','copy-bew')">Kopieren</button><button class="edit-btn" id="edit-bew-result" onclick="toggleEdit('bew-result','edit-bew-result')">✏ Bearbeiten</button></div></div><div id="bew-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Füge die Bewertung ein und generiere deine Antwort</div></div></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-analyse">
+        <div class="page-header"><div class="page-tag">TOOL 7 VON 8</div><div class="page-title">Mandanten-Analyse</div><div class="page-desc">Mandantenpotenzial & Komplexität einschätzen.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Mandantentyp</label><select class="form-select" id="an-typ"><option>Privatperson</option><option>Freiberufler / Einzelunternehmer</option><option>GmbH / UG</option><option>GbR / OHG</option><option>Verein</option><option>Stiftung</option></select></div>
+            <div class="form-group"><label class="form-label">Jahresumsatz (ca.)</label><select class="form-select" id="an-umsatz"><option>unter 50.000€</option><option>50.000 – 200.000€</option><option>200.000 – 1 Mio. €</option><option>über 1 Mio. €</option><option>nicht bekannt</option></select></div>
+            <div class="form-group"><label class="form-label">Bisherige Steuerstruktur</label><select class="form-select" id="an-struktur"><option>Einfach – ein Steuertyp</option><option>Mittel – mehrere Steuerarten</option><option>Komplex – Holding, Immobilien, International</option></select></div>
+            <div class="form-group"><label class="form-label">Erster Eindruck / Besonderheiten</label><textarea class="form-textarea" id="an-details" placeholder="z.B. Sehr organisiert, pünktlich, klare Fragen..."></textarea></div>
+            <button class="generate-btn" onclick="generateAnalyse()">⚡ Mandanten analysieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-an" onclick="copyResult('an-result','copy-an')">Kopieren</button><button class="edit-btn" id="edit-an-result" onclick="toggleEdit('an-result','edit-an-result')">✏ Bearbeiten</button></div></div><div id="an-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Mandanten</div></div></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-newsletter">
+        <div class="page-header"><div class="page-tag">TOOL 8 VON 8</div><div class="page-title">Newsletter Generator</div><div class="page-desc">Steuer-Newsletter für deine Mandanten.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Ausgabe / Zeitraum</label><input class="form-input" id="nl-ausgabe" placeholder="z.B. Quartal 2/2025 · April – Juni 2025"></div>
+            <div class="form-group"><label class="form-label">Hauptthema</label><select class="form-select" id="nl-thema"><option>Steueränderungen aktuell</option><option>Homeoffice & Arbeit</option><option>GmbH & Unternehmenssteuer</option><option>Immobilien & Steuern</option><option>Jahresende-Checkliste</option><option>Erbschaft & Schenkung</option></select></div>
+            <div class="form-group"><label class="form-label">Konkrete Inhalte / Neuigkeiten</label><textarea class="form-textarea" id="nl-inhalte" placeholder="z.B. Homeoffice-Pauschale auf 1.260€ erhöht, neue GmbH-Regeln..."></textarea></div>
+            <div class="form-group"><label class="form-label">Kanzleiname</label><input class="form-input" id="nl-kanzlei" placeholder="z.B. Mustermann Steuerberatung"></div>
+            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (3-4 Abschnitte, max. 200 Wörter)">Kurz – 3-4 Abschnitte</option><option value="Mittel (5-6 Abschnitte, max. 350 Wörter)" selected>Mittel – 5-6 Abschnitte</option><option value="Lang (7-8 Abschnitte, max. 500 Wörter)">Lang – 7-8 Abschnitte</option></select></div>
+            <button class="generate-btn" onclick="generateNewsletter()">⚡ Newsletter generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-nl" onclick="copyResult('nl-result','copy-nl')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('nl-result')">PDF ↓</button><button class="edit-btn" id="edit-nl-result" onclick="toggleEdit('nl-result','edit-nl-result')">✏ Bearbeiten</button></div></div><div id="nl-result"><div class="result-placeholder"><div class="placeholder-icon">📰</div><div>Gib die Details ein und generiere deinen Newsletter</div></div></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-frei">
+        <div class="page-header"><div class="page-tag">FREIER GENERATOR</div><div class="page-title">Freier KI-Generator</div><div class="page-desc">Schreibe deinen eigenen Prompt – die KI antwortet direkt.</div></div>
+        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label">Dein Prompt / Aufgabe</label><p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen Kanzlei-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Erstelle eine professionelle Absage an einen potentiellen Mandanten..."></textarea></div>
+            <div class="form-group"><label class="form-label">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Meine Kanzlei heißt..."></textarea></div>
+            <div class="form-group"><label class="form-label">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Kurz & prägnant</option><option>Ausführlich & detailliert</option></select></div>
+            <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="zyn.js?v=9"></script>
+<script>
+const API = "https://zyntevo-tool.jan-6a7.workers.dev";
+const ENT_ID_KEY = "zyntevo_ent_stb_id";
+const ENT_UID_KEY = "zyntevo_ent_stb_uid";
+const PROFILE_KEY = "zynProfileSTB";
+let entId = null;
+let entUserId = null;
+
+window.addEventListener('load', function() {
+  applyProfile();
+  const savedId = localStorage.getItem(ENT_ID_KEY);
+  const savedUid = localStorage.getItem(ENT_UID_KEY);
+  if (savedId && savedUid) { entId = savedId; entUserId = savedUid; showApp(); }
+  else { document.getElementById('auth-screen').style.display = 'flex'; }
+});
+
+async function doEntLogin() {
+  const code = document.getElementById('ent-code').value.trim().toUpperCase();
+  const errEl = document.getElementById('ent-error');
+  errEl.style.display = 'none';
+  if (!code) { errEl.textContent = 'Bitte Enterprise-Code eingeben.'; errEl.style.display = 'block'; return; }
+  const btn = document.querySelector('.auth-btn');
+  btn.disabled = true; btn.textContent = 'Prüfe Code...';
+  try {
+    const res = await fetch(`${API}/api/enterprise/login`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ code }) });
+    const data = await res.json();
+    if (data.success) {
+      entId = data.enterpriseId; entUserId = String(data.userId);
+      localStorage.setItem(ENT_ID_KEY, entId); localStorage.setItem(ENT_UID_KEY, entUserId);
+      showApp();
+    } else {
+      errEl.textContent = data.error || 'Ungültiger Code.'; errEl.style.display = 'block';
+      btn.disabled = false; btn.textContent = '⚡ Zugang freischalten →';
+    }
+  } catch(e) {
+    errEl.textContent = 'Verbindungsfehler.'; errEl.style.display = 'block';
+    btn.disabled = false; btn.textContent = '⚡ Zugang freischalten →';
+  }
+}
+
+function showApp() { document.getElementById('auth-screen').style.display = 'none'; document.getElementById('app').style.display = 'block'; }
+function doLogout() { localStorage.removeItem(ENT_ID_KEY); localStorage.removeItem(ENT_UID_KEY); entId = null; entUserId = null; document.getElementById('auth-screen').style.display = 'flex'; document.getElementById('app').style.display = 'none'; document.getElementById('ent-code').value = ''; document.querySelector('.auth-btn').disabled = false; document.querySelector('.auth-btn').textContent = '⚡ Zugang freischalten →'; }
+
+function applyProfile() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  ['name','kanzlei','strasse','stadt','telefon','spez'].forEach(f => { const el = document.getElementById('profile-' + f); if (el && p[f]) el.value = p[f]; });
+}
+function saveProfile() {
+  const p = {};
+  ['name','kanzlei','strasse','stadt','telefon','spez'].forEach(f => { const el = document.getElementById('profile-' + f); if (el) p[f] = el.value; });
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+  const s = document.getElementById('profile-saved'); s.style.display = 'inline'; setTimeout(() => s.style.display = 'none', 2000);
+}
+
+function _ll() { var m={de:'auf Deutsch',en:'in English',fr:'en français'}; return m[window.ZYN_LANG?window.ZYN_LANG.get():'de']||'auf Deutsch'; }
+
+async function callAI(prompt) {
+  const lang = window.ZYN_LANG ? window.ZYN_LANG.get() : 'de';
+  const r = await fetch(`${API}/api/enterprise/query`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ prompt, enterpriseId: entId, userId: parseInt(entUserId), language: lang }) });
+  if (r.status === 401) { doLogout(); throw new Error('Session abgelaufen.'); }
+  if (!r.ok) throw new Error('Fehler ' + r.status);
+  const d = await r.json();
+  if (d.content && d.content[0] && d.content[0].text) return d.content[0].text;
+  throw new Error(d.error ? (typeof d.error === 'object' ? d.error.message : d.error) : 'Unbekannter Fehler.');
+}
+
+function setLoading(id) { document.getElementById(id).innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Text...</div>'; }
+async function run(id, prompt) {
+  setLoading(id);
+  try { const txt = await callAI(prompt + ' Wichtig: Kein Markdown. Keine Sternchen. Nur normaler Text.'); document.getElementById(id).innerHTML = '<div class="result-text">' + txt + '</div>'; }
+  catch(e) { document.getElementById(id).innerHTML = '<div class="result-text" style="color:#EF4444">' + e.message + '</div>'; }
+}
+
+async function generateMandantenbrief() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('mb-result', `Professioneller Mandantenbrief einer Steuerberatungskanzlei ${_ll()}. Kanzlei: ${p.kanzlei||''}, Berater: ${p.name||''}. Anlass: ${document.getElementById('mb-anlass').value}, Mandant: ${document.getElementById('mb-mandant').value||''}, Anrede: ${document.getElementById('mb-anrede').value}, Details: ${document.getElementById('mb-details').value||''}, Ton: ${document.getElementById('mb-ton').value}. Format: vollständiger Brief mit Datum-Platzhalter, Anrede, Text, freundlichem Abschluss, Grußformel. Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateMandantenmail() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('mm-result', `E-Mail einer Steuerberatungskanzlei ${_ll()}. Kanzlei: ${p.kanzlei||''}, Berater: ${p.name||''}. Situation: ${document.getElementById('mm-situation').value}, Mandant: ${document.getElementById('mm-name').value||''}, Kontext: ${document.getElementById('mm-kontext').value||''}, Ton: ${document.getElementById('mm-ton').value}. Format: Betreff, Anrede, Text, Grußformel. Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateAkquise() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('ak-result', `Akquise-Mail einer Steuerberatungskanzlei ${_ll()}. Kanzlei: ${document.getElementById('ak-kanzlei').value||p.kanzlei||''}, USP: ${document.getElementById('ak-usp').value||p.spez||''}, Zielgruppe: ${document.getElementById('ak-ziel').value}, Anlass: ${document.getElementById('ak-anlass').value}. Überzeugend, professionell, klarer CTA. Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateSocial() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('soc-result', `${document.getElementById('soc-plattform').value}-Post einer Steuerberatungskanzlei ${_ll()}. Kanzlei: ${document.getElementById('soc-kanzlei').value||p.kanzlei||''}, Typ: ${document.getElementById('soc-typ').value}, Details: ${document.getElementById('soc-details').value||''}. Starker Hook, Inhalt, CTA, Hashtags.`);
+}
+async function generateFristen() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('fr-result', `Fristenhinweis einer Steuerberatungskanzlei ${_ll()}. Kanzlei: ${p.kanzlei||''}, Berater: ${p.name||''}. Art: ${document.getElementById('fr-typ').value}, Mandant: ${document.getElementById('fr-mandant').value||''}, Datum: ${document.getElementById('fr-datum').value||''}, Details: ${document.getElementById('fr-details').value||''}, Ton: ${document.getElementById('fr-ton').value}. Format: E-Mail oder Brief, klar und handlungsauffordernd.`);
+}
+async function generateBewertung() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('bew-result', `Professionelle Antwort auf Google-Bewertung ${_ll()} für Kanzlei: ${document.getElementById('bew-kanzlei').value||p.kanzlei||''}. Typ: ${document.getElementById('bew-typ').value}. Bewertungstext: "${document.getElementById('bew-text').value||''}". Antwort: kurz, professionell, DSGVO-konform (keine Details zu Mandanten). Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateAnalyse() {
+  run('an-result', `Analysiere potenziellen Mandanten ${_ll()} für Steuerberatungskanzlei. Typ: ${document.getElementById('an-typ').value}, Umsatz: ${document.getElementById('an-umsatz').value}, Struktur: ${document.getElementById('an-struktur').value}, Details: ${document.getElementById('an-details').value||''}. Gib: 1) Attraktivitäts-Score 1-10, 2) Komplexitätsgrad, 3) Erwartetes Jahreshonorar (grobe Schätzung), 4) Empfehlung (annehmen/ablehnen/Konditionen), 5) Nächster Schritt.`);
+}
+async function generateNewsletter() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('nl-result', `Mandanten-Newsletter einer Steuerberatungskanzlei ${_ll()}. Kanzlei: ${document.getElementById('nl-kanzlei').value||p.kanzlei||''}, Ausgabe: ${document.getElementById('nl-ausgabe').value||''}, Hauptthema: ${document.getElementById('nl-thema').value}, Inhalte: ${document.getElementById('nl-inhalte').value||''}. Professionell, klar verständlich für Nicht-Steuerexperten, freundlicher Ton. Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateFrei() {
+  const prompt = document.getElementById('frei-prompt').value;
+  if (!prompt.trim()) { alert('Bitte gib einen Prompt ein.'); return; }
+  run('frei-result', `${prompt}\n\nKontext: ${document.getElementById('frei-kontext').value||'keiner'}\nStil: ${document.getElementById('frei-stil').value}`);
+}
+
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (el) el.classList.add('active');
+}
+function copyResult(resultId, btnId) {
+  const el = document.getElementById(resultId); const resultDiv = el.querySelector('.result-text') || el; const plainText = resultDiv.innerText;
+  try { const htmlText = plainText.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').split('\n\n').map(p=>`<p style="margin:0 0 14px 0;font-family:Arial,sans-serif;font-size:13px;line-height:1.8;">${p.replace(/\n/g,'<br>')}</p>`).join('');
+    navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([htmlText],{type:'text/html'}),'text/plain':new Blob([plainText],{type:'text/plain'})})]).then(()=>{const btn=document.getElementById(btnId);btn.textContent='Kopiert ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Kopieren';btn.classList.remove('copied');},2000);});
+  } catch(e) { navigator.clipboard.writeText(plainText).then(()=>{const btn=document.getElementById(btnId);btn.textContent='Kopiert ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Kopieren';btn.classList.remove('copied');},2000);}); }
+}
+function downloadPDF(resultId) {
+  const el = document.getElementById(resultId); const resultDiv = el.querySelector('.result-text') || el; const text = resultDiv.innerText;
+  if (!text || text.includes('Fülle') || text.includes('Wähle') || text.includes('Gib')) { alert('Bitte zuerst einen Text generieren.'); return; }
+  const win = window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Dokument</title><style>@page{margin:2cm;}body{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:20px 40px;color:#1a1a1a;line-height:1.8;}.briefkopf{min-height:120px;border-bottom:1px solid #ddd;margin-bottom:32px;padding-bottom:16px;}.briefkopf-hint{color:#bbb;font-size:11px;font-style:italic;}pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:13px;line-height:1.9;margin:0;}.footer{margin-top:48px;padding-top:12px;border-top:1px solid #eee;font-size:10px;color:#bbb;text-align:right;}</style></head><body><div class="briefkopf"><span class="briefkopf-hint">[ Hier Briefkopf / Logo der Kanzlei einfügen ]</span></div><pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><div class="footer">Erstellt mit ZYNTEVO Enterprise · zyntevo.de</div><script>window.onload=function(){window.print();}<\/script></body></html>`);
+  win.document.close();
+}
+function toggleEdit(resultId, btnId) {
+  const el = document.getElementById(resultId); const rt = el.querySelector('.result-text'); if (!rt) return;
+  const isEdit = rt.contentEditable === 'true'; rt.contentEditable = isEdit ? 'false' : 'true';
+  const btn = document.getElementById(btnId); btn.textContent = isEdit ? '✏ Bearbeiten' : '✓ Fertig'; btn.classList.toggle('active', !isEdit);
+}
+</script>
+</body>
+</html>
