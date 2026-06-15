@@ -439,6 +439,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 .demo-form-field select:focus,
 .demo-form-field input:focus { outline: none; border-color: var(--gold); }
+.demo-form-field .demo-val {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+  border-radius: 10px; font-size: 14px; font-family: inherit; color: var(--text);
+  background: var(--bg-white); box-sizing: border-box;
+}
 .demo-output-card {
   background: var(--bg-white);
   border: 1.5px solid var(--border-gold); border-radius: var(--radius-lg);
