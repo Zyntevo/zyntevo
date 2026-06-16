@@ -139,14 +139,14 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       <div class="sidebar-section" data-i18n="tool.nav_overview">ÜBERSICHT</div>
       <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
       <div class="sidebar-section" data-i18n="tool.nav_tools">KI-TOOLS</div>
-      <div class="nav-item" onclick="showPage('expose',this)"><span class="nav-icon">🏠</span> Exposé Generator</div>
-      <div class="nav-item" onclick="showPage('email',this)"><span class="nav-icon">✉️</span> E-Mail Generator</div>
-      <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> Social Media</div>
-      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> Akquise-Brief</div>
-      <div class="nav-item" onclick="showPage('markt',this)"><span class="nav-icon">📊</span> Marktbericht</div>
-      <div class="nav-item" onclick="showPage('kaeufer',this)"><span class="nav-icon">🎯</span> Käufer-Analyse</div>
-      <div class="nav-item" onclick="showPage('verhandlung',this)"><span class="nav-icon">🤝</span> Verhandlungs-Coach</div>
-      <div class="nav-item" onclick="showPage('tiktok',this)"><span class="nav-icon">🎬</span> TikTok Skript</div>
+      <div class="nav-item" onclick="showPage('expose',this)"><span class="nav-icon">🏠</span> <span data-i18n="tool.nav_makler_expose">Exposé Generator</span></div>
+      <div class="nav-item" onclick="showPage('email',this)"><span class="nav-icon">✉️</span> <span data-i18n="tool.nav_makler_email">E-Mail Generator</span></div>
+      <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> <span data-i18n="tool.nav_makler_social">Social Media</span></div>
+      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> <span data-i18n="tool.nav_makler_akquise">Akquise-Brief</span></div>
+      <div class="nav-item" onclick="showPage('markt',this)"><span class="nav-icon">📊</span> <span data-i18n="tool.nav_makler_markt">Marktbericht</span></div>
+      <div class="nav-item" onclick="showPage('kaeufer',this)"><span class="nav-icon">🎯</span> <span data-i18n="tool.nav_makler_kaeufer">Käufer-Analyse</span></div>
+      <div class="nav-item" onclick="showPage('verhandlung',this)"><span class="nav-icon">🤝</span> <span data-i18n="tool.nav_makler_verhandlung">Verhandlungs-Coach</span></div>
+      <div class="nav-item" onclick="showPage('tiktok',this)"><span class="nav-icon">🎬</span> <span data-i18n="tool.nav_makler_tiktok">TikTok Skript</span></div>
       <div class="sidebar-section" data-i18n="tool.nav_free_section">FREI</div>
       <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> Freier Generator</div>
       <div class="logout-nav">
@@ -160,12 +160,12 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="profile-bar">
           <div class="profile-bar-title" data-i18n="tool.profile_title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
           <div class="profile-grid">
-            <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann Immobilien" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_name_lbl">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_office_lbl">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann Immobilien" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_street_lbl">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_city_lbl">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_phone_lbl">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_usp_lbl">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
           </div>
           <button class="profile-save-btn" onclick="saveProfile()" data-i18n="tool.profile_save">💾 Profil speichern</button>
           <span class="profile-saved" id="profile-saved" data-i18n="tool.profile_saved">✓ Gespeichert</span>
@@ -174,12 +174,12 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
           <div class="bausteine-bar-title">🧱 AKTIVE TEXTBAUSTEINE — werden automatisch eingebaut</div>
           <div class="bausteine-list" id="bausteine-list"></div>
         </div>
-        <div class="page-header"><div class="page-tag">🏢 ENTERPRISE</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">9 KI-Tools für dein Team – unbegrenzte Generierungen, keine Tageslimits.</div></div>
+        <div class="page-header"><div class="page-tag">🏢 ENTERPRISE</div><div class="page-title" data-i18n="tool.welcome_title">Dein KI-Cockpit</div><div class="page-desc" data-i18n="tool.dash_desc_makler">9 KI-Tools für dein Team – unbegrenzte Generierungen, keine Tageslimits.</div></div>
         <div class="dash-grid">
-          <div class="dash-card"><div class="dash-num">9</div><div class="dash-label">KI-TOOLS</div></div>
+          <div class="dash-card"><div class="dash-num">9</div><div class="dash-label" data-i18n="tool.dash_tools">KI-TOOLS</div></div>
           <div class="dash-card"><div class="dash-num">∞</div><div class="dash-label">UNBEGRENZT</div></div>
-          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label">ERSPARNIS/WOCHE</div></div>
-          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
+          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label" data-i18n="tool.dash_saving">ERSPARNIS/WOCHE</div></div>
+          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label" data-i18n="tool.dash_avail">VERFÜGBAR</div></div>
         </div>
         <div class="tool-cards">
           <div class="tool-card" onclick="showPage('expose',null)"><div class="tool-card-icon">🏠</div><div class="tool-card-title">Exposé Generator</div><div class="tool-card-desc">Professionelles Exposé in Sekunden</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>

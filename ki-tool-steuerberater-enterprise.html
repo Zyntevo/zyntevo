@@ -122,12 +122,12 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
       <div class="sidebar-section" data-i18n="tool.nav_overview">ÜBERSICHT</div>
       <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
       <div class="sidebar-section" data-i18n="tool.nav_tools">KI-TOOLS</div>
-      <div class="nav-item" onclick="showPage('mandantenbrief',this)"><span class="nav-icon">📄</span> Mandantenbrief</div>
-      <div class="nav-item" onclick="showPage('mandantenmail',this)"><span class="nav-icon">✉️</span> Mandanten-Mail</div>
-      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> Akquise-Mail</div>
+      <div class="nav-item" onclick="showPage('mandantenbrief',this)"><span class="nav-icon">📄</span> <span data-i18n="tool.nav_stb_brief">Mandantenbrief</span></div>
+      <div class="nav-item" onclick="showPage('mandantenmail',this)"><span class="nav-icon">✉️</span> <span data-i18n="tool.nav_stb_mail">Mandanten-Mail</span></div>
+      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> <span data-i18n="tool.nav_stb_akquise">Akquise-Mail</span></div>
       <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> Social Media</div>
       <div class="nav-item" onclick="showPage('fristen',this)"><span class="nav-icon">📅</span> Fristenmanagement</div>
-      <div class="nav-item" onclick="showPage('bewertung',this)"><span class="nav-icon">⭐</span> Bewertungs-Antwort</div>
+      <div class="nav-item" onclick="showPage('bewertung',this)"><span class="nav-icon">⭐</span> <span data-i18n="tool.nav_hw_bewertung">Bewertungs-Antwort</span></div>
       <div class="nav-item" onclick="showPage('analyse',this)"><span class="nav-icon">🎯</span> Mandanten-Analyse</div>
       <div class="nav-item" onclick="showPage('newsletter',this)"><span class="nav-icon">📰</span> Newsletter</div>
       <div class="sidebar-section" data-i18n="tool.nav_free_section">FREI</div>
@@ -142,22 +142,22 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="profile-bar">
           <div class="profile-bar-title" data-i18n="tool.profile_title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
           <div class="profile-grid">
-            <div><label class="form-label" style="font-size:10px;">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Dr. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_name_lbl">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Dr. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Kanzleiname</label><input class="form-input" id="profile-kanzlei" placeholder="z.B. Mustermann Steuerberatung" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
-            <div><label class="form-label" style="font-size:10px;">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_street_lbl">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_city_lbl">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_phone_lbl">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
             <div><label class="form-label" style="font-size:10px;">Spezialisierung</label><input class="form-input" id="profile-spez" placeholder="z.B. GmbH, Freiberufler, Immobilien" style="font-size:13px;padding:10px 14px;"></div>
           </div>
           <button class="profile-save-btn" onclick="saveProfile()" data-i18n="tool.profile_save">💾 Profil speichern</button>
           <span class="profile-saved" id="profile-saved" data-i18n="tool.profile_saved">✓ Gespeichert</span>
         </div>
-        <div class="page-header"><div class="page-tag">🏢 ENTERPRISE</div><div class="page-title">Dein KI-Cockpit</div><div class="page-desc">9 KI-Tools für deine Kanzlei – unbegrenzte Generierungen, keine Tageslimits.</div></div>
+        <div class="page-header"><div class="page-tag">🏢 ENTERPRISE</div><div class="page-title" data-i18n="tool.welcome_title">Dein KI-Cockpit</div><div class="page-desc" data-i18n="tool.dash_desc_stb">9 KI-Tools für deine Kanzlei – unbegrenzte Generierungen, keine Tageslimits.</div></div>
         <div class="dash-grid">
-          <div class="dash-card"><div class="dash-num">9</div><div class="dash-label">KI-TOOLS</div></div>
+          <div class="dash-card"><div class="dash-num">9</div><div class="dash-label" data-i18n="tool.dash_tools">KI-TOOLS</div></div>
           <div class="dash-card"><div class="dash-num">∞</div><div class="dash-label">UNBEGRENZT</div></div>
-          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label">ERSPARNIS/WOCHE</div></div>
-          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label">VERFÜGBAR</div></div>
+          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label" data-i18n="tool.dash_saving">ERSPARNIS/WOCHE</div></div>
+          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label" data-i18n="tool.dash_avail">VERFÜGBAR</div></div>
         </div>
         <div class="tool-cards">
           <div class="tool-card" onclick="showPage('mandantenbrief',null)"><div class="tool-card-icon">📄</div><div class="tool-card-title">Mandantenbrief</div><div class="tool-card-desc">Professionelle Briefe an Mandanten</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
