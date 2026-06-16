@@ -157,7 +157,7 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
         <div class="page-header"><div class="page-tag">🏢 ENTERPRISE</div><div class="page-title" data-i18n="tool.welcome_title">Dein KI-Cockpit</div><div class="page-desc" data-i18n="tool.dash_desc_handwerker">9 KI-Tools für dein Team – unbegrenzte Generierungen, keine Tageslimits.</div></div>
         <div class="dash-grid">
           <div class="dash-card"><div class="dash-num">9</div><div class="dash-label" data-i18n="tool.dash_tools">KI-TOOLS</div></div>
-          <div class="dash-card"><div class="dash-num">∞</div><div class="dash-label">UNBEGRENZT</div></div>
+          <div class="dash-card"><div class="dash-num">∞</div><div class="dash-label" data-i18n="tool.ent_unlimited">UNBEGRENZT</div></div>
           <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label" data-i18n="tool.dash_saving">ERSPARNIS/WOCHE</div></div>
           <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label" data-i18n="tool.dash_avail">VERFÜGBAR</div></div>
         </div>
@@ -175,15 +175,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-angebot">
         <div class="page-header"><div class="page-tag">TOOL 1 VON 8</div><div class="page-title">Angebot Generator</div><div class="page-desc">Professionelles Angebot für jeden Auftrag.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Auftragsart</label><select class="form-select" id="angebot-typ"><option>Renovierung / Sanierung</option><option>Neubau / Installation</option><option>Reparatur / Instandhaltung</option><option>Wartungsvertrag</option><option>Gutachten / Beratung</option></select></div>
-            <div class="form-group"><label class="form-label">Kundenname</label><input class="form-input" id="angebot-kunde" placeholder="z.B. Familie Müller / Firma XY"></div>
-            <div class="form-group"><label class="form-label">Leistungsbeschreibung</label><textarea class="form-textarea" id="angebot-details" placeholder="z.B. Komplette Elektroinstallation EFH, 3 Stockwerke..."></textarea></div>
-            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="angebot-betrieb" placeholder="z.B. Mustermann Elektro GmbH"></div>
-            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
-            <button class="generate-btn" onclick="generateAngebot()">⚡ Angebot generieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_auftragsart">Auftragsart</label><select class="form-select" id="angebot-typ"><option>Renovierung / Sanierung</option><option>Neubau / Installation</option><option>Reparatur / Instandhaltung</option><option>Wartungsvertrag</option><option>Gutachten / Beratung</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_kundenname">Kundenname</label><input class="form-input" id="angebot-kunde" placeholder="z.B. Familie Müller / Firma XY"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_leistungsbeschreibung">Leistungsbeschreibung</label><textarea class="form-textarea" id="angebot-details" placeholder="z.B. Komplette Elektroinstallation EFH, 3 Stockwerke..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_hw_name_betrieb">Dein Name / Betrieb</label><input class="form-input" id="angebot-betrieb" placeholder="z.B. Mustermann Elektro GmbH"></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_angebot" onclick="generateAngebot()">⚡ Angebot generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-angebot" onclick="copyResult('angebot-result','copy-angebot')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('angebot-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-angebot-result" onclick="toggleEdit('angebot-result','edit-angebot-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="angebot-result"><div class="result-placeholder"><div class="placeholder-icon">📋</div><div>Fülle das Formular aus und klick auf Generieren</div></div></div></div>
         </div>
@@ -191,15 +191,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-email">
         <div class="page-header"><div class="page-tag">TOOL 2 VON 8</div><div class="page-title">E-Mail Generator</div><div class="page-desc">Fertige Mails für jede Situation im Handwerksbetrieb.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Situation</label><select class="form-select" id="email-situation"><option>Auftrag bestätigen</option><option>Terminverschiebung mitteilen</option><option>Nachfassen nach Angebot</option><option>Fertigstellung melden</option><option>Rechnung begleiten</option><option>Mängelrüge beantworten</option><option>Folgeauftrag anfragen</option></select></div>
-            <div class="form-group"><label class="form-label">Kundenname</label><input class="form-input" id="email-name" placeholder="z.B. Herr Müller"></div>
-            <div class="form-group"><label class="form-label">Kontext / Details</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. Badezimmersanierung, vereinbarter Termin war 15.06..."></textarea></div>
-            <div class="form-group"><label class="form-label">Ton</label><select class="form-select" id="email-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
-            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
-            <button class="generate-btn" onclick="generateEmail()">⚡ E-Mail generieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_situation">Situation</label><select class="form-select" id="email-situation"><option>Auftrag bestätigen</option><option>Terminverschiebung mitteilen</option><option>Nachfassen nach Angebot</option><option>Fertigstellung melden</option><option>Rechnung begleiten</option><option>Mängelrüge beantworten</option><option>Folgeauftrag anfragen</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_kundenname">Kundenname</label><input class="form-input" id="email-name" placeholder="z.B. Herr Müller"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mm_kontext">Kontext / Details</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. Badezimmersanierung, vereinbarter Termin war 15.06..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ton">Ton</label><select class="form-select" id="email-ton"><option>Professionell & freundlich</option><option>Persönlich & warm</option><option>Förmlich & seriös</option></select></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_email" onclick="generateEmail()">⚡ E-Mail generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div>Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
         </div>
@@ -207,15 +207,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-social">
         <div class="page-header"><div class="page-tag">TOOL 3 VON 8</div><div class="page-title">Social Media Generator</div><div class="page-desc">Posts für Instagram, Facebook & TikTok.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>Facebook</option><option>TikTok Caption</option><option>LinkedIn</option></select></div>
-            <div class="form-group"><label class="form-label">Content-Typ</label><select class="form-select" id="social-typ"><option>Vorher/Nachher Projekt</option><option>Tipp für Hausbesitzer</option><option>Behind the Scenes</option><option>Kundenstimme</option><option>Team vorstellen</option><option>Angebot / Aktion</option></select></div>
-            <div class="form-group"><label class="form-label">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Haben heute ein Badezimmer komplett renoviert..."></textarea></div>
-            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="social-name" placeholder="z.B. Mustermann Elektro GmbH"></div>
-            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
-            <button class="generate-btn" onclick="generateSocial()">⚡ Post generieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_plattform">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>Facebook</option><option>TikTok Caption</option><option>LinkedIn</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_content_typ">Content-Typ</label><select class="form-select" id="social-typ"><option>Vorher/Nachher Projekt</option><option>Tipp für Hausbesitzer</option><option>Behind the Scenes</option><option>Kundenstimme</option><option>Team vorstellen</option><option>Angebot / Aktion</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_details_thema">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Haben heute ein Badezimmer komplett renoviert..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_hw_name_betrieb">Dein Name / Betrieb</label><input class="form-input" id="social-name" placeholder="z.B. Mustermann Elektro GmbH"></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_post" onclick="generateSocial()">⚡ Post generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div>Wähle Plattform und Content-Typ</div></div></div></div>
         </div>
@@ -223,16 +223,16 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-akquise">
         <div class="page-header"><div class="page-tag">TOOL 4 VON 8</div><div class="page-title">Akquise-Brief Generator</div><div class="page-desc">Neukunden professionell anschreiben.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Zielgruppe</label><select class="form-select" id="akquise-ziel"><option>Privathaushalt</option><option>Hausverwaltung</option><option>Gewerbebetrieb</option><option>Neubaugebiet</option><option>Wohnungsbaugesellschaft</option></select></div>
-            <div class="form-group"><label class="form-label">Anlass</label><select class="form-select" id="akquise-anlass"><option>Kostenloser Vor-Ort-Termin</option><option>Saisonangebot</option><option>Spezialisierung vorstellen</option><option>Stammkundenanfrage</option><option>Notfallservice</option></select></div>
-            <div class="form-group"><label class="form-label">Dein Name</label><input class="form-input" id="akquise-name" placeholder="z.B. Max Mustermann"></div>
-            <div class="form-group"><label class="form-label">Dein Betrieb</label><input class="form-input" id="akquise-betrieb" placeholder="z.B. Mustermann GmbH"></div>
-            <div class="form-group"><label class="form-label">Dein Gewerk / USP</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. Elektriker mit 15 Jahren Erfahrung..."></textarea></div>
-            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
-            <button class="generate-btn" onclick="generateAkquise()">⚡ Brief generieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_aq_zielgruppe">Zielgruppe</label><select class="form-select" id="akquise-ziel"><option>Privathaushalt</option><option>Hausverwaltung</option><option>Gewerbebetrieb</option><option>Neubaugebiet</option><option>Wohnungsbaugesellschaft</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_anlass">Anlass</label><select class="form-select" id="akquise-anlass"><option>Kostenloser Vor-Ort-Termin</option><option>Saisonangebot</option><option>Spezialisierung vorstellen</option><option>Stammkundenanfrage</option><option>Notfallservice</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_name">Dein Name</label><input class="form-input" id="akquise-name" placeholder="z.B. Max Mustermann"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_betrieb">Dein Betrieb</label><input class="form-input" id="akquise-betrieb" placeholder="z.B. Mustermann GmbH"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_gewerk_usp">Dein Gewerk / USP</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. Elektriker mit 15 Jahren Erfahrung..."></textarea></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_brief" onclick="generateAkquise()">⚡ Brief generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div>Fülle die Details aus und generiere deinen Brief</div></div></div></div>
         </div>
@@ -240,14 +240,14 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-bewertung">
         <div class="page-header"><div class="page-tag">TOOL 5 VON 8</div><div class="page-title">Bewertungs-Antwort Generator</div><div class="page-desc">Professionell auf Google- und andere Rezensionen reagieren.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Bewertungstyp</label><select class="form-select" id="bew-typ"><option>Positive Bewertung (4-5 Sterne)</option><option>Neutrale Bewertung (3 Sterne)</option><option>Negative Bewertung (1-2 Sterne)</option><option>Ungerechtfertigte Kritik</option></select></div>
-            <div class="form-group"><label class="form-label">Bewertungstext</label><textarea class="form-textarea" id="bew-text" placeholder="z.B. Der Handwerker kam zu spät und hat Schmutz hinterlassen..."></textarea></div>
-            <div class="form-group"><label class="form-label">Dein Betrieb</label><input class="form-input" id="bew-betrieb" placeholder="z.B. Mustermann GmbH"></div>
-            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (2-3 Sätze)" selected>Kurz – 2-3 Sätze</option><option value="Mittel (4-5 Sätze)">Mittel – 4-5 Sätze</option><option value="Lang (6-8 Sätze)">Lang – 6-8 Sätze</option></select></div>
-            <button class="generate-btn" onclick="generateBewertung()">⚡ Antwort generieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_bew_art">Bewertungstyp</label><select class="form-select" id="bew-typ"><option>Positive Bewertung (4-5 Sterne)</option><option>Neutrale Bewertung (3 Sterne)</option><option>Negative Bewertung (1-2 Sterne)</option><option>Ungerechtfertigte Kritik</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_bew_text">Bewertungstext</label><textarea class="form-textarea" id="bew-text" placeholder="z.B. Der Handwerker kam zu spät und hat Schmutz hinterlassen..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_betrieb">Dein Betrieb</label><input class="form-input" id="bew-betrieb" placeholder="z.B. Mustermann GmbH"></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (2-3 Sätze)" selected>Kurz – 2-3 Sätze</option><option value="Mittel (4-5 Sätze)">Mittel – 4-5 Sätze</option><option value="Lang (6-8 Sätze)">Lang – 6-8 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_antwort" onclick="generateBewertung()">⚡ Antwort generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-bewertung" onclick="copyResult('bewertung-result','copy-bewertung')" data-i18n="tool.copy_btn">Kopieren</button><button class="edit-btn" id="edit-bewertung-result" onclick="toggleEdit('bewertung-result','edit-bewertung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="bewertung-result"><div class="result-placeholder"><div class="placeholder-icon">⭐</div><div>Füge die Bewertung ein und generiere deine Antwort</div></div></div></div>
         </div>
@@ -255,14 +255,14 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-kunde">
         <div class="page-header"><div class="page-tag">TOOL 6 VON 8</div><div class="page-title">Kunden-Analyse</div><div class="page-desc">Gute von schwierigen Kunden unterscheiden bevor es zu spät ist.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Erster Eindruck beim Erstkontakt</label><select class="form-select" id="kunde-eindruck"><option>Sehr freundlich & konkret</option><option>Freundlich, etwas vage</option><option>Fordernd von Anfang an</option><option>Sehr preissensibel</option><option>Unentschlossen</option></select></div>
-            <div class="form-group"><label class="form-label">Budget-Klarheit</label><select class="form-select" id="kunde-budget"><option>Budget klar benannt</option><option>Budget unklar aber realistisch</option><option>Budget deutlich zu niedrig</option><option>Kein Budget genannt</option></select></div>
-            <div class="form-group"><label class="form-label">Zeitvorstellung</label><select class="form-select" id="kunde-zeit"><option>Realistischer Zeitplan</option><option>Dringend aber verhandelbar</option><option>Sofort – unrealistisch</option><option>Komplett offen</option></select></div>
-            <div class="form-group"><label class="form-label">Weitere Beobachtungen</label><textarea class="form-textarea" id="kunde-info" placeholder="z.B. Hat bereits 3 andere Angebote eingeholt, sehr kritisch..."></textarea></div>
-            <button class="generate-btn" onclick="generateKunde()">⚡ Kunden analysieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_erster_eindruck_kd">Erster Eindruck beim Erstkontakt</label><select class="form-select" id="kunde-eindruck"><option>Sehr freundlich & konkret</option><option>Freundlich, etwas vage</option><option>Fordernd von Anfang an</option><option>Sehr preissensibel</option><option>Unentschlossen</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_budget_klarheit">Budget-Klarheit</label><select class="form-select" id="kunde-budget"><option>Budget klar benannt</option><option>Budget unklar aber realistisch</option><option>Budget deutlich zu niedrig</option><option>Kein Budget genannt</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_zeitvorstellung">Zeitvorstellung</label><select class="form-select" id="kunde-zeit"><option>Realistischer Zeitplan</option><option>Dringend aber verhandelbar</option><option>Sofort – unrealistisch</option><option>Komplett offen</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_weitere_beobachtungen">Weitere Beobachtungen</label><textarea class="form-textarea" id="kunde-info" placeholder="z.B. Hat bereits 3 andere Angebote eingeholt, sehr kritisch..."></textarea></div>
+            <button class="generate-btn" data-i18n="tool.gen_kunde" onclick="generateKunde()">⚡ Kunden analysieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kunde" onclick="copyResult('kunde-result','copy-kunde')" data-i18n="tool.copy_btn">Kopieren</button><button class="edit-btn" id="edit-kunde-result" onclick="toggleEdit('kunde-result','edit-kunde-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="kunde-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div>Fülle die Informationen aus und analysiere den Kunden</div></div></div></div>
         </div>
@@ -270,15 +270,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-planung">
         <div class="page-header"><div class="page-tag">TOOL 7 VON 8</div><div class="page-title">Auftragsplanung</div><div class="page-desc">Strukturierten Auftragsablauf in Sekunden erstellen.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Art des Auftrags</label><input class="form-input" id="plan-typ" placeholder="z.B. Badezimmersanierung, 12 m²"></div>
-            <div class="form-group"><label class="form-label">Verfügbare Mitarbeiter</label><input class="form-input" id="plan-team" placeholder="z.B. 2 Gesellen + 1 Lehrling"></div>
-            <div class="form-group"><label class="form-label">Geplante Dauer</label><input class="form-input" id="plan-dauer" placeholder="z.B. 5 Arbeitstage"></div>
-            <div class="form-group"><label class="form-label">Besonderheiten / Herausforderungen</label><textarea class="form-textarea" id="plan-details" placeholder="z.B. Altbau, Asbest möglich, Kunde wohnt im Objekt..."></textarea></div>
-            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Punkte)">Kurz – 5-7 Punkte</option><option value="Mittel (10-12 Punkte)" selected>Mittel – 10-12 Punkte</option><option value="Lang (15-20 Punkte, detailliert)">Lang – Detailliert</option></select></div>
-            <button class="generate-btn" onclick="generatePlanung()">⚡ Ablaufplan generieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_art_auftrag">Art des Auftrags</label><input class="form-input" id="plan-typ" placeholder="z.B. Badezimmersanierung, 12 m²"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_mitarbeiter">Verfügbare Mitarbeiter</label><input class="form-input" id="plan-team" placeholder="z.B. 2 Gesellen + 1 Lehrling"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dauer">Geplante Dauer</label><input class="form-input" id="plan-dauer" placeholder="z.B. 5 Arbeitstage"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_besonderheiten">Besonderheiten / Herausforderungen</label><textarea class="form-textarea" id="plan-details" placeholder="z.B. Altbau, Asbest möglich, Kunde wohnt im Objekt..."></textarea></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Punkte)">Kurz – 5-7 Punkte</option><option value="Mittel (10-12 Punkte)" selected>Mittel – 10-12 Punkte</option><option value="Lang (15-20 Punkte, detailliert)">Lang – Detailliert</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_ablaufplan" onclick="generatePlanung()">⚡ Ablaufplan generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-planung" onclick="copyResult('planung-result','copy-planung')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('planung-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-planung-result" onclick="toggleEdit('planung-result','edit-planung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="planung-result"><div class="result-placeholder"><div class="placeholder-icon">📅</div><div>Gib den Auftrag ein und erstelle deinen Ablaufplan</div></div></div></div>
         </div>
@@ -286,15 +286,15 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-tiktok">
         <div class="page-header"><div class="page-tag">TOOL 8 VON 8</div><div class="page-title">TikTok Skript Generator</div><div class="page-desc">Fertige Video-Skripte für dein Handwerk.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Video-Format</label><select class="form-select" id="tt-format"><option>Vorher/Nachher</option><option>Tipp-Video</option><option>Behind the Scenes</div><option>Fehler-Video</option><option>Persönliche Geschichte</option><option>Werkzeug/Produkt-Review</option></select></div>
-            <div class="form-group"><label class="form-label">Thema</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. 3 Dinge die du bei einer Badsanierung beachten musst..."></textarea></div>
-            <div class="form-group"><label class="form-label">Videolänge</label><select class="form-select" id="tt-laenge"><option>30 Sekunden</option><option>45 Sekunden</option><option>60 Sekunden</option></select></div>
-            <div class="form-group"><label class="form-label">Dein Name / Betrieb</label><input class="form-input" id="tt-name" placeholder="z.B. Max – Elektriker München"></div>
-            <div style="margin-bottom:16px;"><label class="form-label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
-            <button class="generate-btn" onclick="generateTikTok()">⚡ Skript generieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_video_format">Video-Format</label><select class="form-select" id="tt-format"><option>Vorher/Nachher</option><option>Tipp-Video</option><option>Behind the Scenes</div><option>Fehler-Video</option><option>Persönliche Geschichte</option><option>Werkzeug/Produkt-Review</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_thema">Thema</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. 3 Dinge die du bei einer Badsanierung beachten musst..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_videolarenge">Videolänge</label><select class="form-select" id="tt-laenge"><option>30 Sekunden</option><option>45 Sekunden</option><option>60 Sekunden</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_hw_name_betrieb">Dein Name / Betrieb</label><input class="form-input" id="tt-name" placeholder="z.B. Max – Elektriker München"></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected>Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_skript" onclick="generateTikTok()">⚡ Skript generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div>Wähle ein Format und generiere dein Skript</div></div></div></div>
         </div>
@@ -302,13 +302,13 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-he
 
       <div class="page" id="page-frei">
         <div class="page-header"><div class="page-tag">FREIER GENERATOR</div><div class="page-title">Freier KI-Generator</div><div class="page-desc">Schreibe deinen eigenen Prompt – die KI antwortet direkt.</div></div>
-        <div class="unlim-bar">✅ Unbegrenzte Generierungen – Enterprise</div>
+        <div class="unlim-bar" data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</div>
         <div class="tool-grid">
           <div class="tool-form">
-            <div class="form-group"><label class="form-label">Dein Prompt / Aufgabe</label><p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage..."></textarea></div>
-            <div class="form-group"><label class="form-label">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Mein Betrieb heißt..."></textarea></div>
-            <div class="form-group"><label class="form-label">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Kurz & prägnant</option><option>Ausführlich & detailliert</option></select></div>
-            <button class="generate-btn" onclick="generateFrei()">⚡ Generieren</button>
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_label">Dein Prompt / Aufgabe</label><p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_kontext">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Mein Betrieb heißt..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_stil">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option>Professionell & sachlich</option><option>Freundlich & persönlich</option><option>Kurz & prägnant</option><option>Ausführlich & detailliert</option></select></div>
+            <button class="generate-btn" data-i18n="tool.free_btn" onclick="generateFrei()">⚡ Generieren</button>
           </div>
           <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')" data-i18n="tool.pdf_btn">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div>Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
         </div>
