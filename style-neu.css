@@ -52,6 +52,7 @@ button { font-family: inherit; cursor: pointer; }
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+  box-shadow: 0 1px 12px rgba(0,0,0,0.06);
   transition: background .3s, box-shadow .3s;
 }
 .nav.scrolled {
