@@ -104,6 +104,12 @@
         .popup-plan-btn.premium { background: linear-gradient(135deg,#D4AF37,#B8962E); color: #fff; border: none; padding: 11px 22px; font-size: 14px; box-shadow: 0 4px 16px rgba(212,175,55,.35); }
         .popup-plan-btn.premium:hover { opacity: .92; transform: translateY(-1px); }
         .popup-guarantee { display: none; }
+        .popup-divider { display: flex; align-items: center; gap: 10px; margin: 10px 0 6px; width: 100%; }
+        .popup-divider::before, .popup-divider::after { content: ''; flex: 1; height: 1px; background: rgba(212,175,55,.3); }
+        .popup-divider span { font-size: 11px; color: #94A3B8; font-weight: 600; }
+        .popup-consulting-text { font-size: 12px; color: #64748B; margin: 0 0 6px; text-align: center; }
+        .popup-plan-btn.consulting { background: #fff; border: 2px solid #D4AF37; color: #D4AF37; padding: 11px 22px; font-size: 14px; width: 100%; text-align: center; display: block; box-sizing: border-box; font-weight: 700; border-radius: 10px; text-decoration: none; transition: .2s; }
+        .popup-plan-btn.consulting:hover { background: rgba(212,175,55,.06); transform: translateY(-1px); }
         .popup-box { position: relative; }
         @media(max-width:600px) {
             .popup-box { padding: 14px 16px; gap: 12px; }
@@ -250,6 +256,10 @@
                     </div>
                 </div>
             </div>
+
+        <div class="popup-divider"><span>oder</span></div>
+        <p class="popup-consulting-text">Noch unsicher? Lass es dir live zeigen.</p>
+        <a href="https://calendly.com/jan-zyntevo/15min" target="_blank" class="popup-plan-btn consulting">Kostenlose Beratung buchen &rarr;</a>
         </div>
     </div>
 </div>
@@ -269,6 +279,10 @@
         <div class="popup-plans">
             <a href="https://zyntevo.de/makler.html" target="_blank" class="popup-plan-btn starter" onclick="trackEvent('starter_clicked','makler')">Starter · 97€</a>
             <a href="https://secure.affilibank.de/zyntevo/start/product/44144/" target="_blank" class="popup-plan-btn premium" onclick="trackEvent('premium_clicked','makler')">⚡ Premium sichern · 297€</a>
+
+        <div class="popup-divider"><span>oder</span></div>
+        <p class="popup-consulting-text">Noch unsicher? Lass es dir live zeigen.</p>
+        <a href="https://calendly.com/jan-zyntevo/15min" target="_blank" class="popup-plan-btn consulting">Kostenlose Beratung buchen &rarr;</a>
         </div>
     </div>
 </div>
