@@ -514,33 +514,55 @@
       </div>
     </div>
     <div class="hero-visual" data-reveal="right" data-delay="200">
-      <div class="hero-mockup">
-        <div class="mockup-topbar">
-          <div class="mockup-dot mockup-dot-r"></div>
-          <div class="mockup-dot mockup-dot-y"></div>
-          <div class="mockup-dot mockup-dot-g"></div>
-          <span class="mockup-label">ZYNTEVO · KI-Tool</span>
+      <div style="background:rgba(255,255,255,.55);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border:1px solid rgba(255,255,255,.85);border-radius:24px;padding:0;overflow:hidden;box-shadow:0 32px 80px rgba(99,102,241,.12),0 8px 24px rgba(201,168,76,.15),inset 0 1px 0 rgba(255,255,255,.9);max-width:420px;width:100%;">
+        <!-- Header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(212,175,55,.2);background:rgba(255,255,255,.4);">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:#D4AF37;box-shadow:0 0 6px rgba(212,175,55,.6);"></div>
+            <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#B8962E;">ZYNTEVO · KI-BLUEPRINT</span>
+          </div>
+          <span style="font-size:12px;font-weight:600;color:#64748B;">Mustermann GmbH</span>
         </div>
-        <div class="mockup-fields">
-          <div class="mockup-field-row">
-            <div class="mockup-field">
-              <div class="mockup-field-label" data-i18n="index.mock_branche_lbl">Branche</div>
-              <div class="mockup-field-value" data-i18n="index.mock_branche_val">Immobilienmakler</div>
+        <!-- Checkmarks -->
+        <div style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);border-radius:12px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#D4AF37;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="11" height="11" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="mockup-field">
-              <div class="mockup-field-label" data-i18n="index.mock_tool_lbl">Tool</div>
-              <div class="mockup-field-value" data-i18n="index.mock_tool_val">Exposé Generator</div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:700;color:#1E293B;">Zeitfresser identifiziert</div>
+              <div style="font-size:11px;color:#64748B;margin-top:2px;">3h/Tag eingespart</div>
             </div>
           </div>
-          <div class="mockup-field">
-            <div class="mockup-field-label" data-i18n="index.mock_obj_lbl">Objekt</div>
-            <div class="mockup-field-value">3-Zi.-ETW, 78m², München-Schwabing, 695.000 €</div>
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);border-radius:12px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#D4AF37;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="11" height="11" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:700;color:#1E293B;">KI-Potenziale analysiert</div>
+              <div style="font-size:11px;color:#64748B;margin-top:2px;">5 Prozesse automatisiert</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);border-radius:12px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#D4AF37;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="11" height="11" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:700;color:#1E293B;">Lösung entwickelt & eingerichtet</div>
+              <div style="font-size:11px;color:#64748B;margin-top:2px;">Direkt einsatzbereit</div>
+            </div>
           </div>
         </div>
-        <button class="mockup-generate" data-i18n="index.mock_generate">⚡ Jetzt generieren</button>
-        <div class="mockup-output">
-          <div class="mockup-output-label" data-i18n="index.mock_result">KI-Ergebnis</div>
-          <div id="mockup-text"></div><span class="cursor"></span>
+        <!-- Footer -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-top:1px solid rgba(212,175,55,.2);background:rgba(212,175,55,.06);">
+          <div>
+            <div style="font-size:11px;color:#94A3B8;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Zeitersparnis</div>
+            <div style="font-size:18px;font-weight:900;color:#1E293B;margin-top:2px;">8+ Stunden<span style="font-size:13px;font-weight:600;color:#64748B;">/Woche</span></div>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#D4AF37,#B8962E);color:#000;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border-radius:100px;box-shadow:0 4px 14px rgba(212,175,55,.4);">
+            <div style="width:6px;height:6px;border-radius:50%;background:#000;opacity:.5;"></div>
+            Aktiv betreut
+          </div>
         </div>
       </div>
     </div>
