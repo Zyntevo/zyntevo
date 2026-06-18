@@ -1,7 +1,5 @@
 const DAILY_LIMIT = 50;
 const DEMO_IP_LIMIT = 50; // Max 50 Demo-Generierungen pro IP pro Tag
-const ADMIN_KEY = "Zyn#Bwh4zUtTbq5bxtb9!2024";
-const RESEND_API_KEY = "re_8mjBwLuV_Am8uVR5REkd8t6n5gdouEqn7";
 const FROM_EMAIL = "jan@zyntevo.de";
 
 const PRODUCT_MAP = {
@@ -38,9 +36,11 @@ const TOOL_URLS = {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    const origin = request.headers.get("Origin") || "";
+    const allowedOrigin = (origin === "https://zyntevo.de" || origin === "null" || origin === "") ? origin || "https://zyntevo.de" : "https://zyntevo.de";
     const corsHeaders = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Origin": allowedOrigin,
+      "Access-Control-Allow-Methods": "POST, OPTIONS, GET",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
     };
 
@@ -76,9 +76,9 @@ export default {
           const days = 30;
           const expiresAt = Date.now() + (days * 24 * 60 * 60 * 1000);
           await env.ZYNTEVO_DB.put(`code:${code}`, JSON.stringify({ product, created: Date.now(), expiresAt }), { expirationTtl: days * 24 * 60 * 60 });
-          await sendWelcomeEmail(buyerEmail, buyerName, code, product);
+          await sendWelcomeEmail(env, buyerEmail, buyerName, code, product);
         } else {
-          await sendWelcomeEmail(buyerEmail, buyerName, null, product);
+          await sendWelcomeEmail(env, buyerEmail, buyerName, null, product);
         }
         return new Response("OK", { status: 200 });
       }
@@ -137,7 +137,7 @@ export default {
       // === ADMIN: Trial-User sperren/entsperren ===
       if (url.pathname === "/api/admin/trial/block" && request.method === "POST") {
         const { adminKey, email, blocked } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const raw = await env.ZYNTEVO_DB.get(`trial:${email}`);
         if (!raw) return json({ error: "Trial-User nicht gefunden" }, 404, corsHeaders);
         const trial = JSON.parse(raw);
@@ -149,7 +149,7 @@ export default {
       // === ADMIN: Trial-User löschen ===
       if (url.pathname === "/api/admin/trial/delete" && request.method === "POST") {
         const { adminKey, email } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         await env.ZYNTEVO_DB.delete(`trial:${email}`);
         await env.ZYNTEVO_DB.delete(`trial-total:${email}`);
         const indexRaw = await env.ZYNTEVO_DB.get("index:trials");
@@ -161,7 +161,7 @@ export default {
       // === ADMIN: Trial-Liste mit vollständigen Stats ===
       if (url.pathname === "/api/admin/trial/list" && request.method === "POST") {
         const { adminKey } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const indexRaw = await env.ZYNTEVO_DB.get("index:trials");
         const index = indexRaw ? JSON.parse(indexRaw) : [];
         const today = new Date().toISOString().split("T")[0];
@@ -192,7 +192,7 @@ export default {
       // === TRIAL CONVERSION MAILS (täglich von n8n aufgerufen) ===
       if (url.pathname === "/api/trial/send-conversions" && request.method === "POST") {
         const { adminKey } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const indexRaw = await env.ZYNTEVO_DB.get("index:trials");
         const index = indexRaw ? JSON.parse(indexRaw) : [];
         const sevenDays = 7 * 24 * 60 * 60 * 1000;
@@ -206,7 +206,7 @@ export default {
           if (elapsed < sevenDays) { skipped++; return; }
           // Trial abgelaufen, noch keine Mail → senden
           try {
-            await sendTrialConversionEmail(trial.email, trial.branche);
+            await sendTrialConversionEmail(env, trial.email, trial.branche);
             trial.conversionEmailSent = true;
             await env.ZYNTEVO_DB.put(`trial:${email}`, JSON.stringify(trial));
             sent++;
@@ -246,7 +246,7 @@ export default {
       // === TRIAL LIST (Admin, für n8n) ===
       if (url.pathname === "/api/trial/list" && request.method === "GET") {
         const adminKey = request.headers.get("Authorization");
-        if (adminKey !== `Bearer ${ADMIN_KEY}`) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== `Bearer ${env.ADMIN_KEY}`) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const indexRaw = await env.ZYNTEVO_DB.get("index:trials");
         const index = indexRaw ? JSON.parse(indexRaw) : [];
         const sevenDays = 7 * 24 * 60 * 60 * 1000;
@@ -350,7 +350,7 @@ export default {
       // === QUERY-BULK (KI-Anfrage ohne IP-Limit, nur für Admin) ===
       if (url.pathname === "/api/query-bulk" && request.method === "POST") {
         const authHeader = request.headers.get("Authorization");
-        if (!authHeader || authHeader !== `Bearer ${ADMIN_KEY}`) {
+        if (!authHeader || authHeader !== `Bearer ${env.ADMIN_KEY}`) {
           return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         }
         const body = await request.json();
@@ -382,7 +382,7 @@ export default {
 
         // Send result email to demo user
         try {
-          await sendDemoEmail(email, branche, tool, resultText);
+          await sendDemoEmail(env, email, branche, tool, resultText);
         } catch(e) { /* silent fail */ }
 
         // Notify n8n for instant lead alert
@@ -400,7 +400,7 @@ export default {
       // === DEMO LEAD SPERREN ===
       if (url.pathname === "/api/demo-block" && request.method === "POST") {
         const { adminKey, email, blocked } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const key = `demo:${email}`;
         const existing = await env.ZYNTEVO_DB.get(key);
         if (!existing) return json({ error: "Lead nicht gefunden" }, 404, corsHeaders);
@@ -413,7 +413,7 @@ export default {
       // === DEMO ADMIN: Alle Leads abrufen ===
       if (url.pathname === "/api/demo-admin" && request.method === "POST") {
         const { adminKey } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const indexRaw = await env.ZYNTEVO_DB.get("index:demo-leads");
         const index = indexRaw ? JSON.parse(indexRaw) : [];
         const leads = await Promise.all(index.map(async (email) => {
@@ -426,7 +426,7 @@ export default {
       // === ADMIN: Account sperren ===
       if (url.pathname === "/api/admin/block" && request.method === "POST") {
         const { adminKey, email, blocked } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const userData = await env.ZYNTEVO_DB.get(`user:${email}`);
         if (!userData) return json({ error: "User nicht gefunden" }, 404, corsHeaders);
         const user = JSON.parse(userData);
@@ -438,7 +438,7 @@ export default {
       // === ADMIN: Code generieren ===
       if (url.pathname === "/api/admin/generate-code" && request.method === "POST") {
         const { adminKey, product, count = 1, days = 30 } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const codes = [];
         for (let i = 0; i < count; i++) {
           const code = generateCode();
@@ -452,7 +452,7 @@ export default {
       // === ADMIN: Account löschen ===
       if (url.pathname === "/api/admin/delete-user" && request.method === "POST") {
         const { adminKey, email } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const userData = await env.ZYNTEVO_DB.get(`user:${email}`);
         if (!userData) return json({ error: "User nicht gefunden" }, 404, corsHeaders);
         await env.ZYNTEVO_DB.delete(`user:${email}`);
@@ -466,7 +466,7 @@ export default {
       // === ADMIN: Alle User abrufen ===
       if (url.pathname === "/api/admin/users" && request.method === "POST") {
         const { adminKey } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const indexRaw = await env.ZYNTEVO_DB.get("index:users");
         const index = indexRaw ? JSON.parse(indexRaw) : [];
         const today = new Date().toISOString().split("T")[0];
@@ -485,7 +485,7 @@ export default {
       // === ADMIN: IP-Rate-Limit zurücksetzen ===
       if (url.pathname === "/api/admin/reset-ip" && request.method === "POST") {
         const { adminKey, ip } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const callerIp = request.headers.get("CF-Connecting-IP") || request.headers.get("X-Forwarded-For") || "unknown";
         const targetIp = ip || callerIp;
         const today = new Date().toISOString().split("T")[0];
@@ -503,7 +503,7 @@ export default {
       // === ADMIN: Tagesstatistiken ===
       if (url.pathname === "/api/admin/stats" && request.method === "POST") {
         const { adminKey } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
 
         const today = new Date().toISOString().split("T")[0];
         const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
@@ -570,7 +570,7 @@ export default {
       // === LEADS SPEICHERN (von n8n Apify Workflow) ===
       if (url.pathname === "/api/leads/save" && request.method === "POST") {
         const { adminKey, leads } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         if (!leads || !Array.isArray(leads)) return json({ error: "Keine Leads" }, 400, corsHeaders);
 
         const today = new Date().toISOString().split("T")[0];
@@ -583,7 +583,7 @@ export default {
       // === LEADS ABRUFEN (für Personalisierungs-Agent) ===
       if (url.pathname === "/api/leads/today" && request.method === "POST") {
         const { adminKey } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
 
         const today = new Date().toISOString().split("T")[0];
         const key = `apify-leads:${today}`;
@@ -642,7 +642,7 @@ export default {
       // === ENTERPRISE: CREATE (Admin) ===
       if (url.pathname === "/api/enterprise/create" && request.method === "POST") {
         const { adminKey, branch, buyerEmail, buyerName } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         if (!branch || !buyerEmail) return json({ error: "branch und buyerEmail erforderlich" }, 400, corsHeaders);
         const enterpriseId = 'ENT-' + Math.random().toString(36).substr(2, 8).toUpperCase();
         const prefix = branch.toUpperCase().substring(0, 3);
@@ -656,7 +656,7 @@ export default {
         const idx = idxRaw ? JSON.parse(idxRaw) : [];
         if (!idx.includes(enterpriseId)) idx.push(enterpriseId);
         await env.ZYNTEVO_DB.put("ent-index", JSON.stringify(idx));
-        await sendEnterpriseWelcomeEmail(buyerEmail, buyerName || 'Kunde', branch, codes);
+        await sendEnterpriseWelcomeEmail(env, buyerEmail, buyerName || 'Kunde', branch, codes);
         return json({ success: true, enterpriseId, codes }, 200, corsHeaders);
       }
 
@@ -702,7 +702,7 @@ export default {
       // === ENTERPRISE: STATS (Admin) ===
       if (url.pathname === "/api/enterprise/stats" && request.method === "POST") {
         const { adminKey } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const idxRaw = await env.ZYNTEVO_DB.get("ent-index");
         const idx = idxRaw ? JSON.parse(idxRaw) : [];
         const enterprises = await Promise.all(idx.map(async (id) => {
@@ -722,7 +722,7 @@ export default {
       // === ENTERPRISE: BAUSTEINE (Admin) ===
       if (url.pathname === "/api/enterprise/bausteine" && request.method === "POST") {
         const { adminKey, enterpriseId, action, text, bausteineId } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const raw = await env.ZYNTEVO_DB.get(`ent-id:${enterpriseId}`);
         if (!raw) return json({ error: "Enterprise nicht gefunden" }, 404, corsHeaders);
         const ent = JSON.parse(raw);
@@ -742,7 +742,7 @@ export default {
       // === ENTERPRISE: DELETE (Admin) ===
       if (url.pathname === "/api/enterprise/delete" && request.method === "POST") {
         const { adminKey, enterpriseId } = await request.json();
-        if (adminKey !== ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
+        if (adminKey !== env.ADMIN_KEY) return json({ error: "Nicht autorisiert" }, 403, corsHeaders);
         const raw = await env.ZYNTEVO_DB.get(`ent-id:${enterpriseId}`);
         if (!raw) return json({ error: "Nicht gefunden" }, 404, corsHeaders);
         const ent = JSON.parse(raw);
@@ -762,7 +762,7 @@ export default {
   }
 };
 
-async function sendDemoEmail(toEmail, branche, tool, resultText) {
+async function sendDemoEmail(env, toEmail, branche, tool, resultText) {
   const brancheLabels = { makler: 'Immobilienmakler', handwerker: 'Handwerksbetriebe', steuerberater: 'Steuerberater' };
   const kaufLinks = {
     makler: 'https://zyntevo.github.io/zyntevo/makler.html',
@@ -825,7 +825,7 @@ async function sendDemoEmail(toEmail, branche, tool, resultText) {
 
   await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { "Authorization": `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+    headers: { "Authorization": `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: `ZYNTEVO <${FROM_EMAIL}>`,
       to: [toEmail],
@@ -839,7 +839,7 @@ async function sendDemoEmail(toEmail, branche, tool, resultText) {
   });
 }
 
-async function sendWelcomeEmail(toEmail, toName, code, product) {
+async function sendWelcomeEmail(env, toEmail, toName, code, product) {
   const productLabel = PRODUCT_LABELS[product] || product;
   const toolUrl = TOOL_URLS[product] || "https://zyntevo.de";
   const isPremium = product.includes("premium");
@@ -862,7 +862,7 @@ async function sendWelcomeEmail(toEmail, toName, code, product) {
   const html = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#F0EEF8;font-family:Inter,Arial,sans-serif;"><div style="max-width:560px;margin:40px auto;background:#FFFFFF;border:1px solid rgba(212,175,55,.2);border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.08);"><div style="padding:32px 40px 24px;text-align:center;border-bottom:1px solid rgba(212,175,55,.12);background:linear-gradient(135deg,rgba(240,238,248,1),rgba(255,255,255,1));"><div style="font-size:26px;font-weight:900;letter-spacing:3px;color:#D4AF37;">ZYNTEVO</div><div style="color:#64748B;font-size:13px;margin-top:4px;">${productLabel}</div></div><div style="padding:36px 40px;"><p style="color:#1E293B;font-size:16px;font-weight:700;margin:0 0 10px;">Hallo ${toName},</p><p style="color:#475569;font-size:14px;line-height:1.7;margin:0 0 24px;">vielen Dank für deinen Kauf! Dein Zugang ist jetzt aktiv und sofort einsatzbereit.</p>${codeBlock}<p style="color:#475569;font-size:13px;margin:0 0 0;">Bei Fragen antworte einfach auf diese E-Mail.</p><div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07);"><p style="color:#475569;font-size:13px;margin:0 0 10px;">Wenn dir ZYNTEVO gefällt – eine ehrliche Bewertung hilft anderen Unternehmern enorm:</p><a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank" style="display:inline-block;padding:9px 18px;background:#f5f5f5;border:1px solid #ddd;border-radius:8px;text-decoration:none;color:#1E293B;font-size:13px;font-weight:600;">⭐ Auf Trustpilot bewerten →</a></div><div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07);"><p style="color:#1E293B;font-size:13px;margin:0 0 3px;">Mit freundlichen Grüßen,<br><strong>Jan Wichmann</strong></p><p style="color:#64748B;font-size:12px;margin:4px 0 0;">Gründer & KI-Stratege · ZYNTEVO</p><p style="color:#64748B;font-size:12px;margin:6px 0 0;">✉ <a href="mailto:jan@zyntevo.de" style="color:#D4AF37;text-decoration:none;">jan@zyntevo.de</a> &nbsp;🌐 <a href="https://zyntevo.de" style="color:#D4AF37;text-decoration:none;">zyntevo.de</a></p></div><p style="color:#94A3B8;font-size:10px;margin:14px 0 0;">Keine weiteren Nachrichten? <a href="${unsubscribeLink}" style="color:#64748B;text-decoration:underline;">Abmelden</a></p></div><div style="padding:16px 40px;border-top:1px solid rgba(0,0,0,.06);text-align:center;background:rgba(240,238,248,.4);"><p style="color:#94A3B8;font-size:11px;margin:0;">ZYNTEVO · <a href="https://zyntevo.de" style="color:#D4AF37;text-decoration:none;">zyntevo.de</a></p></div></div></body></html>`;
   await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { "Authorization": `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+    headers: { "Authorization": `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: `ZYNTEVO <${FROM_EMAIL}>`,
       to: [toEmail],
@@ -876,7 +876,7 @@ async function sendWelcomeEmail(toEmail, toName, code, product) {
   });
 }
 
-async function sendEnterpriseWelcomeEmail(toEmail, toName, branch, codes) {
+async function sendEnterpriseWelcomeEmail(env, toEmail, toName, branch, codes) {
   const brancheLabels = { makler: 'Immobilienmakler', handwerker: 'Handwerksbetriebe', steuerberater: 'Steuerberater' };
   const toolUrls = {
     makler: 'https://zyntevo.github.io/zyntevo/ki-tool-makler-enterprise.html',
@@ -889,7 +889,7 @@ async function sendEnterpriseWelcomeEmail(toEmail, toName, branch, codes) {
   const html = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#F0EEF8;font-family:Inter,Arial,sans-serif;"><div style="max-width:580px;margin:40px auto;background:#FFFFFF;border:1px solid rgba(212,175,55,.2);border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.08);"><div style="padding:32px 40px 24px;text-align:center;border-bottom:1px solid rgba(212,175,55,.12);background:linear-gradient(135deg,rgba(240,238,248,1),rgba(255,255,255,1));"><div style="font-size:26px;font-weight:900;letter-spacing:3px;color:#D4AF37;">ZYNTEVO</div><div style="color:#64748B;font-size:13px;margin-top:4px;">Enterprise · ${brancheLabel}</div></div><div style="padding:36px 40px;"><div style="display:inline-block;padding:6px 16px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.35);border-radius:999px;color:#B8962E;font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:20px;">🏢 ENTERPRISE ZUGANG AKTIV</div><p style="color:#1E293B;font-size:16px;font-weight:700;margin:0 0 10px;">Hallo ${toName},</p><p style="color:#475569;font-size:14px;line-height:1.7;margin:0 0 24px;">herzlich willkommen! Dein ZYNTEVO Enterprise-Zugang für 5 Nutzer ist jetzt aktiv. Hier sind deine 5 individuellen Zugangscodes:</p><div style="margin-bottom:24px;">${codesHtml}</div><p style="color:#475569;font-size:13px;line-height:1.7;margin:0 0 20px;">Jeder Nutzer in deinem Team gibt seinen persönlichen Code direkt im Tool ein – kein Passwort, kein Account nötig.</p><div style="text-align:center;margin-bottom:24px;"><a href="${toolUrl}" style="display:inline-block;padding:16px 32px;background:#D4AF37;color:#000;font-weight:700;font-size:15px;text-decoration:none;border-radius:12px;">⚡ Zum Enterprise-Tool →</a></div><div style="background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.15);border-radius:14px;padding:20px;margin-bottom:20px;"><p style="color:#1E293B;font-size:13px;font-weight:700;margin:0 0 8px;">📞 Dein Onboarding-Call</p><p style="color:#475569;font-size:13px;line-height:1.6;margin:0;">Ich melde mich in den nächsten 24h persönlich bei dir, um deinen Team-Onboarding-Call zu vereinbaren.<br>Du kannst auch direkt antworten auf diese E-Mail.</p></div><p style="color:#475569;font-size:13px;margin:0 0 4px;">Mit freundlichen Grüßen,<br><strong style="color:#1E293B;">Jan Wichmann</strong></p><p style="color:#64748B;font-size:12px;margin:4px 0;">Gründer & KI-Stratege · ZYNTEVO</p><p style="color:#64748B;font-size:12px;margin:6px 0 0;">✉ <a href="mailto:jan@zyntevo.de" style="color:#D4AF37;text-decoration:none;">jan@zyntevo.de</a></p></div></div></body></html>`;
   await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { "Authorization": `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+    headers: { "Authorization": `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: `ZYNTEVO <${FROM_EMAIL}>`,
       to: [toEmail],
@@ -899,7 +899,7 @@ async function sendEnterpriseWelcomeEmail(toEmail, toName, branch, codes) {
   });
 }
 
-async function sendTrialConversionEmail(toEmail, branche) {
+async function sendTrialConversionEmail(env, toEmail, branche) {
   const brancheLabels = { makler: 'Immobilienmakler', handwerker: 'Handwerksbetriebe', steuerberater: 'Steuerberater' };
   const toolUrls = {
     makler: 'https://www.checkout-ds24.com/product/696893?voucher=TESTER-X9K2',
@@ -951,7 +951,7 @@ async function sendTrialConversionEmail(toEmail, branche) {
 
   await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { "Authorization": `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+    headers: { "Authorization": `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: `ZYNTEVO <${FROM_EMAIL}>`,
       to: [toEmail],
