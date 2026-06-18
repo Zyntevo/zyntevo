@@ -509,7 +509,7 @@
 <!-- PROBLEM / LÖSUNG -->
 <section class="section">
   <div class="container">
-    <div class="section-header" data-reveal>
+    <div class="section-header section-header-center" data-reveal>
       <div class="section-label" data-i18n="index.problem_label">Das Problem</div>
       <h2 class="section-title" data-i18n="index.problem_h2">Stundenlange Schreibarbeit.<br>Jeden Tag aufs Neue.</h2>
       <p class="section-sub" data-i18n="index.problem_sub">Angebote, Exposés, Mandantenbriefe, Kunden-Mails – all das frisst Zeit, die du nicht hast.</p>
@@ -549,6 +549,23 @@
       <h2 class="section-title" data-i18n="index.ind_h2">Spezialisiert. Nicht generisch.</h2>
       <p class="section-sub" data-i18n="index.ind_sub">Jede Branche hat andere Bedürfnisse. Deshalb gibt es ZYNTEVO speziell für deine.</p>
     </div>
+
+    <!-- PARTNER TEASER – prominent, zuerst -->
+    <div data-reveal style="background:rgba(255,255,255,.55);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);border:2px solid rgba(212,175,55,.45);border-radius:24px;padding:48px 40px;text-align:center;box-shadow:0 0 0 1px rgba(212,175,55,.15),0 16px 48px rgba(201,168,76,.12);margin-bottom:32px;">
+      <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#D4AF37;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);border-radius:100px;padding:5px 14px;margin-bottom:20px;">Individuell · Persönlich · Dauerhaft</div>
+      <h2 style="font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;color:#1E293B;margin:0 0 16px;">ZYNTEVO Partner</h2>
+      <p style="font-size:1rem;color:#475569;max-width:560px;margin:0 auto 28px;line-height:1.7;">Du willst ZYNTEVO individuell für deinen Betrieb? Wir entwickeln eine KI-Lösung speziell für deinen Betrieb – analysiert, eingerichtet, dauerhaft betreut.</p>
+      <a href="https://zyntevo.de/zyntevo-partner.html" class="btn btn-gold btn-lg">Kostenloses Erstgespräch buchen →</a>
+    </div>
+
+    <!-- ODER-Trenner -->
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;" data-reveal>
+      <div style="flex:1;height:1px;background:rgba(212,175,55,.3);"></div>
+      <span style="font-size:13px;font-weight:700;color:#B8962E;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;">oder</span>
+      <div style="flex:1;height:1px;background:rgba(212,175,55,.3);"></div>
+    </div>
+
+    <!-- BRANCH-KARTEN -->
     <div class="industry-grid">
       <div class="industry-card" data-reveal data-delay="100">
         <div class="industry-card-icon">🏠</div>
@@ -590,24 +607,7 @@
         <a href="steuerberater.html" class="btn btn-gold" data-i18n="index.ind_stb_btn">Steuerberater-Paket ansehen →</a>
       </div>
     </div>
-  
-<!-- PARTNER TEASER -->
-<section class="section">
-  <div class="container">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;" data-reveal>
-      <div style="flex:1;height:1px;background:rgba(212,175,55,.3);"></div>
-      <span style="font-size:13px;font-weight:700;color:#B8962E;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;">oder</span>
-      <div style="flex:1;height:1px;background:rgba(212,175,55,.3);"></div>
-    </div>
-    <div data-reveal style="background:rgba(255,255,255,.55);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);border:2px solid rgba(212,175,55,.45);border-radius:24px;padding:48px 40px;text-align:center;box-shadow:0 0 0 1px rgba(212,175,55,.15),0 16px 48px rgba(201,168,76,.12);">
-      <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#D4AF37;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);border-radius:100px;padding:5px 14px;margin-bottom:20px;">Individuell · Persönlich · Dauerhaft</div>
-      <h2 style="font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;color:#1E293B;margin:0 0 16px;">ZYNTEVO Partner</h2>
-      <p style="font-size:1rem;color:#475569;max-width:560px;margin:0 auto 28px;line-height:1.7;">Du willst ZYNTEVO individuell für deinen Betrieb? Wir entwickeln eine KI-Lösung speziell für deinen Betrieb – analysiert, eingerichtet, dauerhaft betreut.</p>
-      <a href="https://zyntevo.de/zyntevo-partner.html" class="btn btn-gold btn-lg">Kostenloses Erstgespräch buchen →</a>
-    </div>
   </div>
-</section>
-</div>
 </section>
 
 <!-- FEATURES -->
@@ -701,12 +701,12 @@
           <li><span class="check">✓</span> <span data-i18n="index.premium_f6">Sofort einsatzbereit</span></li>
         </ul>
         <a href="https://www.checkout-ds24.com/product/696893" id="btn-premium" target="_blank" class="btn btn-gold btn-lg pricing-cta" data-i18n="index.premium_cta">Premium sichern →</a>
-
-      <div class="pricing-card" data-reveal data-delay="300" style="border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 16px 48px rgba(201,168,76,.18);">
-        <div class="pricing-badge" style="background:linear-gradient(135deg,#D4AF37,#B8962E);color:#fff;">🤝 Individuell</div>
+      </div>
+      <div class="pricing-card" data-reveal data-delay="300" style="border:2px solid var(--gold);box-shadow:0 0 0 1px rgba(212,175,55,.3),0 16px 48px rgba(201,168,76,.18);">
+        <div class="pricing-badge" style="background:linear-gradient(135deg,#D4AF37,#B8962E);color:#fff;">INDIVIDUELL</div>
         <div class="pricing-name">Partner</div>
         <div class="pricing-desc">Individuelle KI-Lösung – speziell für deinen Betrieb</div>
-        <div class="pricing-price" style="font-size:2rem;">Preis auf<span style="font-size:1rem;"> Anfrage</span></div>
+        <div class="pricing-price" style="font-size:1.8rem;line-height:1.2;">Preis auf<br><span style="font-size:1rem;font-weight:600;color:#64748B;">Anfrage</span></div>
         <div class="pricing-period">persönlich · entwickelt · dauerhaft betreut</div>
         <ul class="pricing-features">
           <li><span class="check">✓</span> Persönliche Einrichtung</li>
@@ -714,7 +714,7 @@
           <li><span class="check">✓</span> Dauerhafter Support</li>
         </ul>
         <a href="https://calendly.com/jan-zyntevo/15min" target="_blank" class="btn btn-gold btn-lg pricing-cta">Erstgespräch buchen →</a>
-      </div>      </div>
+      </div>
     </div>
   </div>
 </section>
