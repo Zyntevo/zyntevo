@@ -775,52 +775,90 @@
     <div class="section-header section-header-center" data-reveal>
       <div class="section-label">SELF-SERVICE</div>
       <h2 class="section-title">Lieber selbst starten?</h2>
-      <p class="section-sub">Fertige KI-Tools speziell für Makler, Handwerker und Steuerberater – sofort einsatzbereit, einmalig zahlen.</p>
+      <p class="section-sub">Fertige KI-Tools für Ihre Branche – kostenlos testen, einmalig kaufen.</p>
     </div>
 
-    <div class="industry-grid" style="margin-bottom:56px;">
-      <div class="industry-card" data-reveal data-delay="100">
-        <div class="industry-card-icon">🏠</div>
-        <h3>Immobilienmakler</h3>
-        <p>Exposés, Akquise-Briefe, Käufer-Qualifizierung und TikTok-Skripte – alles auf Knopfdruck.</p>
-        <ul class="industry-card-features">
-          <li>Exposé-Generator</li>
-          <li>Akquise-Brief</li>
-          <li>Käufer-Analyse</li>
-          <li>Verhandlungs-Coach</li>
-          <li>TikTok & Reels Texte</li>
-        </ul>
-        <a href="makler.html" class="btn btn-gold">Paket ansehen →</a>
-      </div>
-      <div class="industry-card" data-reveal data-delay="200">
-        <div class="industry-card-icon">🔨</div>
-        <h3>Handwerksbetriebe</h3>
-        <p>Angebote, Kunden-Mails, Bewertungsantworten und Social Media – in Sekunden fertig.</p>
-        <ul class="industry-card-features">
-          <li>Angebots-Generator</li>
-          <li>Kunden-Mail</li>
-          <li>Bewertungs-Antwort</li>
-          <li>Akquise-Brief</li>
-          <li>TikTok Skripte</li>
-        </ul>
-        <a href="handwerker.html" class="btn btn-gold">Paket ansehen →</a>
-      </div>
-      <div class="industry-card" data-reveal data-delay="300">
-        <div class="industry-card-icon">📊</div>
-        <h3>Steuerberater</h3>
-        <p>Mandantenbriefe, Akquise-Mails, Erstgespräch-Vorbereitung und LinkedIn-Texte sofort.</p>
-        <ul class="industry-card-features">
-          <li>Mandantenbrief Generator</li>
-          <li>Akquise-Mail</li>
-          <li>Erstgespräch-Vorbereitung</li>
-          <li>Unterlagen-Erinnerung</li>
-          <li>LinkedIn & Social Media</li>
-        </ul>
-        <a href="steuerberater.html" class="btn btn-gold">Paket ansehen →</a>
-      </div>
-    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" data-reveal data-delay="100">
 
+      <!-- Karte 1: Immobilienmakler -->
+      <div class="glass-card" style="padding:2rem;border-radius:16px;display:flex;flex-direction:column;gap:1rem;">
+        <div style="font-size:2rem;">🏠</div>
+        <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a2e;margin:0;">Immobilienmakler</h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;flex:1;">
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ Exposés &amp; Akquise-Briefe</li>
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ Käufer-Qualifizierung</li>
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ TikTok &amp; Social Media Texte</li>
+        </ul>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:auto;">
+          <a href="/demo-makler.html"
+             style="display:block;text-align:center;padding:0.7rem 1rem;border-radius:50px;background:#C9A84C;color:#fff;font-size:0.9rem;font-weight:700;text-decoration:none;transition:opacity .2s;"
+             onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+            Kostenlos testen →
+          </a>
+          <a href="/makler.html"
+             style="display:block;text-align:center;font-size:0.82rem;color:#888;text-decoration:none;opacity:.6;transition:opacity .2s;"
+             onmouseover="this.style.opacity='1';this.style.textDecoration='underline'" onmouseout="this.style.opacity='.6';this.style.textDecoration='none'">
+            Mehr erfahren →
+          </a>
+        </div>
+      </div>
+
+      <!-- Karte 2: Handwerksbetriebe -->
+      <div class="glass-card" style="padding:2rem;border-radius:16px;display:flex;flex-direction:column;gap:1rem;">
+        <div style="font-size:2rem;">🔧</div>
+        <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a2e;margin:0;">Handwerksbetriebe</h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;flex:1;">
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ Angebote &amp; Kunden-Mails</li>
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ Bewertungsantworten</li>
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ TikTok &amp; Social Media Texte</li>
+        </ul>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:auto;">
+          <a href="/demo-handwerker.html"
+             style="display:block;text-align:center;padding:0.7rem 1rem;border-radius:50px;background:#C9A84C;color:#fff;font-size:0.9rem;font-weight:700;text-decoration:none;transition:opacity .2s;"
+             onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+            Kostenlos testen →
+          </a>
+          <a href="/handwerker.html"
+             style="display:block;text-align:center;font-size:0.82rem;color:#888;text-decoration:none;opacity:.6;transition:opacity .2s;"
+             onmouseover="this.style.opacity='1';this.style.textDecoration='underline'" onmouseout="this.style.opacity='.6';this.style.textDecoration='none'">
+            Mehr erfahren →
+          </a>
+        </div>
+      </div>
+
+      <!-- Karte 3: Steuerberater -->
+      <div class="glass-card" style="padding:2rem;border-radius:16px;display:flex;flex-direction:column;gap:1rem;">
+        <div style="font-size:2rem;">📊</div>
+        <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a2e;margin:0;">Steuerberater</h3>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;flex:1;">
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ Mandantenbriefe &amp; Akquise</li>
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ Erstgespräch-Vorbereitung</li>
+          <li style="font-size:0.9rem;color:#555;opacity:.85;">✓ LinkedIn &amp; Social Media</li>
+        </ul>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:auto;">
+          <a href="/demo-steuerberater.html"
+             style="display:block;text-align:center;padding:0.7rem 1rem;border-radius:50px;background:#C9A84C;color:#fff;font-size:0.9rem;font-weight:700;text-decoration:none;transition:opacity .2s;"
+             onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+            Kostenlos testen →
+          </a>
+          <a href="/steuerberater.html"
+             style="display:block;text-align:center;font-size:0.82rem;color:#888;text-decoration:none;opacity:.6;transition:opacity .2s;"
+             onmouseover="this.style.opacity='1';this.style.textDecoration='underline'" onmouseout="this.style.opacity='.6';this.style.textDecoration='none'">
+            Mehr erfahren →
+          </a>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <style>
+    @media(max-width:768px){
+      #selfservice .container > div[style*="grid-template-columns"]{
+        grid-template-columns:1fr !important;
+      }
+    }
+  </style>
 </section>
 
 <!-- FAQ -->
