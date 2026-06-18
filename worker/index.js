@@ -928,6 +928,10 @@ async function sendTrialConversionEmail(env, toEmail, branche) {
         <div style="font-size:13px;color:#475569;margin-bottom:20px;">Rabattcode <strong style="color:#D4AF37;letter-spacing:1px;">TESTER-X9K2</strong> wird automatisch angewendet</div>
         <a href="${kaufUrl}" style="display:inline-block;padding:16px 36px;background:#D4AF37;color:#000;font-weight:700;font-size:15px;text-decoration:none;border-radius:12px;">⚡ Jetzt für 197 € sichern →</a>
         <p style="color:#94A3B8;font-size:11px;margin:12px 0 0;">Einmalzahlung · Kein Abo · Sofort einsatzbereit</p>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(212,175,55,.2);">
+          <p style="color:#475569;font-size:13px;margin:0 0 10px;">Oder lieber persönlich beraten lassen?</p>
+          <a href="https://calendly.com/jan-zyntevo/15min" style="display:inline-block;padding:10px 22px;background:#fff;border:2px solid #D4AF37;color:#D4AF37;font-weight:700;font-size:13px;text-decoration:none;border-radius:10px;">📅 Kostenloses 15-Min. Gespräch buchen →</a>
+        </div>
       </div>
 
       <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:10px;margin-bottom:24px;">
