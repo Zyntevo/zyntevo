@@ -165,7 +165,7 @@ button { font-family: inherit; cursor: pointer; }
 /* ════════════════════════════════════════════════
    SECTION HEADERS
    ════════════════════════════════════════════════ */
-.section { padding: 96px 0; }
+.section { padding: 80px 0; }
 .section-sm { padding: 56px 0; }
 .section-alt { background: #F5F6F8; }
 .section-dark {
