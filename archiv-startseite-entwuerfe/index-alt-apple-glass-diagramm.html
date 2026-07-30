@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO | KI-Automatisierung für Ihren Betrieb</title>
+<meta name="description" content="ZYNTEVO baut individuelle KI-Automatisierungen für Handwerk, Immobilien, Steuerberatung, Beratung und weitere Branchen. Kostenloses Erstgespräch, danach passgenaue Umsetzung.">
+<link rel="icon" type="image/png" href="css/images/logo.png">
+<link rel="canonical" href="https://zyntevo.de/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ZYNTEVO | KI-Automatisierung für Ihren Betrieb">
+<meta property="og:description" content="Individuelle KI-Automatisierung für Handwerk, Immobilien, Steuerberatung und mehr. Kostenloses Erstgespräch.">
+<meta property="og:url" content="https://zyntevo.de/">
+<meta property="og:image" content="https://zyntevo.de/css/images/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#F4F3EF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/zyntevo-2026.css">
+<style>
+  /* Homepage-spezifische Ergänzungen zum gemeinsamen Stylesheet (css/zyntevo-2026.css) */
+  .hero h1{ max-width:14ch; }
+
+  /* Self-Service Tools (klein, sekundär) */
+  .tools-strip{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .tool-chip{ border-radius:20px; padding:24px 26px; text-decoration:none; display:flex; justify-content:space-between; align-items:center; transition:transform .25s; }
+  .tool-chip:hover{ transform:translateY(-4px); }
+  .tool-chip .name{ font-family:'Poppins',sans-serif; font-weight:600; font-size:15.5px; color:#1D1D1F; }
+  .tool-chip .go{ color:#B8923A; font-size:13px; font-weight:700; }
+  @media (max-width:860px){ .tools-strip{ grid-template-columns:1fr; } }
+
+  /* Bewerbungsformular (statt Freebie) */
+  .lead-panel{ border-radius:36px; padding:56px; }
+  .lead-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .lead-panel h2{ font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3vw,36px); color:#1D1D1F; line-height:1.22; }
+  .lead-panel > div p{ color:#57575B; margin-top:14px; font-size:16px; max-width:44ch; }
+  .lead-points{ margin-top:22px; list-style:none; }
+  .lead-points li{ display:flex; gap:10px; color:#3A3A3C; font-size:14.5px; padding:6px 0; }
+  .lead-points li::before{ content:'✓'; color:#B8923A; font-weight:700; }
+  .lead-form input, .lead-form select, .lead-form textarea{
+    width:100%; background:rgba(255,255,255,0.7); border:1px solid rgba(29,29,31,0.1); border-radius:14px;
+    color:#1D1D1F; font-size:15px; padding:14px 16px; margin-bottom:14px; font-family:'Inter',sans-serif; resize:vertical;
+  }
+  .lead-form input::placeholder, .lead-form textarea::placeholder{ color:#8E8E93; }
+  .lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus{ outline:none; border-color:#D4AF37; }
+  .lead-form button{
+    width:100%; background:linear-gradient(135deg,#D4AF37,#B8923A); color:#fff; border:none; border-radius:14px; padding:16px;
+    font-weight:700; font-size:14.5px; cursor:pointer; transition:transform .2s; box-shadow:0 8px 20px rgba(184,146,58,0.3);
+  }
+  .lead-form button:hover{ transform:translateY(-2px); }
+  .lead-form .fineprint{ margin-top:14px; font-size:12px; color:#8E8E93; }
+  .lead-form .status{ margin-top:14px; font-size:13.5px; color:#7C5E1E; display:none; font-weight:600; }
+  @media (max-width:860px){ .lead-grid{ grid-template-columns:1fr; gap:34px; } .lead-panel{ padding:34px 24px; } }
+
+  /* "Warum ZYNTEVO"-Sektion: bewusst anderes Layout als die 3-Karten-Sektion "Das Problem" */
+  .trust-panel{ border-radius:36px; padding:56px; }
+  .trust-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:50px; align-items:start; }
+  .trust-grid h2{ font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3vw,34px); color:#1D1D1F; line-height:1.22; margin-top:4px; }
+  .trust-grid > div > p{ color:#57575B; margin-top:14px; font-size:15.5px; max-width:42ch; }
+  .trust-list{ list-style:none; display:flex; flex-direction:column; gap:24px; }
+  .trust-list li{ display:flex; gap:16px; align-items:flex-start; }
+  .trust-list h3{ font-family:'Poppins',sans-serif; font-weight:600; font-size:16.5px; color:#1D1D1F; margin-bottom:4px; }
+  .trust-list p{ color:#57575B; font-size:14.5px; }
+  @media (max-width:860px){ .trust-grid{ grid-template-columns:1fr; gap:30px; } }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+<div id="scrollSentinel" aria-hidden="true" style="position:absolute; top:30px; left:0; width:1px; height:1px; pointer-events:none;"></div>
+
+<div class="mesh">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+
+<header>
+  <div class="navpill glass">
+    <a href="/" class="logo">
+      <img src="css/images/header.png" alt="ZYNTEVO">
+    </a>
+    <nav class="mainnav">
+      <a href="#probleme">Herausforderung</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#tools">Self-Service</a>
+      <a href="#faq">FAQ</a>
+      <a href="#gespraech" class="nav-cta">Erstgespräch sichern</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-menu glass" id="mobileMenu">
+  <a href="#probleme">Herausforderung</a>
+  <a href="#ablauf">Ablauf</a>
+  <a href="#tools">Self-Service</a>
+  <a href="#faq">FAQ</a>
+  <a href="#gespraech" class="nav-cta">Erstgespräch sichern</a>
+</nav>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow">KI-Automatisierung, gebaut für Ihren Betrieb</span>
+      <h1>Ihre Zeit gehört <span class="gold">dem Umsatz</span>, nicht der Verwaltung.</h1>
+      <p class="hero-sub">ZYNTEVO baut Unternehmen KI-Systeme, die wirklich zu ihrem Betrieb passen. Kein Baukasten von der Stange, sondern eine Lösung für genau die Aufgaben, die bei Ihnen Zeit fressen.</p>
+      <div class="hero-actions">
+        <a href="https://calendly.com/jan-zyntevo/15min" class="btn btn-gold">Erstgespräch sichern</a>
+        <a href="#ablauf" class="btn btn-glass glass">So läuft's ab →</a>
+      </div>
+    </div>
+    <div class="hero-card glass reveal in" id="heroCard">
+      <div class="top">
+        <div class="dot-row"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <span class="badge-live">Beispielrechnung</span>
+      </div>
+      <div class="compare-label"><span>Angebot schreiben, von Hand</span><b>40 Min.</b></div>
+      <div class="compare-track"><div class="compare-fill before" style="width:100%;"></div></div>
+      <div class="compare-label"><span>Angebot schreiben, mit ZYNTEVO</span><b>4 Min.</b></div>
+      <div class="compare-track"><div class="compare-fill after" style="width:10%;"></div></div>
+      <div class="compare-result">Bei 10 Angeboten pro Woche macht das rund <b>6 Stunden</b> gesparte Zeit, jede Woche.</div>
+    </div>
+  </div>
+
+  <div class="wrap hero-marquee-inner">
+    <div class="marquee-wrap" role="img" aria-label="Branchen: Handwerk, Immobilien, Steuerberatung, Unternehmensberatung, Finanzberatung, Versicherung und jede andere Branche mit wiederkehrenden Aufgaben">
+      <div class="marquee-track" aria-hidden="true">
+        <span>Handwerk</span><span>Immobilien</span><span>Steuerberatung</span><span>Unternehmensberatung</span><span>Finanzberatung</span><span>Versicherung</span><span>und jede andere Branche mit wiederkehrenden Aufgaben</span>
+        <span>Handwerk</span><span>Immobilien</span><span>Steuerberatung</span><span>Unternehmensberatung</span><span>Finanzberatung</span><span>Versicherung</span><span>und jede andere Branche mit wiederkehrenden Aufgaben</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="probleme">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Ihr Betrieb läuft. Trotzdem bleibt am Abend die Verwaltung übrig.</h2>
+      <p>Drei Muster, die in fast jedem Erstgespräch auftauchen.</p>
+    </div>
+    <div class="card-grid-3 reveal-stagger">
+      <div class="glass-card glass">
+        <div class="icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" stroke-linejoin="round"/><path d="M8 9h8M8 13h8M8 17h4" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Texte schreiben kostet Stunden</h3>
+        <p>Exposés, Angebote, Mandantenbriefe. Jedes Mal wieder von null, obwohl sich 80 Prozent des Inhalts wiederholen.</p>
+      </div>
+      <div class="glass-card glass">
+        <div class="icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Feierabend verschiebt sich</h3>
+        <p>Noch schnell drei Mails, ein Angebot, eine Rückmeldung. Die Arbeit hört nicht auf, sie wandert nur in den Abend.</p>
+      </div>
+      <div class="glass-card glass">
+        <div class="icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><path d="M2.5 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" stroke-linecap="round"/><path d="M16 4.5c1.7.3 3 1.8 3 3.5s-1.3 3.2-3 3.5M22 19c0-2.8-2-4.8-4.5-5.3" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Ihre besten Leute sitzen an der falschen Aufgabe</h3>
+        <p>Fachkräfte, die eigentlich Kunden betreuen sollten, tippen stattdessen Standardantworten. Das kann eine KI übernehmen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ablauf">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>So arbeiten wir mit Ihnen zusammen</h2>
+      <p>Drei Schritte, keine Warteschleife.</p>
+    </div>
+    <div class="process-wrap glass reveal">
+      <div class="process-grid">
+        <div class="process-card">
+          <span class="num">Analyse</span>
+          <h3>Wir schauen uns Ihren Alltag an</h3>
+          <p>Im kostenlosen Erstgespräch gehen wir gemeinsam durch, wo bei Ihnen Zeit verloren geht. Danach bekommen Sie einen konkreten Vorschlag, keine Standardpräsentation.</p>
+        </div>
+        <div class="process-card">
+          <span class="num">Umsetzung</span>
+          <h3>Wir bauen und richten ein</h3>
+          <p>Die Automatisierung wird für Ihren Betrieb entwickelt und eingerichtet. Sie bekommen ein persönliches Onboarding, keine Anleitung zum Selbststudium.</p>
+        </div>
+        <div class="process-card">
+          <span class="num">Betreuung</span>
+          <h3>Wir bleiben dran</h3>
+          <p>Nach dem Start betreuen wir das System weiter, passen es an und sind direkt erreichbar, wenn sich in Ihrem Betrieb etwas ändert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vertrauen">
+  <div class="wrap">
+    <div class="glass reveal trust-panel">
+      <div class="trust-grid">
+        <div>
+          <span class="eyebrow">Warum ZYNTEVO</span>
+          <h2>Individuell entwickelt statt von der Stange</h2>
+          <p>Kein Formular, kein Baukasten. Jede Lösung wird für den jeweiligen Betrieb gebaut und danach laufend betreut.</p>
+        </div>
+        <ul class="trust-list">
+          <li>
+            <div class="icon-badge sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div>
+              <h3>Passgenau statt Standard</h3>
+              <p>Die Automatisierung wird auf Ihre tatsächlichen Prozesse zugeschnitten, nicht auf einen generischen Anwendungsfall.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon-badge sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div>
+              <h3>Laufende Betreuung inklusive</h3>
+              <p>Nach der Einrichtung endet die Zusammenarbeit nicht. Das System wird gepflegt und weiterentwickelt.</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon-badge sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div>
+              <h3>Ehrliche Einschätzung</h3>
+              <p>Passt eine Automatisierung nicht zu Ihrem Betrieb, sagen wir das im Erstgespräch offen, statt trotzdem zu verkaufen.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Fertige Self-Service-Tools</h2>
+      <p>Sie wollen sofort loslegen, ohne Erstgespräch? Für Makler, Handwerk und Steuerberatung gibt es fertige KI-Generatoren zum einmaligen Kaufpreis.</p>
+    </div>
+    <div class="tools-strip reveal-stagger">
+      <a href="makler.html" class="tool-chip glass">
+        <span class="name">Für Immobilienmakler</span>
+        <span class="go">Ansehen →</span>
+      </a>
+      <a href="handwerker.html" class="tool-chip glass">
+        <span class="name">Für Handwerksbetriebe</span>
+        <span class="go">Ansehen →</span>
+      </a>
+      <a href="steuerberater.html" class="tool-chip glass">
+        <span class="name">Für Steuerberater</span>
+        <span class="go">Ansehen →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="gespraech">
+  <div class="wrap">
+    <div class="lead-panel glass reveal">
+      <div class="lead-grid">
+        <div>
+          <h2>Lohnt sich eine individuelle Lösung für Sie?</h2>
+          <p>Das finden wir in 15 Minuten heraus. Kein Verkaufsgespräch, keine Präsentation. Wir hören uns an, wo bei Ihnen Zeit verloren geht, und sagen Ihnen ehrlich, ob und wie sich eine Automatisierung für Sie lohnt.</p>
+          <ul class="lead-points">
+            <li>Konkrete Einschätzung statt Standardangebot</li>
+            <li>Kostenlos und unverbindlich</li>
+            <li>Falls es nicht passt, sagen wir das auch</li>
+          </ul>
+        </div>
+        <form class="lead-form" id="leadForm">
+          <input type="text" name="name" placeholder="Ihr Name" required>
+          <input type="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+          <input type="text" name="branche" placeholder="Ihre Branche" required>
+          <textarea name="zeitfresser" rows="3" placeholder="Was kostet Sie aktuell am meisten Zeit?"></textarea>
+          <!-- Web3Forms: kostenloser Formular-zu-E-Mail-Dienst, kein eigener Server nötig.
+               Access Key unter https://web3forms.com (mit jan@zyntevo.de) holen und hier eintragen. -->
+          <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY_HIER_EINTRAGEN">
+          <input type="hidden" name="subject" value="Neue Anfrage für Erstgespräch von zyntevo.de">
+          <button type="submit">Anfrage senden</button>
+          <div class="status" id="formStatus"></div>
+          <p class="fineprint">Mit dem Absenden erklären Sie sich mit unserer <a href="datenschutz.html" style="color:#8E8E93; text-decoration:underline;">Datenschutzerklärung</a> einverstanden.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Häufige Fragen</h2>
+    </div>
+    <div style="max-width:820px; margin:0 auto;" class="reveal">
+      <details class="faq-item glass">
+        <summary>Für welche Branchen baut ihr Automatisierungen?</summary>
+        <p>Grundsätzlich für jedes dienstleistungsbasierte Unternehmen mit wiederkehrenden, manuellen Aufgaben. Handwerk, Immobilien, Steuerberatung, Unternehmensberatung und Finanzberatung sind häufige Beispiele, aber die Branche entscheidet nicht, ob sich eine Automatisierung lohnt. Ihre Prozesse tun das.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Was kostet das?</summary>
+        <p>Das Erstgespräch ist kostenlos. Die individuelle Automatisierung wird einmalig für Entwicklung und Einrichtung berechnet, danach zahlen Sie einen monatlichen Betrag für Pflege und Weiterentwicklung. Den genauen Preis nennen wir Ihnen erst, wenn wir wissen, was Sie tatsächlich brauchen.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Brauche ich technisches Vorwissen?</summary>
+        <p>Nein. Sie bekommen ein persönliches Onboarding und einen festen Ansprechpartner. Sie müssen nichts selbst programmieren oder einrichten.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Was ist der Unterschied zwischen Erstgespräch und Self-Service-Tools?</summary>
+        <p>Die Self-Service-Tools sind fertige Generatoren für Makler, Handwerk und Steuerberatung, die Sie sofort ohne Gespräch kaufen können. Das Erstgespräch führt zu einer individuellen Lösung, die genau auf Ihren Betrieb zugeschnitten ist. Bei Unsicherheit empfehlen wir Ihnen im Gespräch ehrlich, was für Sie passt.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta-panel glass reveal">
+      <h2>Ihre KI-Lösung wartet. Lassen Sie uns reden.</h2>
+      <p>Kostenloses 15-Minuten-Gespräch, ohne Verkaufsdruck.</p>
+      <a href="https://calendly.com/jan-zyntevo/15min" class="btn btn-gold">Erstgespräch sichern</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>ZYNTEVO</h4>
+        <p style="color:#57575B; font-size:14px; max-width:36ch;">Individuelle KI-Automatisierung für Unternehmer, die ihre Zeit lieber ins Kerngeschäft stecken.</p>
+      </div>
+      <div>
+        <h4>Self-Service</h4>
+        <a href="makler.html">Für Makler</a>
+        <a href="handwerker.html">Für Handwerker</a>
+        <a href="steuerberater.html">Für Steuerberater</a>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ZYNTEVO · info@zyntevo.de</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/zyntevo.ki/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@zyntevo.ki" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/jan-wichmann-281059414" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Scroll-Reveal per IntersectionObserver */
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+/* Beispielrechnung im Hero animiert einblenden */
+setTimeout(() => {
+  const heroCard = document.getElementById('heroCard');
+  if(heroCard) heroCard.classList.add('filled');
+}, 500);
+
+/* Mobiles Menü */
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+navToggle.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  navToggle.classList.toggle('open', isOpen);
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  navToggle.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
+
+/* Navpill: dezenter Schatten sobald gescrollt wird (IntersectionObserver statt scroll-Listener) */
+const navpill = document.querySelector('.navpill');
+const scrollSentinel = document.getElementById('scrollSentinel');
+if(scrollSentinel){
+  const navShadowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      navpill.style.boxShadow = entry.isIntersecting ? '' : '0 12px 32px rgba(31,31,31,0.14)';
+    });
+  });
+  navShadowObserver.observe(scrollSentinel);
+}
+
+/* Formular: Web3Forms */
+document.getElementById('leadForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById('formStatus');
+  const btn = form.querySelector('button');
+  btn.disabled = true; btn.textContent = 'Wird gesendet ...';
+  try{
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    });
+    const json = await res.json();
+    if(json.success){
+      status.style.display = 'block';
+      status.textContent = 'Danke! Wir melden uns persönlich bei Ihnen, um einen Termin zu finden.';
+      form.reset();
+    } else {
+      status.style.display = 'block';
+      status.style.color = '#D14343';
+      status.textContent = 'Da ist etwas schiefgelaufen. Bitte schreiben Sie uns direkt an info@zyntevo.de.';
+    }
+  }catch(err){
+    status.style.display = 'block';
+    status.style.color = '#D14343';
+    status.textContent = 'Verbindungsfehler. Bitte schreiben Sie uns direkt an info@zyntevo.de.';
+  }
+  btn.disabled = false; btn.textContent = 'Anfrage senden';
+});
+</script>
+
+</body>
+</html>
