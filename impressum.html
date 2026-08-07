@@ -1,112 +1,118 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZYNTEVO | Impressum</title>
-    <meta name="description" content="Impressum von ZYNTEVO">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag("js", new Date());
-      gtag("config", "G-GPT0KRVEM2");
-    </script>
-<link rel="stylesheet" href="glass-overrides.css">
-  <link rel="stylesheet" href="light-mode.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO | Impressum</title>
+<meta name="description" content="Impressum von ZYNTEVO">
+<link rel="icon" type="image/png" href="css/images/logo.png">
+<!-- Bewusst keine Google Fonts vom Google-CDN mehr: DSGVO-Risiko durch
+     IP-Übermittlung an Google (LG München 2022). Siehe css/zyntevo-2026.css. -->
+<link rel="stylesheet" href="css/zyntevo-2026.css">
+<script src="js/consent.js" defer></script>
 </head>
 <body>
 
-<header class="header">
-    <div class="container">
-        <a href="index.html" class="logo">
-            <img src="css/images/header.png" alt="ZYNTEVO">
-        </a>
-        <nav class="nav" style="display:flex;align-items:center;gap:12px;">
-            <a href="index.html" data-i18n="nav.home">Startseite</a>
-            <div id="zyn-lang-switcher" style="display:flex;align-items:center;gap:2px;">
-              <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><img src="https://flagcdn.com/20x15/de.png" alt="DE" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-              <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-              <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-            </div>
-        </nav>
-    </div>
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+<div id="scrollSentinel" aria-hidden="true" style="position:absolute; top:30px; left:0; width:1px; height:1px; pointer-events:none;"></div>
+
+<div class="mesh">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+
+<header>
+  <div class="navpill glass" id="navpill">
+    <a href="index.html" class="logo"><img src="css/images/header.png" alt="ZYNTEVO"></a>
+    <nav class="mainnav">
+      <a href="index.html">Startseite</a>
+    </nav>
+  </div>
 </header>
 
-<section style="padding:140px 0 80px;">
-    <div class="container" style="max-width:800px;">
+<main id="main">
+<section style="padding:150px 0 80px;">
+  <div class="wrap">
+    <div class="legal-panel glass reveal in">
+      <h1>Impressum</h1>
 
-        <div style="margin-bottom:40px;">
-            <span style="display:inline-block;color:#D4AF37;border:1px solid rgba(212,175,55,.25);padding:10px 18px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:20px;">RECHTLICHES</span>
-            <h1 style="font-size:48px;font-weight:900;margin-bottom:16px;">Impressum</h1>
-        </div>
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <p>Jan Wichmann<br>
+      Nunnenbeckstr. 23<br>
+      90489 Nürnberg</p>
 
-        <div style="background:rgba(255,255,255,0.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.8);border-radius:24px;padding:40px;line-height:1.9;box-shadow:0 8px 40px rgba(99,102,241,.08);">
+      <p>Telefon: <a href="tel:+4915233533143">+49 152 33533143</a><br>
+      E-Mail: <a href="mailto:info@zyntevo.de">info@zyntevo.de</a></p>
 
-            <h2 style="font-size:18px;font-weight:700;color:#D4AF37;margin-bottom:16px;letter-spacing:1px;">Angaben gemäß § 5 TMG</h2>
-            <p style="color:#1E293B;margin-bottom:6px;">Jan Wichmann</p>
-            <p style="color:#1E293B;margin-bottom:6px;">Nunnenbeckstr. 23</p>
-            <p style="color:#1E293B;margin-bottom:32px;">90489 Nürnberg</p>
+      <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+      <p>Jan Wichmann, Anschrift wie oben.</p>
 
-            <p style="color:#475569;margin-bottom:6px;">Telefon: <a href="tel:+4915678454268" style="color:#D4AF37;text-decoration:none;">+49 156 78454268</a></p>
-            <p style="color:#475569;margin-bottom:6px;">E-Mail: <a href="mailto:info@zyntevo.de" style="color:#D4AF37;text-decoration:none;">info@zyntevo.de</a></p>
+      <h2>Umsatzsteuer</h2>
+      <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
 
-            <div style="border-top:1px solid rgba(0,0,0,.08);margin:32px 0;"></div>
+      <h2>Verbraucherstreitbeilegung</h2>
+      <p>Wir sind nach § 36 VSBG nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
 
-            <h2 style="font-size:18px;font-weight:700;color:#D4AF37;margin-bottom:16px;letter-spacing:1px;">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-            <p style="color:#1E293B;margin-bottom:32px;">Jan Wichmann</p>
-
-            <div style="border-top:1px solid rgba(0,0,0,.08);margin:32px 0;"></div>
-
-            <h2 style="font-size:18px;font-weight:700;color:#D4AF37;margin-bottom:16px;letter-spacing:1px;">Umsatzsteuer</h2>
-            <p style="color:#475569;margin-bottom:32px;">Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
-
-            <div style="border-top:1px solid rgba(0,0,0,.08);margin:32px 0;"></div>
-
-            <h2 style="font-size:18px;font-weight:700;color:#D4AF37;margin-bottom:16px;letter-spacing:1px;">Streitschlichtung</h2>
-            <p style="color:#475569;margin-bottom:16px;">Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" style="color:#D4AF37;text-decoration:none;">https://ec.europa.eu/consumers/odr</a></p>
-            <p style="color:#475569;">Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-
-        </div>
-
+      <p>Dieses Impressum gilt auch für unseren <a id="ki-426984-2" href="https://www.induux.de/firmen/7581">induux Showroom ZYNTEVO</a>.</p>
     </div>
+  </div>
 </section>
+</main>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div>
-                <h4>ZYNTEVO</h4>
-                <p>Das KI-Betriebssystem für Steuerberater, Immobilienmakler und Handwerksbetriebe.</p>
-            </div>
-            <div>
-                <h4>Kontakt</h4>
-                <p>info@zyntevo.de</p>
-            </div>
-            <div>
-                <h4>Rechtliches</h4>
-                <a href="impressum.html">Impressum</a><br>
-                <a href="datenschutz.html">Datenschutz</a><br>
-                <a href="widerruf.html">Widerruf</a>
-            </div>
-        </div>
-        <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-            <p style="color:#475569;font-size:13px;margin:0;">© 2026 ZYNTEVO · Die Abbuchung erfolgt durch Digistore24.com</p>
-            <div style="display:flex;gap:16px;align-items:center;">
-                <a href="https://www.instagram.com/zyntevo.ki/" target="_blank" rel="noopener" title="Instagram" style="color:#475569;text-decoration:none;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#94A3B8'"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                <a href="https://www.tiktok.com/@zyntevo.ki" target="_blank" rel="noopener" title="TikTok" style="color:#475569;text-decoration:none;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#94A3B8'"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
-                <a href="https://www.linkedin.com/in/jan-wichmann-281059414" target="_blank" rel="noopener" title="LinkedIn" style="color:#475569;text-decoration:none;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#94A3B8'"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            </div>
-        </div>
-        </div>
-    </footer>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>ZYNTEVO</h4>
+        <p style="color:#57575B; font-size:14px; max-width:36ch;">Das KI-Betriebssystem für Immobilienmakler, Handwerksbetriebe und Steuerberater.</p>
+      </div>
+      <div>
+        <h4>Self-Service</h4>
+        <a href="makler.html">Für Makler</a>
+        <a href="handwerker.html">Für Handwerker</a>
+        <a href="steuerberater.html">Für Steuerberater</a>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="#" onclick="window.zyntevoOpenCookieBanner &amp;&amp; window.zyntevoOpenCookieBanner(); return false;">Cookie-Einstellungen</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ZYNTEVO · info@zyntevo.de · Die Abbuchung erfolgt durch Digistore24.com</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/zyntevo.ki/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.tiktok.com/@zyntevo.ki" target="_blank" rel="noopener" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
+        <a href="https://www.linkedin.com/in/jan-wichmann-281059414" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-<script src="zyn.js?v=4"></script>
+<script>
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+const navpill = document.getElementById('navpill');
+const scrollSentinel = document.getElementById('scrollSentinel');
+if(scrollSentinel){
+  const navShadowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      navpill.style.boxShadow = entry.isIntersecting ? '' : '0 12px 32px rgba(31,31,31,0.14)';
+    });
+  });
+  navShadowObserver.observe(scrollSentinel);
+}
+</script>
 </body>
 </html>
 
-
-
-
+ 

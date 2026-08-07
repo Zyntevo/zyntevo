@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO | KI-Tool Makler Enterprise</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{overflow-x:hidden;max-width:100%;}
+:root{--bg:#070B11;--card:#111827;--gold:#D4AF37;--text:#F8FAFC;--muted:#94A3B8;}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+.container{width:90%;max-width:1300px;margin:auto;}
+.header{height:80px;position:fixed;top:0;width:100%;z-index:1000;background:rgba(7,11,17,0.95);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,255,255,.05);}
+.header .container{display:flex;justify-content:space-between;align-items:center;height:100%;}
+.logo{text-decoration:none;color:var(--gold);font-size:24px;font-weight:900;letter-spacing:2px;}
+.header-badge{display:inline-block;padding:6px 14px;border:1px solid rgba(212,175,55,.3);border-radius:999px;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:1px;}
+#auth-screen{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;background:var(--bg);}
+.auth-card{width:440px;padding:50px 40px;background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:30px;text-align:center;box-shadow:0 0 40px rgba(212,175,55,.08);}
+.auth-logo{font-size:32px;font-weight:900;color:var(--gold);margin-bottom:6px;}
+.auth-sub{color:var(--muted);font-size:14px;margin-bottom:8px;}
+.auth-badge{display:inline-block;padding:5px 14px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);border-radius:999px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:28px;}
+.auth-input{width:100%;padding:14px 16px;background:var(--bg);border:1px solid rgba(212,175,55,.2);border-radius:12px;color:var(--text);font-size:15px;outline:none;transition:.3s;font-family:Inter,sans-serif;margin-bottom:12px;text-align:center;letter-spacing:2px;}
+.auth-input:focus{border-color:var(--gold);}
+.auth-input::placeholder{letter-spacing:0;font-size:14px;}
+.auth-btn{width:100%;padding:14px;background:var(--gold);color:#000;font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:.3s;font-family:Inter,sans-serif;margin-top:4px;}
+.auth-btn:hover{transform:translateY(-2px);opacity:.92;}
+.auth-error{color:#EF4444;font-size:13px;margin-top:10px;display:none;}
+.auth-hint{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;}
+#app{display:none;padding-top:80px;}
+.layout{display:flex;min-height:calc(100vh - 80px);}
+.sidebar{width:260px;flex-shrink:0;background:linear-gradient(135deg,#0F172A,#111827);border-right:1px solid rgba(212,175,55,.1);padding:30px 0;position:sticky;top:80px;height:calc(100vh - 80px);overflow-y:auto;}
+.sidebar-section{padding:8px 20px 4px;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);}
+.nav-item{display:flex;align-items:center;gap:12px;padding:12px 20px;cursor:pointer;transition:.3s;font-size:14px;color:var(--muted);border-left:3px solid transparent;}
+.nav-item:hover{color:var(--text);background:rgba(212,175,55,.05);}
+.nav-item.active{color:var(--gold);border-left-color:var(--gold);background:rgba(212,175,55,.08);}
+.nav-icon{font-size:16px;width:20px;text-align:center;}
+.logout-nav{margin-top:20px;border-top:1px solid rgba(255,255,255,.05);padding-top:16px;}
+.main{flex:1;padding:40px;}
+.page{display:none;}
+.page.active{display:block;}
+.page-header{margin-bottom:40px;}
+.page-tag{display:inline-block;color:var(--gold);border:1px solid rgba(212,175,55,.25);padding:8px 16px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:16px;}
+.page-title{font-size:42px;font-weight:900;margin-bottom:12px;line-height:1.1;}
+.page-desc{color:var(--muted);font-size:16px;max-width:600px;}
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:40px;}
+.dash-card{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:28px;}
+.dash-num{font-size:44px;font-weight:900;color:var(--gold);line-height:1;margin-bottom:6px;}
+.dash-label{font-size:12px;color:var(--muted);letter-spacing:1px;}
+.tool-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.tool-card{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:28px;cursor:pointer;transition:.3s;}
+.tool-card:hover{transform:translateY(-6px);border-color:rgba(212,175,55,.4);box-shadow:0 0 25px rgba(212,175,55,.12);}
+.tool-card-icon{font-size:32px;margin-bottom:14px;}
+.tool-card-title{font-size:16px;font-weight:700;margin-bottom:6px;}
+.tool-card-desc{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5;}
+.card-link{color:var(--gold);font-weight:700;font-size:14px;}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start;}
+.tool-form{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:36px;}
+.tool-result{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.15);border-radius:24px;padding:36px;min-height:400px;}
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;}
+.form-input,.form-select,.form-textarea{width:100%;padding:13px 16px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:12px;color:var(--text);font-size:14px;outline:none;transition:.3s;font-family:Inter,sans-serif;resize:vertical;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);}
+.form-textarea{min-height:90px;}
+.form-select{cursor:pointer;}
+.form-select option{background:#0F172A;}
+.generate-btn{width:100%;padding:16px;background:var(--gold);color:#000;font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;transition:.3s;margin-top:8px;}
+.generate-btn:hover{transform:translateY(-2px);}
+.result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.result-label{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);}
+.copy-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;}
+.copy-btn:hover{border-color:var(--gold);color:var(--gold);}
+.copy-btn.copied{border-color:#22C55E;color:#22C55E;}
+.edit-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
+.edit-btn:hover{border-color:var(--gold);color:var(--gold);}
+.pdf-btn{background:transparent;border:1px solid rgba(212,175,55,.3);color:var(--muted);padding:6px 16px;border-radius:8px;font-size:12px;cursor:pointer;transition:.3s;margin-left:8px;}
+.pdf-btn:hover{border-color:var(--gold);color:var(--gold);}
+.result-actions{display:flex;align-items:center;gap:0;}
+.profile-bar{background:linear-gradient(135deg,#0F172A,#111827);border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:24px 28px;margin-bottom:28px;}
+.profile-bar-title{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:14px;}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.profile-save-btn{margin-top:14px;padding:10px 20px;background:var(--gold);color:#000;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer;transition:.3s;}
+.profile-save-btn:hover{transform:translateY(-1px);}
+.profile-saved{color:#22C55E;font-size:12px;margin-left:10px;display:none;}
+.result-text[contenteditable="true"]{outline:1px solid rgba(212,175,55,.3);border-radius:8px;padding:8px;cursor:text;}
+.result-text{color:var(--text);font-size:14px;line-height:1.8;white-space:pre-wrap;}
+.result-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;gap:12px;color:var(--muted);}
+.placeholder-icon{font-size:48px;opacity:.3;}
+.loading{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px;padding:20px 0;}
+.spinner{width:20px;height:20px;border:2px solid rgba(212,175,55,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.free-hint{font-size:12px;color:var(--muted);margin-bottom:16px;padding:12px 16px;background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.1);border-radius:10px;}
+.unlim-bar{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:10px 16px;font-size:12px;color:#4ADE80;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;font-weight:600;}
+.bausteine-bar{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.2);border-radius:14px;padding:16px 20px;margin-bottom:20px;}
+.bausteine-bar-title{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:10px;}
+.bausteine-list{display:flex;flex-direction:column;gap:6px;}
+.bausteine-item{font-size:12px;color:var(--muted);padding:6px 10px;background:rgba(255,255,255,.03);border-radius:8px;border-left:2px solid var(--gold);}
+.bausteine-empty{font-size:12px;color:var(--muted);font-style:italic;}
+@media(max-width:900px){.sidebar{display:none;}.tool-grid{grid-template-columns:1fr;}.dash-grid,.tool-cards{grid-template-columns:1fr 1fr;}.main{padding:20px;}}
+@media(max-width:600px){.auth-card{width:92vw;padding:32px 20px;}.dash-grid{grid-template-columns:1fr 1fr;gap:12px;}.tool-cards{grid-template-columns:1fr 1fr;gap:12px;}.tool-grid{grid-template-columns:1fr;gap:16px;}.tool-form,.tool-result{padding:20px;}.page-title{font-size:26px;}}
+</style>
+<link rel="stylesheet" href="glass-overrides.css">
+<link rel="stylesheet" href="light-mode.css">
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">ZYNTEVO</div>
+    <div class="auth-sub">KI-Tool · Makler Enterprise</div>
+    <div class="auth-badge">🏢 ENTERPRISE ZUGANG</div>
+    <input class="auth-input" type="text" id="ent-code" placeholder="Enterprise-Code eingeben" autocomplete="off" onkeydown="if(event.key==='Enter')doEntLogin()" />
+    <div class="auth-error" id="ent-error"></div>
+    <button class="auth-btn" onclick="doEntLogin()">⚡ Zugang freischalten →</button>
+    <div class="auth-hint">Deinen persönlichen Enterprise-Code hast du per E-Mail erhalten.<br>Fragen? <a href="mailto:jan@zyntevo.de" style="color:var(--gold);">jan@zyntevo.de</a></div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);">
+      <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><svg width="20" height="15" viewBox="0 0 5 3" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="5" height="3" fill="#000"/><rect y="1" width="5" height="2" fill="#D00"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg></button>
+      <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 60 30" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></button>
+      <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 3 2" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="3" height="2" fill="#ED2939"/><rect width="2" height="2" fill="#fff"/><rect width="1" height="2" fill="#002395"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="header">
+    <div class="container">
+      <div class="logo">ZYNTEVO</div>
+      <div class="header-badge">🏢 MAKLER ENTERPRISE</div>
+      <div id="zyn-lang-switcher" style="display:flex;align-items:center;gap:2px;margin-left:auto;background:rgba(255,255,255,0.06);border-radius:8px;padding:2px;">
+        <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><svg width="20" height="15" viewBox="0 0 5 3" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="5" height="3" fill="#000"/><rect y="1" width="5" height="2" fill="#D00"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg></button>
+        <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 60 30" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></button>
+        <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 3 2" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="3" height="2" fill="#ED2939"/><rect width="2" height="2" fill="#fff"/><rect width="1" height="2" fill="#002395"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="layout">
+    <div class="sidebar">
+      <div class="sidebar-section" data-i18n="tool.nav_overview">ÜBERSICHT</div>
+      <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">⚡</span> Dashboard</div>
+      <div class="sidebar-section" data-i18n="tool.nav_tools">KI-TOOLS</div>
+      <div class="nav-item" onclick="showPage('expose',this)"><span class="nav-icon">🏠</span> <span data-i18n="tool.nav_makler_expose">Exposé Generator</span></div>
+      <div class="nav-item" onclick="showPage('email',this)"><span class="nav-icon">✉️</span> <span data-i18n="tool.nav_makler_email">E-Mail Generator</span></div>
+      <div class="nav-item" onclick="showPage('social',this)"><span class="nav-icon">📱</span> <span data-i18n="tool.nav_makler_social">Social Media</span></div>
+      <div class="nav-item" onclick="showPage('akquise',this)"><span class="nav-icon">📬</span> <span data-i18n="tool.nav_makler_akquise">Akquise-Brief</span></div>
+      <div class="nav-item" onclick="showPage('markt',this)"><span class="nav-icon">📊</span> <span data-i18n="tool.nav_makler_markt">Marktbericht</span></div>
+      <div class="nav-item" onclick="showPage('kaeufer',this)"><span class="nav-icon">🎯</span> <span data-i18n="tool.nav_makler_kaeufer">Käufer-Analyse</span></div>
+      <div class="nav-item" onclick="showPage('verhandlung',this)"><span class="nav-icon">🤝</span> <span data-i18n="tool.nav_makler_verhandlung">Verhandlungs-Coach</span></div>
+      <div class="nav-item" onclick="showPage('tiktok',this)"><span class="nav-icon">🎬</span> <span data-i18n="tool.nav_makler_tiktok">TikTok Skript</span></div>
+      <div class="sidebar-section" data-i18n="tool.nav_free_section">FREI</div>
+      <div class="nav-item" onclick="showPage('frei',this)"><span class="nav-icon">✏️</span> Freier Generator</div>
+      <div class="logout-nav">
+        <div class="nav-item" onclick="doLogout()"><span class="nav-icon">🚪</span> <span data-i18n="tool.nav_logout">Ausloggen</span></div>
+      </div>
+    </div>
+    <div class="main">
+
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="profile-bar">
+          <div class="profile-bar-title" data-i18n="tool.profile_title">⚡ MEIN PROFIL — wird in alle Tools vorausgefüllt</div>
+          <div class="profile-grid">
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_name_lbl">Dein Name</label><input class="form-input" id="profile-name" placeholder="z.B. Max Mustermann" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_office_lbl">Dein Büro</label><input class="form-input" id="profile-buero" placeholder="z.B. Mustermann Immobilien" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_street_lbl">Straße & Hausnummer</label><input class="form-input" id="profile-strasse" placeholder="z.B. Musterstraße 12" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_city_lbl">PLZ & Stadt</label><input class="form-input" id="profile-stadt" placeholder="z.B. 80331 München" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_phone_lbl">Telefon</label><input class="form-input" id="profile-telefon" placeholder="z.B. 089 123456" style="font-size:13px;padding:10px 14px;"></div>
+            <div><label class="form-label" style="font-size:10px;" data-i18n="tool.profile_usp_lbl">Dein USP</label><input class="form-input" id="profile-usp" placeholder="z.B. 10 Jahre Erfahrung" style="font-size:13px;padding:10px 14px;"></div>
+          </div>
+          <button class="profile-save-btn" onclick="saveProfile()" data-i18n="tool.profile_save">💾 Profil speichern</button>
+          <span class="profile-saved" id="profile-saved" data-i18n="tool.profile_saved">✓ Gespeichert</span>
+        </div>
+        <div id="bausteine-section" class="bausteine-bar" style="display:none;">
+          <div class="bausteine-bar-title">🧱 AKTIVE TEXTBAUSTEINE — werden automatisch eingebaut</div>
+          <div class="bausteine-list" id="bausteine-list"></div>
+        </div>
+        <div class="page-header"><div class="page-tag">🏢 ENTERPRISE</div><div class="page-title" data-i18n="tool.welcome_title">Dein KI-Cockpit</div><div class="page-desc" data-i18n="tool.dash_desc_makler">9 KI-Tools für dein Team – unbegrenzte Generierungen, keine Tageslimits.</div></div>
+        <div class="dash-grid">
+          <div class="dash-card"><div class="dash-num">9</div><div class="dash-label" data-i18n="tool.dash_tools">KI-TOOLS</div></div>
+          <div class="dash-card"><div class="dash-num">∞</div><div class="dash-label" data-i18n="tool.ent_unlimited">UNBEGRENZT</div></div>
+          <div class="dash-card"><div class="dash-num">5h</div><div class="dash-label" data-i18n="tool.dash_saving">ERSPARNIS/WOCHE</div></div>
+          <div class="dash-card"><div class="dash-num">24/7</div><div class="dash-label" data-i18n="tool.dash_avail">VERFÜGBAR</div></div>
+        </div>
+        <div class="tool-cards">
+          <div class="tool-card" onclick="showPage('expose',null)"><div class="tool-card-icon">🏠</div><div class="tool-card-title" data-i18n="tool.makler_t1_title">Exposé Generator</div><div class="tool-card-desc" data-i18n="tool.dc_m_t1_desc">Professionelles Exposé in Sekunden</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('email',null)"><div class="tool-card-icon">✉️</div><div class="tool-card-title" data-i18n="tool.makler_t2_title">E-Mail Generator</div><div class="tool-card-desc" data-i18n="tool.dc_m_t2_desc">Fertige Mails für jede Situation</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('social',null)"><div class="tool-card-icon">📱</div><div class="tool-card-title" data-i18n="tool.dc_social_media">Social Media</div><div class="tool-card-desc" data-i18n="tool.dc_m_t3_desc">Posts für Instagram & LinkedIn</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('akquise',null)"><div class="tool-card-icon">📬</div><div class="tool-card-title" data-i18n="tool.dc_akquise_brief">Akquise-Brief</div><div class="tool-card-desc" data-i18n="tool.dc_m_t4_desc">Eigentümer professionell anschreiben</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('markt',null)"><div class="tool-card-icon">📊</div><div class="tool-card-title" data-i18n="tool.dc_marktbericht">Marktbericht</div><div class="tool-card-desc" data-i18n="tool.dc_m_t5_desc">Monatsbericht in 5 Minuten</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('kaeufer',null)"><div class="tool-card-icon">🎯</div><div class="tool-card-title" data-i18n="tool.ent_m_t6_title">Käufer-Analyse</div><div class="tool-card-desc" data-i18n="tool.dc_m_t6_desc">Echte Käufer sofort erkennen</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('verhandlung',null)"><div class="tool-card-icon">🤝</div><div class="tool-card-title" data-i18n="tool.ent_m_t7_title">Verhandlungs-Coach</div><div class="tool-card-desc" data-i18n="tool.dc_m_t7_desc">Strategie für jeden Deal</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+          <div class="tool-card" onclick="showPage('tiktok',null)"><div class="tool-card-icon">🎬</div><div class="tool-card-title" data-i18n="tool.dc_tiktok_skript">TikTok Skript</div><div class="tool-card-desc" data-i18n="tool.dc_m_t8_desc">Fertige Video-Skripte sofort</div><div class="card-link" data-i18n="tool.dash_open">→ Tool öffnen</div></div>
+        </div>
+      </div>
+
+      <!-- EXPOSE -->
+      <div class="page" id="page-expose">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.makler_t1_tag">TOOL 1 VON 8</div><div class="page-title" data-i18n="tool.makler_t1_title">Exposé Generator</div><div class="page-desc" data-i18n="tool.makler_t1_desc">Gib die Objektdaten ein – die KI schreibt ein professionelles Exposé.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_objekttyp">Objekttyp</label><select class="form-select" id="expose-typ"><option data-i18n="tool.opt_etw">Eigentumswohnung</option><option data-i18n="tool.opt_efh">Einfamilienhaus</option><option data-i18n="tool.opt_dh">Doppelhaushälfte</option><option data-i18n="tool.opt_rh">Reihenhaus</option><option data-i18n="tool.opt_mfh">Mehrfamilienhaus</option><option data-i18n="tool.opt_grundstueck">Grundstück</option><option data-i18n="tool.opt_gewerbe">Gewerbeimmobilie</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_lage">Lage / Stadtteil</label><input class="form-input" id="expose-lage" placeholder="z.B. München-Schwabing"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_wohnflaeche">Wohnfläche m²</label><input class="form-input" id="expose-flaeche" placeholder="z.B. 85 m²"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_zimmer">Zimmer</label><input class="form-input" id="expose-zimmer" placeholder="z.B. 3 Zimmer"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_kaufpreis">Kaufpreis</label><input class="form-input" id="expose-preis" placeholder="z.B. 450.000 €"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_besonderheiten">Besonderheiten</label><textarea class="form-textarea" id="expose-details" placeholder="z.B. Dachterrasse, Tiefgaragenstellplatz..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_stil">Stil</label><select class="form-select" id="expose-stil"><option data-i18n="tool.opt_stil_emotional">Emotional & verkaufsstark</option><option data-i18n="tool.opt_stil_sachlich">Sachlich & informativ</option><option data-i18n="tool.opt_stil_luxury">Luxury & exklusiv</option><option data-i18n="tool.opt_stil_modern">Modern & minimalistisch</option></select></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_expose" onclick="generateExpose()">⚡ Exposé generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-expose" onclick="copyResult('expose-result','copy-expose')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('expose-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-expose-result" onclick="toggleEdit('expose-result','edit-expose-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="expose-result"><div class="result-placeholder"><div class="placeholder-icon">🏠</div><div data-i18n="tool.ph_res_form">Fülle das Formular aus und klick auf Generieren</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="page" id="page-email">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.makler_t2_tag">TOOL 2 VON 8</div><div class="page-title" data-i18n="tool.makler_t2_title">E-Mail Generator</div><div class="page-desc" data-i18n="tool.makler_t2_desc">Wähle die Situation – die KI schreibt die perfekte E-Mail.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_situation">Situation</label><select class="form-select" id="email-situation"><option data-i18n="tool.opt_email_m_kaufint">Antwort auf Kaufinteresse</option><option data-i18n="tool.opt_email_m_besicht">Besichtigungstermin bestätigen</option><option data-i18n="tool.opt_email_m_nachf">Nach Besichtigung nachfassen</option><option data-i18n="tool.opt_email_m_preis">Preisreduktion mitteilen</option><option data-i18n="tool.opt_email_m_abgel">Angebot abgelehnt</option><option data-i18n="tool.opt_email_m_auftrag">Verkaufsauftrag gewinnen</option><option data-i18n="tool.opt_email_m_schluessel">Schlüsselübergabe</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_kundenname">Kundenname</label><input class="form-input" id="email-name" placeholder="z.B. Herr Müller"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_objekt_kontext">Objekt / Kontext</label><textarea class="form-textarea" id="email-kontext" placeholder="z.B. 3-Zimmer-Wohnung München..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_ton">Ton</label><select class="form-select" id="email-ton"><option data-i18n="tool.opt_ton_prof">Professionell & freundlich</option><option data-i18n="tool.opt_ton_pers">Persönlich & warm</option><option data-i18n="tool.opt_ton_foermlich">Förmlich & seriös</option></select></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_email" onclick="generateEmail()">⚡ E-Mail generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-email" onclick="copyResult('email-result','copy-email')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('email-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-email-result" onclick="toggleEdit('email-result','edit-email-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="email-result"><div class="result-placeholder"><div class="placeholder-icon">✉️</div><div data-i18n="tool.ph_res_situation_email">Wähle eine Situation und generiere deine E-Mail</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="page" id="page-social">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.hw_t3_tag">TOOL 3 VON 8</div><div class="page-title" data-i18n="tool.ent_m_t3_title">Social Media Generator</div><div class="page-desc" data-i18n="tool.ent_m_t3_desc">Fertige Posts für Instagram und LinkedIn.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_plattform">Plattform</label><select class="form-select" id="social-plattform"><option>Instagram</option><option>LinkedIn</option><option>TikTok Caption</option><option>Facebook</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_content_typ">Content-Typ</label><select class="form-select" id="social-typ"><option data-i18n="tool.opt_soc_m_objekt">Objektvorstellung</option><option data-i18n="tool.opt_soc_m_tipp">Markt-Tipp</option><option data-i18n="tool.opt_soc_m_gesch">Persönliche Geschichte</option><option data-i18n="tool.opt_soc_m_kstimme">Kundenstimme</option><option data-i18n="tool.opt_soc_bts">Behind the Scenes</option><option data-i18n="tool.opt_soc_m_bildung">Bildungs-Content</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_details_thema">Details / Thema</label><textarea class="form-textarea" id="social-details" placeholder="z.B. Heute haben wir eine Penthouse-Wohnung verkauft..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_name_buero">Dein Name / Büro</label><input class="form-input" id="social-name" placeholder="z.B. Jan Wichmann Immobilien"></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_post" onclick="generateSocial()">⚡ Post generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-social" onclick="copyResult('social-result','copy-social')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('social-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-social-result" onclick="toggleEdit('social-result','edit-social-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="social-result"><div class="result-placeholder"><div class="placeholder-icon">📱</div><div data-i18n="tool.ph_res_plattform">Wähle Plattform und Content-Typ</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- AKQUISE -->
+      <div class="page" id="page-akquise">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.hw_t4_tag">TOOL 4 VON 8</div><div class="page-title" data-i18n="tool.hw_t4_title">Akquise-Brief Generator</div><div class="page-desc" data-i18n="tool.ent_m_t4_desc">Professionelle Anschreiben an Eigentümer.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_stadtteil_lage">Stadtteil / Lage</label><input class="form-input" id="akquise-lage" placeholder="z.B. München-Schwabing"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_anlass">Anlass</label><select class="form-select" id="akquise-anlass"><option data-i18n="tool.opt_akq_m_bew">Kostenlose Bewertung anbieten</option><option data-i18n="tool.opt_akq_m_mupdate">Marktupdate mitteilen</option><option data-i18n="tool.opt_akq_m_nachf">Hohe Nachfrage kommunizieren</option><option data-i18n="tool.opt_akq_m_reaktiv">Reaktivierung nach längerer Zeit</option><option data-i18n="tool.opt_akq_m_kalt">Erstkontakt kalt</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_name">Dein Name</label><input class="form-input" id="akquise-name" placeholder="z.B. Max Mustermann"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_buero">Dein Büro</label><input class="form-input" id="akquise-buero" placeholder="z.B. Zyntevo Immobilien"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_dein_usp">Dein USP</label><textarea class="form-textarea" id="akquise-usp" placeholder="z.B. 15 Jahre Erfahrung..."></textarea></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_brief" onclick="generateAkquise()">⚡ Brief generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-akquise" onclick="copyResult('akquise-result','copy-akquise')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('akquise-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-akquise-result" onclick="toggleEdit('akquise-result','edit-akquise-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="akquise-result"><div class="result-placeholder"><div class="placeholder-icon">📬</div><div data-i18n="tool.ph_res_brief">Fülle die Details aus und generiere deinen Brief</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- MARKT -->
+      <div class="page" id="page-markt">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.hw_t5_tag">TOOL 5 VON 8</div><div class="page-title" data-i18n="tool.ent_m_t5_title">Marktbericht Generator</div><div class="page-desc" data-i18n="tool.ent_m_t5_desc">Professioneller Monatsbericht in 5 Minuten.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_region_stadt">Region / Stadt</label><input class="form-input" id="markt-region" placeholder="z.B. München, Schwabing"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_monat_jahr">Monat / Jahr</label><input class="form-input" id="markt-monat" placeholder="z.B. Juni 2026"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_marktlage">Marktlage</label><select class="form-select" id="markt-lage"><option data-i18n="tool.opt_markt_steig">Steigende Preise</option><option data-i18n="tool.opt_markt_stab">Stabile Preise</option><option data-i18n="tool.opt_markt_sink">Leicht sinkende Preise</option><option data-i18n="tool.opt_markt_kaeufer">Käufermarkt</option><option data-i18n="tool.opt_markt_verk">Verkäufermarkt</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_aktuelle_zahlen">Aktuelle Zahlen</label><textarea class="form-textarea" id="markt-daten" placeholder="z.B. Durchschnittspreis 7.500€/m²..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_einschaetzung">Deine Einschätzung</label><textarea class="form-textarea" id="markt-einschaetzung" placeholder="z.B. Ich erwarte in den nächsten Monaten..."></textarea></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_marktbericht" onclick="generateMarkt()">⚡ Marktbericht generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-markt" onclick="copyResult('markt-result','copy-markt')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('markt-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-markt-result" onclick="toggleEdit('markt-result','edit-markt-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="markt-result"><div class="result-placeholder"><div class="placeholder-icon">📊</div><div data-i18n="tool.ph_res_marktdaten">Gib die Marktdaten ein und generiere deinen Bericht</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- KÄUFER -->
+      <div class="page" id="page-kaeufer">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.hw_t6_tag">TOOL 6 VON 8</div><div class="page-title" data-i18n="tool.ent_m_t6_title">Käufer-Analyse</div><div class="page-desc" data-i18n="tool.ent_m_t6_desc">KI bewertet ob es ein echter Käufer ist.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_kaeufer_seit">Seit wann sucht der Interessent?</label><select class="form-select" id="kaeufer-seit"><option data-i18n="tool.opt_ks_1m">Weniger als 1 Monat</option><option data-i18n="tool.opt_ks_1_3m">1–3 Monate</option><option data-i18n="tool.opt_ks_3_6m">3–6 Monate</option><option data-i18n="tool.opt_ks_6m">Mehr als 6 Monate</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_finanzierung">Finanzierung geklärt?</label><select class="form-select" id="kaeufer-finanz"><option data-i18n="tool.opt_fin_bank">Ja – Bankzusage vorhanden</option><option data-i18n="tool.opt_fin_gesp">In Gespräch mit Bank</option><option data-i18n="tool.opt_fin_nein">Noch nicht begonnen</option><option data-i18n="tool.opt_fin_eigen">Eigenkapital vorhanden</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_budget">Budget</label><input class="form-input" id="kaeufer-budget" placeholder="z.B. 400.000 – 450.000 €"></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_einzugstermin">Gewünschter Einzugstermin</label><select class="form-select" id="kaeufer-termin"><option data-i18n="tool.opt_einzug_sofort">So schnell wie möglich</option><option data-i18n="tool.opt_einzug_3m">Innerhalb 3 Monate</option><option data-i18n="tool.opt_einzug_3_6m">In 3–6 Monaten</option><option data-i18n="tool.opt_einzug_6_12m">In 6–12 Monaten</option><option data-i18n="tool.opt_einzug_ig">Irgendwann</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_weitere_infos">Weitere Infos</label><textarea class="form-textarea" id="kaeufer-info" placeholder="z.B. Ehepaar, 2 Kinder..."></textarea></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_kaeufer" onclick="generateKaeufer()">⚡ Käufer analysieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-kaeufer" onclick="copyResult('kaeufer-result','copy-kaeufer')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('kaeufer-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-kaeufer-result" onclick="toggleEdit('kaeufer-result','edit-kaeufer-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="kaeufer-result"><div class="result-placeholder"><div class="placeholder-icon">🎯</div><div data-i18n="tool.ph_res_kaeufer">Fülle die Informationen aus und analysiere den Käufer</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- VERHANDLUNG -->
+      <div class="page" id="page-verhandlung">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.hw_t7_tag">TOOL 7 VON 8</div><div class="page-title" data-i18n="tool.ent_m_t7_title">Verhandlungs-Coach</div><div class="page-desc" data-i18n="tool.ent_m_t7_desc">Deine persönliche Verhandlungsstrategie von der KI.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_vh_typ">Typ der Verhandlung</label><select class="form-select" id="vh-typ"><option data-i18n="tool.opt_vh_kaeufer">Käufer verhandelt Preis runter</option><option data-i18n="tool.opt_vh_verkaeufer">Verkäufer will zu hohen Preis</option><option data-i18n="tool.opt_vh_auftrag">Maklerauftrag gewinnen</option><option data-i18n="tool.opt_vh_bieter">Bieterverfahren moderieren</option><option data-i18n="tool.opt_vh_retten">Deal vor dem Platzen retten</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_situation">Situation</label><textarea class="form-textarea" id="vh-situation" placeholder="z.B. Käufer bietet 380.000€..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_meine_position">Meine Position</label><textarea class="form-textarea" id="vh-position" placeholder="z.B. Ich vertrete den Verkäufer..."></textarea></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_strategie" onclick="generateVerhandlung()">⚡ Strategie generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-verhandlung" onclick="copyResult('verhandlung-result','copy-verhandlung')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('verhandlung-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-verhandlung-result" onclick="toggleEdit('verhandlung-result','edit-verhandlung-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="verhandlung-result"><div class="result-placeholder"><div class="placeholder-icon">🤝</div><div data-i18n="tool.ph_res_strategie">Beschreibe die Situation und erhalte deine Strategie</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- TIKTOK -->
+      <div class="page" id="page-tiktok">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.hw_t8_tag">TOOL 8 VON 8</div><div class="page-title" data-i18n="tool.hw_t8_title">TikTok Skript Generator</div><div class="page-desc" data-i18n="tool.ent_m_t8_desc">Fertige Video-Skripte sofort aufnahmefertig.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_video_format">Video-Format</label><select class="form-select" id="tt-format"><option data-i18n="tool.opt_tt_fehler">Fehler-Video</option><option data-i18n="tool.opt_tt_tipp">Tipp-Video</option><option data-i18n="tool.opt_soc_bts">Behind the Scenes</option><option data-i18n="tool.opt_tt_markt">Markt-Update</option><option data-i18n="tool.opt_soc_m_gesch">Persönliche Geschichte</option><option data-i18n="tool.opt_tt_vorher">Vorher/Nachher</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_thema">Thema</label><textarea class="form-textarea" id="tt-thema" placeholder="z.B. 3 Fehler die Immobilienkäufer machen..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_videolarenge">Videolänge</label><select class="form-select" id="tt-laenge"><option data-i18n="tool.opt_tt_30s">30 Sekunden</option><option data-i18n="tool.opt_tt_45s">45 Sekunden</option><option data-i18n="tool.opt_tt_60s">60 Sekunden</option></select></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.lbl_name_buero">Dein Name / Büro</label><input class="form-input" id="tt-name" placeholder="z.B. Jan – Immobilienmakler München"></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.gen_skript" onclick="generateTikTok()">⚡ Skript generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-tiktok" onclick="copyResult('tiktok-result','copy-tiktok')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('tiktok-result')" data-i18n="tool.pdf_btn">PDF ↓</button><button class="edit-btn" id="edit-tiktok-result" onclick="toggleEdit('tiktok-result','edit-tiktok-result')" data-i18n="tool.edit_btn">✏ Bearbeiten</button></div></div><div id="tiktok-result"><div class="result-placeholder"><div class="placeholder-icon">🎬</div><div data-i18n="tool.ph_res_format">Wähle ein Format und generiere dein Skript</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- FREI -->
+      <div class="page" id="page-frei">
+        <div class="page-header"><div class="page-tag" data-i18n="tool.ent_free_tag">FREIER GENERATOR</div><div class="page-title" data-i18n="tool.ent_free_title">Freier KI-Generator</div><div class="page-desc" data-i18n="tool.ent_free_desc">Schreibe deinen eigenen Prompt – die KI antwortet direkt.</div></div>
+        <div class="unlim-bar"><span data-i18n="tool.ent_unlim_bar">✅ Unbegrenzte Generierungen – Enterprise</span></div>
+        <div class="tool-grid">
+          <div class="tool-form">
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_label">Dein Prompt / Aufgabe</label><p class="free-hint">💡 Tipp: Du kannst hier direkt Prompts aus deinen PDF-Vorlagen einkopieren und anpassen.</p><textarea class="form-textarea" id="frei-prompt" style="min-height:200px;" placeholder="z.B. Schreibe mir eine professionelle Absage..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_kontext">Zusätzlicher Kontext (optional)</label><textarea class="form-textarea" id="frei-kontext" placeholder="z.B. Mein Büro heißt..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-i18n="tool.free_stil">Ausgabe-Stil</label><select class="form-select" id="frei-stil"><option data-i18n="tool.opt_frei_prof">Professionell & sachlich</option><option data-i18n="tool.opt_frei_freund">Freundlich & persönlich</option><option data-i18n="tool.opt_frei_kurz">Kurz & prägnant</option><option data-i18n="tool.opt_frei_ausfuehrl">Ausführlich & detailliert</option></select></div>
+            <div style="margin-bottom:16px;"><label class="form-label" data-i18n="tool.length_label">Textlänge</label><select class="laenge-select" style="width:100%;padding:10px 14px;background:var(--bg);border:1px solid rgba(212,175,55,.15);border-radius:10px;color:var(--text);font-size:14px;outline:none;font-family:Inter,sans-serif;"><option value="Kurz (5-7 Sätze, max. 100 Wörter)" data-i18n="tool.opt_len_kurz">Kurz – 5-7 Sätze</option><option value="Mittel (10-12 Sätze, max. 200 Wörter)" selected data-i18n="tool.opt_len_mittel">Mittel – 10-12 Sätze</option><option value="Lang (15-20 Sätze, max. 300 Wörter)" data-i18n="tool.opt_len_lang">Lang – 15-20 Sätze</option></select></div>
+            <button class="generate-btn" data-i18n="tool.free_btn" onclick="generateFrei()">⚡ Generieren</button>
+          </div>
+          <div class="tool-result"><div class="result-header"><span class="result-label" data-i18n="tool.result_label">ERGEBNIS</span><div class="result-actions"><button class="copy-btn" id="copy-frei" onclick="copyResult('frei-result','copy-frei')" data-i18n="tool.copy_btn">Kopieren</button><button class="pdf-btn" onclick="downloadPDF('frei-result')" data-i18n="tool.pdf_btn">PDF ↓</button></div></div><div id="frei-result"><div class="result-placeholder"><div class="placeholder-icon">✏️</div><div data-i18n="tool.ph_res_prompt">Gib deinen Prompt ein und generiere deinen Text</div></div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="zyn.js?v=9"></script>
+<script>
+const API = "https://zyntevo-tool.jan-6a7.workers.dev";
+const ENT_ID_KEY = "zyntevo_ent_makler_id";
+const ENT_UID_KEY = "zyntevo_ent_makler_uid";
+const PROFILE_KEY = "zynProfile";
+let entId = null;
+let entUserId = null;
+
+window.addEventListener('load', function() {
+  applyProfile();
+  const savedId = localStorage.getItem(ENT_ID_KEY);
+  const savedUid = localStorage.getItem(ENT_UID_KEY);
+  if (savedId && savedUid) {
+    entId = savedId;
+    entUserId = savedUid;
+    showApp();
+  } else {
+    document.getElementById('auth-screen').style.display = 'flex';
+  }
+});
+
+async function doEntLogin() {
+  const code = document.getElementById('ent-code').value.trim().toUpperCase();
+  const errEl = document.getElementById('ent-error');
+  errEl.style.display = 'none';
+  if (!code) { errEl.textContent = 'Bitte Enterprise-Code eingeben.'; errEl.style.display = 'block'; return; }
+  const btn = document.querySelector('.auth-btn');
+  btn.disabled = true; btn.textContent = 'Prüfe Code...';
+  try {
+    const res = await fetch(`${API}/api/enterprise/login`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ code })
+    });
+    const data = await res.json();
+    if (data.success) {
+      entId = data.enterpriseId;
+      entUserId = String(data.userId);
+      localStorage.setItem(ENT_ID_KEY, entId);
+      localStorage.setItem(ENT_UID_KEY, entUserId);
+      showApp();
+    } else {
+      errEl.textContent = data.error || 'Ungültiger Code. Bitte erneut versuchen.';
+      errEl.style.display = 'block';
+      btn.disabled = false; btn.textContent = '⚡ Zugang freischalten →';
+    }
+  } catch(e) {
+    errEl.textContent = 'Verbindungsfehler. Bitte erneut versuchen.';
+    errEl.style.display = 'block';
+    btn.disabled = false; btn.textContent = '⚡ Zugang freischalten →';
+  }
+}
+
+function showApp() {
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+}
+
+function doLogout() {
+  localStorage.removeItem(ENT_ID_KEY);
+  localStorage.removeItem(ENT_UID_KEY);
+  entId = null; entUserId = null;
+  document.getElementById('auth-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('ent-code').value = '';
+  document.querySelector('.auth-btn').disabled = false;
+  document.querySelector('.auth-btn').textContent = '⚡ Zugang freischalten →';
+}
+
+function applyProfile() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  const fields = ['name','buero','strasse','stadt','telefon','usp'];
+  fields.forEach(f => { const el = document.getElementById('profile-' + f); if (el && p[f]) el.value = p[f]; });
+}
+
+function saveProfile() {
+  const p = {};
+  ['name','buero','strasse','stadt','telefon','usp'].forEach(f => {
+    const el = document.getElementById('profile-' + f);
+    if (el) p[f] = el.value;
+  });
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+  const s = document.getElementById('profile-saved');
+  s.style.display = 'inline';
+  setTimeout(() => s.style.display = 'none', 2000);
+}
+
+function _ll() { var m={de:'auf Deutsch',en:'in English',fr:'en français'}; return m[window.ZYN_LANG?window.ZYN_LANG.get():'de']||'auf Deutsch'; }
+
+async function callAI(prompt) {
+  const lang = window.ZYN_LANG ? window.ZYN_LANG.get() : 'de';
+  const r = await fetch(`${API}/api/enterprise/query`, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ prompt, enterpriseId: entId, userId: parseInt(entUserId), language: lang })
+  });
+  if (r.status === 401) { doLogout(); throw new Error('Session abgelaufen. Bitte erneut einloggen.'); }
+  if (!r.ok) throw new Error('Fehler ' + r.status);
+  const d = await r.json();
+  if (d.content && d.content[0] && d.content[0].text) return d.content[0].text;
+  const errMsg = d.error ? (typeof d.error === 'object' ? (d.error.message || JSON.stringify(d.error)) : d.error) : 'Unbekannter Fehler vom Server.';
+  throw new Error(errMsg);
+}
+
+function setLoading(id) {
+  document.getElementById(id).innerHTML = '<div class="loading"><div class="spinner"></div> KI generiert deinen Text...</div>';
+}
+
+async function run(id, prompt) {
+  setLoading(id);
+  try {
+    const txt = await callAI(prompt + ' Wichtig: Kein Markdown. Keine Sternchen, keine Rauten. Nur normaler Text.');
+    document.getElementById(id).innerHTML = '<div class="result-text">' + txt + '</div>';
+  } catch(e) {
+    document.getElementById(id).innerHTML = '<div class="result-text" style="color:#EF4444">' + e.message + '</div>';
+  }
+}
+
+async function generateExpose() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('expose-result', `Professionelles Immobilienexposé ${_ll()}. Typ: ${document.getElementById('expose-typ').value}, Lage: ${document.getElementById('expose-lage').value||''}, Fläche: ${document.getElementById('expose-flaeche').value||''}, Zimmer: ${document.getElementById('expose-zimmer').value||''}, Preis: ${document.getElementById('expose-preis').value||'auf Anfrage'}, Besonderheiten: ${document.getElementById('expose-details').value||''}, Stil: ${document.getElementById('expose-stil').value}, Makler: ${p.name||''} von ${p.buero||''}. Struktur: Überschrift, emotionaler Einstieg, Objektbeschreibung, Lage, Ausstattung, CTA. Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateEmail() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('email-result', `Professionelle Makler-E-Mail ${_ll()}. Situation: ${document.getElementById('email-situation').value}, An: ${document.getElementById('email-name').value||'Kunde'}, Absender: ${p.name||''} von ${p.buero||''}, ${p.strasse||''} ${p.stadt||''}, Tel: ${p.telefon||''}, Kontext: ${document.getElementById('email-kontext').value||''}, Ton: ${document.getElementById('email-ton').value}. Format: Betreff, Anrede, Text, Gruß. Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateSocial() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('social-result', `${document.getElementById('social-plattform').value}-Post für Immobilienmakler ${_ll()}. Typ: ${document.getElementById('social-typ').value}, Details: ${document.getElementById('social-details').value||''}, Büro: ${document.getElementById('social-name').value||p.buero||''}. Starker Hook, Inhalt, CTA, 5-8 Hashtags.`);
+}
+async function generateAkquise() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('akquise-result', `Akquise-Brief an Eigentümer ${_ll()}. Lage: ${document.getElementById('akquise-lage').value||''}, Anlass: ${document.getElementById('akquise-anlass').value}, Makler: ${document.getElementById('akquise-name').value||p.name||''} von ${document.getElementById('akquise-buero').value||p.buero||''}, USP: ${document.getElementById('akquise-usp').value||p.usp||''}. Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateMarkt() {
+  run('markt-result', `Immobilien-Marktbericht ${_ll()}. Region: ${document.getElementById('markt-region').value||''}, Zeitraum: ${document.getElementById('markt-monat').value||''}, Lage: ${document.getElementById('markt-lage').value}, Daten: ${document.getElementById('markt-daten').value||''}, Einschätzung: ${document.getElementById('markt-einschaetzung').value||''}. Struktur: Zusammenfassung, Preise, Nachfrage, Einschätzung, Ausblick. Länge: ${(document.querySelector('.page.active .laenge-select')||document.querySelector('.laenge-select')).value}.`);
+}
+async function generateKaeufer() {
+  run('kaeufer-result', `Analysiere Kaufinteressenten ${_ll()}. Sucht seit: ${document.getElementById('kaeufer-seit').value}, Finanzierung: ${document.getElementById('kaeufer-finanz').value}, Budget: ${document.getElementById('kaeufer-budget').value||''}, Einzug: ${document.getElementById('kaeufer-termin').value}, Infos: ${document.getElementById('kaeufer-info').value||''}. Gib: 1) Score 1-10, 2) Typ, 3) Hindernisse, 4) Empfehlung, 5) Nächster Schritt.`);
+}
+async function generateVerhandlung() {
+  run('verhandlung-result', `Immobilien-Verhandlungsstrategie ${_ll()}. Typ: ${document.getElementById('vh-typ').value}, Situation: ${document.getElementById('vh-situation').value||''}, Position: ${document.getElementById('vh-position').value||''}. Gib: 1) Lageeinschätzung, 2) Strategie, 3) Konkrete Formulierungen, 4) Gegenargumente, 5) Red Lines.`);
+}
+async function generateTikTok() {
+  const p = JSON.parse(localStorage.getItem(PROFILE_KEY) || '{}');
+  run('tiktok-result', `TikTok-Skript für Immobilienmakler ${_ll()}. Format: ${document.getElementById('tt-format').value}, Thema: ${document.getElementById('tt-thema').value||''}, Länge: ${document.getElementById('tt-laenge').value}, Sprecher: ${document.getElementById('tt-name').value||p.name||''}. HOOK, HAUPTTEIL, CTA. Nur gesprochener Text.`);
+}
+async function generateFrei() {
+  const prompt = document.getElementById('frei-prompt').value;
+  if (!prompt.trim()) { alert('Bitte gib einen Prompt ein.'); return; }
+  run('frei-result', `${prompt}\n\nZusätzlicher Kontext: ${document.getElementById('frei-kontext').value||'keiner'}\nStil: ${document.getElementById('frei-stil').value}`);
+}
+
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (el) el.classList.add('active');
+}
+
+function copyResult(resultId, btnId) {
+  const el = document.getElementById(resultId);
+  const resultDiv = el.querySelector('.result-text') || el;
+  const plainText = resultDiv.innerText;
+  try {
+    const htmlText = plainText.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').split('\n\n').map(p=>`<p style="margin:0 0 14px 0;font-family:Arial,sans-serif;font-size:13px;line-height:1.8;">${p.replace(/\n/g,'<br>')}</p>`).join('');
+    const blob = new Blob([htmlText],{type:'text/html'});
+    const plainBlob = new Blob([plainText],{type:'text/plain'});
+    navigator.clipboard.write([new ClipboardItem({'text/html':blob,'text/plain':plainBlob})]).then(()=>{
+      const btn=document.getElementById(btnId); btn.textContent='Kopiert ✓'; btn.classList.add('copied');
+      setTimeout(()=>{btn.textContent='Kopieren';btn.classList.remove('copied');},2000);
+    });
+  } catch(e) {
+    navigator.clipboard.writeText(plainText).then(()=>{
+      const btn=document.getElementById(btnId); btn.textContent='Kopiert ✓'; btn.classList.add('copied');
+      setTimeout(()=>{btn.textContent='Kopieren';btn.classList.remove('copied');},2000);
+    });
+  }
+}
+
+function downloadPDF(resultId) {
+  const el = document.getElementById(resultId);
+  const resultDiv = el.querySelector('.result-text') || el;
+  const text = resultDiv.innerText;
+  if (!text || text.includes('Fülle das') || text.includes('Wähle')) { alert('Bitte zuerst einen Text generieren.'); return; }
+  const win = window.open('', '_blank');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Dokument</title><style>@page{margin:2cm;}body{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:20px 40px;color:#1a1a1a;line-height:1.8;}.briefkopf{min-height:120px;border-bottom:1px solid #ddd;margin-bottom:32px;padding-bottom:16px;}.briefkopf-hint{color:#bbb;font-size:11px;font-style:italic;}pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:13px;line-height:1.9;margin:0;}.footer{margin-top:48px;padding-top:12px;border-top:1px solid #eee;font-size:10px;color:#bbb;text-align:right;}</style></head><body><div class="briefkopf"><span class="briefkopf-hint">[ Hier Briefkopf / Logo einfügen ]</span></div><pre>${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre><div class="footer">Erstellt mit ZYNTEVO Enterprise · zyntevo.de</div><script>window.onload=function(){window.print();}<\/script></body></html>`);
+  win.document.close();
+}
+
+function toggleEdit(resultId, btnId) {
+  const el = document.getElementById(resultId);
+  const rt = el.querySelector('.result-text');
+  if (!rt) return;
+  const isEdit = rt.contentEditable === 'true';
+  rt.contentEditable = isEdit ? 'false' : 'true';
+  const btn = document.getElementById(btnId);
+  btn.textContent = isEdit ? '✏ Bearbeiten' : '✓ Fertig';
+  btn.classList.toggle('active', !isEdit);
+}
+</script>
+</body>
+</html>

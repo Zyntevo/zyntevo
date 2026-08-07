@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO | Danke – Handwerker Enterprise</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Inter,sans-serif;background:#F0EEF8;color:#1a1a2e;line-height:1.7;min-height:100vh;}
+:root{--gold:#D4AF37;--dark:#0F172A;}
+.glass{background:rgba(255,255,255,.6);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.75);border-radius:28px;}
+nav{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:auto;}
+.logo{font-size:22px;font-weight:900;color:var(--gold);letter-spacing:2px;text-decoration:none;}
+.hero{max-width:700px;margin:0 auto;padding:40px 24px 80px;text-align:center;}
+.success-icon{width:80px;height:80px;border-radius:50%;background:rgba(34,197,94,.12);border:2px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 28px;}
+.tag{display:inline-block;padding:7px 18px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.3);border-radius:999px;color:#8B6914;font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:20px;}
+h1{font-size:clamp(32px,5vw,54px);font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:18px;}
+h1 span{color:var(--gold);}
+.subtitle{font-size:17px;color:#5a5a7a;margin-bottom:48px;}
+.codes-card{padding:36px;margin-bottom:32px;text-align:left;}
+.codes-title{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:20px;}
+.codes-desc{font-size:13px;color:#6a6a8a;margin-bottom:20px;}
+.code-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.code-item{display:flex;align-items:center;gap:14px;padding:13px 18px;background:rgba(7,11,17,.04);border:1px solid rgba(212,175,55,.15);border-radius:12px;}
+.code-num{width:28px;height:28px;border-radius:8px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--gold);flex-shrink:0;}
+.code-val{font-family:'Courier New',monospace;font-size:14px;color:var(--dark);flex:1;letter-spacing:1px;}
+.code-copy{background:transparent;border:1px solid rgba(212,175,55,.25);color:#8B6914;padding:5px 12px;border-radius:8px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;transition:.2s;}
+.code-copy:hover{border-color:var(--gold);}
+.code-copy.done{border-color:#22C55E;color:#16A34A;}
+.email-hint{font-size:13px;color:#7a7a9a;padding:14px 16px;background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.12);border-radius:10px;}
+.steps-card{padding:36px;margin-bottom:32px;text-align:left;}
+.steps-title{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:24px;}
+.step{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px;}
+.step:last-child{margin-bottom:0;}
+.step-num{width:36px;height:36px;border-radius:10px;background:var(--gold);color:#000;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-title{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:3px;}
+.step-desc{font-size:13px;color:#6a6a8a;}
+.calendly-card{padding:36px;margin-bottom:32px;text-align:center;}
+.calendly-title{font-size:16px;font-weight:800;color:var(--dark);margin-bottom:8px;}
+.calendly-desc{font-size:13px;color:#6a6a8a;margin-bottom:24px;}
+.calendly-btn{display:inline-block;padding:14px 32px;background:var(--gold);color:#000;font-weight:700;font-size:15px;border-radius:12px;text-decoration:none;transition:.25s;}
+.calendly-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,175,55,.3);}
+.access-btn{display:block;padding:16px;background:var(--dark);color:#fff;font-weight:700;font-size:15px;border-radius:14px;text-decoration:none;text-align:center;margin-top:8px;transition:.2s;}
+.access-btn:hover{background:#1e293b;}
+.tool-link{color:var(--gold);font-size:13px;text-align:center;display:block;margin-top:10px;text-decoration:none;}
+footer{text-align:center;padding:40px 24px;font-size:12px;color:#9a9ab0;}
+footer a{color:var(--gold);text-decoration:none;}
+@media(max-width:600px){.hero{padding:20px 16px 60px;}.codes-card,.steps-card,.calendly-card{padding:24px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">ZYNTEVO</a>
+  <span style="font-size:12px;color:#9a9ab0;">🏢 Handwerker Enterprise</span>
+</nav>
+<div class="hero">
+  <div class="success-icon">✅</div>
+  <div class="tag">🎉 KAUF ERFOLGREICH</div>
+  <h1>Willkommen im<br><span>Enterprise-Team!</span></h1>
+  <p class="subtitle">Deine 5 persönlichen Zugangscodes wurden soeben per E-Mail gesendet. Hier findest du sie nochmal zur Sicherheit.</p>
+
+  <div class="codes-card glass">
+    <div class="codes-title">🔑 DEINE 5 ENTERPRISE-CODES</div>
+    <div class="codes-desc">Gib jedem Teammitglied einen eigenen Code. Jeder Code funktioniert nur für einen Nutzer.</div>
+    <div class="code-list" id="code-list">
+      <div style="color:#9a9ab0;font-size:13px;font-style:italic;">Codes werden automatisch aus der Bestätigungs-E-Mail übermittelt.<br><br>Falls du diese Seite über den Link in deiner E-Mail geöffnet hast, erscheinen sie hier.</div>
+    </div>
+    <div class="email-hint">📧 Deine Codes wurden auch an deine Käufer-E-Mail gesendet. Bitte prüfe auch deinen Spam-Ordner.</div>
+  </div>
+
+  <div class="steps-card glass">
+    <div class="steps-title">🚀 SO GEHT ES WEITER</div>
+    <div class="step"><div class="step-num">1</div><div><div class="step-title">Codes verteilen</div><div class="step-desc">Sende jedem Mitarbeiter seinen persönlichen Code per WhatsApp oder E-Mail.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div><div class="step-title">Tool öffnen & einloggen</div><div class="step-desc">Tool über den Link unten öffnen, Code eingeben – sofort startklar.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div><div class="step-title">Profil ausfüllen</div><div class="step-desc">Einmal Name, Firma, Gewerk und Ort eintragen – alle Tools werden automatisch personalisiert.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div><div class="step-title">Onboarding-Call buchen</div><div class="step-desc">Kostenlosen 30-Minuten Video-Call buchen damit dein Team sofort produktiv ist.</div></div></div>
+  </div>
+
+  <div class="calendly-card glass">
+    <div class="calendly-title">📅 Kostenlosen Onboarding-Call buchen</div>
+    <div class="calendly-desc">30 Minuten · Video-Call · Alle Features kennenlernen</div>
+    <!-- Calendly Placeholder – ersetze href mit deinem Calendly-Link -->
+    <a href="https://calendly.com/DEIN-LINK-HIER" class="calendly-btn" target="_blank">📅 Termin buchen →</a>
+  </div>
+
+  <div class="glass" style="padding:32px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:16px;">⚡ JETZT DIREKT LOSLEGEN</div>
+    <a href="ki-tool-handwerker-enterprise.html" class="access-btn">🔧 Handwerker Enterprise Tool öffnen →</a>
+    <a href="enterprise-admin.html" class="tool-link">→ Admin-Dashboard (Textbausteine & Verwaltung)</a>
+  </div>
+
+  <div style="margin-top:32px;font-size:13px;color:#9a9ab0;">
+    Fragen? <a href="mailto:jan@zyntevo.de" style="color:var(--gold);">jan@zyntevo.de</a>
+  </div>
+</div>
+<footer><p>© 2025 ZYNTEVO · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p></footer>
+<script>
+const params = new URLSearchParams(window.location.search);
+const codesParam = params.get('codes');
+if (codesParam) {
+  try {
+    const codes = codesParam.split(',').map(c => c.trim()).filter(Boolean);
+    if (codes.length > 0) {
+      const list = document.getElementById('code-list');
+      list.innerHTML = codes.map((c, i) => `
+        <div class="code-item">
+          <div class="code-num">${i+1}</div>
+          <div class="code-val">${c}</div>
+          <button class="code-copy" id="copy-${i}" onclick="copyCode('${c}','copy-${i}')">Kopieren</button>
+        </div>`).join('');
+    }
+  } catch(e) {}
+}
+function copyCode(code, btnId) {
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.getElementById(btnId);
+    btn.textContent = 'Kopiert ✓'; btn.classList.add('done');
+    setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('done'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>

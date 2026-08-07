@@ -1,830 +1,1428 @@
 <!DOCTYPE html>
 <html lang="de">
+<!--
+  DESIGN READ (taste-skill, Section 0), Runde 3, auf Basis von Web-Recherche:
+  B2B-Landingpage, branchenoffen, White Glass / Apple-Stil, Original-Logo.
+  Neu gegenüber den Vorversionen: (1) sichtbare, ehrliche Trust-Signale statt
+  gar keinem Social Proof, (2) eigene SVG-Illustrationen statt externer
+  Stockfotos, weil externe Bild-CDNs die Besucher-IP an Dritte übertragen,
+  (3) keine Google Fonts vom Google-CDN mehr (LG München 2022: DSGVO-Verstoß
+  durch IP-Übermittlung an Google), stattdessen Systemschriften, (4)
+  DSGVO-Einwilligungs-Checkbox am Formular, minimierte Pflichtfelder,
+  (5) komplett neu geschriebene Inhalte, keine Wiederverwendung der Texte
+  aus index.html oder index-neu.html.
+  Dials: DESIGN_VARIANCE 7 / MOTION_INTENSITY 6 / VISUAL_DENSITY 3
+-->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZYNTEVO | Das KI-Betriebssystem für Unternehmer</title>
-  <meta name="description" content="KI-Betriebssystem für Immobilienmakler, Handwerksbetriebe und Steuerberater. Spare 5+ Stunden pro Woche mit fertigen KI-Tools.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style-neu.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPT0KRVEM2"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-GPT0KRVEM2');</script>
-  <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO | KI-Automatisierung für Ihren Betrieb</title>
+<meta name="description" content="ZYNTEVO baut individuelle KI-Automatisierungen für Unternehmen mit wiederkehrenden Aufgaben. Kostenloses Erstgespräch, danach passgenaue Umsetzung.">
+<link rel="icon" type="image/png" href="css/images/logo.png">
+<link rel="canonical" href="https://zyntevo.de/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ZYNTEVO | KI-Automatisierung für Ihren Betrieb">
+<meta property="og:description" content="Individuelle KI-Automatisierung für Unternehmen mit wiederkehrenden Aufgaben. Kostenloses Erstgespräch.">
+<meta property="og:url" content="https://zyntevo.de/">
+<meta property="og:image" content="https://zyntevo.de/css/images/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#F4F3EF">
+<!-- Bewusst keine Google Fonts vom Google-CDN: die Einbindung übermittelt die
+     Besucher-IP an Google-Server in den USA, was das LG München 2022 als
+     DSGVO-Verstoß eingestuft hat. Stattdessen Systemschriften, die auf jedem
+     Gerät sauber aussehen und keine externe Anfrage auslösen. -->
+<style>
+:root{
+  --bg:#F4F3EF; --text:#1D1D1F; --text-muted:#57575B; --text-dim:#8E8E93;
+  --gold:#7C5E1E; --gold-deep:#B8923A; --gold-bright:#D4AF37;
+  --panel:rgba(255,255,255,0.55); --panel-border:rgba(255,255,255,0.7);
+  --line:rgba(29,29,31,0.08);
+  --ink:#1D1D1F;
+  --radius-lg:28px;
+  --f-display:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --f-mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--f-display); line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden; position:relative;
+}
+a{ color:inherit; }
+img,svg{ max-width:100%; }
+.wrap{ width:90%; max-width:1220px; margin:0 auto; position:relative; z-index:1; }
+h1,h2,h3{ font-family:var(--f-display); letter-spacing:-0.015em; color:var(--text); font-weight:700; }
+.mono{ font-family:var(--f-mono); }
 
-  <!-- ── GLASS OVERRIDES (index only) ── -->
-  <style>
-    /* ─── Global Mesh Background ─── */
-    body {
-      background: #F0EEF8;
-      position: relative;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse 55% 45% at 10% 15%, rgba(201,168,76,.18) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 50% at 88% 10%, rgba(99,102,241,.14) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 70% 85%, rgba(201,168,76,.12) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 50% at 20% 80%, rgba(139,92,246,.10) 0%, transparent 55%),
-        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,.5) 0%, transparent 70%),
-        linear-gradient(145deg, #EAE8F5 0%, #F2EFF5 40%, #EDF0F8 70%, #EAE8F0 100%);
-    }
-    /* All sections sit above the mesh */
-    nav, section, div.proof-strip, footer, .trustpilot-section, .widerruf-bar, .widerruf-modal, .cta-band {
-      position: relative; z-index: 1;
-    }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible{
+  outline:2px solid var(--gold-deep); outline-offset:3px; border-radius:4px;
+}
+.skip-link{ position:absolute; left:-9999px; top:0; background:var(--text); color:#fff; padding:12px 20px; z-index:1000; border-radius:0 0 10px 0; font-weight:600; }
+.skip-link:focus{ left:0; }
 
-      /* === 7-TAGE-TRIAL BANNER === */
-  .trial-banner{position:relative;overflow:hidden;padding:48px 0;background:linear-gradient(135deg,rgba(212,175,55,.15) 0%,rgba(99,102,241,.12) 50%,rgba(212,175,55,.10) 100%);border-top:1px solid rgba(212,175,55,.3);border-bottom:1px solid rgba(212,175,55,.3);text-align:center;}
-  .trial-banner::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
-  .trial-banner-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px;}
-  .trial-banner-tag{display:inline-block;padding:6px 18px;background:rgba(212,175,55,.18);border:1px solid rgba(212,175,55,.5);border-radius:999px;color:#B8962E;font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase;}
-  .trial-banner h2{font-size:clamp(22px,4vw,38px);font-weight:900;color:#1E293B;margin-bottom:10px;line-height:1.2;}
-  .trial-banner h2 span{color:#D4AF37;}
-  .trial-banner p{font-size:16px;color:#475569;margin-bottom:28px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;}
-  .trial-banner-perks{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:32px;}
-  .trial-banner-perk{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#334155;}
-  .trial-banner-perk-dot{width:8px;height:8px;background:#D4AF37;border-radius:50%;flex-shrink:0;}
-  .trial-banner-btn{display:inline-block;padding:16px 40px;background:#D4AF37;color:#000;font-weight:800;font-size:16px;border-radius:14px;text-decoration:none;transition:.25s;box-shadow:0 4px 20px rgba(212,175,55,.35);}
-  .trial-banner-btn:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(212,175,55,.45);}
-  .trial-banner-sub{font-size:12px;color:#94A3B8;margin-top:14px;}
-  /* ─── Nav – stronger glass ─── */
-    .nav {
-      background: rgba(240,238,248,.55);
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,.6);
-    }
-    .nav.scrolled {
-      background: rgba(255,255,255,.75);
-      box-shadow: 0 4px 24px rgba(99,102,241,.08), 0 1px 0 rgba(255,255,255,.8);
-    }
+/* ---------- Ambient background mesh (Apple-Glass) ---------- */
+.mesh{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.blob{ position:absolute; border-radius:50%; filter:blur(90px); opacity:0.55; }
+.blob-1{ width:640px; height:640px; top:-220px; left:-160px; background:radial-gradient(circle,#F3DFA0,transparent 70%); animation:drift1 22s ease-in-out infinite; }
+.blob-2{ width:560px; height:560px; top:120px; right:-200px; background:radial-gradient(circle,#E8C77A,transparent 70%); animation:drift2 26s ease-in-out infinite; }
+.blob-3{ width:520px; height:520px; bottom:-180px; left:30%; background:radial-gradient(circle,#DCE6F0,transparent 70%); animation:drift3 30s ease-in-out infinite; }
+@keyframes drift1{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(60px,40px); } }
+@keyframes drift2{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(-50px,60px); } }
+@keyframes drift3{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(40px,-50px); } }
+.glass{ background:var(--panel); backdrop-filter:blur(28px) saturate(180%); -webkit-backdrop-filter:blur(28px) saturate(180%); border:1px solid var(--panel-border); box-shadow:0 8px 32px rgba(31,31,31,0.07), inset 0 1px 0 rgba(255,255,255,0.6); }
 
-    /* ─── Hero ─── */
-    .hero {
-      background: transparent;
-      min-height: 100vh;
-    }
-    .hero::before { display: none; }
+/* ---------- Reveal on scroll ---------- */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+.reveal-stagger > *{ opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+.reveal-stagger.in > *:nth-child(1){ transition-delay:.05s; }
+.reveal-stagger.in > *:nth-child(2){ transition-delay:.15s; }
+.reveal-stagger.in > *:nth-child(3){ transition-delay:.25s; }
+.reveal-stagger.in > *{ opacity:1; transform:translateY(0); }
 
-    /* Hero mockup – deeper glass */
-    .hero-mockup {
-      background: rgba(255,255,255,.55);
-      backdrop-filter: blur(28px) saturate(160%);
-      -webkit-backdrop-filter: blur(28px) saturate(160%);
-      border: 1px solid rgba(255,255,255,.85);
-      box-shadow:
-        0 32px 80px rgba(99,102,241,.12),
-        0 8px 24px rgba(201,168,76,.15),
-        inset 0 1px 0 rgba(255,255,255,.9);
-    }
-    .mockup-field {
-      background: rgba(255,255,255,.6);
-      border: 1px solid rgba(255,255,255,.8);
-      backdrop-filter: blur(8px);
-    }
-    .mockup-output {
-      background: rgba(201,168,76,.06);
-      border: 1px solid rgba(201,168,76,.25);
-      backdrop-filter: blur(8px);
-    }
+/* ---------- Header ---------- */
+header{ position:fixed; top:16px; left:0; right:0; z-index:100; display:flex; justify-content:center; }
+.navpill{ display:flex; align-items:center; justify-content:space-between; gap:30px; padding:10px 12px 10px 22px; border-radius:999px; width:92%; max-width:980px; transition:box-shadow .3s; }
+.logo{ display:flex; align-items:center; gap:8px; text-decoration:none; }
+.logo img{ height:26px; width:auto; display:block; }
+nav.mainnav{ display:flex; align-items:center; gap:26px; }
+nav.mainnav a{ text-decoration:none; color:#3A3A3C; font-size:14px; font-weight:500; transition:color .2s; position:relative; }
+nav.mainnav a:not(.nav-cta)::after{ content:''; position:absolute; left:0; bottom:-4px; width:0; height:1.5px; background:var(--gold-deep); transition:width .25s; }
+nav.mainnav a:not(.nav-cta):hover::after{ width:100%; }
+nav.mainnav a:not(.nav-cta):hover{ color:var(--text); }
+.nav-cta{ background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep)); color:var(--ink) !important; padding:11px 22px; border-radius:999px; font-weight:700; font-size:13.5px; box-shadow:0 4px 14px rgba(184,146,58,0.35); transition:transform .2s, box-shadow .2s; }
+.nav-cta:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(184,146,58,0.45); }
+.nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:8px; flex-direction:column; gap:4px; }
+.nav-toggle span{ width:20px; height:2px; background:var(--text); border-radius:2px; transition:transform .25s, opacity .25s; }
+.nav-toggle.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; }
+.nav-toggle.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+.mobile-menu{ display:none; position:fixed; top:80px; left:4%; right:4%; z-index:99; border-radius:24px; padding:14px; flex-direction:column; gap:4px; }
+.mobile-menu.open{ display:flex; }
+.mobile-menu a{ text-decoration:none; color:var(--text); font-size:15px; font-weight:500; padding:14px 12px; border-radius:14px; transition:background .2s; }
+.mobile-menu a:hover{ background:rgba(184,146,58,0.1); }
+.mobile-menu a.nav-cta{ text-align:center; color:var(--ink) !important; margin-top:6px; }
+@media (max-width:860px){ nav.mainnav a:not(.nav-cta){ display:none; } .nav-toggle{ display:flex; } }
 
-    /* ─── Proof Strip – floating glass pill ─── */
-    .proof-strip {
-      background: rgba(255,255,255,.45);
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
-      border-top: 1px solid rgba(255,255,255,.7);
-      border-bottom: 1px solid rgba(255,255,255,.5);
-      box-shadow: 0 4px 24px rgba(99,102,241,.06);
-    }
+/* ---------- Hero ---------- */
+.hero{ padding:150px 0 0; position:relative; }
+.hero-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+.hero h1{ font-size:clamp(34px,4.2vw,52px); line-height:1.12; }
+.hero-sub{ margin-top:22px; font-size:17.5px; color:var(--text-muted); max-width:46ch; }
+.hero-actions{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:15px 28px; border-radius:999px; font-size:14.5px; font-weight:700; text-decoration:none; transition:all .25s; border:none; cursor:pointer; font-family:var(--f-display); }
+.btn-gold{ background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep)); color:var(--ink); box-shadow:0 10px 26px rgba(184,146,58,0.3); }
+.btn-gold:hover{ transform:translateY(-2px) scale(1.02); box-shadow:0 14px 30px rgba(184,146,58,0.4); }
+.btn-line{ color:var(--text); border:1px solid rgba(29,29,31,0.15); background:rgba(255,255,255,0.5); }
+.btn-line:hover{ transform:translateY(-2px); border-color:rgba(29,29,31,0.3); }
+.hero-illustration{ width:100%; height:auto; }
+@media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; } .hero{ padding-top:140px; } }
 
-    /* ─── Sections – transparent so mesh shows ─── */
-    .section { background: transparent; }
-    .section-alt {
-      background: rgba(255,255,255,.18);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255,255,255,.5);
-      border-bottom: 1px solid rgba(255,255,255,.5);
-    }
+/* ---------- Trust-Bar (ersetzt fehlenden Social Proof) ---------- */
+.trust-bar{ margin-top:64px; padding:26px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.trust-row{ display:flex; flex-wrap:wrap; justify-content:center; gap:34px; }
+.trust-chip{ display:flex; align-items:center; gap:9px; color:var(--text-muted); font-size:14px; font-weight:500; }
+.trust-chip svg{ width:18px; height:18px; stroke:var(--gold-deep); fill:none; stroke-width:1.8; flex-shrink:0; }
 
-    /* ─── Glass Cards (Features) – more prominent ─── */
-    .glass-card {
-      background: rgba(255,255,255,.5);
-      backdrop-filter: blur(24px) saturate(150%);
-      -webkit-backdrop-filter: blur(24px) saturate(150%);
-      border: 1px solid rgba(255,255,255,.75);
-      box-shadow:
-        0 8px 32px rgba(99,102,241,.08),
-        0 2px 8px rgba(201,168,76,.06),
-        inset 0 1px 0 rgba(255,255,255,.9);
-    }
-    .glass-card:hover {
-      background: rgba(255,255,255,.68);
-      transform: translateY(-6px);
-      box-shadow:
-        0 20px 60px rgba(99,102,241,.12),
-        0 4px 16px rgba(201,168,76,.12),
-        inset 0 1px 0 rgba(255,255,255,.95);
-    }
-    .glass-card-icon {
-      background: linear-gradient(135deg, rgba(201,168,76,.2), rgba(201,168,76,.08));
-      border: 1px solid rgba(201,168,76,.25);
-      box-shadow: 0 4px 12px rgba(201,168,76,.1);
-    }
+/* ---------- Sections generic ---------- */
+section{ padding:120px 0; position:relative; }
+.eyebrow{ display:inline-flex; align-items:center; gap:8px; font-family:var(--f-mono); font-size:12px; letter-spacing:0.04em; color:var(--gold); margin-bottom:18px; font-weight:600; }
+.section-head{ max-width:680px; margin-bottom:56px; }
+.section-head h2{ font-size:clamp(28px,3.2vw,42px); line-height:1.18; }
+.section-head p{ color:var(--text-muted); margin-top:16px; font-size:16.5px; max-width:58ch; font-weight:400; }
+.inline-cta{ display:inline-flex; align-items:center; gap:6px; margin-top:28px; color:var(--gold); font-weight:700; font-size:14.5px; text-decoration:none; border-bottom:1px solid rgba(124,94,30,0.3); padding-bottom:2px; }
 
-    /* ─── Industry Cards – full glass ─── */
-    .industry-card {
-      background: rgba(255,255,255,.45);
-      backdrop-filter: blur(20px) saturate(150%);
-      -webkit-backdrop-filter: blur(20px) saturate(150%);
-      border: 1px solid rgba(255,255,255,.7);
-      box-shadow:
-        0 8px 32px rgba(99,102,241,.07),
-        inset 0 1px 0 rgba(255,255,255,.85);
-      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
-    }
-    .industry-card:hover {
-      background: rgba(255,255,255,.65);
-      border-color: rgba(201,168,76,.45);
-      transform: translateY(-6px);
-      box-shadow:
-        0 24px 64px rgba(99,102,241,.12),
-        0 0 0 1px rgba(201,168,76,.15),
-        inset 0 1px 0 rgba(255,255,255,.95);
-    }
-    .industry-card-icon {
-      display: inline-flex;
-      width: 56px; height: 56px; border-radius: 16px;
-      background: rgba(255,255,255,.6);
-      border: 1px solid rgba(255,255,255,.8);
-      backdrop-filter: blur(8px);
-      align-items: center; justify-content: center;
-    }
+/* ---------- Problem: Split mit Illustration ---------- */
+.split{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center; }
+.split-illustration{ width:100%; height:auto; }
+.split h2{ font-size:clamp(26px,3vw,36px); line-height:1.22; }
+.split p{ color:var(--text-muted); margin-top:16px; font-size:16px; max-width:52ch; }
+@media (max-width:900px){ .split{ grid-template-columns:1fr; } .split > div:first-child{ order:2; } }
 
-    /* ─── Stats section ─── */
-    .section-dark {
-      background: rgba(255,255,255,0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255,255,255,0.6);
-      border-bottom: 1px solid rgba(255,255,255,0.6);
-      color: #1E293B;
-    }
-    .stat-item {
-      background: rgba(255,255,255,0.65);
-      border: 1px solid rgba(255,255,255,0.85);
-      border-radius: var(--radius-lg);
-      backdrop-filter: blur(8px);
-    }
+/* ---------- Vorher / Nachher ---------- */
+.compare{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.compare-col{ border-radius:var(--radius-lg); padding:36px; }
+.compare-col.before{ background:rgba(29,29,31,0.03); border:1px solid var(--line); }
+.compare-col.after{ background:linear-gradient(155deg,rgba(212,175,55,0.14),rgba(255,255,255,0.5) 65%); border:1px solid rgba(212,175,55,0.3); }
+.compare-col h3{ font-size:15px; text-transform:uppercase; letter-spacing:.06em; font-family:var(--f-mono); font-weight:600; margin-bottom:22px; color:var(--text-dim); }
+.compare-col.after h3{ color:var(--gold); }
+.compare-col ul{ list-style:none; }
+.compare-col li{ display:flex; gap:12px; padding:11px 0; border-bottom:1px solid rgba(29,29,31,0.06); font-size:15px; color:var(--text-muted); }
+.compare-col li:last-child{ border-bottom:none; }
+.compare-col.before li::before{ content:'×'; color:#B0483C; font-weight:700; }
+.compare-col.after li::before{ content:'✓'; color:var(--gold-deep); font-weight:700; }
+.compare-col.after li{ color:#3A3A3C; }
+@media (max-width:760px){ .compare{ grid-template-columns:1fr; } }
 
-    /* ─── Pricing Branch Selector ─── */
-    .pricing-branch-btn {
-      padding: 9px 20px; border-radius: 999px; font-size: 13px; font-weight: 700;
-      cursor: pointer; border: 1.5px solid rgba(0,0,0,.12); background: rgba(255,255,255,.7);
-      color: #64748B; font-family: inherit; transition: .2s;
-    }
-    .pricing-branch-btn:hover { border-color: rgba(212,175,55,.5); color: #B8962E; }
-    .pricing-branch-btn.active { border-color: #D4AF37; background: rgba(212,175,55,.12); color: #B8962E; }
+/* ---------- Ablauf: horizontale Prozess-Schiene ---------- */
+.rail{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; }
+.rail::before{ content:''; position:absolute; top:19px; left:8%; right:8%; height:1px; background:var(--line); }
+.rail-step{ position:relative; padding:0 20px; text-align:left; }
+.rail-step .dot{ width:38px; height:38px; border-radius:50%; background:#fff; border:1.5px solid var(--gold-deep); color:var(--gold-deep); font-family:var(--f-mono); font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative; z-index:1; }
+.rail-step h3{ font-size:19px; margin-bottom:10px; }
+.rail-step p{ color:var(--text-muted); font-size:14.5px; }
+@media (max-width:860px){ .rail{ grid-template-columns:1fr; gap:36px; } .rail::before{ display:none; } }
 
-    /* ─── Pricing Cards – glass ─── */
-    .pricing-card {
-      background: rgba(255,255,255,.5);
-      backdrop-filter: blur(20px) saturate(150%);
-      -webkit-backdrop-filter: blur(20px) saturate(150%);
-      border: 1px solid rgba(255,255,255,.7);
-      box-shadow: 0 8px 32px rgba(99,102,241,.07), inset 0 1px 0 rgba(255,255,255,.85);
-    }
-    .pricing-card.featured {
-      background: rgba(255,255,255,.65);
-      border-color: var(--gold);
-      box-shadow:
-        0 0 0 1px var(--gold),
-        0 16px 48px rgba(201,168,76,.18),
-        0 8px 24px rgba(99,102,241,.08),
-        inset 0 1px 0 rgba(255,255,255,.95);
-    }
+/* ---------- Tools-Strip ---------- */
+.tools-strip{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.tool-chip{ border-radius:18px; padding:24px 26px; text-decoration:none; display:flex; justify-content:space-between; align-items:center; transition:transform .25s; }
+.tool-chip:hover{ transform:translateY(-4px); }
+.tool-chip .name{ font-weight:600; font-size:15.5px; color:var(--text); }
+.tool-chip .go{ color:var(--gold); font-size:13px; font-weight:700; }
+@media (max-width:860px){ .tools-strip{ grid-template-columns:1fr; } }
 
-    /* ─── FAQ – glass items ─── */
-    .faq-item {
-      background: rgba(255,255,255,.45);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,.65);
-      box-shadow: 0 2px 12px rgba(99,102,241,.05);
-    }
-    .faq-item:hover, .faq-item.open {
-      background: rgba(255,255,255,.65);
-      border-color: rgba(201,168,76,.4);
-      box-shadow: 0 4px 24px rgba(201,168,76,.1);
-    }
+/* ---------- Erstgespräch (Split mit Formular, DSGVO-Checkbox) ---------- */
+.lead-panel{ border-radius:32px; padding:52px; }
+.lead-grid{ display:grid; grid-template-columns:1fr 1.05fr; gap:56px; align-items:center; }
+.lead-panel h2{ font-size:clamp(26px,3vw,34px); line-height:1.22; }
+.lead-panel > div > p{ color:var(--text-muted); margin-top:14px; font-size:15.5px; max-width:44ch; }
+.lead-points{ margin-top:22px; list-style:none; }
+.lead-points li{ display:flex; gap:10px; color:#3A3A3C; font-size:14.5px; padding:6px 0; }
+.lead-points li::before{ content:'✓'; color:var(--gold-deep); font-weight:700; }
+.lead-form input, .lead-form textarea{ width:100%; background:rgba(255,255,255,0.7); border:1px solid rgba(29,29,31,0.1); border-radius:12px; color:var(--text); font-size:15px; padding:14px 16px; margin-bottom:14px; font-family:var(--f-display); resize:vertical; }
+.lead-form input::placeholder, .lead-form textarea::placeholder{ color:var(--text-dim); }
+.lead-form input:focus, .lead-form textarea:focus{ outline:none; border-color:var(--gold-bright); }
+.lead-form label.optional-tag{ font-size:11.5px; color:var(--text-dim); margin:-10px 0 12px 2px; display:block; }
+.consent-row{ display:flex; align-items:flex-start; gap:10px; margin:6px 0 18px; }
+.consent-row input[type="checkbox"]{ width:18px; height:18px; margin-top:2px; accent-color:var(--gold-deep); flex-shrink:0; }
+.consent-row label{ font-size:12.5px; color:var(--text-dim); line-height:1.5; }
+.consent-row a{ color:var(--gold); text-decoration:underline; }
+.lead-form button{ width:100%; }
+.lead-form .status{ margin-top:14px; font-size:13.5px; color:var(--gold); display:none; font-weight:600; }
+@media (max-width:900px){ .lead-grid{ grid-template-columns:1fr; gap:34px; } .lead-panel{ padding:32px 24px; } }
 
-    /* ─── CTA Band ─── */
-    .cta-band {
-      background:
-        radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,.08) 0%, transparent 65%),
-        rgba(255,255,255,0.4);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid rgba(255,255,255,0.7);
-      border-bottom: 1px solid rgba(255,255,255,0.7);
-    }
-    .cta-band::after {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-    }
+/* ---------- FAQ ---------- */
+.faq-item{ border-radius:20px; padding:8px 26px; margin-bottom:14px; }
+.faq-item summary{ cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:20px; font-size:16.5px; color:var(--text); font-weight:600; padding:18px 0; }
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{ content:'+'; color:var(--gold-deep); font-size:22px; flex-shrink:0; font-weight:400; transition:transform .25s; }
+.faq-item[open] summary::after{ transform:rotate(45deg); }
+.faq-item p{ color:var(--text-muted); font-size:15px; padding-bottom:20px; max-width:70ch; font-weight:400; }
 
-    /* ─── Trustpilot / Footer ─── */
-    .trustpilot-section { display: none !important; }
-    .trustpilot-section {
-      background: rgba(255,255,255,.4);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(255,255,255,.6);
-    }
-    .trustpilot-stars-row {
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(255,255,255,.75);
-      backdrop-filter: blur(8px);
-    }
+/* ---------- Final CTA (Farbblock-Akzent, nur dieses Panel) ---------- */
+.final-cta{ border-radius:32px; padding:64px 40px; text-align:center; background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep)); color:var(--ink); }
+.final-cta h2{ font-size:clamp(26px,3.4vw,40px); max-width:20ch; margin:0 auto 16px; color:var(--ink); }
+.final-cta p{ color:rgba(29,29,31,0.75); margin-bottom:28px; font-size:16px; font-weight:400; }
+.final-cta .btn-line{ background:rgba(29,29,31,0.08); border-color:rgba(29,29,31,0.25); color:var(--ink); }
+.final-cta .btn-line:hover{ border-color:rgba(29,29,31,0.4); }
 
-    /* ─── Section Problem / Solution – glass on both cards ─── */
-    .problem-card {
-      background: rgba(254,242,242,.7);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(254,202,202,.6);
-      box-shadow: 0 8px 32px rgba(239,68,68,.06);
-    }
-    .solution-card {
-      background: rgba(240,253,244,.7);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(187,247,208,.6);
-      box-shadow: 0 8px 32px rgba(34,197,94,.06);
-    }
+/* ---------- Footer ---------- */
+footer{ padding:60px 0 34px; border-top:1px solid var(--line); margin-top:40px; }
+.footer-grid{ display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+footer h4{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin-bottom:14px; font-weight:700; font-family:var(--f-mono); }
+footer a{ text-decoration:none; color:var(--text-muted); display:block; padding:5px 0; font-size:14px; transition:color .2s; }
+footer a:hover{ color:var(--text); }
+.footer-bottom{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding-top:26px; border-top:1px solid var(--line); color:var(--text-dim); font-size:13px; }
+.footer-bottom .socials{ display:flex; gap:16px; }
+.footer-bottom .socials a{ padding:0; color:var(--text-dim); }
+.footer-bottom .socials a:hover{ color:var(--gold-deep); }
+@media (max-width:760px){ .footer-grid{ grid-template-columns:1fr; gap:26px; } }
 
-    /* ─── Floating orb decorations behind industry section ─── */
-    #loesungen {
-      overflow: hidden;
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  html{ scroll-behavior:auto; }
+  .reveal, .reveal-stagger > *{ opacity:1 !important; transform:none !important; }
+  .blob{ animation:none !important; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "ZYNTEVO",
+      "url": "https://zyntevo.de/",
+      "logo": "https://zyntevo.de/css/images/header.png",
+      "email": "info@zyntevo.de",
+      "sameAs": [
+        "https://www.instagram.com/zyntevo.ki/",
+        "https://www.tiktok.com/@zyntevo.ki",
+        "https://www.linkedin.com/in/jan-wichmann-281059414"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "ZYNTEVO",
+      "url": "https://zyntevo.de/",
+      "image": "https://zyntevo.de/css/images/header.png",
+      "email": "info@zyntevo.de",
+      "priceRange": "€€",
+      "areaServed": "DE",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Nunnenbeckstr. 23",
+        "postalCode": "90489",
+        "addressLocality": "Nürnberg",
+        "addressCountry": "DE"
+      },
+      "description": "ZYNTEVO baut individuelle KI-Automatisierungen für Unternehmen mit wiederkehrenden Aufgaben."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Für welche Unternehmen ist das gedacht?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für jedes dienstleistungsbasierte Unternehmen mit wiederkehrenden, manuellen Aufgaben. Nicht die Branche entscheidet, ob sich eine Automatisierung lohnt, sondern Ihre tatsächlichen Prozesse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was kostet die Zusammenarbeit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das Erstgespräch ist kostenlos. Entwicklung und Einrichtung werden einmalig berechnet, danach zahlen Sie einen monatlichen Betrag für Pflege und Weiterentwicklung. Den genauen Preis nennen wir erst, wenn wir wissen, was Sie tatsächlich brauchen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Muss ich mich mit KI auskennen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nein. Sie bekommen ein persönliches Onboarding und einen festen Ansprechpartner. Programmieren oder Einrichten übernehmen wir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist der Unterschied zu den Self-Service-Tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Self-Service-Tools sind fertige Generatoren für Makler, Handwerk und Steuerberatung, sofort ohne Gespräch nutzbar. Das Erstgespräch führt zu einer individuellen Lösung, die genau auf Ihren Betrieb zugeschnitten ist."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie steht es um den Datenschutz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ihre Angaben aus dem Formular werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte zu Werbezwecken weitergegeben."
+          }
+        }
+      ]
     }
-    #loesungen::before {
-      content: '';
-      position: absolute; top: -80px; left: -80px;
-      width: 400px; height: 400px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,.14) 0%, transparent 65%);
-      pointer-events: none; z-index: 0;
-    }
-    #loesungen .container { position: relative; z-index: 1; }
-
-    /* ─── Mobile nav glass ─── */
-    .nav-mobile {
-      background: rgba(240,238,248,.85);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,.6);
-    }
-  </style>
+  ]
+}
+</script>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="css/images/header.png" alt="ZYNTEVO" onerror="this.src='https://zyntevo.de/css/images/emaillogo.png'">
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+<div id="scrollSentinel" aria-hidden="true" style="position:absolute; top:26px; left:0; width:1px; height:1px; pointer-events:none;"></div>
+
+<div class="mesh">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<header>
+  <div class="navpill glass" id="navpill">
+    <a href="/" class="logo">
+      <img src="css/images/header.png" alt="ZYNTEVO">
     </a>
-    <div class="nav-links">
-      <a href="#loesungen" data-i18n="nav.solutions">Lösungen</a>
-      <a href="#features" data-i18n="nav.features">Features</a>
-      <a href="#preise" data-i18n="nav.pricing">Preise</a>
-      <a href="#faq" data-i18n="nav.faq">FAQ</a>
-    </div>
-    <div class="nav-right">
-      <a href="#trial-banner" class="nav-btn-ghost" data-i18n="nav.free_trial">Kostenlos testen</a>
-      <a href="#trial-banner" class="nav-btn-cta" data-i18n="nav.start_now">Jetzt starten →</a>
-      <div id="zyn-lang-switcher" style="display:flex;align-items:center;gap:2px;margin-left:12px;background:rgba(0,0,0,0.06);border-radius:8px;padding:2px;">
-        <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><img src="https://flagcdn.com/20x15/de.png" alt="DE" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-        <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-        <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-      </div>
-    </div>
-    <button class="nav-hamburger" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
+    <nav class="mainnav">
+      <a href="#muster">Das Muster</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#tools">Self-Service</a>
+      <a href="#faq">FAQ</a>
+      <a href="#erstgespraech" class="nav-cta">Erstgespräch sichern</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <div class="nav-mobile" id="navMobile">
-    <a href="#loesungen" onclick="closeNav()">Lösungen</a>
-    <a href="#features" onclick="closeNav()">Features</a>
-    <a href="#preise" onclick="closeNav()">Preise</a>
-    <a href="#faq" onclick="closeNav()">FAQ</a>
-    <a href="#trial-banner" class="nav-btn-cta" onclick="closeNav()">Jetzt starten →</a>
-  </div>
+</header>
+
+<nav class="mobile-menu glass" id="mobileMenu">
+  <a href="#muster">Das Muster</a>
+  <a href="#ablauf">Ablauf</a>
+  <a href="#tools">Self-Service</a>
+  <a href="#faq">FAQ</a>
+  <a href="#erstgespraech" class="nav-cta">Erstgespräch sichern</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-eyebrow" data-reveal data-i18n="index.hero_eyebrow">KI-Betriebssystem für KMU</div>
-      <h1 data-reveal data-delay="100" data-i18n="index.hero_h1">
-        5 Stunden pro Woche.<br>
-        <span class="grad">Zurückgewonnen.</span>
-      </h1>
-      <p class="hero-sub" data-reveal data-delay="200" data-i18n="index.hero_sub">
-        ZYNTEVO ist das spezialisierte KI-Tool für Immobilienmakler, Handwerksbetriebe und Steuerberater – fertige Texte in Sekunden, ohne Prompt-Kenntnisse.
-      </p>
-      <div class="hero-btns" data-reveal data-delay="300">
-        <a href="#trial-banner" class="btn btn-gold btn-lg" data-i18n="index.btn_trial">Kostenlos testen →</a>
-        <a href="#loesungen" class="btn btn-outline btn-lg" data-i18n="index.btn_more">Mehr erfahren</a>
-      </div>
-      <div class="hero-trust" data-reveal data-delay="400">
-        <div class="hero-trust-item">
-          <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span data-i18n="index.trust1">Kein Abo</span>
-        </div>
-        <div class="hero-trust-item">
-          <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span data-i18n="index.trust2">Einmalzahlung</span>
-        </div>
-        <div class="hero-trust-item">
-          <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span data-i18n="index.trust3">14 Tage Geld-zurück-Garantie</span>
-        </div>
+<main id="main">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <h1>Ihre Prozesse, automatisiert. Ihre Regeln, unverändert.</h1>
+      <p class="hero-sub">ZYNTEVO baut KI-Systeme für Unternehmen mit wiederkehrenden Aufgaben, die genauso funktionieren, wie Sie bereits arbeiten.</p>
+      <div class="hero-actions">
+        <a href="#erstgespraech" class="btn btn-gold">Erstgespräch sichern</a>
+        <a href="#ablauf" class="btn btn-line">So läuft's ab →</a>
       </div>
     </div>
-    <div class="hero-visual" data-reveal="right" data-delay="200">
-      <div class="hero-mockup">
-        <div class="mockup-topbar">
-          <div class="mockup-dot mockup-dot-r"></div>
-          <div class="mockup-dot mockup-dot-y"></div>
-          <div class="mockup-dot mockup-dot-g"></div>
-          <span class="mockup-label">ZYNTEVO · KI-Tool</span>
-        </div>
-        <div class="mockup-fields">
-          <div class="mockup-field-row">
-            <div class="mockup-field">
-              <div class="mockup-field-label">Branche</div>
-              <div class="mockup-field-value">Immobilienmakler</div>
-            </div>
-            <div class="mockup-field">
-              <div class="mockup-field-label">Tool</div>
-              <div class="mockup-field-value">Exposé Generator</div>
-            </div>
-          </div>
-          <div class="mockup-field">
-            <div class="mockup-field-label">Objekt</div>
-            <div class="mockup-field-value">3-Zi.-ETW, 78m², München-Schwabing, 695.000 €</div>
-          </div>
-        </div>
-        <button class="mockup-generate">⚡ Jetzt generieren</button>
-        <div class="mockup-output">
-          <div class="mockup-output-label">KI-Ergebnis</div>
-          <div id="mockup-text"></div><span class="cursor"></span>
-        </div>
+
+    <div class="reveal in">
+      <!-- Eigene Illustration, keine externe Bilddatei: keine Übermittlung der
+           Besucher-IP an einen Bild-CDN eines Dritten. -->
+      <svg class="hero-illustration" viewBox="0 0 480 400" role="img" aria-label="Illustration: ein Schreibtisch mit Laptop, umgeben von automatisierten Aufgabenkarten, die sich von selbst erledigen">
+        <defs>
+          <linearGradient id="deskGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.55"/>
+          </linearGradient>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#B8923A"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="240" cy="330" rx="190" ry="26" fill="#1D1D1F" opacity="0.05"/>
+        <rect x="70" y="150" width="340" height="150" rx="18" fill="url(#deskGrad)" stroke="rgba(29,29,31,0.08)"/>
+        <rect x="150" y="90" width="180" height="118" rx="14" fill="#1D1D1F"/>
+        <rect x="160" y="100" width="160" height="90" rx="4" fill="#F4F3EF"/>
+        <rect x="176" y="118" width="80" height="8" rx="4" fill="rgba(29,29,31,0.15)"/>
+        <rect x="176" y="134" width="128" height="8" rx="4" fill="rgba(29,29,31,0.1)"/>
+        <rect x="176" y="150" width="60" height="8" rx="4" fill="rgba(29,29,31,0.1)"/>
+        <g transform="translate(300,60)">
+          <rect width="120" height="72" rx="14" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <circle cx="26" cy="26" r="12" fill="url(#goldGrad)"/>
+          <path d="M20 26l4 4 8-8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="46" y="20" width="56" height="7" rx="3.5" fill="rgba(29,29,31,0.15)"/>
+          <rect x="46" y="34" width="40" height="7" rx="3.5" fill="rgba(29,29,31,0.1)"/>
+        </g>
+        <g transform="translate(56,220)">
+          <rect width="108" height="66" rx="14" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <circle cx="24" cy="24" r="11" fill="rgba(212,175,55,0.18)"/>
+          <path d="M19 24l3.5 3.5L29 20" stroke="#B8923A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="44" y="18" width="48" height="6.5" rx="3" fill="rgba(29,29,31,0.15)"/>
+          <rect x="44" y="31" width="34" height="6.5" rx="3" fill="rgba(29,29,31,0.1)"/>
+        </g>
+        <g transform="translate(330,200)">
+          <rect width="100" height="60" rx="14" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <circle cx="22" cy="22" r="10" fill="rgba(212,175,55,0.18)"/>
+          <path d="M18 22l2.8 2.8L27 18" stroke="#B8923A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="40" y="16" width="44" height="6" rx="3" fill="rgba(29,29,31,0.15)"/>
+          <rect x="40" y="28" width="30" height="6" rx="3" fill="rgba(29,29,31,0.1)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="trust-bar">
+      <div class="trust-row">
+        <div class="trust-chip"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke-linejoin="round"/></svg>Made in Germany</div>
+        <div class="trust-chip"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"/></svg>DSGVO-konform entwickelt</div>
+        <div class="trust-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke-linecap="round"/></svg>Persönlicher Ansprechpartner</div>
+        <div class="trust-chip"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Ehrliche Einschätzung statt Verkaufsdruck</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROOF STRIP -->
-<!-- 7-TAGE-TRIAL BANNER -->
-<section class="trial-banner" id="trial-banner">
-  <div class="trial-banner-inner">
-    <div class="trial-banner-tag" data-i18n="trial.tag">🎁 Neu – 7 Tage kostenlos</div>
-    <h2 data-i18n="trial.headline">Teste ZYNTEVO <span>7 Tage kostenlos</span> – ohne Risiko</h2>
-    <p data-i18n="trial.desc_index">Teste alle 8 KI-Generatoren 7 Tage lang komplett kostenlos – keine Kreditkarte, kein Abo, kein Risiko.</p>
-    <div class="trial-banner-perks">
-      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div><span data-i18n="trial.perk1">Alle 8 Generatoren freigeschaltet</span></div>
-      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div><span data-i18n="trial.perk2">Keine Kreditkarte nötig</span></div>
-      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div><span data-i18n="trial.perk3">Kein Abo, kein Risiko</span></div>
-      <div class="trial-banner-perk"><div class="trial-banner-perk-dot"></div><span data-i18n="trial.perk4">Sofort starten</span></div>
-    </div>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:0;">
-        <a href="https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html" target="_blank" class="trial-banner-btn" data-i18n="trial.btn_makler">🏠 Makler – 7 Tage testen</a>
-        <a href="https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html" target="_blank" class="trial-banner-btn" style="background:rgba(212,175,55,.15);color:#B8962E;box-shadow:none;border:1.5px solid rgba(212,175,55,.5);" data-i18n="trial.btn_handwerker">🔧 Handwerker testen</a>
-        <a href="https://zyntevo.github.io/zyntevo/zyntevo-steuerberater-tool.html" target="_blank" class="trial-banner-btn" style="background:rgba(212,175,55,.15);color:#B8962E;box-shadow:none;border:1.5px solid rgba(212,175,55,.5);" data-i18n="trial.btn_steuerberater">📊 Steuerberater testen</a>
+<section id="muster">
+  <div class="wrap">
+    <div class="split reveal">
+      <svg class="split-illustration" viewBox="0 0 320 300" role="img" aria-label="Illustration: ein Stapel Briefumschläge neben einer Uhr, die auf spät am Abend zeigt">
+        <ellipse cx="160" cy="260" rx="120" ry="18" fill="#1D1D1F" opacity="0.05"/>
+        <g transform="translate(30,60)">
+          <rect x="0" y="60" width="150" height="100" rx="12" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <rect x="12" y="30" width="150" height="100" rx="12" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <rect x="24" y="0" width="150" height="100" rx="12" fill="url(#env)" stroke="rgba(212,175,55,0.35)"/>
+          <path d="M24 10l75 55 75-55" stroke="#B8923A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+          <linearGradient id="env" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FBF4E3"/>
+            <stop offset="100%" stop-color="#F3E4BE"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(190,150)">
+          <circle r="52" fill="#fff" stroke="rgba(29,29,31,0.1)" stroke-width="2"/>
+          <path d="M0 -32V0l22 14" stroke="#1D1D1F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>
+      <div>
+        <span class="eyebrow">// DAS MUSTER</span>
+        <h2>Die Arbeit hört nicht auf. Sie verschiebt sich nur.</h2>
+        <p>Angebote, Exposés, Mandantenschreiben: Die Inhalte ähneln sich von Fall zu Fall, trotzdem beginnt die Arbeit jedes Mal wieder bei null. Am Ende bleibt die Verwaltung an den Abenden hängen, obwohl der Arbeitstag eigentlich vorbei war.</p>
+        <a href="#erstgespraech" class="inline-cta">Kommt Ihnen bekannt vor? Erstgespräch sichern →</a>
       </div>
-    <div class="trial-banner-sub" data-i18n="trial.sub">Nach 7 Tagen läuft der Zugang automatisch aus – kein Kauf nötig</div>
+    </div>
   </div>
 </section>
 
-<div class="proof-strip">
-  <div class="proof-strip-inner">
-    <div class="proof-item">
-      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <span data-i18n="proof.no_chatgpt">Kein ChatGPT nötig</span>
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Was sich für Sie ändert</h2>
+      <p>Kein Versprechen, keine Zauberei. Nur weniger Handarbeit an den immer gleichen Stellen.</p>
     </div>
-    <div class="proof-sep"></div>
-    <div class="proof-item">
-      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <span data-i18n="proof.onetime">Einmalzahlung – kein Abo</span>
-    </div>
-    <div class="proof-sep"></div>
-    <div class="proof-item">
-      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <span data-i18n="proof.instant">Sofort einsatzbereit</span>
-    </div>
-    <div class="proof-sep"></div>
-    <div class="proof-item">
-      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <span data-i18n="proof.guarantee">14 Tage Geld-zurück-Garantie</span>
-    </div>
-    <div class="proof-sep"></div>
-    <div class="proof-item">
-      <div class="proof-check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <span data-i18n="proof.browser">Direkt im Browser nutzbar</span>
+    <div class="compare reveal-stagger">
+      <div class="compare-col before glass">
+        <h3>Ohne ZYNTEVO</h3>
+        <ul>
+          <li>Standardtexte jedes Mal von Hand schreiben</li>
+          <li>Rückfragen sammeln sich über den Tag</li>
+          <li>Feierabend verschiebt sich regelmäßig</li>
+        </ul>
+      </div>
+      <div class="compare-col after">
+        <h3>Mit ZYNTEVO</h3>
+        <ul>
+          <li>Texte entstehen automatisch, in Ihrem Ton</li>
+          <li>Wiederkehrende Rückfragen laufen im Hintergrund</li>
+          <li>Verwaltung endet, wenn der Arbeitstag endet</li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- PROBLEM / LÖSUNG -->
-<section class="section">
-  <div class="container">
-    <div class="section-header" data-reveal>
-      <div class="section-label" data-i18n="index.problem_label">Das Problem</div>
-      <h2 class="section-title" data-i18n="index.problem_h2">Stundenlange Schreibarbeit.<br>Jeden Tag aufs Neue.</h2>
-      <p class="section-sub" data-i18n="index.problem_sub">Angebote, Exposés, Mandantenbriefe, Kunden-Mails – all das frisst Zeit, die du nicht hast.</p>
+<section id="ablauf">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>So kommen Sie zu Ihrer Lösung</h2>
+      <p>Drei Schritte, keine Warteschleife.</p>
     </div>
-    <div class="problem-solution-wrap">
-      <div class="problem-solution">
-        <div class="problem-card" data-reveal="left">
-          <h3 data-i18n="index.without_h3">⏳ Ohne ZYNTEVO</h3>
-          <ul class="problem-list">
-            <li data-i18n="index.without1">45 Minuten für ein professionelles Angebot</li>
-            <li data-i18n="index.without2">Jede Kunden-Mail von Grund auf neu schreiben</li>
-            <li data-i18n="index.without3">Google-Bewertungen bleiben unbeantwortet</li>
-            <li data-i18n="index.without4">Social Media? Keine Zeit dafür</li>
-            <li data-i18n="index.without5">ChatGPT ohne Erfahrung = schlechte Ergebnisse</li>
+    <div class="rail reveal-stagger">
+      <div class="rail-step">
+        <div class="dot">1</div>
+        <h3>Analyse</h3>
+        <p>Im kostenlosen Erstgespräch gehen wir durch, wo bei Ihnen Zeit verloren geht, und was sich davon sinnvoll automatisieren lässt.</p>
+      </div>
+      <div class="rail-step">
+        <div class="dot">2</div>
+        <h3>Umsetzung</h3>
+        <p>Das System wird für Ihren Betrieb entwickelt und eingerichtet, inklusive persönlichem Onboarding statt Anleitung zum Selbststudium.</p>
+      </div>
+      <div class="rail-step">
+        <div class="dot">3</div>
+        <h3>Betreuung</h3>
+        <p>Nach dem Start bleiben wir erreichbar, pflegen das System und passen es an, wenn sich in Ihrem Betrieb etwas ändert.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Sie brauchen keine Beratung, nur das richtige Tool?</h2>
+      <p>Für Makler, Handwerk und Steuerberatung gibt es fertige KI-Generatoren zum einmaligen Kaufpreis, sofort einsatzbereit.</p>
+    </div>
+    <div class="tools-strip reveal-stagger">
+      <a href="makler.html" class="tool-chip glass">
+        <span class="name">Für Immobilienmakler</span>
+        <span class="go">Ansehen →</span>
+      </a>
+      <a href="handwerker.html" class="tool-chip glass">
+        <span class="name">Für Handwerksbetriebe</span>
+        <span class="go">Ansehen →</span>
+      </a>
+      <a href="steuerberater.html" class="tool-chip glass">
+        <span class="name">Für Steuerberater</span>
+        <span class="go">Ansehen →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="erstgespraech">
+  <div class="wrap">
+    <div class="lead-panel glass reveal">
+      <div class="lead-grid">
+        <div>
+          <span class="eyebrow">// ERSTGESPRÄCH</span>
+          <h2>Wir hören zu, bevor wir etwas vorschlagen.</h2>
+          <p>15 Minuten, in denen wir verstehen, wo bei Ihnen Zeit verloren geht. Keine Präsentation, kein Verkaufsdruck. Passt eine Automatisierung nicht zu Ihrem Betrieb, sagen wir Ihnen das ehrlich.</p>
+          <ul class="lead-points">
+            <li>Konkrete Einschätzung statt Standardangebot</li>
+            <li>Kostenlos und unverbindlich</li>
+            <li>Ihre Daten bleiben bei uns, nicht bei Dritten</li>
           </ul>
         </div>
-        <div class="solution-card" data-reveal="right">
-          <h3 data-i18n="index.with_h3">⚡ Mit ZYNTEVO</h3>
-          <ul class="solution-list">
-            <li data-i18n="index.with1">Professionelles Angebot in 30 Sekunden</li>
-            <li data-i18n="index.with2">Kunden-Mail mit einem Klick generiert</li>
-            <li data-i18n="index.with3">Bewertungsantworten automatisch & persönlich</li>
-            <li data-i18n="index.with4">TikTok & LinkedIn Texte auf Knopfdruck</li>
-            <li data-i18n="index.with5">Kein Prompt-Wissen nötig – fertig eingerichtet</li>
-          </ul>
-        </div>
+        <form class="lead-form" id="leadForm">
+          <input type="text" name="name" placeholder="Ihr Name" required>
+          <input type="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+          <input type="text" name="branche" placeholder="Ihre Branche (optional)">
+          <label class="optional-tag" for="zeitfresser">Freiwillige Angabe, hilft uns beim Vorbereiten</label>
+          <textarea id="zeitfresser" name="zeitfresser" rows="3" placeholder="Was kostet Sie aktuell am meisten Zeit? (optional)"></textarea>
+
+          <div class="consent-row">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden.</label>
+          </div>
+
+          <!-- Formspree: Formular-zu-E-Mail-Dienst mit DPA, kein eigener Server nötig.
+               Als Auftragsverarbeiter in der Datenschutzerklärung dokumentiert (Abschnitt 6). -->
+          <input type="hidden" name="_subject" value="Neue Anfrage für Erstgespräch von zyntevo.de">
+          <button type="submit" class="btn btn-gold">Anfrage senden</button>
+          <div class="status" id="formStatus"></div>
+        </form>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LÖSUNGEN / INDUSTRIEN -->
-<section class="section section-alt" id="loesungen">
-  <div class="container">
-    <div class="section-header section-header-center" data-reveal>
-      <div class="section-label" data-i18n="index.ind_label">Für wen ist ZYNTEVO?</div>
-      <h2 class="section-title" data-i18n="index.ind_h2">Spezialisiert. Nicht generisch.</h2>
-      <p class="section-sub" data-i18n="index.ind_sub">Jede Branche hat andere Bedürfnisse. Deshalb gibt es ZYNTEVO speziell für deine.</p>
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Häufige Fragen</h2>
     </div>
-    <div class="industry-grid">
-      <div class="industry-card" data-reveal data-delay="100">
-        <div class="industry-card-icon">🏠</div>
-        <h3>Immobilienmakler</h3>
-        <p>Exposés, Akquise-Briefe, Käufer-Qualifizierung und TikTok-Skripte – alles auf Knopfdruck.</p>
-        <ul class="industry-card-features">
-          <li>Exposé-Generator</li>
-          <li>Akquise-Brief</li>
-          <li>Käufer-Analyse</li>
-          <li>Verhandlungs-Coach</li>
-          <li>TikTok & Reels Texte</li>
-        </ul>
-        <a href="makler.html" class="btn btn-gold">Makler-Paket ansehen →</a>
-      </div>
-      <div class="industry-card" data-reveal data-delay="200">
-        <div class="industry-card-icon">🔨</div>
-        <h3>Handwerksbetriebe</h3>
-        <p>Angebote, Kunden-Mails, Bewertungsantworten und Social Media – in Sekunden fertig.</p>
-        <ul class="industry-card-features">
-          <li>Angebots-Generator</li>
-          <li>Kunden-Mail</li>
-          <li>Bewertungs-Antwort</li>
-          <li>Akquise-Brief</li>
-          <li>TikTok Skripte</li>
-        </ul>
-        <a href="handwerker.html" class="btn btn-gold">Handwerker-Paket ansehen →</a>
-      </div>
-      <div class="industry-card" data-reveal data-delay="300">
-        <div class="industry-card-icon">📊</div>
-        <h3>Steuerberater</h3>
-        <p>Mandantenbriefe, Akquise-Mails, Erstgespräch-Vorbereitung und LinkedIn-Texte sofort.</p>
-        <ul class="industry-card-features">
-          <li>Mandantenbrief Generator</li>
-          <li>Akquise-Mail</li>
-          <li>Erstgespräch-Vorbereitung</li>
-          <li>Unterlagen-Erinnerung</li>
-          <li>LinkedIn & Social Media</li>
-        </ul>
-        <a href="steuerberater.html" class="btn btn-gold">Steuerberater-Paket ansehen →</a>
-      </div>
+    <div style="max-width:820px;" class="reveal">
+      <details class="faq-item glass">
+        <summary>Für welche Unternehmen ist das gedacht?</summary>
+        <p>Für jedes dienstleistungsbasierte Unternehmen mit wiederkehrenden, manuellen Aufgaben. Nicht die Branche entscheidet, ob sich eine Automatisierung lohnt, sondern Ihre tatsächlichen Prozesse.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Was kostet die Zusammenarbeit?</summary>
+        <p>Das Erstgespräch ist kostenlos. Entwicklung und Einrichtung werden einmalig berechnet, danach zahlen Sie einen monatlichen Betrag für Pflege und Weiterentwicklung. Den genauen Preis nennen wir erst, wenn wir wissen, was Sie tatsächlich brauchen.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Muss ich mich mit KI auskennen?</summary>
+        <p>Nein. Sie bekommen ein persönliches Onboarding und einen festen Ansprechpartner. Programmieren oder Einrichten übernehmen wir.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Was ist der Unterschied zu den Self-Service-Tools?</summary>
+        <p>Die Self-Service-Tools sind fertige Generatoren für Makler, Handwerk und Steuerberatung, sofort ohne Gespräch nutzbar. Das Erstgespräch führt zu einer individuellen Lösung, die genau auf Ihren Betrieb zugeschnitten ist.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Wie steht es um den Datenschutz?</summary>
+        <p>Ihre Angaben aus dem Formular werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte zu Werbezwecken weitergegeben. Details finden Sie in unserer <a href="datenschutz.html" style="color:var(--gold); text-decoration:underline;">Datenschutzerklärung</a>.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="section" id="features">
-  <div class="container">
-    <div class="section-header" data-reveal>
-      <div class="section-label" data-i18n="index.feat_label">Warum ZYNTEVO</div>
-      <h2 class="section-title" data-i18n="index.feat_h2">Kein ChatGPT.<br><span class="highlight">Ein fertiges Werkzeug.</span></h2>
-      <p class="section-sub" data-i18n="index.feat_sub">Kein leeres Blatt, kein Prompt-Raten. ZYNTEVO ist von Tag 1 auf deine Branche zugeschnitten.</p>
-    </div>
-    <div class="cards-3">
-      <div class="glass-card" data-reveal data-delay="100">
-        <div class="glass-card-icon">⚡</div>
-        <h3 data-i18n="index.feat1_h">In 30 Sekunden fertig</h3>
-        <p data-i18n="index.feat1_p">Daten eingeben, Knopf drücken – professioneller Text sofort. Was früher 45 Minuten dauerte, ist in einer halben Minute erledigt.</p>
-        <ul class="glass-card-list">
-          <li data-i18n="index.feat1_1">Kein Prompt-Wissen nötig</li>
-          <li data-i18n="index.feat1_2">Sofort einsatzbereit</li>
-          <li data-i18n="index.feat1_3">Direkt im Browser nutzbar</li>
-        </ul>
-      </div>
-      <div class="glass-card" data-reveal data-delay="200">
-        <div class="glass-card-icon">🎯</div>
-        <h3 data-i18n="index.feat2_h">Speziell für deine Branche</h3>
-        <p data-i18n="index.feat2_p">ChatGPT kennt keine Makler-Fachsprache. ZYNTEVO kennt dein Business – und liefert Texte die sofort professionell klingen.</p>
-        <ul class="glass-card-list">
-          <li data-i18n="index.feat2_1">Branchenspezifische KI-Prompts</li>
-          <li data-i18n="index.feat2_2">Für Makler, Handwerker & StB</li>
-          <li data-i18n="index.feat2_3">Kein Training nötig</li>
-        </ul>
-      </div>
-      <div class="glass-card" data-reveal data-delay="300">
-        <div class="glass-card-icon">💳</div>
-        <h3 data-i18n="index.feat3_h">Einmalig zahlen – für immer nutzen</h3>
-        <p data-i18n="index.feat3_p">Kein Abo. Keine monatlichen Kosten. Einmal kaufen, dauerhaft profitieren. Nach einem Monat bereits amortisiert.</p>
-        <ul class="glass-card-list">
-          <li data-i18n="index.feat3_1">Einmalzahlung ab 97€</li>
-          <li data-i18n="index.feat3_2">Kein laufendes Abo</li>
-          <li data-i18n="index.feat3_3">14 Tage Geld-zurück</li>
-        </ul>
-      </div>
+<section>
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <h2>Der erste Schritt kostet Sie 15 Minuten. Nicht mehr.</h2>
+      <p>Kostenloses Gespräch, ohne Verkaufsdruck.</p>
+      <a href="#erstgespraech" class="btn btn-line">Erstgespräch sichern</a>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="section-sm section-dark">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item" data-reveal>
-        <div class="stat-number"><span data-count="8">0</span></div>
-        <div class="stat-label" style="color:#64748B;" data-i18n="index.stat1_label">KI-Tools im Premium-Paket</div>
-      </div>
-      <div class="stat-item" data-reveal data-delay="200">
-        <div class="stat-number"><span data-count="5">0</span><span style="font-size:32px;">h+</span></div>
-        <div class="stat-label" style="color:#64748B;" data-i18n="index.stat2_label">Zeitersparnis pro Woche</div>
-      </div>
-      <div class="stat-item" data-reveal data-delay="400">
-        <div class="stat-number">0€</div>
-        <div class="stat-label" style="color:#64748B;" data-i18n="index.stat3_label">Monatliche Kosten</div>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
-<!-- PREISE -->
-<section class="section" id="preise">
-  <div class="container">
-    <div class="section-header section-header-center" data-reveal>
-      <div class="section-label" data-i18n="index.price_label">Preise</div>
-      <h2 class="section-title" data-i18n="index.price_h2">Einmal zahlen.<br>Für immer nutzen.</h2>
-      <p class="section-sub" data-i18n="index.price_sub">Keine monatlichen Kosten. Kein Abo. Wähle dein Paket und starte sofort.</p>
-    </div>
-    <!-- Branchen-Selektor -->
-    <div style="display:flex;justify-content:center;gap:10px;margin-bottom:32px;flex-wrap:wrap;" data-reveal>
-      <span style="font-size:14px;color:var(--text-3);align-self:center;margin-right:4px;" data-i18n="index.price_branch">Deine Branche:</span>
-      <button class="pricing-branch-btn active" id="pbtn-makler" onclick="setPricingBranche('makler')">🏠 Makler</button>
-      <button class="pricing-branch-btn" id="pbtn-handwerker" onclick="setPricingBranche('handwerker')">🔧 Handwerker</button>
-      <button class="pricing-branch-btn" id="pbtn-steuerberater" onclick="setPricingBranche('steuerberater')">📊 Steuerberater</button>
-    </div>
-
-    <div class="pricing-grid">
-      <div class="pricing-card" data-reveal data-delay="100">
-        <div class="pricing-name" data-i18n="index.starter_name">Starter</div>
-        <div class="pricing-desc" data-i18n="index.starter_desc">Das Fundament – perfekt zum Einsteigen</div>
-        <div class="pricing-price">97<span>€</span></div>
-        <div class="pricing-period" data-i18n="index.starter_period">einmalig · kein Abo · sofortiger Download</div>
-        <ul class="pricing-features">
-          <li><span class="check">✓</span> <span data-i18n="index.starter_f1">25 Profi-Prompts</span></li>
-          <li><span class="check">✓</span> <span data-i18n="index.starter_f2">Branchenspezifische Vorlagen</span></li>
-          <li><span class="check">✓</span> <span data-i18n="index.starter_f3">Kundenkommunikation</span></li>
-          <li><span class="check">✓</span> <span data-i18n="index.starter_f4">Sofortiger Download</span></li>
-        </ul>
-        <a href="https://www.checkout-ds24.com/product/696579" id="btn-starter" target="_blank" class="btn btn-outline btn-lg pricing-cta" data-i18n="index.starter_cta">Starter sichern →</a>
-      </div>
-      <div class="pricing-card featured" data-reveal data-delay="200">
-        <div class="pricing-badge" data-i18n="index.premium_badge">⭐ Empfohlen</div>
-        <div class="pricing-name" data-i18n="index.premium_name">Premium</div>
-        <div class="pricing-desc" data-i18n="index.premium_desc">Das vollständige KI-System inkl. KI-Tool</div>
-        <div class="pricing-price">297<span>€</span></div>
-        <div class="pricing-period" data-i18n="index.premium_period">einmalig · kein Abo · sofort einsatzbereit</div>
-        <ul class="pricing-features">
-          <li><span class="star">⚡</span> <strong data-i18n="index.premium_f1">KI-Tool mit 8 Generatoren</strong></li>
-          <li><span class="check">✓</span> <span data-i18n="index.premium_f2">50+ Profi-Prompts</span></li>
-          <li><span class="check">✓</span> <span data-i18n="index.premium_f3">Alle Branchensysteme</span></li>
-          <li><span class="check">✓</span> <span data-i18n="index.premium_f4">Social-Media-System</span></li>
-          <li><span class="check">✓</span> <span data-i18n="index.premium_f5">30 TikTok-Skripte</span></li>
-          <li><span class="check">✓</span> <span data-i18n="index.premium_f6">Sofort einsatzbereit</span></li>
-        </ul>
-        <a href="https://www.checkout-ds24.com/product/696893" id="btn-premium" target="_blank" class="btn btn-gold btn-lg pricing-cta" data-i18n="index.premium_cta">Premium sichern →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section section-alt" id="faq">
-  <div class="container-sm">
-    <div class="section-header section-header-center" data-reveal>
-      <div class="section-label" data-i18n="index.faq_label">FAQ</div>
-      <h2 class="section-title" data-i18n="index.faq_h2">Häufige Fragen</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item" data-reveal>
-        <div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="index.faq_q1">Was ist ZYNTEVO genau?</span><span class="faq-q-icon">+</span></div>
-        <div class="faq-a" data-i18n="index.faq_a1">ZYNTEVO ist ein spezialisiertes KI-Tool für Immobilienmakler, Handwerksbetriebe und Steuerberater. Du öffnest das Tool im Browser, gibst deine Eckdaten ein – und bekommst in Sekunden fertige, professionelle Texte. Kein ChatGPT, kein Prompt-Wissen, kein Abo.</div>
-      </div>
-      <div class="faq-item" data-reveal>
-        <div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="index.faq_q2">Brauche ich ChatGPT oder andere Tools?</span><span class="faq-q-icon">+</span></div>
-        <div class="faq-a" data-i18n="index.faq_a2">Nein. ZYNTEVO funktioniert komplett eigenständig – direkt im Browser. Du brauchst keinerlei technisches Wissen, kein ChatGPT-Abonnement und keine weiteren Tools. Einfach URL öffnen, Daten eingeben, Text generieren.</div>
-      </div>
-      <div class="faq-item" data-reveal>
-        <div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="index.faq_q3">Wie schnell kann ich nach dem Kauf loslegen?</span><span class="faq-q-icon">+</span></div>
-        <div class="faq-a" data-i18n="index.faq_a3">Sofort. Du erhältst deinen Zugangscode direkt auf der Bestätigungsseite und per E-Mail – in unter 60 Sekunden bist du im Tool und kannst deinen ersten Text generieren.</div>
-      </div>
-      <div class="faq-item" data-reveal>
-        <div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="index.faq_q4">Was ist der Unterschied zwischen Starter und Premium?</span><span class="faq-q-icon">+</span></div>
-        <div class="faq-a" data-i18n="index.faq_a4">Der Starter (97€) enthält 25 Profi-Prompts und Vorlagen zum sofortigen Herunterladen. Das Premium-Paket (297€) enthält zusätzlich das interaktive KI-Tool mit 8 Generatoren, das du direkt im Browser nutzt – ohne Copy-Paste, ohne Prompt-Tippen. Einfach Felder ausfüllen und Ergebnis kopieren.</div>
-      </div>
-      <div class="faq-item" data-reveal>
-        <div class="faq-q" onclick="toggleFaq(this)"><span data-i18n="index.faq_q5">Gibt es eine Garantie?</span><span class="faq-q-icon">+</span></div>
-        <div class="faq-a" data-i18n="index.faq_a5">Ja. Du hast 14 Tage Widerrufsrecht. Wenn dir ZYNTEVO nicht gefällt, schreib einfach an jan@zyntevo.de – wir erstatten ohne Fragen, ohne Formular-Stress.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BAND -->
-<section class="cta-band">
-  <div class="container">
-    <h2 data-i18n="cta_band.headline">Bereit, Stunden pro Woche zurückzugewinnen?</h2>
-    <p data-i18n="cta_band.sub">Starte noch heute – kostenlos testen, kein Account nötig.</p>
-    <div class="cta-band-btns">
-      <a href="#trial-banner" class="btn btn-gold btn-lg" data-i18n="cta_band.btn_trial">Kostenlos testen →</a>
-      <a href="#preise" class="btn btn-outline btn-lg" style="border-color:rgba(0,0,0,.15);color:#1E293B;background:rgba(255,255,255,.7);" data-i18n="cta_band.btn_pricing">Pakete ansehen</a>
-    </div>
-    <p class="cta-band-note" data-i18n="cta_band.note">Einmalzahlung ab 97€ · Kein Abo · 14 Tage Geld-zurück-Garantie</p>
-  </div>
-</section>
-
-<!-- TRUSTPILOT -->
-<div class="trustpilot-section">
-  <div class="container">
-    <p class="trustpilot-eyebrow">Kundenbewertungen</p>
-    <div class="trustpilot-stars-row">
-      <span class="trustpilot-stars">★★★★★</span>
-      <span class="trustpilot-link">Erste Bewertungen · <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank">Jetzt bewerten</a></span>
-    </div>
-    <div class="trustpilot-widget" data-locale="de-DE" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6a1f169c3d4303165a630ce8" data-style-height="52px" data-style-width="100%" data-token="2dc6f057-8799-4c2b-9dcc-3c7a4950d1cc">
-      <a href="https://de.trustpilot.com/review/zyntevo.de" target="_blank" rel="noopener">Trustpilot</a>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
+<footer>
+  <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="css/images/header.png" alt="ZYNTEVO" onerror="this.src='https://zyntevo.de/css/images/emaillogo.png'">
-        <p data-i18n="footer.desc">Das KI-Betriebssystem für Steuerberater, Immobilienmakler und Handwerksbetriebe. Einmalig zahlen. Dauerhaft profitieren.</p>
+      <div>
+        <h4>ZYNTEVO</h4>
+        <p style="color:var(--text-muted); font-size:14px; max-width:36ch;">Individuelle KI-Automatisierung für Unternehmer, die ihre Zeit lieber ins Kerngeschäft stecken.</p>
       </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.col_solutions">Lösungen</h4>
-        <a href="makler.html" data-i18n="footer.for_makler">Für Makler</a>
-        <a href="handwerker.html" data-i18n="footer.for_handwerker">Für Handwerker</a>
-        <a href="steuerberater.html" data-i18n="footer.for_stb">Für Steuerberater</a>
+      <div>
+        <h4>Self-Service</h4>
+        <a href="makler.html">Für Makler</a>
+        <a href="handwerker.html">Für Handwerker</a>
+        <a href="steuerberater.html">Für Steuerberater</a>
       </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.col_trial">Kostenlos testen</h4>
-        <a href="https://zyntevo.github.io/zyntevo/zyntevo-makler-tool.html" target="_blank" data-i18n="footer.trial_makler">Makler – 7 Tage testen</a>
-        <a href="https://zyntevo.github.io/zyntevo/zyntevo-handwerker-tool.html" target="_blank" data-i18n="footer.trial_handwerker"> Handwerker – 7 Tage testen</a>
-        <a href="https://zyntevo.github.io/zyntevo/zyntevo-steuerberater-tool.html" target="_blank" data-i18n="footer.trial_stb">Steuerberater – 7 Tage testen</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.col_legal">Rechtliches</h4>
-        <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
-        <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
-        <a href="widerruf.html" data-i18n="footer.widerruf">Widerruf</a>
-        <a href="agb.html" data-i18n="footer.agb">AGB</a>
+      <div>
+        <h4>Rechtliches</h4>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="agb.html">AGB</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p data-i18n="footer.copy">© 2026 ZYNTEVO · info@zyntevo.de · Die Abbuchung erfolgt durch Digistore24.com</p>
-      <div class="footer-socials">
-        <a href="https://www.instagram.com/zyntevo.ki/" target="_blank" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-        <a href="https://www.tiktok.com/@zyntevo.ki" target="_blank" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
-        <a href="https://www.linkedin.com/in/jan-wichmann-281059414" target="_blank" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <span>© 2026 ZYNTEVO · info@zyntevo.de</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/zyntevo.ki/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@zyntevo.ki" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/jan-wichmann-281059414" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-// ── NAV scroll effect ──
-var nav = document.getElementById('nav');
-window.addEventListener('scroll', function() {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
+/* Scroll-Reveal per IntersectionObserver */
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
 
-// ── Mobile nav ──
-var t = document.getElementById('navToggle'), m = document.getElementById('navMobile');
-t.addEventListener('click', function() { m.classList.toggle('open'); });
-function closeNav() { m.classList.remove('open'); }
-document.addEventListener('click', function(e) {
-  if (!t.contains(e.target) && !m.contains(e.target)) closeNav();
+/* Mobiles Menü */
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+navToggle.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  navToggle.classList.toggle('open', isOpen);
+  navToggle.setAttribute('aria-expanded', String(isOpen));
 });
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  navToggle.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
 
-// ── Scroll reveal ──
-var reveals = document.querySelectorAll('[data-reveal]');
-var revealObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('revealed'); } });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(function(el) { revealObs.observe(el); });
-
-// ── Count-up ──
-var counted = false;
-function countUp() {
-  if (counted) return; counted = true;
-  document.querySelectorAll('[data-count]').forEach(function(el) {
-    var target = parseInt(el.getAttribute('data-count'));
-    var current = 0; var step = target / 40;
-    var timer = setInterval(function() {
-      current += step;
-      if (current >= target) { current = target; clearInterval(timer); }
-      el.textContent = Math.round(current);
-    }, 30);
+/* Navpill: dezenter Schatten sobald gescrollt wird (IntersectionObserver statt scroll-Listener) */
+const navpill = document.getElementById('navpill');
+const scrollSentinel = document.getElementById('scrollSentinel');
+if(scrollSentinel){
+  const navShadowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      navpill.style.boxShadow = entry.isIntersecting ? '' : '0 12px 32px rgba(31,31,31,0.14)';
+    });
   });
-}
-var statsObs = new IntersectionObserver(function(entries) {
-  if (entries[0].isIntersecting) countUp();
-}, { threshold: 0.3 });
-var statsEl = document.querySelector('.stats-grid');
-if (statsEl) statsObs.observe(statsEl);
-
-// ── Typewriter on hero mockup ──
-var text = "Traumwohnung in München-Schwabing\n\nDiese stilvolle 3-Zi.-ETW mit 78 m² verbindet modernen Komfort mit bester Lage. Kernsaniert 2022, Fußbodenheizung, Einbauküche, Balkon & TG-Stellplatz.\n\nKaufpreis: 695.000 €\nBesichtigung auf Anfrage.";
-var el = document.getElementById('mockup-text');
-var i = 0;
-function typeHero() {
-  if (i < text.length) { el.textContent += text[i++]; setTimeout(typeHero, 22); }
-}
-setTimeout(typeHero, 1800);
-
-// ── FAQ accordion ──
-function toggleFaq(btn) {
-  var item = btn.parentElement;
-  var wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function(fi) { fi.classList.remove('open'); });
-  if (!wasOpen) item.classList.add('open');
+  navShadowObserver.observe(scrollSentinel);
 }
 
-// ── Smooth scroll ──
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    var target = document.querySelector(this.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
+/* Formular: Formspree */
+document.getElementById('leadForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById('formStatus');
+  const btn = form.querySelector('button');
+  btn.disabled = true; btn.textContent = 'Wird gesendet ...';
+  try{
+    const res = await fetch('https://formspree.io/f/mzepbbyy', {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: new FormData(form)
+    });
+    if(res.ok){
+      status.style.display = 'block';
+      status.textContent = 'Danke! Wir melden uns persönlich bei Ihnen, um einen Termin zu finden.';
+      form.reset();
+    } else {
+      status.style.display = 'block';
+      status.style.color = '#D14343';
+      status.textContent = 'Da ist etwas schiefgelaufen. Bitte schreiben Sie uns direkt an info@zyntevo.de.';
+    }
+  }catch(err){
+    status.style.display = 'block';
+    status.style.color = '#D14343';
+    status.textContent = 'Verbindungsfehler. Bitte schreiben Sie uns direkt an info@zyntevo.de.';
+  }
+  btn.disabled = false; btn.textContent = 'Anfrage senden';
 });
 </script>
 
-<script>
-const _pricingLinks = {
-  makler:        { starter: 'https://www.checkout-ds24.com/product/696579', premium: 'https://www.checkout-ds24.com/product/696893' },
-  handwerker:    { starter: 'https://www.checkout-ds24.com/product/696887', premium: 'https://www.checkout-ds24.com/product/696900' },
-  steuerberater: { starter: 'https://www.checkout-ds24.com/product/698395', premium: 'https://www.checkout-ds24.com/product/698384' }
-};
-function setPricingBranche(b) {
-  const links = _pricingLinks[b];
-  const s = document.getElementById('btn-starter'); const p = document.getElementById('btn-premium');
-  s.href = links.starter; s.target = '_blank';
-  p.href = links.premium; p.target = '_blank';
-  document.querySelectorAll('.pricing-branch-btn').forEach(el => el.classList.toggle('active', el.id === 'pbtn-' + b));
-}
-</script>
-<script src="zyn.js?v=4"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="de">
+<!--
+  DESIGN READ (taste-skill, Section 0), Runde 3, auf Basis von Web-Recherche:
+  B2B-Landingpage, branchenoffen, White Glass / Apple-Stil, Original-Logo.
+  Neu gegenüber den Vorversionen: (1) sichtbare, ehrliche Trust-Signale statt
+  gar keinem Social Proof, (2) eigene SVG-Illustrationen statt externer
+  Stockfotos, weil externe Bild-CDNs die Besucher-IP an Dritte übertragen,
+  (3) keine Google Fonts vom Google-CDN mehr (LG München 2022: DSGVO-Verstoß
+  durch IP-Übermittlung an Google), stattdessen Systemschriften, (4)
+  DSGVO-Einwilligungs-Checkbox am Formular, minimierte Pflichtfelder,
+  (5) komplett neu geschriebene Inhalte, keine Wiederverwendung der Texte
+  aus index.html oder index-neu.html.
+  Dials: DESIGN_VARIANCE 7 / MOTION_INTENSITY 6 / VISUAL_DENSITY 3
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZYNTEVO | KI-Automatisierung für Ihren Betrieb</title>
+<meta name="description" content="ZYNTEVO baut individuelle KI-Automatisierungen für Unternehmen mit wiederkehrenden Aufgaben. Kostenloses Erstgespräch, danach passgenaue Umsetzung.">
+<link rel="icon" type="image/png" href="css/images/logo.png">
+<link rel="canonical" href="https://zyntevo.de/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ZYNTEVO | KI-Automatisierung für Ihren Betrieb">
+<meta property="og:description" content="Individuelle KI-Automatisierung für Unternehmen mit wiederkehrenden Aufgaben. Kostenloses Erstgespräch.">
+<meta property="og:url" content="https://zyntevo.de/">
+<meta property="og:image" content="https://zyntevo.de/css/images/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#F4F3EF">
+<!-- Bewusst keine Google Fonts vom Google-CDN: die Einbindung übermittelt die
+     Besucher-IP an Google-Server in den USA, was das LG München 2022 als
+     DSGVO-Verstoß eingestuft hat. Stattdessen Systemschriften, die auf jedem
+     Gerät sauber aussehen und keine externe Anfrage auslösen. -->
+<style>
+:root{
+  --bg:#F4F3EF; --text:#1D1D1F; --text-muted:#57575B; --text-dim:#8E8E93;
+  --gold:#7C5E1E; --gold-deep:#B8923A; --gold-bright:#D4AF37;
+  --panel:rgba(255,255,255,0.55); --panel-border:rgba(255,255,255,0.7);
+  --line:rgba(29,29,31,0.08);
+  --ink:#1D1D1F;
+  --radius-lg:28px;
+  --f-display:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --f-mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--f-display); line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden; position:relative;
+}
+a{ color:inherit; }
+img,svg{ max-width:100%; }
+.wrap{ width:90%; max-width:1220px; margin:0 auto; position:relative; z-index:1; }
+h1,h2,h3{ font-family:var(--f-display); letter-spacing:-0.015em; color:var(--text); font-weight:700; }
+.mono{ font-family:var(--f-mono); }
 
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible{
+  outline:2px solid var(--gold-deep); outline-offset:3px; border-radius:4px;
+}
+.skip-link{ position:absolute; left:-9999px; top:0; background:var(--text); color:#fff; padding:12px 20px; z-index:1000; border-radius:0 0 10px 0; font-weight:600; }
+.skip-link:focus{ left:0; }
 
+/* ---------- Ambient background mesh (Apple-Glass) ---------- */
+.mesh{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.blob{ position:absolute; border-radius:50%; filter:blur(90px); opacity:0.55; }
+.blob-1{ width:640px; height:640px; top:-220px; left:-160px; background:radial-gradient(circle,#F3DFA0,transparent 70%); animation:drift1 22s ease-in-out infinite; }
+.blob-2{ width:560px; height:560px; top:120px; right:-200px; background:radial-gradient(circle,#E8C77A,transparent 70%); animation:drift2 26s ease-in-out infinite; }
+.blob-3{ width:520px; height:520px; bottom:-180px; left:30%; background:radial-gradient(circle,#DCE6F0,transparent 70%); animation:drift3 30s ease-in-out infinite; }
+@keyframes drift1{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(60px,40px); } }
+@keyframes drift2{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(-50px,60px); } }
+@keyframes drift3{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(40px,-50px); } }
+.glass{ background:var(--panel); backdrop-filter:blur(28px) saturate(180%); -webkit-backdrop-filter:blur(28px) saturate(180%); border:1px solid var(--panel-border); box-shadow:0 8px 32px rgba(31,31,31,0.07), inset 0 1px 0 rgba(255,255,255,0.6); }
 
+/* ---------- Reveal on scroll ---------- */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+.reveal-stagger > *{ opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+.reveal-stagger.in > *:nth-child(1){ transition-delay:.05s; }
+.reveal-stagger.in > *:nth-child(2){ transition-delay:.15s; }
+.reveal-stagger.in > *:nth-child(3){ transition-delay:.25s; }
+.reveal-stagger.in > *{ opacity:1; transform:translateY(0); }
 
+/* ---------- Header ---------- */
+header{ position:fixed; top:16px; left:0; right:0; z-index:100; display:flex; justify-content:center; }
+.navpill{ display:flex; align-items:center; justify-content:space-between; gap:30px; padding:10px 12px 10px 22px; border-radius:999px; width:92%; max-width:980px; transition:box-shadow .3s; }
+.logo{ display:flex; align-items:center; gap:8px; text-decoration:none; }
+.logo img{ height:26px; width:auto; display:block; }
+nav.mainnav{ display:flex; align-items:center; gap:26px; }
+nav.mainnav a{ text-decoration:none; color:#3A3A3C; font-size:14px; font-weight:500; transition:color .2s; position:relative; }
+nav.mainnav a:not(.nav-cta)::after{ content:''; position:absolute; left:0; bottom:-4px; width:0; height:1.5px; background:var(--gold-deep); transition:width .25s; }
+nav.mainnav a:not(.nav-cta):hover::after{ width:100%; }
+nav.mainnav a:not(.nav-cta):hover{ color:var(--text); }
+.nav-cta{ background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep)); color:var(--ink) !important; padding:11px 22px; border-radius:999px; font-weight:700; font-size:13.5px; box-shadow:0 4px 14px rgba(184,146,58,0.35); transition:transform .2s, box-shadow .2s; }
+.nav-cta:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(184,146,58,0.45); }
+.nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:8px; flex-direction:column; gap:4px; }
+.nav-toggle span{ width:20px; height:2px; background:var(--text); border-radius:2px; transition:transform .25s, opacity .25s; }
+.nav-toggle.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; }
+.nav-toggle.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+.mobile-menu{ display:none; position:fixed; top:80px; left:4%; right:4%; z-index:99; border-radius:24px; padding:14px; flex-direction:column; gap:4px; }
+.mobile-menu.open{ display:flex; }
+.mobile-menu a{ text-decoration:none; color:var(--text); font-size:15px; font-weight:500; padding:14px 12px; border-radius:14px; transition:background .2s; }
+.mobile-menu a:hover{ background:rgba(184,146,58,0.1); }
+.mobile-menu a.nav-cta{ text-align:center; color:var(--ink) !important; margin-top:6px; }
+@media (max-width:860px){ nav.mainnav a:not(.nav-cta){ display:none; } .nav-toggle{ display:flex; } }
 
+/* ---------- Hero ---------- */
+.hero{ padding:150px 0 0; position:relative; }
+.hero-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+.hero h1{ font-size:clamp(34px,4.2vw,52px); line-height:1.12; }
+.hero-sub{ margin-top:22px; font-size:17.5px; color:var(--text-muted); max-width:46ch; }
+.hero-actions{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:15px 28px; border-radius:999px; font-size:14.5px; font-weight:700; text-decoration:none; transition:all .25s; border:none; cursor:pointer; font-family:var(--f-display); }
+.btn-gold{ background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep)); color:var(--ink); box-shadow:0 10px 26px rgba(184,146,58,0.3); }
+.btn-gold:hover{ transform:translateY(-2px) scale(1.02); box-shadow:0 14px 30px rgba(184,146,58,0.4); }
+.btn-line{ color:var(--text); border:1px solid rgba(29,29,31,0.15); background:rgba(255,255,255,0.5); }
+.btn-line:hover{ transform:translateY(-2px); border-color:rgba(29,29,31,0.3); }
+.hero-illustration{ width:100%; height:auto; }
+@media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; } .hero{ padding-top:140px; } }
+
+/* ---------- Trust-Bar (ersetzt fehlenden Social Proof) ---------- */
+.trust-bar{ margin-top:64px; padding:26px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.trust-row{ display:flex; flex-wrap:wrap; justify-content:center; gap:34px; }
+.trust-chip{ display:flex; align-items:center; gap:9px; color:var(--text-muted); font-size:14px; font-weight:500; }
+.trust-chip svg{ width:18px; height:18px; stroke:var(--gold-deep); fill:none; stroke-width:1.8; flex-shrink:0; }
+
+/* ---------- Sections generic ---------- */
+section{ padding:120px 0; position:relative; }
+.eyebrow{ display:inline-flex; align-items:center; gap:8px; font-family:var(--f-mono); font-size:12px; letter-spacing:0.04em; color:var(--gold); margin-bottom:18px; font-weight:600; }
+.section-head{ max-width:680px; margin-bottom:56px; }
+.section-head h2{ font-size:clamp(28px,3.2vw,42px); line-height:1.18; }
+.section-head p{ color:var(--text-muted); margin-top:16px; font-size:16.5px; max-width:58ch; font-weight:400; }
+.inline-cta{ display:inline-flex; align-items:center; gap:6px; margin-top:28px; color:var(--gold); font-weight:700; font-size:14.5px; text-decoration:none; border-bottom:1px solid rgba(124,94,30,0.3); padding-bottom:2px; }
+
+/* ---------- Problem: Split mit Illustration ---------- */
+.split{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center; }
+.split-illustration{ width:100%; height:auto; }
+.split h2{ font-size:clamp(26px,3vw,36px); line-height:1.22; }
+.split p{ color:var(--text-muted); margin-top:16px; font-size:16px; max-width:52ch; }
+@media (max-width:900px){ .split{ grid-template-columns:1fr; } .split > div:first-child{ order:2; } }
+
+/* ---------- Vorher / Nachher ---------- */
+.compare{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.compare-col{ border-radius:var(--radius-lg); padding:36px; }
+.compare-col.before{ background:rgba(29,29,31,0.03); border:1px solid var(--line); }
+.compare-col.after{ background:linear-gradient(155deg,rgba(212,175,55,0.14),rgba(255,255,255,0.5) 65%); border:1px solid rgba(212,175,55,0.3); }
+.compare-col h3{ font-size:15px; text-transform:uppercase; letter-spacing:.06em; font-family:var(--f-mono); font-weight:600; margin-bottom:22px; color:var(--text-dim); }
+.compare-col.after h3{ color:var(--gold); }
+.compare-col ul{ list-style:none; }
+.compare-col li{ display:flex; gap:12px; padding:11px 0; border-bottom:1px solid rgba(29,29,31,0.06); font-size:15px; color:var(--text-muted); }
+.compare-col li:last-child{ border-bottom:none; }
+.compare-col.before li::before{ content:'×'; color:#B0483C; font-weight:700; }
+.compare-col.after li::before{ content:'✓'; color:var(--gold-deep); font-weight:700; }
+.compare-col.after li{ color:#3A3A3C; }
+@media (max-width:760px){ .compare{ grid-template-columns:1fr; } }
+
+/* ---------- Ablauf: horizontale Prozess-Schiene ---------- */
+.rail{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; }
+.rail::before{ content:''; position:absolute; top:19px; left:8%; right:8%; height:1px; background:var(--line); }
+.rail-step{ position:relative; padding:0 20px; text-align:left; }
+.rail-step .dot{ width:38px; height:38px; border-radius:50%; background:#fff; border:1.5px solid var(--gold-deep); color:var(--gold-deep); font-family:var(--f-mono); font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; position:relative; z-index:1; }
+.rail-step h3{ font-size:19px; margin-bottom:10px; }
+.rail-step p{ color:var(--text-muted); font-size:14.5px; }
+@media (max-width:860px){ .rail{ grid-template-columns:1fr; gap:36px; } .rail::before{ display:none; } }
+
+/* ---------- Tools-Strip ---------- */
+.tools-strip{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.tool-chip{ border-radius:18px; padding:24px 26px; text-decoration:none; display:flex; justify-content:space-between; align-items:center; transition:transform .25s; }
+.tool-chip:hover{ transform:translateY(-4px); }
+.tool-chip .name{ font-weight:600; font-size:15.5px; color:var(--text); }
+.tool-chip .go{ color:var(--gold); font-size:13px; font-weight:700; }
+@media (max-width:860px){ .tools-strip{ grid-template-columns:1fr; } }
+
+/* ---------- Erstgespräch (Split mit Formular, DSGVO-Checkbox) ---------- */
+.lead-panel{ border-radius:32px; padding:52px; }
+.lead-grid{ display:grid; grid-template-columns:1fr 1.05fr; gap:56px; align-items:center; }
+.lead-panel h2{ font-size:clamp(26px,3vw,34px); line-height:1.22; }
+.lead-panel > div > p{ color:var(--text-muted); margin-top:14px; font-size:15.5px; max-width:44ch; }
+.lead-points{ margin-top:22px; list-style:none; }
+.lead-points li{ display:flex; gap:10px; color:#3A3A3C; font-size:14.5px; padding:6px 0; }
+.lead-points li::before{ content:'✓'; color:var(--gold-deep); font-weight:700; }
+.lead-form input, .lead-form textarea{ width:100%; background:rgba(255,255,255,0.7); border:1px solid rgba(29,29,31,0.1); border-radius:12px; color:var(--text); font-size:15px; padding:14px 16px; margin-bottom:14px; font-family:var(--f-display); resize:vertical; }
+.lead-form input::placeholder, .lead-form textarea::placeholder{ color:var(--text-dim); }
+.lead-form input:focus, .lead-form textarea:focus{ outline:none; border-color:var(--gold-bright); }
+.lead-form label.optional-tag{ font-size:11.5px; color:var(--text-dim); margin:-10px 0 12px 2px; display:block; }
+.consent-row{ display:flex; align-items:flex-start; gap:10px; margin:6px 0 18px; }
+.consent-row input[type="checkbox"]{ width:18px; height:18px; margin-top:2px; accent-color:var(--gold-deep); flex-shrink:0; }
+.consent-row label{ font-size:12.5px; color:var(--text-dim); line-height:1.5; }
+.consent-row a{ color:var(--gold); text-decoration:underline; }
+.lead-form button{ width:100%; }
+.lead-form .status{ margin-top:14px; font-size:13.5px; color:var(--gold); display:none; font-weight:600; }
+@media (max-width:900px){ .lead-grid{ grid-template-columns:1fr; gap:34px; } .lead-panel{ padding:32px 24px; } }
+
+/* ---------- FAQ ---------- */
+.faq-item{ border-radius:20px; padding:8px 26px; margin-bottom:14px; }
+.faq-item summary{ cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:20px; font-size:16.5px; color:var(--text); font-weight:600; padding:18px 0; }
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{ content:'+'; color:var(--gold-deep); font-size:22px; flex-shrink:0; font-weight:400; transition:transform .25s; }
+.faq-item[open] summary::after{ transform:rotate(45deg); }
+.faq-item p{ color:var(--text-muted); font-size:15px; padding-bottom:20px; max-width:70ch; font-weight:400; }
+
+/* ---------- Final CTA (Farbblock-Akzent, nur dieses Panel) ---------- */
+.final-cta{ border-radius:32px; padding:64px 40px; text-align:center; background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep)); color:var(--ink); }
+.final-cta h2{ font-size:clamp(26px,3.4vw,40px); max-width:20ch; margin:0 auto 16px; color:var(--ink); }
+.final-cta p{ color:rgba(29,29,31,0.75); margin-bottom:28px; font-size:16px; font-weight:400; }
+.final-cta .btn-line{ background:rgba(29,29,31,0.08); border-color:rgba(29,29,31,0.25); color:var(--ink); }
+.final-cta .btn-line:hover{ border-color:rgba(29,29,31,0.4); }
+
+/* ---------- Footer ---------- */
+footer{ padding:60px 0 34px; border-top:1px solid var(--line); margin-top:40px; }
+.footer-grid{ display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+footer h4{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); margin-bottom:14px; font-weight:700; font-family:var(--f-mono); }
+footer a{ text-decoration:none; color:var(--text-muted); display:block; padding:5px 0; font-size:14px; transition:color .2s; }
+footer a:hover{ color:var(--text); }
+.footer-bottom{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding-top:26px; border-top:1px solid var(--line); color:var(--text-dim); font-size:13px; }
+.footer-bottom .socials{ display:flex; gap:16px; }
+.footer-bottom .socials a{ padding:0; color:var(--text-dim); }
+.footer-bottom .socials a:hover{ color:var(--gold-deep); }
+@media (max-width:760px){ .footer-grid{ grid-template-columns:1fr; gap:26px; } }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  html{ scroll-behavior:auto; }
+  .reveal, .reveal-stagger > *{ opacity:1 !important; transform:none !important; }
+  .blob{ animation:none !important; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "ZYNTEVO",
+      "url": "https://zyntevo.de/",
+      "logo": "https://zyntevo.de/css/images/header.png",
+      "email": "info@zyntevo.de",
+      "sameAs": [
+        "https://www.instagram.com/zyntevo.ki/",
+        "https://www.tiktok.com/@zyntevo.ki",
+        "https://www.linkedin.com/in/jan-wichmann-281059414"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "ZYNTEVO",
+      "url": "https://zyntevo.de/",
+      "image": "https://zyntevo.de/css/images/header.png",
+      "email": "info@zyntevo.de",
+      "priceRange": "€€",
+      "areaServed": "DE",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Nunnenbeckstr. 23",
+        "postalCode": "90489",
+        "addressLocality": "Nürnberg",
+        "addressCountry": "DE"
+      },
+      "description": "ZYNTEVO baut individuelle KI-Automatisierungen für Unternehmen mit wiederkehrenden Aufgaben."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Für welche Unternehmen ist das gedacht?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für jedes dienstleistungsbasierte Unternehmen mit wiederkehrenden, manuellen Aufgaben. Nicht die Branche entscheidet, ob sich eine Automatisierung lohnt, sondern Ihre tatsächlichen Prozesse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was kostet die Zusammenarbeit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das Erstgespräch ist kostenlos. Entwicklung und Einrichtung werden einmalig berechnet, danach zahlen Sie einen monatlichen Betrag für Pflege und Weiterentwicklung. Den genauen Preis nennen wir erst, wenn wir wissen, was Sie tatsächlich brauchen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Muss ich mich mit KI auskennen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nein. Sie bekommen ein persönliches Onboarding und einen festen Ansprechpartner. Programmieren oder Einrichten übernehmen wir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist der Unterschied zu den Self-Service-Tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Self-Service-Tools sind fertige Generatoren für Makler, Handwerk und Steuerberatung, sofort ohne Gespräch nutzbar. Das Erstgespräch führt zu einer individuellen Lösung, die genau auf Ihren Betrieb zugeschnitten ist."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie steht es um den Datenschutz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ihre Angaben aus dem Formular werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte zu Werbezwecken weitergegeben."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+<div id="scrollSentinel" aria-hidden="true" style="position:absolute; top:26px; left:0; width:1px; height:1px; pointer-events:none;"></div>
+
+<div class="mesh">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<header>
+  <div class="navpill glass" id="navpill">
+    <a href="/" class="logo">
+      <img src="css/images/header.png" alt="ZYNTEVO">
+    </a>
+    <nav class="mainnav">
+      <a href="#muster">Das Muster</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#tools">Self-Service</a>
+      <a href="#faq">FAQ</a>
+      <a href="#erstgespraech" class="nav-cta">Erstgespräch sichern</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-menu glass" id="mobileMenu">
+  <a href="#muster">Das Muster</a>
+  <a href="#ablauf">Ablauf</a>
+  <a href="#tools">Self-Service</a>
+  <a href="#faq">FAQ</a>
+  <a href="#erstgespraech" class="nav-cta">Erstgespräch sichern</a>
+</nav>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <h1>Ihre Prozesse, automatisiert. Ihre Regeln, unverändert.</h1>
+      <p class="hero-sub">ZYNTEVO baut KI-Systeme für Unternehmen mit wiederkehrenden Aufgaben, die genauso funktionieren, wie Sie bereits arbeiten.</p>
+      <div class="hero-actions">
+        <a href="#erstgespraech" class="btn btn-gold">Erstgespräch sichern</a>
+        <a href="#ablauf" class="btn btn-line">So läuft's ab →</a>
+      </div>
+    </div>
+
+    <div class="reveal in">
+      <!-- Eigene Illustration, keine externe Bilddatei: keine Übermittlung der
+           Besucher-IP an einen Bild-CDN eines Dritten. -->
+      <svg class="hero-illustration" viewBox="0 0 480 400" role="img" aria-label="Illustration: ein Schreibtisch mit Laptop, umgeben von automatisierten Aufgabenkarten, die sich von selbst erledigen">
+        <defs>
+          <linearGradient id="deskGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.55"/>
+          </linearGradient>
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#B8923A"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="240" cy="330" rx="190" ry="26" fill="#1D1D1F" opacity="0.05"/>
+        <rect x="70" y="150" width="340" height="150" rx="18" fill="url(#deskGrad)" stroke="rgba(29,29,31,0.08)"/>
+        <rect x="150" y="90" width="180" height="118" rx="14" fill="#1D1D1F"/>
+        <rect x="160" y="100" width="160" height="90" rx="4" fill="#F4F3EF"/>
+        <rect x="176" y="118" width="80" height="8" rx="4" fill="rgba(29,29,31,0.15)"/>
+        <rect x="176" y="134" width="128" height="8" rx="4" fill="rgba(29,29,31,0.1)"/>
+        <rect x="176" y="150" width="60" height="8" rx="4" fill="rgba(29,29,31,0.1)"/>
+        <g transform="translate(300,60)">
+          <rect width="120" height="72" rx="14" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <circle cx="26" cy="26" r="12" fill="url(#goldGrad)"/>
+          <path d="M20 26l4 4 8-8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="46" y="20" width="56" height="7" rx="3.5" fill="rgba(29,29,31,0.15)"/>
+          <rect x="46" y="34" width="40" height="7" rx="3.5" fill="rgba(29,29,31,0.1)"/>
+        </g>
+        <g transform="translate(56,220)">
+          <rect width="108" height="66" rx="14" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <circle cx="24" cy="24" r="11" fill="rgba(212,175,55,0.18)"/>
+          <path d="M19 24l3.5 3.5L29 20" stroke="#B8923A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="44" y="18" width="48" height="6.5" rx="3" fill="rgba(29,29,31,0.15)"/>
+          <rect x="44" y="31" width="34" height="6.5" rx="3" fill="rgba(29,29,31,0.1)"/>
+        </g>
+        <g transform="translate(330,200)">
+          <rect width="100" height="60" rx="14" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <circle cx="22" cy="22" r="10" fill="rgba(212,175,55,0.18)"/>
+          <path d="M18 22l2.8 2.8L27 18" stroke="#B8923A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="40" y="16" width="44" height="6" rx="3" fill="rgba(29,29,31,0.15)"/>
+          <rect x="40" y="28" width="30" height="6" rx="3" fill="rgba(29,29,31,0.1)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="trust-bar">
+      <div class="trust-row">
+        <div class="trust-chip"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke-linejoin="round"/></svg>Made in Germany</div>
+        <div class="trust-chip"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"/></svg>DSGVO-konform entwickelt</div>
+        <div class="trust-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke-linecap="round"/></svg>Persönlicher Ansprechpartner</div>
+        <div class="trust-chip"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Ehrliche Einschätzung statt Verkaufsdruck</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="muster">
+  <div class="wrap">
+    <div class="split reveal">
+      <svg class="split-illustration" viewBox="0 0 320 300" role="img" aria-label="Illustration: ein Stapel Briefumschläge neben einer Uhr, die auf spät am Abend zeigt">
+        <ellipse cx="160" cy="260" rx="120" ry="18" fill="#1D1D1F" opacity="0.05"/>
+        <g transform="translate(30,60)">
+          <rect x="0" y="60" width="150" height="100" rx="12" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <rect x="12" y="30" width="150" height="100" rx="12" fill="#fff" stroke="rgba(29,29,31,0.08)"/>
+          <rect x="24" y="0" width="150" height="100" rx="12" fill="url(#env)" stroke="rgba(212,175,55,0.35)"/>
+          <path d="M24 10l75 55 75-55" stroke="#B8923A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+          <linearGradient id="env" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FBF4E3"/>
+            <stop offset="100%" stop-color="#F3E4BE"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(190,150)">
+          <circle r="52" fill="#fff" stroke="rgba(29,29,31,0.1)" stroke-width="2"/>
+          <path d="M0 -32V0l22 14" stroke="#1D1D1F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>
+      <div>
+        <span class="eyebrow">// DAS MUSTER</span>
+        <h2>Die Arbeit hört nicht auf. Sie verschiebt sich nur.</h2>
+        <p>Angebote, Exposés, Mandantenschreiben: Die Inhalte ähneln sich von Fall zu Fall, trotzdem beginnt die Arbeit jedes Mal wieder bei null. Am Ende bleibt die Verwaltung an den Abenden hängen, obwohl der Arbeitstag eigentlich vorbei war.</p>
+        <a href="#erstgespraech" class="inline-cta">Kommt Ihnen bekannt vor? Erstgespräch sichern →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Was sich für Sie ändert</h2>
+      <p>Kein Versprechen, keine Zauberei. Nur weniger Handarbeit an den immer gleichen Stellen.</p>
+    </div>
+    <div class="compare reveal-stagger">
+      <div class="compare-col before glass">
+        <h3>Ohne ZYNTEVO</h3>
+        <ul>
+          <li>Standardtexte jedes Mal von Hand schreiben</li>
+          <li>Rückfragen sammeln sich über den Tag</li>
+          <li>Feierabend verschiebt sich regelmäßig</li>
+        </ul>
+      </div>
+      <div class="compare-col after">
+        <h3>Mit ZYNTEVO</h3>
+        <ul>
+          <li>Texte entstehen automatisch, in Ihrem Ton</li>
+          <li>Wiederkehrende Rückfragen laufen im Hintergrund</li>
+          <li>Verwaltung endet, wenn der Arbeitstag endet</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ablauf">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>So kommen Sie zu Ihrer Lösung</h2>
+      <p>Drei Schritte, keine Warteschleife.</p>
+    </div>
+    <div class="rail reveal-stagger">
+      <div class="rail-step">
+        <div class="dot">1</div>
+        <h3>Analyse</h3>
+        <p>Im kostenlosen Erstgespräch gehen wir durch, wo bei Ihnen Zeit verloren geht, und was sich davon sinnvoll automatisieren lässt.</p>
+      </div>
+      <div class="rail-step">
+        <div class="dot">2</div>
+        <h3>Umsetzung</h3>
+        <p>Das System wird für Ihren Betrieb entwickelt und eingerichtet, inklusive persönlichem Onboarding statt Anleitung zum Selbststudium.</p>
+      </div>
+      <div class="rail-step">
+        <div class="dot">3</div>
+        <h3>Betreuung</h3>
+        <p>Nach dem Start bleiben wir erreichbar, pflegen das System und passen es an, wenn sich in Ihrem Betrieb etwas ändert.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Sie brauchen keine Beratung, nur das richtige Tool?</h2>
+      <p>Für Makler, Handwerk und Steuerberatung gibt es fertige KI-Generatoren zum einmaligen Kaufpreis, sofort einsatzbereit.</p>
+    </div>
+    <div class="tools-strip reveal-stagger">
+      <a href="makler.html" class="tool-chip glass">
+        <span class="name">Für Immobilienmakler</span>
+        <span class="go">Ansehen →</span>
+      </a>
+      <a href="handwerker.html" class="tool-chip glass">
+        <span class="name">Für Handwerksbetriebe</span>
+        <span class="go">Ansehen →</span>
+      </a>
+      <a href="steuerberater.html" class="tool-chip glass">
+        <span class="name">Für Steuerberater</span>
+        <span class="go">Ansehen →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="erstgespraech">
+  <div class="wrap">
+    <div class="lead-panel glass reveal">
+      <div class="lead-grid">
+        <div>
+          <span class="eyebrow">// ERSTGESPRÄCH</span>
+          <h2>Wir hören zu, bevor wir etwas vorschlagen.</h2>
+          <p>15 Minuten, in denen wir verstehen, wo bei Ihnen Zeit verloren geht. Keine Präsentation, kein Verkaufsdruck. Passt eine Automatisierung nicht zu Ihrem Betrieb, sagen wir Ihnen das ehrlich.</p>
+          <ul class="lead-points">
+            <li>Konkrete Einschätzung statt Standardangebot</li>
+            <li>Kostenlos und unverbindlich</li>
+            <li>Ihre Daten bleiben bei uns, nicht bei Dritten</li>
+          </ul>
+        </div>
+        <form class="lead-form" id="leadForm">
+          <input type="text" name="name" placeholder="Ihr Name" required>
+          <input type="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+          <input type="text" name="branche" placeholder="Ihre Branche (optional)">
+          <label class="optional-tag" for="zeitfresser">Freiwillige Angabe, hilft uns beim Vorbereiten</label>
+          <textarea id="zeitfresser" name="zeitfresser" rows="3" placeholder="Was kostet Sie aktuell am meisten Zeit? (optional)"></textarea>
+
+          <div class="consent-row">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden.</label>
+          </div>
+
+          <!-- Web3Forms: kostenloser Formular-zu-E-Mail-Dienst, kein eigener Server nötig.
+               Als Auftragsverarbeiter in der Datenschutzerklärung dokumentiert (Abschnitt 6). -->
+          <input type="hidden" name="access_key" value="e82ce155-cbc4-418b-ac06-df02ae6c35ad">
+          <input type="hidden" name="subject" value="Neue Anfrage für Erstgespräch von zyntevo.de">
+          <button type="submit" class="btn btn-gold">Anfrage senden</button>
+          <div class="status" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Häufige Fragen</h2>
+    </div>
+    <div style="max-width:820px;" class="reveal">
+      <details class="faq-item glass">
+        <summary>Für welche Unternehmen ist das gedacht?</summary>
+        <p>Für jedes dienstleistungsbasierte Unternehmen mit wiederkehrenden, manuellen Aufgaben. Nicht die Branche entscheidet, ob sich eine Automatisierung lohnt, sondern Ihre tatsächlichen Prozesse.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Was kostet die Zusammenarbeit?</summary>
+        <p>Das Erstgespräch ist kostenlos. Entwicklung und Einrichtung werden einmalig berechnet, danach zahlen Sie einen monatlichen Betrag für Pflege und Weiterentwicklung. Den genauen Preis nennen wir erst, wenn wir wissen, was Sie tatsächlich brauchen.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Muss ich mich mit KI auskennen?</summary>
+        <p>Nein. Sie bekommen ein persönliches Onboarding und einen festen Ansprechpartner. Programmieren oder Einrichten übernehmen wir.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Was ist der Unterschied zu den Self-Service-Tools?</summary>
+        <p>Die Self-Service-Tools sind fertige Generatoren für Makler, Handwerk und Steuerberatung, sofort ohne Gespräch nutzbar. Das Erstgespräch führt zu einer individuellen Lösung, die genau auf Ihren Betrieb zugeschnitten ist.</p>
+      </details>
+      <details class="faq-item glass">
+        <summary>Wie steht es um den Datenschutz?</summary>
+        <p>Ihre Angaben aus dem Formular werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte zu Werbezwecken weitergegeben. Details finden Sie in unserer <a href="datenschutz.html" style="color:var(--gold); text-decoration:underline;">Datenschutzerklärung</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <h2>Der erste Schritt kostet Sie 15 Minuten. Nicht mehr.</h2>
+      <p>Kostenloses Gespräch, ohne Verkaufsdruck.</p>
+      <a href="#erstgespraech" class="btn btn-line">Erstgespräch sichern</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>ZYNTEVO</h4>
+        <p style="color:var(--text-muted); font-size:14px; max-width:36ch;">Individuelle KI-Automatisierung für Unternehmer, die ihre Zeit lieber ins Kerngeschäft stecken.</p>
+      </div>
+      <div>
+        <h4>Self-Service</h4>
+        <a href="makler.html">Für Makler</a>
+        <a href="handwerker.html">Für Handwerker</a>
+        <a href="steuerberater.html">Für Steuerberater</a>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="widerruf.html">Widerruf</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ZYNTEVO · info@zyntevo.de</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/zyntevo.ki/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@zyntevo.ki" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/jan-wichmann-281059414" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Scroll-Reveal per IntersectionObserver */
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+/* Mobiles Menü */
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+navToggle.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  navToggle.classList.toggle('open', isOpen);
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  navToggle.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
+
+/* Navpill: dezenter Schatten sobald gescrollt wird (IntersectionObserver statt scroll-Listener) */
+const navpill = document.getElementById('navpill');
+const scrollSentinel = document.getElementById('scrollSentinel');
+if(scrollSentinel){
+  const navShadowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      navpill.style.boxShadow = entry.isIntersecting ? '' : '0 12px 32px rgba(31,31,31,0.14)';
+    });
+  });
+  navShadowObserver.observe(scrollSentinel);
+}
+
+/* Formular: Web3Forms */
+document.getElementById('leadForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById('formStatus');
+  const btn = form.querySelector('button');
+  btn.disabled = true; btn.textContent = 'Wird gesendet ...';
+  try{
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    });
+    const json = await res.json();
+    if(json.success){
+      status.style.display = 'block';
+      status.textContent = 'Danke! Wir melden uns persönlich bei Ihnen, um einen Termin zu finden.';
+      form.reset();
+    } else {
+      status.style.display = 'block';
+      status.style.color = '#D14343';
+      status.textContent = 'Da ist etwas schiefgelaufen. Bitte schreiben Sie uns direkt an info@zyntevo.de.';
+    }
+  }catch(err){
+    status.style.display = 'block';
+    status.style.color = '#D14343';
+    status.textContent = 'Verbindungsfehler. Bitte schreiben Sie uns direkt an info@zyntevo.de.';
+  }
+  btn.disabled = false; btn.textContent = 'Anfrage senden';
+});
+</script>
+
+</body>
+</html>

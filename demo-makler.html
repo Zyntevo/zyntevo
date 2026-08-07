@@ -104,6 +104,12 @@
         .popup-plan-btn.premium { background: linear-gradient(135deg,#D4AF37,#B8962E); color: #fff; border: none; padding: 11px 22px; font-size: 14px; box-shadow: 0 4px 16px rgba(212,175,55,.35); }
         .popup-plan-btn.premium:hover { opacity: .92; transform: translateY(-1px); }
         .popup-guarantee { display: none; }
+        .popup-divider { display: flex; align-items: center; gap: 10px; margin: 10px 0 6px; width: 100%; }
+        .popup-divider::before, .popup-divider::after { content: ''; flex: 1; height: 1px; background: rgba(212,175,55,.3); }
+        .popup-divider span { font-size: 11px; color: #94A3B8; font-weight: 600; }
+        .popup-consulting-text { font-size: 12px; color: #64748B; margin: 0 0 6px; text-align: center; }
+        .popup-plan-btn.consulting { background: #fff; border: 2px solid #D4AF37; color: #D4AF37; padding: 11px 22px; font-size: 14px; width: 100%; text-align: center; display: block; box-sizing: border-box; font-weight: 700; border-radius: 10px; text-decoration: none; transition: .2s; }
+        .popup-plan-btn.consulting:hover { background: rgba(212,175,55,.06); transform: translateY(-1px); }
         .popup-box { position: relative; }
         @media(max-width:600px) {
             .popup-box { padding: 14px 16px; gap: 12px; }
@@ -152,9 +158,9 @@
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
         <a href="index.html" class="logo"><img src="css/images/header.png" alt="ZYNTEVO" loading="lazy"></a>
         <div id="zyn-lang-switcher" style="display:flex;align-items:center;gap:2px;">
-          <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><img src="https://flagcdn.com/20x15/de.png" alt="DE" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-          <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><img src="https://flagcdn.com/20x15/gb.png" alt="GB" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
-          <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><img src="https://flagcdn.com/20x15/fr.png" alt="FR" style="display:block;width:20px;height:15px;border-radius:2px;"></button>
+          <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><svg width="20" height="15" viewBox="0 0 5 3" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="5" height="3" fill="#000"/><rect y="1" width="5" height="2" fill="#D00"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg></button>
+          <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 60 30" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></button>
+          <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 3 2" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="3" height="2" fill="#ED2939"/><rect width="2" height="2" fill="#fff"/><rect width="1" height="2" fill="#002395"/></svg></button>
         </div>
     </div>
 </header>
@@ -169,7 +175,7 @@
                 <div style="font-size:32px;margin-bottom:12px;">⚡</div>
                 <h3 style="color:#F8FAFC;font-size:20px;margin-bottom:8px;">Du hast die Demo bereits genutzt</h3>
                 <p style="color:#94A3B8;margin-bottom:24px;line-height:1.6;">Hol dir jetzt das vollständige KI-Tool mit allen 8 Generatoren – einmalig 297€.</p>
-                <a href="https://zyntevo.de/makler.html" target="_blank" class="generate-btn" style="display:inline-block;width:auto;padding:14px 32px;text-decoration:none;">⚡ Jetzt Premium sichern</a>
+                <a href="https://secure.affilibank.de/zyntevo/start/product/44144/" target="_blank" class="generate-btn" style="display:inline-block;width:auto;padding:14px 32px;text-decoration:none;">⚡ Jetzt Premium sichern</a>
             </div>
         </div>
 
@@ -250,6 +256,10 @@
                     </div>
                 </div>
             </div>
+
+        <div class="popup-divider"><span>oder</span></div>
+        <p class="popup-consulting-text">Noch unsicher? Lass es dir live zeigen.</p>
+        <a href="https://calendly.com/jan-zyntevo/15min" target="_blank" class="popup-plan-btn consulting">Kostenlose Beratung buchen &rarr;</a>
         </div>
     </div>
 </div>
@@ -268,7 +278,11 @@
         </div>
         <div class="popup-plans">
             <a href="https://zyntevo.de/makler.html" target="_blank" class="popup-plan-btn starter" onclick="trackEvent('starter_clicked','makler')">Starter · 97€</a>
-            <a href="https://zyntevo.de/makler.html" target="_blank" class="popup-plan-btn premium" onclick="trackEvent('premium_clicked','makler')">⚡ Premium sichern · 297€</a>
+            <a href="https://secure.affilibank.de/zyntevo/start/product/44144/" target="_blank" class="popup-plan-btn premium" onclick="trackEvent('premium_clicked','makler')">⚡ Premium sichern · 297€</a>
+
+        <div class="popup-divider"><span>oder</span></div>
+        <p class="popup-consulting-text">Noch unsicher? Lass es dir live zeigen.</p>
+        <a href="https://calendly.com/jan-zyntevo/15min" target="_blank" class="popup-plan-btn consulting">Kostenlose Beratung buchen &rarr;</a>
         </div>
     </div>
 </div>
@@ -419,7 +433,7 @@ async function submitEmail() {
     }
 }
 </script>
-<script src="zyn.js?v=4"></script>
+<script src="zyn.js?v=9"></script>
 </body>
 </html>
 

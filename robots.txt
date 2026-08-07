@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /zyntevo-admin.html
+Disallow: /zyntevo-demo-admin.html
+Disallow: /enterprise-admin.html
+Disallow: /premium.html
+Disallow: /archiv-startseite-entwuerfe/
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+Sitemap: https://zyntevo.de/sitemap.xml

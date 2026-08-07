@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -100,32 +100,40 @@
       gtag("config", "G-GPT0KRVEM2");
     </script>
 <link rel="stylesheet" href="glass-overrides.css">
+<style>
+#zyn-lang-switcher{position:fixed;top:16px;right:16px;z-index:999;display:flex;align-items:center;gap:2px;background:rgba(0,0,0,0.25);border-radius:8px;padding:2px;}
+</style>
 </head>
 <body>
 
+<div id="zyn-lang-switcher">
+  <button type="button" data-lang="de" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('de')" style="background:white;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,0.18);"><svg width="20" height="15" viewBox="0 0 5 3" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="5" height="3" fill="#000"/><rect y="1" width="5" height="2" fill="#D00"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg></button>
+  <button type="button" data-lang="en" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('en')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 60 30" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></button>
+  <button type="button" data-lang="fr" onclick="if(window.ZYN_LANG)window.ZYN_LANG.set('fr')" style="background:transparent;border:none;border-radius:6px;padding:4px 6px;cursor:pointer;display:flex;align-items:center;opacity:0.5;"><svg width="20" height="15" viewBox="0 0 3 2" style="display:block;border-radius:2px;" xmlns="http://www.w3.org/2000/svg"><rect width="3" height="2" fill="#ED2939"/><rect width="2" height="2" fill="#fff"/><rect width="1" height="2" fill="#002395"/></svg></button>
+</div>
 <div class="auth-wrap">
     <div class="auth-card">
         <div class="auth-logo">ZYNTEVO</div>
-        <div class="auth-sub">KI-Tool Login</div>
+        <div class="auth-sub" data-i18n="tool.login_sub">KI-Tool Login</div>
 
         <!-- PREMIUM ONLY HINWEIS -->
         <div class="premium-only-box">
-            <div class="premium-only-title">🔒 NUR FÜR PREMIUM-KUNDEN</div>
-            <div class="premium-only-text">
+            <div class="premium-only-title" data-i18n="tool.premium_only_title">🔒 NUR FÜR PREMIUM-KUNDEN</div>
+            <div class="premium-only-text" data-i18n="tool.premium_only_text">
                 Dieser Bereich ist ausschließlich für Käufer des <strong style="color:#F8FAFC;">Makler Premium</strong>, <strong style="color:#F8FAFC;">Handwerker Premium</strong> oder <strong style="color:#F8FAFC;">Steuerberater Premium</strong> Pakets.<br><br>
                 Noch kein Paket? <a href="index.html#systeme">Hier Premium sichern →</a>
             </div>
         </div>
 
         <div class="auth-tabs">
-            <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Einloggen</button>
-            <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Registrieren</button>
+            <button class="auth-tab active" id="tab-login" onclick="switchTab('login')" data-i18n="tool.auth_login">Einloggen</button>
+            <button class="auth-tab" id="tab-register" onclick="switchTab('register')" data-i18n="tool.auth_register">Registrieren</button>
         </div>
 
         <!-- LOGIN -->
         <div id="panel-login">
             <div class="auth-input-wrap">
-                <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" />
+                <input class="auth-input" type="email" id="login-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
             </div>
             <div class="auth-input-wrap">
                 <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()" />
@@ -133,15 +141,15 @@
             </div>
             <div class="remember-row">
                 <input type="checkbox" id="remember-me" />
-                <label for="remember-me">Angemeldet bleiben</label>
+                <label for="remember-me" data-i18n="tool.remember">Angemeldet bleiben</label>
             </div>
-            <button class="auth-btn" onclick="doLogin()">⚡ Einloggen & Tool öffnen</button>
+            <button class="auth-btn" onclick="doLogin()" data-i18n="tool.login_btn">⚡ Einloggen & Tool öffnen</button>
             <div class="auth-error" id="login-error"></div>
             <div class="loading-wrap" id="login-loading">
                 <div class="spinner"></div>
-                <div class="loading-text">Wird eingeloggt...</div>
+                <div class="loading-text" data-i18n="tool.login_loading">Wird eingeloggt...</div>
             </div>
-            <div class="auth-hint">
+            <div class="auth-hint" data-i18n="tool.login_hint">
                 Noch kein Account? Registrierungscode auf der Dankeseite nach dem Kauf.
             </div>
         </div>
@@ -152,16 +160,16 @@
                 <input class="auth-input" type="text" id="reg-code" placeholder="Registrierungscode (XXXX-XXXX-XXXX-XXXX)" />
             </div>
             <div class="auth-input-wrap">
-                <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" />
+                <input class="auth-input" type="email" id="reg-email" placeholder="E-Mail Adresse" data-i18n-placeholder="tool.trial_placeholder" />
             </div>
             <div class="auth-input-wrap">
                 <input class="auth-input" type="password" id="reg-pw" placeholder="Passwort wählen (min. 8 Zeichen)" onkeydown="if(event.key==='Enter')doRegister()" />
                 <span class="pw-eye" onclick="togglePW('reg-pw')">👁</span>
             </div>
-            <button class="auth-btn" onclick="doRegister()">Account erstellen</button>
+            <button class="auth-btn" onclick="doRegister()" data-i18n="tool.register_btn">Account erstellen</button>
             <div class="auth-error" id="reg-error"></div>
             <div class="auth-success" id="reg-success"></div>
-            <div class="auth-hint">
+            <div class="auth-hint" data-i18n="tool.reg_hint">
                 Deinen Code findest du auf der Dankeseite nach dem Kauf.
             </div>
         </div>
@@ -267,5 +275,6 @@ function showErr(id, msg) {
     el.style.display = 'block';
 }
 </script>
+<script src="zyn.js?v=9"></script>
 </body>
 </html>
